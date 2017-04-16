@@ -1,15 +1,12 @@
-# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit autotools eutils gnome2 pam readme.gentoo-r1 systemd user versionator
+inherit autotools gnome2 pam readme.gentoo-r1 systemd user versionator
 
 DESCRIPTION="GNOME Display Manager for managing graphical display servers and user logins"
 HOMEPAGE="https://wiki.gnome.org/Projects/GDM"
-
 SRC_URI="${SRC_URI}
 	branding? ( http://www.mail-archive.com/tango-artists@lists.freedesktop.org/msg00043/tango-gentoo-v1.1.tar.gz )
 "
@@ -18,12 +15,11 @@ LICENSE="
 	GPL-2+
 	branding? ( CC-Sampling-Plus-1.0 )
 "
-
 SLOT="0"
+KEYWORDS="*"
 
-IUSE="accessibility audit branding fprint +introspection ipv6 plymouth selinux smartcard tcpd test wayland xinerama"
-
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86"
+IUSE="accessibility audit branding +deprecated fprint +introspection ipv6 plymouth selinux smartcard systemd tcpd test wayland xinerama"
+REQUIRED_USE="wayland? ( systemd )"
 
 # NOTE: x11-base/xorg-server dep is for X_SERVER_PATH etc, bug #295686
 # nspr used by smartcard extension
@@ -52,10 +48,13 @@ COMMON_DEPEND="
 	>=x11-misc/xdg-utils-1.0.2-r3
 
 	virtual/pam
-
-	>=sys-apps/systemd-186:0=[pam]
-
-	sys-auth/pambase[systemd]
+	systemd? ( >=sys-apps/systemd-186:0=[pam] )
+	!systemd? (
+		>=x11-base/xorg-server-1.14.3-r1
+		>=sys-auth/consolekit-0.4.5_p20120320-r2
+		!<sys-apps/openrc-0.12
+	)
+	sys-auth/pambase[systemd?]
 
 	audit? ( sys-process/audit )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
@@ -123,6 +122,25 @@ pkg_setup() {
 }
 
 src_prepare() {
+	if use deprecated; then
+		# From GNOME:
+		# 	https://git.gnome.org/browse/gdm/commit/?id=e0e7f2d92d8d26592c44dd12fe56c52414a6bb2a
+		# 	https://git.gnome.org/browse/gdm/commit/?id=a9cacb929470eb82582396984c61d5b611bfeb1a
+		# 	https://git.gnome.org/browse/gdm/commit/?id=abb46853f824a004e0d7f58b26e068589b121d6b
+		# 	https://git.gnome.org/browse/gdm/commit/?id=7247ee14cf9db22e6e3608992e02dce16e6c1b59
+		# 	https://git.gnome.org/browse/gdm/commit/?id=193046dbf37c5abad9af21f0a57743bb6015e413
+		# 	https://git.gnome.org/browse/gdm/commit/?id=9be58c9ec9a3a411492a5182ac4b0d51fdc3a323
+		# 	https://git.gnome.org/browse/gdm/commit/?id=1ac67f522f5690c27023d98096ca817f12f7eb88
+		# 	https://bugzilla.gnome.org/show_bug.cgi?id=749418
+		eapply "${FILESDIR}"/${PN}-3.20.0-get-seat-id-from-function.patch
+		eapply "${FILESDIR}"/${PN}-3.18.2-restore-deprecated-consolekit-code.patch
+		eapply "${FILESDIR}"/${PN}-3.18.2-rebase-autologin-fixes.patch
+	fi
+
+	# From GNOME:
+	# 	https://git.gnome.org/browse/gdm/commit/?id=c870d47dd828506857f0997a3af3468fc12fc85b
+	eapply "${FILESDIR}"/${PN}-3.20.1-revert-gdm-session-set-pam-tty-when-initialising-pam.patch
+
 	# ssh-agent handling must be done at xinitrc.d, bug #220603
 	eapply "${FILESDIR}/${PN}-2.32.0-xinitrc-ssh-agent.patch"
 
@@ -156,13 +174,16 @@ src_configure() {
 		--enable-authentication-scheme=pam \
 		--with-default-pam-config=exherbo \
 		--with-at-spi-registryd-directory="${EPREFIX}"/usr/libexec \
-		--without-xevie \
-		--enable-systemd-journal \
+		--with-consolekit-directory="${EPREFIX}"/usr/lib/ConsoleKit \
 		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)" \
+		--without-xevie \
 		$(use_with audit libaudit) \
 		$(use_enable ipv6) \
 		$(use_with plymouth) \
 		$(use_with selinux) \
+		$(use_with systemd) \
+		$(use_with !systemd console-kit) \
+		$(use_enable systemd systemd-journal) \
 		$(use_with tcpd tcp-wrappers) \
 		$(use_enable wayland wayland-support) \
 		$(use_with xinerama) \

@@ -1,6 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 inherit autotools eutils gnome2
@@ -12,7 +10,7 @@ SRC_URI="https://github.com/linuxmint/cinnamon-session/archive/${PV}.tar.gz -> $
 LICENSE="GPL-2+ FDL-1.1+ LGPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc ipv6 systemd"
+IUSE="doc ipv6"
 
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.88
@@ -31,12 +29,10 @@ COMMON_DEPEND="
 	x11-libs/libXtst
 	x11-libs/pango[X]
 	virtual/opengl
-	systemd? ( >=sys-apps/systemd-183 )
-	!systemd? ( >=sys-power/upower-pm-utils-0.9.23 )
+	sys-power/upower
 "
 RDEPEND="${COMMON_DEPEND}
-	>=gnome-extra/cinnamon-desktop-2.6[systemd=]
-	!systemd? ( sys-auth/consolekit )
+	sys-auth/consolekit
 "
 DEPEND="${COMMON_DEPEND}
 	dev-libs/libxslt
@@ -60,7 +56,5 @@ src_configure() {
 		--disable-gconf \
 		--disable-static \
 		$(use_enable doc docbook-docs) \
-		$(use_enable ipv6) \
-		$(use_enable systemd logind) \
-		$(usex systemd --disable-old-upower --enable-old-upower)
+		$(use_enable ipv6)
 }

@@ -1,22 +1,20 @@
-# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
-inherit gnome2
+EAPI="6"
+
+inherit autotools gnome2
 
 DESCRIPTION="GNOME 3 compositing window manager based on Clutter"
 HOMEPAGE="https://git.gnome.org/browse/mutter/"
 
 LICENSE="GPL-2+"
 SLOT="0"
+KEYWORDS="*"
 
-IUSE="+introspection +kms test wayland"
+IUSE="deprecated-background +introspection kms test wayland"
 REQUIRED_USE="
 	wayland? ( kms )
 "
-
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
 # libXi-1.7.4 or newer needed per:
 # https://bugzilla.gnome.org/show_bug.cgi?id=738944
@@ -25,7 +23,7 @@ COMMON_DEPEND="
 	>=x11-libs/cairo-1.10[X]
 	>=x11-libs/gtk+-3.19.8:3[X,introspection?]
 	>=dev-libs/glib-2.36.0:2[dbus]
-	>=media-libs/clutter-1.25.3:1.0[X,introspection?]
+	>=media-libs/clutter-1.25.6:1.0[X,introspection?]
 	>=media-libs/cogl-1.17.1:1.0=[introspection?]
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=x11-libs/startup-notification-0.7
@@ -80,6 +78,15 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	!x11-misc/expocity
 "
+
+src_prepare() {
+	if use deprecated-background; then
+		eapply "${FILESDIR}"/${PN}-3.18.4-restore-deprecated-background-code.patch
+	fi
+
+	eautoreconf
+	gnome2_src_prepare
+}
 
 src_configure() {
 	gnome2_src_configure \
