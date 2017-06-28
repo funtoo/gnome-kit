@@ -2,7 +2,16 @@
 # your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using egencache *
 
+app-accessibility/brltty:api - build brltty's application program interface
+app-accessibility/brltty:beeper - support the console tone generator
+app-accessibility/brltty:contracted-braille - support in-line contracted braille
+app-accessibility/brltty:fm - support for the sound card synthesizer
+app-accessibility/brltty:midi - support the musical instrument digital interface
+app-accessibility/brltty:pcm - support for sound card digital audio
+app-accessibility/brltty:speech - speech support
 app-accessibility/orca:braille - Enable braille support
+app-accessibility/speech-dispatcher:espeak - Adds support for espeak speech engine
+app-accessibility/speech-dispatcher:flite - Adds support for flite speech engine
 app-arch/file-roller:nautilus - Enable file-roller to integrate with gnome-base/nautilus by providing entries in its context menu
 app-arch/file-roller:packagekit - Enable support for the distro-neutral package manager GUI app-admin/packagekit
 app-cdr/brasero:libburn - Enable dev-libs/libburn backend
@@ -10,6 +19,8 @@ app-cdr/brasero:nautilus - Build the gnome-base/nautilus extension
 app-cdr/brasero:packagekit - Enable support for the distro-neutral package manager GUI app-admin/packagekit
 app-cdr/brasero:playlist - Enable support for playlists through dev-libs/totem-pl-parser
 app-cdr/brasero:tracker - Enable audio playlist search using the app-misc/tracker indexer
+app-crypt/p11-kit:asn1 - Enable ASN.1 certificate support
+app-crypt/p11-kit:trust - Build the trust policy module
 app-crypt/seahorse:ldap - Enable seahorse to manipulate GPG keys on a LDAP server.
 app-editors/gedit-plugins:charmap - Insert special characters just by clicking on them
 app-editors/gedit-plugins:git - Shows document changes related to git's HEAD
@@ -17,6 +28,9 @@ app-editors/gedit-plugins:terminal - Embed a terminal in the bottom pane
 app-editors/gedit-plugins:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
 app-editors/latexila:latexmk - Install dev-tex/latexmk (used by default for the build tools)
 app-editors/latexila:rubber - Install dev-tex/rubber (can be used for the build tools)
+app-i18n/ibus:deprecated - install the deprecated ibus python library
+app-i18n/ibus:gconf - Enable support for gnome-base/gconf
+app-i18n/ibus:gtk3 - Enable support for gtk+3
 app-misc/bijiben:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
 app-misc/geoclue:geonames - Install geonames.org provider
 app-misc/geoclue:gsmloc - Install GSM location provider
@@ -44,6 +58,9 @@ app-text/evince:dvi - Enable the built-in DVI viewer
 app-text/evince:nautilus - Enable property page extension in gnome-base/nautilus
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer (media-libs/t1lib)
 app-text/evince:xps - Enable XPS viewer using app-text/libgxps
+app-text/poppler:cairo-qt - Enable experimental Cairo font rasterizer for Qt4 backend.
+app-text/poppler:nss - Enable signatures handling with dev-libs/nss
+app-text/poppler:utils - Install command-line PDF converters and various utilities.
 dev-libs/appstream-glib:stemmer - Add word stemming via dev-libs/snowball-stemmer.
 dev-libs/folks:telepathy - Load contacts from the Telepathy framework
 dev-libs/folks:tracker - Load contacts from app-misc/tracker index
@@ -72,6 +89,7 @@ dev-util/gtk-doc:vim - Enable source code highlighting through app-editors/vim
 dev-util/nemiver:memoryview - Enable the optional hexadecimal memory inspection with app-editors/ghex.
 dev-vcs/gitg:glade - Install a glade catalog file
 dev-vcs/gitg:python - Install Python bindings for those plugins requiring it.
+gnome-base/gconf:ldap - Build backend which enables default mail accounts, addressbooks and calendars for Evolution to be configured using each user's LDAP entry."
 gnome-base/gdm:fprint - Enables experimental fingerprint authentication using sys-auth/fprintd
 gnome-base/gdm:plymouth - Enable support for smooth transition from sys-boot/plymouth
 gnome-base/gnome:classic - Install gnome-extra/gnome-shell-extensions for the Gnome Shell Classic mode
@@ -87,6 +105,7 @@ gnome-base/gnome-extra-apps:shotwell - Install the media-gfx/shotwell photo mana
 gnome-base/gnome-extra-apps:tracker - Install the app-misc/tracker indexer and the GNOME packages that require it
 gnome-base/gnome-keyring:ssh-agent - Use GNOME Keyring to unlock SSH keys. Recommended unless you are using ECDSA or Ed25519 keys.
 gnome-base/gnome-light:gnome-shell - Install gnome-base/gnome-shell and x11-wm/mutter for the standard GNOME 3 desktop mode
+gnome-base/gnome-session:gconf - Optional support for gnome-base/gconf configuration storage system
 gnome-base/gnome-settings-daemon:colord - Support color management using x11-misc/colord
 gnome-base/gnome-settings-daemon:openrc-force - Skip systemd dependency (#480336), enabling this flag will become your setup to be fully unsupported by upstream and downstream Gnome team. Do not try to enable it unless completely needed
 gnome-base/gnome-settings-daemon:short-touchpad-timeout - Change the touchpad timeout so that it's effective for fast typists
@@ -100,11 +119,18 @@ gnome-base/gvfs:google - Enables support for accessing Google accounts via dev-l
 gnome-base/gvfs:http - Enable the HTTP/DAV backend using net-libs/libsoup-gnome
 gnome-base/gvfs:nfs - Enable NFS client support via net-fs/libnfs.
 gnome-base/gvfs:udev - Enable udev base replacement code for cdda feature
+gnome-base/libglade:tools - Install libglade-convert Python script.
+gnome-base/libgnomecanvas:glade - Enable glade support
 gnome-base/librsvg:tools - Build svg viewer tool
 gnome-base/nautilus:packagekit - Use packagekit to search for programs to open unknown file types
 gnome-base/nautilus:previewer - Use gnome-extra/sushi to preview files from the file mananger
 gnome-base/nautilus:sendto - Enable the nautilus-sendto extension to send files to various locations/devices
 gnome-base/nautilus:tracker - Add support for app-misc/tracker search
+gnome-base/orbit:pic - Force libname-server-2 to be built as PIC; needed on hardened systems
+gnome-extra/avant-window-navigator:gconf - Enable GConf as configuration backend
+gnome-extra/avant-window-navigator-extras:gconf - Enable GConf as configuration backend
+gnome-extra/cinnamon-control-center:colord - Support color management using x11-misc/colord
+gnome-extra/cinnamon-settings-daemon:colord - Support color management using x11-misc/colord
 gnome-extra/evolution-data-server:api-doc-extras - Build documentation for private APIs
 gnome-extra/evolution-data-server:berkdb - sys-libs/db support needed to migrate old (pre-3.12 evolution versions) addressbook data
 gnome-extra/evolution-data-server:gnome-online-accounts - Enable using net-libs/gnome-online-accounts for authorization
@@ -112,9 +138,43 @@ gnome-extra/evolution-data-server:google - Enable Google Contacts support. This 
 gnome-extra/evolution-data-server:weather - Enable optional weather calendar support
 gnome-extra/gnome-boxes:usbredir - Use sys-apps/usbredir to redirect USB devices to another machine over TCP
 gnome-extra/gnome-color-manager:packagekit - Enable support for the distro-neutral package manager GUI app-admin/packagekit
+gnome-extra/gnome-commander:chm - Enable metadata support for Microsoft Compiled HTML Help files
+gnome-extra/gnome-commander:gsf - Add metadata support for OLE, OLE2 and ODF
+gnome-extra/gnome-commander:pdf - Add metadata support for PDF
+gnome-extra/gnome-commander:python - Add support for python plugins"
+gnome-extra/gnome-commander:taglib - Add metadata support for ID3, Vorbis, FLAC and APE
+gnome-extra/gnome-do-plugins:banshee - Enables the Banshee (media-sound/banshee) plugin
+gnome-extra/gnome-dvb-daemon:totem - Build a plugin for media-video/totem
 gnome-extra/gnome-system-monitor:systemd - Display sys-apps/systemd metadata, e.g. unit names, for running processes
+gnome-extra/libgda:canvas - Enable support for x11-libs/goocanvas
+gnome-extra/libgda:http - Enable embedded net-libs/libsoup based server
+gnome-extra/libgda:json - Enable support for JSON format
+gnome-extra/libgda:mdb - Enable support for Microsoft Access database using app-office/mdbtools
+gnome-extra/libgda:reports - Install tools for generating graphical reports
+gnome-extra/libgda:sourceview - Enable support for x11-libs/gtksourceview
 gnome-extra/libgsf:gtk - Enable use of gdk in thumbnailer
+gnome-extra/nemo:packagekit - Use packagekit to search for programs to open unknown file types
+gnome-extra/nemo:tracker - Add support for app-misc/tracker search
+gnome-extra/nm-applet:modemmanager - Enable support for mobile broadband devices using net-misc/modemmanager
+gnome-extra/nm-applet:teamd - Enable teamd configuration editor
 gnome-extra/sushi:office - Support viewing file formats such as generated by app-office/libreoffice
+gnome-extra/synapse:plugins - Build support for plugins using librest
+gnome-extra/synapse:zeitgeist - Add support for Zeitgeist event tracking system
+gnome-extra/zeitgeist:datahub - Use build datahub for passive event injection
+gnome-extra/zeitgeist:downloads-monitor - Monitor the XDG_DOWNLOAD_DIRECTORY
+gnome-extra/zeitgeist:fts - Enable the full text search extension
+gnome-extra/zeitgeist:plugins - Use gnome-extra/zeitgeist-datasources to enable numerous packages to inject events
+gnome-extra/zeitgeist:sql-debug - Enable SQL debugging
+gnome-extra/zeitgeist:telepathy - Enable telepathy framework as data source
+gnome-extra/zeitgeist-datasources:bzr - Zeitgeist plugin for dev-vcs/bzr as data source
+gnome-extra/zeitgeist-datasources:chromium - Zeitgeist plugin for www-client/chromium as data source
+gnome-extra/zeitgeist-datasources:emacs - Zeitgeist plugin for emacs as data source
+gnome-extra/zeitgeist-datasources:firefox - Zeitgeist plugin for www-client/firefox as data source
+gnome-extra/zeitgeist-datasources:geany - Zeitgeist plugin for dev-util/geany as data source
+gnome-extra/zeitgeist-datasources:telepathy - Zeitgeist plugin for telepathy framework as data source
+gnome-extra/zeitgeist-datasources:thunderbird - Zeitgeist plugin for mail-client/thunderbird as data source
+gnome-extra/zeitgeist-datasources:tomboy - Zeitgeist plugin for app-misc/tomboy as data source
+gnome-extra/zeitgeist-datasources:vim - Zeitgeist plugin for vim as data source
 mail-client/evolution:bogofilter - Build mail-filter/bogofilter plugin
 mail-client/evolution:crypt - Enable GPG encryption support using app-crypt/gnupg and app-crypt/pinentry
 mail-client/evolution:highlight - Enable text highlighting plugin
@@ -158,14 +218,29 @@ net-im/telepathy-mission-control:systemd - Rely on systemd's logind to detect su
 net-libs/glib-networking:gnome - Extract HTTP/HTTPS/SOCKS proxy configuration stored using GSettings
 net-libs/glib-networking:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration
 net-libs/gnome-online-accounts:gnome - Use gnome-base/gnome-control-center to set GNOME online accounts preferences
+net-libs/gtk-vnc:gtk3 - Build the gtk3 gtk-vnc library and other gtk3 assets
+net-libs/libqmi:mbim - Support QMI over Mobile Broadband Interface Model (MBIM)
 net-libs/libsoup:gssapi - Enable GSSAPI support
 net-libs/libsoup:samba - Use net-fs/samba for NTLM Single Sign-On
 net-libs/webkit-gtk:coverage - Enable code coverage support
-net-libs/webkit-gtk:egl - Enable EGL support.
+net-libs/webkit-gtk:egl - Enable EGL support
 net-libs/webkit-gtk:geoloc - Enable geolocation support through app-misc/geoclue
-net-libs/webkit-gtk:gles2 - Enable GLESv2 support.
+net-libs/webkit-gtk:geolocation - Enable geolocation support through app-misc/geoclue
+net-libs/webkit-gtk:gles2 - Enable GLESv2 support
 net-libs/webkit-gtk:webgl - Build support for the WebGL HTML API using virtual/opengl
 net-misc/gnome-online-miners:flickr - Enable Flickr support
+net-misc/networkmanager:connection-sharing - Use net-dns/dnsmasq and net-firewall/iptables for connection sharing
+net-misc/networkmanager:consolekit - Use sys-auth/consolekit for session tracking
+net-misc/networkmanager:dhclient - Use dhclient from net-misc/dhcp for getting ip
+net-misc/networkmanager:json - Enable JSON validation via dev-libs/jansson in libnm.
+net-misc/networkmanager:modemmanager - Enable support for mobile broadband devices using net-misc/modemmanager
+net-misc/networkmanager:nss - Use dev-libs/nss for cryptography
+net-misc/networkmanager:ofono - Use net-misc/ofono for telephony support.
+net-misc/networkmanager:ppp - Enable support for mobile broadband and PPPoE connections using net-dialup/ppp
+net-misc/networkmanager:resolvconf - Use net-dns/openresolv for managing DNS information
+net-misc/networkmanager:teamd - Enable Teamd control support
+net-misc/networkmanager:wext - Enable support for the deprecated Wext (Wireless Extensions) API; needed for some older drivers (e.g. ipw2200, ndiswrapper)
+net-misc/networkmanager:wifi - Enable support for wifi and 802.1x security using net-wireless/wpa_supplicant
 net-misc/rygel:tracker - Install dependencies for the tracker plugin
 net-misc/rygel:transcode - Install dependencies for transcoding support
 net-misc/vinagre:rdp - Enable access to Windows RDP protocol using net-misc/rdesktop
@@ -173,14 +248,33 @@ net-misc/vinagre:spice - Enable access to SPICE-enabled virtual machines
 net-misc/vinagre:ssh - Enable ssh plugin using x11-libs/vte
 net-misc/vinagre:telepathy - Enable access to remote desktop via a net-libs/telepathy-glib client
 net-misc/vino:telepathy - Enable desktop sharing through a telepathy client
+net-voip/telepathy-gabble:plugins - Enable plugin loader
 sys-apps/gnome-disk-utility:fat - Include FAT16/FAT32 support (sys-fs/dosfstools)
+sys-auth/consolekit:cgroups - Use the kernel to track processes instead of the session cookie.
+sys-auth/consolekit:pm-utils - Adds support for suspend/resume using sys-power/pm-utils
+sys-auth/consolekit:policykit - Use the PolicyKit framework (sys-auth/polkit) to get authorization for suspend/shutdown.
+sys-auth/consolekit:systemd-units - Install systemd unit files to replace the modern functionality of logind in sys-apps/systemd. Not recommended.
+sys-auth/polkit:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for session tracking
+sys-fs/udisks:cryptsetup - Enable sys-fs/cryptsetup support
+sys-fs/udisks:gptfdisk - Pull in sys-apps/gptfdisk for sgdisk command as used by partitioning functionality
+sys-fs/udisks:remote-access - Control whether connections from other clients over LAN are allowed
+sys-fs/udisks:systemd - Support sys-apps/systemd's logind
 www-client/epiphany:nss - Import passwords from older gecko based www-client/epiphany keyring.
+x11-libs/cairo:gles2 - Build the OpenGL ES 2 backend
+x11-libs/cairo:glib - Compile with GLib Object System support
+x11-libs/cairo:opengl - Build the OpenGL backend
+x11-libs/cairo:utils - Build support for Cairo script and trace utilities
+x11-libs/cairo:valgrind - Built-in support to mark memory regions
+x11-libs/gdk-pixbuf:X - Build and install the legacy gdk_pixbuf_xlib-2.0 library
 x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
 x11-libs/gtk+:cloudprint - Enable printing via Google Cloud Print.
 x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing
 x11-libs/gtksourceview:glade - Install a glade catalog file
 x11-libs/libwnck:tools - Install wnckprop-3 and wnck-urgency-monitor-3 command-line tools
 x11-libs/vte:glade - Provide integration with dev-util/glade.
+x11-misc/colord:argyllcms - Enable ArgyllCMS sensor
+x11-misc/colord:extra-print-profiles - Generate extra print profiles. Warning: significant build time and memory requirements.
+x11-misc/colord:gusb - Enable dev-libs/libgusb support, needed for colorimeter drivers
 x11-terms/gnome-terminal:gnome-shell - Integrate with gnome-base/gnome-shell search
 x11-terms/gnome-terminal:nautilus - Build gnome-base/nautilus extension
 x11-wm/mutter:kms - Enable KMS support.

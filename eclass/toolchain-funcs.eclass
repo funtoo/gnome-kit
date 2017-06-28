@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -169,8 +168,8 @@ tc-getBUILD_PKG_CONFIG() { tc-getBUILD_PROG PKG_CONFIG pkg-config "$@"; }
 tc-export() {
 	local var
 	for var in "$@" ; do
-		[[ $(type -t tc-get${var}) != "function" ]] && die "tc-export: invalid export variable '${var}'"
-		eval tc-get${var} > /dev/null
+		[[ $(type -t "tc-get${var}") != "function" ]] && die "tc-export: invalid export variable '${var}'"
+		"tc-get${var}" > /dev/null
 	done
 }
 
@@ -419,6 +418,27 @@ tc-has-openmp() {
 	local ret=$?
 	rm -f "${base}"*
 	return ${ret}
+}
+
+# @FUNCTION: tc-check-openmp
+# @DESCRIPTION:
+# Test for OpenMP support with the current compiler and error out with
+# a clear error message, telling the user how to rectify the missing
+# OpenMP support that has been requested by the ebuild. Using this function
+# to test for OpenMP support should be preferred over tc-has-openmp and
+# printing a custom message, as it presents a uniform interface to the user.
+tc-check-openmp() {
+	if ! tc-has-openmp; then
+		eerror "Your current compiler does not support OpenMP!"
+
+		if tc-is-gcc; then
+			eerror "Enable OpenMP support by building sys-devel/gcc with USE=\"openmp\"."
+		elif tc-is-clang; then
+			eerror "OpenMP support in sys-devel/clang is provided by sys-libs/libomp."
+		fi
+
+		die "Active compiler does not have required support for OpenMP"
+	fi
 }
 
 # @FUNCTION: tc-has-tls

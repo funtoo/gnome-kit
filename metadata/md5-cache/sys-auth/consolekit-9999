@@ -1,0 +1,11 @@
+DEFINED_PHASES=configure install prepare setup unpack
+DEPEND=>=dev-libs/glib-2.40:2=[dbus] >=sys-devel/gettext-0.19 sys-apps/dbus sys-libs/zlib:= x11-libs/libX11:= acl? ( sys-apps/acl:= >=virtual/udev-200 ) cgroups? ( app-admin/cgmanager >=sys-libs/libnih-1.0.2[dbus] ) pam? ( virtual/pam ) policykit? ( >=sys-auth/polkit-0.110 ) dev-libs/libxslt virtual/pkgconfig doc? ( app-text/xmlto ) test? ( app-text/docbook-xml-dtd:4.1.2 app-text/xmlto ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 >=dev-vcs/git-1.8.2.1
+DESCRIPTION=Framework for defining and tracking users, login sessions and seats
+EAPI=6
+HOMEPAGE=https://github.com/ConsoleKit2/ConsoleKit2 https://www.freedesktop.org/wiki/Software/ConsoleKit
+IUSE=acl cgroups debug doc kernel_linux pam pm-utils policykit selinux test
+LICENSE=GPL-2
+RDEPEND=>=dev-libs/glib-2.40:2=[dbus] >=sys-devel/gettext-0.19 sys-apps/dbus sys-libs/zlib:= x11-libs/libX11:= acl? ( sys-apps/acl:= >=virtual/udev-200 ) cgroups? ( app-admin/cgmanager >=sys-libs/libnih-1.0.2[dbus] ) pam? ( virtual/pam ) policykit? ( >=sys-auth/polkit-0.110 ) kernel_linux? ( sys-apps/coreutils[acl?] ) pm-utils? ( sys-power/pm-utils ) selinux? ( sec-policy/selinux-consolekit )
+SLOT=0
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	git-r3	00f60a84fc7b499c99edfe99caea9f95	libtool	e32ea84bf82cf8987965b574672dba93	linux-info	fd1e29abbb02cbc49f1a14299846e9c4	multilib	97f470f374f2e94ccab04a2fb21d811e	pam	3ecd5b75e39b0bb05a3183c08fcdfdb4	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=99c1d7af4579bc2b7d50ebb7207a3882
