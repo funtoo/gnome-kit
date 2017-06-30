@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 inherit autotools gnome2 pax-utils virtualx
@@ -15,7 +14,7 @@ IUSE="+cairo examples gtk test"
 KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
-	dev-lang/spidermonkey:24
+	dev-lang/spidermonkey:38
 	>=dev-libs/glib-2.37.3:2
 	>=dev-libs/gobject-introspection-1.38:=
 	sys-libs/readline:0
@@ -35,9 +34,6 @@ RDEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	# Disable broken unittests
-	eapply "${FILESDIR}"/${PN}-2.4.0-disable-unittest-*.patch
-
 	eautoreconf
 	gnome2_src_prepare
 }
@@ -45,11 +41,9 @@ src_prepare() {
 src_configure() {
 	# FIXME: add systemtap/dtrace support, like in glib:2
 	# FIXME: --enable-systemtap installs files in ${D}/${D} for some reason
-	# XXX: Do NOT enable coverage, completely useless for portage installs
 	gnome2_src_configure \
 		--disable-systemtap \
 		--disable-dtrace \
-		--disable-coverage \
 		$(use_with cairo) \
 		$(use_with gtk)
 }

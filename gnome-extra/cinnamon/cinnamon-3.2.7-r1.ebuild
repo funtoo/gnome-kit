@@ -1,16 +1,15 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
+PYTHON_COMPAT=( python{2_7,3_4,3_5} )
 PYTHON_REQ_USE="xml"
 
 inherit autotools eutils flag-o-matic gnome2 multilib pax-utils python-r1
 
 DESCRIPTION="A fork of GNOME Shell with layout similar to GNOME 2"
-HOMEPAGE="http://cinnamon.linuxmint.com/"
+HOMEPAGE="http://developer.linuxmint.com/"
 
 MY_PV="${PV/_p/-UP}"
 MY_P="${PN}-${MY_PV}"
@@ -23,13 +22,13 @@ SLOT="0"
 # bluetooth support dropped due to bug #511648
 IUSE="+nls +networkmanager" #+bluetooth
 
-# We need *both* python 2.7 and 3.x
+# We need *both* python 2.x and 3.x
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
-	python_targets_python2_7
-	|| ( python_targets_python3_3 python_targets_python3_4 python_targets_python3_5 )
+	|| ( $(python_gen_useflags 'python2*') )
+	|| ( $(python_gen_useflags 'python3*') )
 "
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND="${PYTHON_DEPS}
 	app-accessibility/at-spi2-atk:2
@@ -50,7 +49,6 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=gnome-base/gsettings-desktop-schemas-2.91.91
 	media-libs/gstreamer:1.0
 	media-libs/gst-plugins-base:1.0
-	media-sound/pulseaudio:0=[glib]
 	net-libs/libsoup:2.4[introspection]
 	>=sys-auth/polkit-0.100[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
@@ -59,10 +57,10 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=x11-libs/startup-notification-0.11
 	x11-libs/libX11
 	>=x11-libs/libXfixes-5.0
-	>=x11-wm/muffin-2.5[introspection]
+	>=x11-wm/muffin-3.0.0[introspection]
 	networkmanager? (
 		gnome-base/libgnome-keyring
-		>=net-misc/networkmanager-0.8.999[introspection] )
+		>=net-misc/networkmanager-0.8.999:=[introspection] )
 "
 #bluetooth? ( >=net-wireless/gnome-bluetooth-3.1:=[introspection] )
 
@@ -94,18 +92,19 @@ RDEPEND="${COMMON_DEPEND}
 	>=app-accessibility/caribou-0.3
 
 	x11-misc/xdg-utils
+	x11-libs/xapps
 
-	dev-python/dbus-python[python_targets_python2_7]
-	dev-python/gconf-python:2[python_targets_python2_7]
-	dev-python/lxml[python_targets_python2_7]
-	dev-python/pexpect[python_targets_python2_7]
-	dev-python/pycairo[python_targets_python2_7]
+	dev-python/dbus-python[${PYTHON_USEDEP}]
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
-	dev-python/pyinotify[python_targets_python2_7]
-	dev-python/pypam[python_targets_python2_7]
-	dev-python/pillow[python_targets_python2_7]
+	$(python_gen_cond_dep 'dev-python/gconf-python:2[${PYTHON_USEDEP}]' 'python2*')
+	$(python_gen_cond_dep 'dev-python/lxml[${PYTHON_USEDEP}]' 'python2*')
+	$(python_gen_cond_dep 'dev-python/pexpect[${PYTHON_USEDEP}]' 'python2*')
+	$(python_gen_cond_dep 'dev-python/pycairo[${PYTHON_USEDEP}]' 'python2*')
+	$(python_gen_cond_dep 'dev-python/pyinotify[${PYTHON_USEDEP}]' 'python2*')
+	$(python_gen_cond_dep 'dev-python/pypam[${PYTHON_USEDEP}]' 'python2*')
+	$(python_gen_cond_dep 'dev-python/pillow[${PYTHON_USEDEP}]' 'python2*')
 
-	x11-themes/gnome-themes-standard[gtk]
+	x11-themes/gnome-themes-standard
 	x11-themes/adwaita-icon-theme
 
 	>=gnome-extra/nemo-2.4
@@ -123,7 +122,7 @@ RDEPEND="${COMMON_DEPEND}
 #bluetooth? ( net-wireless/cinnamon-bluetooth )
 
 DEPEND="${COMMON_DEPEND}
-	dev-python/polib[python_targets_python2_7]
+	$(python_gen_cond_dep 'dev-python/polib[${PYTHON_USEDEP}]' 'python2*')
 	dev-util/gtk-doc
 	>=dev-util/intltool-0.4
 	>=sys-devel/gettext-0.17
@@ -154,10 +153,6 @@ src_prepare() {
 	# Use wheel group instead of sudo (from Fedora/Arch)
 	# https://github.com/linuxmint/Cinnamon/issues/3576
 	eapply "${FILESDIR}"/${PN}-2.8.3-set-wheel.patch
-
-	# Fix GNOME 3.14 support (from Fedora/Arch)
-	# https://github.com/linuxmint/Cinnamon/issues/3577
-	eapply "${FILESDIR}"/${PN}-2.8.3-gnome-3.14.patch
 
 	# Use pkexec instead of gksu (from Arch)
 	# https://github.com/linuxmint/Cinnamon/issues/3565
@@ -195,7 +190,6 @@ src_configure() {
 
 	gnome2_src_configure \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
-		--disable-rpath \
 		--disable-jhbuild-wrapper-script \
 		$(use_enable networkmanager) \
 		--with-ca-certificates="${EPREFIX}/etc/ssl/certs/ca-certificates.crt" \
