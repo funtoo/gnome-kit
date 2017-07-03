@@ -1,6 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 VALA_USE_DEPEND="vapigen"
@@ -18,13 +16,11 @@ IUSE="debug +introspection test vala"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
-	>=app-i18n/unicode-data-${PV}
+	=app-i18n/unicode-data-${PV}*
 	>=dev-libs/glib-2.32:2
 	>=x11-libs/pango-1.2.1[introspection?]
 	>=x11-libs/gtk+-3.16:3[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-0.9.0:= )
-"
-RDEPEND="${COMMON_DEPEND}
 	!<gnome-extra/gucharmap-3:0
 "
 DEPEND="${RDEPEND}
