@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -15,7 +16,7 @@ SRC_URI="https://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~arm64 ia64 ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 
 IUSE="debug +introspection +vala"
 REQUIRED_USE="
@@ -28,7 +29,6 @@ REQUIRED_USE="
 RESTRICT="test"
 
 RDEPEND="
-	${PYTHON_DEPS}
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/dbus-glib-0.90
 	introspection? ( >=dev-libs/gobject-introspection-1.30 )
@@ -38,16 +38,12 @@ DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am
 	virtual/pkgconfig
 	vala? ( $(vala_depend) )
+	${PYTHON_DEPS}
 "
 # See bug 504744 for reference
 PDEPEND="
 	net-im/telepathy-mission-control
 "
-
-src_prepare() {
-	use vala && vala_src_prepare
-	gnome2_src_prepare
-}
 
 src_configure() {
 	gnome2_src_configure \

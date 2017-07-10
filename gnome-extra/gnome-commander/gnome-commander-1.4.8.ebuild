@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -12,9 +13,8 @@ HOMEPAGE="http://gcmd.github.io/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="chm doc exif gsf pdf python taglib"
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="app-text/gnome-doc-utils
 	>=dev-libs/glib-2.6.0:2
@@ -29,10 +29,7 @@ RDEPEND="app-text/gnome-doc-utils
 	exif? ( >=media-gfx/exiv2-0.14 )
 	gsf? ( >=gnome-extra/libgsf-1.12.0 )
 	pdf? ( >=app-text/poppler-0.18 )
-	python? (
-		${PYTHON_DEPS}
-		>=dev-python/gnome-vfs-python-2.0.0
-	)
+	python? ( >=dev-python/gnome-vfs-python-2.0.0 )
 	taglib? ( >=media-libs/taglib-1.4 )"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35.0
@@ -40,10 +37,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 DOCS="AUTHORS BUGS ChangeLog NEWS README TODO"
-
-pkg_setup() {
-	use python && python-single-r1_pkg_setup
-}
 
 src_configure() {
 	G2CONF="$(use_enable doc scrollkeeper)

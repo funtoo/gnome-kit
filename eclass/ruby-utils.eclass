@@ -1,5 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: ruby-utils.eclass
 # @MAINTAINER:
@@ -27,10 +28,10 @@ if [[ ! ${_RUBY_UTILS} ]]; then
 # provide for a better first installation experience.
 
 # All RUBY_TARGETS
-RUBY_TARGETS_PREFERENCE="ruby22 ruby21 "
+RUBY_TARGETS_PREFERENCE="ruby20 ruby19 "
 
 # All other active ruby targets
-RUBY_TARGETS_PREFERENCE+="ruby23 ruby24"
+RUBY_TARGETS_PREFERENCE+="ruby21 ruby22 ruby23"
 
 
 _ruby_implementation_depend() {
@@ -61,10 +62,6 @@ _ruby_implementation_depend() {
 		ruby23)
 			rubypn="dev-lang/ruby"
 			rubyslot=":2.3"
-			;;
-		ruby24)
-			rubypn="dev-lang/ruby"
-			rubyslot=":2.4"
 			;;
 		ree18)
 			rubypn="dev-lang/ruby-enterprise"

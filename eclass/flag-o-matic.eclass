@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -24,9 +25,9 @@ all-flag-vars() {
 setup-allowed-flags() {
 	ALLOWED_FLAGS=(
 		-pipe -O '-O[12sg]' -mcpu -march -mtune
-		'-fstack-protector*' '-fsanitize*' '-fstack-check*' -fno-stack-check
+		'-fstack-protector*' '-fsanitize*'
 		-fbounds-check -fbounds-checking -fno-strict-overflow
-		-fno-PIE -fno-pie -nopie -no-pie -fno-unit-at-a-time
+		-fno-PIE -fno-pie -nopie -fno-unit-at-a-time
 		-g '-g[0-9]' -ggdb '-ggdb[0-9]' '-gdwarf-*' gstabs -gstabs+
 		-fno-ident -fpermissive -frecord-gcc-switches
 		'-fdiagnostics*' '-fplugin*'
@@ -79,16 +80,7 @@ _filter-hardened() {
 			# thinking about -fPIE.
 			-fPIC|-fpic|-fPIE|-fpie|-Wl,pie|-pie)
 				gcc-specs-pie || continue
-				if ! is-flagq -nopie && ! is-flagq -no-pie ; then
-					# Support older Gentoo form first (-nopie) before falling
-					# back to the official gcc-6+ form (-no-pie).
-					if test-flags -nopie >/dev/null ; then
-						append-flags -nopie
-					else
-						append-flags -no-pie
-					fi
-				fi
-				;;
+				is-flagq -nopie || append-flags -nopie;;
 			-fstack-protector)
 				gcc-specs-ssp || continue
 				is-flagq -fno-stack-protector || append-flags $(test-flags -fno-stack-protector);;
@@ -116,7 +108,7 @@ _filter-var() {
 		done
 		new+=( "${f}" )
 	done
-	export ${var}="${new[*]}"
+	eval export ${var}=\""${new[*]}"\"
 }
 
 # @FUNCTION: filter-flags
@@ -270,7 +262,7 @@ replace-flags() {
 			[[ ${f} == ${1} ]] && f=${2}
 			new+=( "${f}" )
 		done
-		export ${var}="${new[*]}"
+		eval export ${var}=\""${new[*]}"\"
 	done
 
 	return 0
@@ -295,8 +287,9 @@ replace-cpu-flags() {
 }
 
 _is_flagq() {
-	local x var="$1[*]"
-	for x in ${!var} ; do
+	local x var
+	eval var=\""\${$1[*]}"\"
+	for x in ${var} ; do
 		[[ ${x} == $2 ]] && return 0
 	done
 	return 1
@@ -410,7 +403,7 @@ strip-flags() {
 		if [[ ${!var} != "${new[*]}" ]] ; then
 			einfo "strip-flags: ${var}: changed '${!var}' to '${new[*]}'"
 		fi
-		export ${var}="${new[*]}"
+		eval export ${var}=\""${new[*]}"\"
 	done
 
 	set +f	# re-enable pathname expansion
@@ -560,8 +553,27 @@ get-flag() {
 	return 1
 }
 
+# @FUNCTION: has_m64
+# @DESCRIPTION:
+# This doesn't test if the flag is accepted, it tests if the flag actually
+# WORKS. Non-multilib gcc will take both -m32 and -m64. If the flag works
+# return code is 0, else the return code is 1.
 has_m64() {
-	die "${FUNCNAME}: don't use this anymore"
+	eqawarn "${FUNCNAME}: don't use this anymore"
+
+	# this doesnt test if the flag is accepted, it tests if the flag
+	# actually -WORKS-. non-multilib gcc will take both -m32 and -m64!
+	# please dont replace this function with test_flag in some future
+	# clean-up!
+
+	local temp="$(emktemp)"
+	echo "int main() { return(0); }" > "${temp}".c
+	MY_CC=$(tc-getCC)
+	${MY_CC/ .*/} -m64 -o "$(emktemp)" "${temp}".c > /dev/null 2>&1
+	local ret=$?
+	rm -f "${temp}".c
+	[[ ${ret} != 1 ]] && return 0
+	return 1
 }
 
 has_m32() {

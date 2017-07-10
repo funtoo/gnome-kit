@@ -1,15 +1,18 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
-inherit gnome2
+EAPI=5
+GCONF_DEBUG="no"
+
+inherit eutils gnome2
 
 DESCRIPTION="An editor to the GNOME config system"
 HOMEPAGE="https://git.gnome.org/browse/gconf-editor"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="
@@ -17,6 +20,7 @@ RDEPEND="
 	>=gnome-base/gconf-2.12:2
 "
 DEPEND="${RDEPEND}
+	app-text/scrollkeeper
 	sys-devel/gettext
 	app-text/gnome-doc-utils
 	>=dev-util/intltool-0.35
@@ -25,10 +29,12 @@ DEPEND="${RDEPEND}
 "
 # gnome-common for eautoreconf
 
-PATCHES=(
+src_prepare() {
 	# Fix assertion failed crash (from 'master')
-	"${FILESDIR}/${PN}-3.0.1-assertion-crash.patch"
+	epatch "${FILESDIR}/${PN}-3.0.1-assertion-crash.patch"
 
 	# Drop use GTK accel maps (from 'master')
-	"${FILESDIR}/${PN}-3.0.1-drop-accel.patch"
-)
+	epatch "${FILESDIR}/${PN}-3.0.1-drop-accel.patch"
+
+	gnome2_src_prepare
+}

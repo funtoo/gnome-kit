@@ -1,8 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
+EAPI="5"
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 
 inherit eutils multilib pam python-r1 toolchain-funcs
 
@@ -14,7 +15,6 @@ LICENSE="|| ( BSD GPL-2 )"
 SLOT="0"
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 s390 sh sparc x86"
 IUSE="pam python static-libs"
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	>=sys-libs/cracklib-2.8:=
@@ -27,7 +27,6 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	default
 	# ensure pkgconfig files go in /usr
 	sed -e 's:\(pkgconfigdir *=\).*:\1 '${EPREFIX}/usr/$(get_libdir)'/pkgconfig:' \
 		-i src/Makefile.{am,in} || die "sed failed"
