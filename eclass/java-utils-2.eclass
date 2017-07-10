@@ -1,6 +1,5 @@
-# Copyright 2004-2015 Gentoo Foundation
+# Copyright 2004-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: java-utils-2.eclass
 # @MAINTAINER:
@@ -22,6 +21,9 @@ IUSE="elibc_FreeBSD"
 
 # Make sure we use java-config-2
 export WANT_JAVA_CONFIG="2"
+
+# Prefix variables are only available for EAPI>=3
+has "${EAPI:-0}" 0 1 2 && ED="${D}" EPREFIX= EROOT="${ROOT}"
 
 # @VARIABLE: JAVA_PKG_PORTAGE_DEP
 # @INTERNAL
@@ -275,7 +277,7 @@ java-pkg_addres() {
 # be it a unit test or a regular java class.
 #
 # You can use this function by either:
-# - calling it yourself in java_prepare() and feeding java-pkg_rm_files with
+# - calling it yourself in src_prepare() and feeding java-pkg_rm_files with
 # the list of files you wish to remove.
 # - defining an array in the ebuild named JAVA_RM_FILES with the list of files
 # you wish to remove.
@@ -338,7 +340,7 @@ java-pkg_dojar() {
 		if [[ -e "${jar}" ]] ; then
 			# Don't overwrite if jar has already been installed with the same
 			# name
-			local dest="${D}${JAVA_PKG_JARDEST}/${jar_basename}"
+			local dest="${ED}${JAVA_PKG_JARDEST}/${jar_basename}"
 			if [[ -e "${dest}" ]]; then
 				ewarn "Overwriting ${dest}"
 			fi
@@ -352,13 +354,13 @@ java-pkg_dojar() {
 					insinto "${JAVA_PKG_JARDEST}"
 					doins "${jar}"
 				) || die "failed to install ${jar}"
-				java-pkg_append_ JAVA_PKG_CLASSPATH "${JAVA_PKG_JARDEST}/${jar_basename}"
-				debug-print "installed ${jar} to ${D}${JAVA_PKG_JARDEST}"
+				java-pkg_append_ JAVA_PKG_CLASSPATH "${EPREFIX}/${JAVA_PKG_JARDEST}/${jar_basename}"
+				debug-print "installed ${jar} to ${ED}${JAVA_PKG_JARDEST}"
 			# make a symlink to the original jar if it's symlink
 			else
 				# TODO use dosym, once we find something that could use it
 				# -nichoj
-				ln -s "$(readlink "${jar}")" "${D}${JAVA_PKG_JARDEST}/${jar_basename}"
+				ln -s "$(readlink "${jar}")" "${ED}${JAVA_PKG_JARDEST}/${jar_basename}"
 				debug-print "${jar} is a symlink, linking accordingly"
 			fi
 		else
@@ -587,13 +589,13 @@ java-pkg_sointo() {
 java-pkg_dohtml() {
 	debug-print-function ${FUNCNAME} $*
 
-	[[ ${#} -lt 1 ]] &&  die "At least one argument required for ${FUNCNAME}"
+	[[ ${#} -lt 1 ]] && die "At least one argument required for ${FUNCNAME}"
 
-	# from /usr/lib/portage/bin/dohtml -h
-	#  -f   Set list of allowed extensionless file names.
-	dohtml -f package-list "$@"
+	# Do away with dohtml and rely on dodoc instead to do the deed.
+	docinto html
+	dodoc "$@"
 
-	# this probably shouldn't be here but it provides
+	# This probably shouldn't be here but it provides
 	# a reasonable way to catch # docs for all of the
 	# old ebuilds.
 	java-pkg_recordjavadoc
@@ -828,7 +830,7 @@ java-pkg_dolauncher() {
 	echo "gjl_package=${JAVA_PKG_NAME}" >> "${target}"
 	cat "${var_tmp}" >> "${target}"
 	rm -f "${var_tmp}"
-	echo "source /usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
+	echo "source ${EPREFIX}/usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
 
 	if [[ -n "${target_dir}" ]]; then
 		(
@@ -1745,7 +1747,7 @@ java-pkg_register-ant-task() {
 	local TASK_NAME="${1:-${JAVA_PKG_NAME}}"
 
 	dodir /usr/share/ant/${TASKS_DIR}
-	touch "${D}/usr/share/ant/${TASKS_DIR}/${TASK_NAME}"
+	touch "${ED}/usr/share/ant/${TASKS_DIR}/${TASK_NAME}"
 }
 
 # @FUNCTION: java-pkg_ant-tasks-depend
@@ -1867,7 +1869,14 @@ ejunit4() {
 # src_prepare Searches for bundled jars
 # Don't call directly, but via java-pkg-2_src_prepare!
 java-utils-2_src_prepare() {
-	java-pkg_func-exists java_prepare && java_prepare
+	case ${EAPI:-0} in
+		[0-5])
+			java-pkg_func-exists java_prepare && java_prepare ;;
+		*)
+			java-pkg_func-exists java_prepare &&
+				eqawarn "java_prepare is no longer called, define src_prepare instead."
+			eapply_user ;;
+	esac
 
 	# Check for files in JAVA_RM_FILES array.
 	if [[ ${JAVA_RM_FILES[@]} ]]; then
@@ -2182,10 +2191,6 @@ java-pkg_init() {
 		I_WANT_GLOBAL_JAVA_OPTIONS="true"
 	fi
 
-	if java-pkg_func-exists ant_src_unpack; then
-		java-pkg_announce-qa-violation "Using old ant_src_unpack. Should be src_unpack"
-	fi
-
 	java-pkg_switch-vm
 	PATH=${JAVA_HOME}/bin:${PATH}
 
@@ -2336,9 +2341,9 @@ java-pkg_init_paths_() {
 
 	JAVA_PKG_SHAREPATH="/usr/share/${JAVA_PKG_NAME}"
 	JAVA_PKG_SOURCESPATH="${JAVA_PKG_SHAREPATH}/sources/"
-	JAVA_PKG_ENV="${D}${JAVA_PKG_SHAREPATH}/package.env"
+	JAVA_PKG_ENV="${ED}${JAVA_PKG_SHAREPATH}/package.env"
 	JAVA_PKG_VIRTUALS_PATH="/usr/share/java-config-2/virtuals"
-	JAVA_PKG_VIRTUAL_PROVIDER="${D}/${JAVA_PKG_VIRTUALS_PATH}/${JAVA_PKG_NAME}"
+	JAVA_PKG_VIRTUAL_PROVIDER="${ED}${JAVA_PKG_VIRTUALS_PATH}/${JAVA_PKG_NAME}"
 
 	[[ -z "${JAVA_PKG_JARDEST}" ]] && JAVA_PKG_JARDEST="${JAVA_PKG_SHAREPATH}/lib"
 	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="/usr/$(get_libdir)/${JAVA_PKG_NAME}"
@@ -2885,4 +2890,30 @@ java-pkg_clean() {
 	if [[ -z "${JAVA_PKG_NO_CLEAN}" ]]; then
 		find "${@}" '(' -name '*.class' -o -name '*.jar' ')' -type f -delete -print || die
 	fi
+}
+
+# @FUNCTION: java-pkg_gen-cp
+# @INTERNAL
+# @DESCRIPTION:
+# Java package generate classpath will create a classpath based on
+# special variable CP_DEPEND in the ebuild.
+#
+# @CODE
+# Parameters:
+# $1 - classpath variable either EANT_GENTOO_CLASSPATH or JAVA_GENTOO_CLASSPATH
+# @CODE
+java-pkg_gen-cp() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	local atom
+	for atom in ${CP_DEPEND}; do
+		if [[ ${atom} =~ /(([[:alnum:]+_-]+)-[0-9]+(\.[0-9]+)*[a-z]?(_[[:alnum:]]+)?(-r[0-9]*)?|[[:alnum:]+_-]+):([[:alnum:]+_.-]+) ]]; then
+			atom=${BASH_REMATCH[2]:-${BASH_REMATCH[1]}}
+			[[ ${BASH_REMATCH[6]} != 0 ]] && atom+=-${BASH_REMATCH[6]}
+			local regex="(^|\s|,)${atom}($|\s|,)"
+			[[ ${!1} =~ ${regex} ]] || declare -g ${1}+=${!1:+,}${atom}
+		else
+			die "Invalid CP_DEPEND atom ${atom}, ensure a SLOT is included"
+		fi
+	done
 }

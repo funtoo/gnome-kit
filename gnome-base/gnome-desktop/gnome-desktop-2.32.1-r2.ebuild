@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -15,8 +14,9 @@ HOMEPAGE="https://www.gnome.org/"
 
 LICENSE="GPL-2+ FDL-1.1+ LGPL-2+"
 SLOT="2"
-KEYWORDS="alpha amd64 arm ia64 ppc ppc64 ~sh sparc x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="alpha amd64 arm ia64 ppc ppc64 ~sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="license-docs"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 # Note: gnome-desktop:2 and :3 install identical files in /usr/share/gnome/help
 # and /usr/share/omf when --enable-desktop-docs is passed to configure. To avoid

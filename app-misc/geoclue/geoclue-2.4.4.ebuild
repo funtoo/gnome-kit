@@ -1,6 +1,5 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -14,7 +13,7 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${MY_PV}/${P}.tar.x
 
 LICENSE="LGPL-2"
 SLOT="2.0"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd"
 IUSE="+introspection +modemmanager zeroconf"
 
 RDEPEND="
@@ -37,6 +36,8 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.4.1-fix-GLIBC-features.patch
+
+	gnome2_src_prepare
 }
 
 src_configure() {

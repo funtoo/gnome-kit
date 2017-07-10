@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
-PYTHON_COMPAT=( python2_7 python3_3 python3_4 python3_5 )
+PYTHON_COMPAT=( python2_7 python3_4 python3_5 )
 FINDLIB_USE="ocaml"
 
 inherit findlib eutils multilib toolchain-funcs java-pkg-opt-2 flag-o-matic \
@@ -16,14 +15,14 @@ SRC_URI="http://brltty.com/archive/${P}.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="alpha amd64 ~arm hppa ia64 ppc ppc64 x86"
+KEYWORDS="alpha amd64 ~arm ~arm64 hppa ia64 ppc ppc64 x86"
 IUSE="+api +beeper bluetooth +contracted-braille doc +fm gpm iconv icu
 		java +midi ncurses nls ocaml +pcm python usb +speech
 		tcl X"
 REQUIRED_USE="doc? ( api )
 	java? ( api )
 	ocaml? ( api )
-	python? ( api )
+	python? ( api ${PYTHON_REQUIRED_USE} )
 	tcl? ( api )"
 
 COMMON_DEP="bluetooth? ( net-wireless/bluez )
@@ -31,7 +30,7 @@ COMMON_DEP="bluetooth? ( net-wireless/bluez )
 	iconv? ( virtual/libiconv )
 	icu? ( dev-libs/icu:= )
 	python? ( ${PYTHON_DEPS} )
-	ncurses? ( sys-libs/ncurses )
+	ncurses? ( sys-libs/ncurses:0= )
 	nls? ( virtual/libintl )
 	tcl? ( >=dev-lang/tcl-8.4.15:0= )
 	usb? ( virtual/libusb:0 )
@@ -46,7 +45,8 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-fix-ldflags.patch \
 		"${FILESDIR}"/${P}-udev.patch \
-		"${FILESDIR}"/${P}-respect-AR.patch
+		"${FILESDIR}"/${P}-respect-AR.patch \
+		"${FILESDIR}"/${P}-major.patch
 
 	java-pkg-opt-2_src_prepare
 

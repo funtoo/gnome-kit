@@ -1,6 +1,5 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: systemd.eclass
 # @MAINTAINER:
@@ -179,12 +178,12 @@ systemd_newuserunit() {
 }
 
 # @FUNCTION: systemd_install_serviced
-# @USAGE: <conf-file> [<service.d>]
+# @USAGE: <conf-file> [<service>]
 # @DESCRIPTION:
-# Install the file <conf-file> as service.d/00gentoo.conf template.
-# The <service.d> argument specifies the configured service name.
-# If not specified, the configuration file name will be used with .conf
-# suffix stripped (e.g. foo.service.conf -> foo.service).
+# Install <conf-file> as the template <service>.d/00gentoo.conf.
+# If <service> is not specified
+# <conf-file> with the .conf suffix stripped is used
+# (e.g. foo.service.conf -> foo.service.d/00gentoo.conf).
 systemd_install_serviced() {
 	debug-print-function ${FUNCNAME} "${@}"
 
@@ -397,4 +396,25 @@ systemd_is_booted() {
 
 	debug-print "${FUNCNAME}: [[ -d /run/systemd/system ]] -> ${ret}"
 	return ${ret}
+}
+
+# @FUNCTION: systemd_tmpfiles_create
+# @USAGE: <tmpfilesd> ...
+# @DESCRIPTION:
+# Invokes systemd-tmpfiles --create with given arguments.
+# Does nothing if ROOT != / or systemd-tmpfiles is not in PATH.
+# This function should be called from pkg_postinst.
+#
+# Generally, this function should be called with the names of any tmpfiles
+# fragments which have been installed, either by the build system or by a
+# previous call to systemd_dotmpfilesd. This ensures that any tmpfiles are
+# created without the need to reboot the system.
+systemd_tmpfiles_create() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	[[ ${EBUILD_PHASE} == postinst ]] || die "${FUNCNAME}: Only valid in pkg_postinst"
+	[[ ${#} -gt 0 ]] || die "${FUNCNAME}: Must specify at least one filename"
+	[[ ${ROOT} == / ]] || return 0
+	type systemd-tmpfiles &> /dev/null || return 0
+	systemd-tmpfiles --create "${@}"
 }
