@@ -1,6 +1,5 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 inherit eutils bash-completion-r1 linux-info udev systemd
@@ -53,7 +52,8 @@ src_prepare() {
 	epatch \
 		"${FILESDIR}"/${PN}-1.0.2-ntfs-3g.patch \
 		"${FILESDIR}"/${PN}-1.0.4-revert-floppy.patch \
-		"${FILESDIR}"/${PN}-1.0.5-stat-includes.patch
+		"${FILESDIR}"/${PN}-1.0.5-stat-includes.patch \
+		"${FILESDIR}"/${PN}-1.0.5-sysmacros.patch
 
 	sed -i -e "s:/lib/udev:$(get_udevdir):" data/80-udisks.rules || die
 

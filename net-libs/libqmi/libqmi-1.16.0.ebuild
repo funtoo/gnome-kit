@@ -1,6 +1,5 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 
@@ -17,13 +16,13 @@ DESCRIPTION="QMI modem protocol helper library"
 HOMEPAGE="https://cgit.freedesktop.org/libqmi/"
 
 LICENSE="LGPL-2"
-SLOT="0"
+SLOT="0/5.1"
 IUSE="doc +mbim static-libs"
 
-RDEPEND=">=dev-libs/glib-2.32"
+RDEPEND=">=dev-libs/glib-2.32
+	mbim? ( >=net-libs/libmbim-1.14.0 )"
 DEPEND="${RDEPEND}
 	doc? ( dev-util/gtk-doc )
-	mbim? ( >=net-libs/libmbim-1.14.0 )
 	virtual/pkgconfig"
 [[ ${PV} == "9999" ]] && DEPEND+=" dev-util/gtk-doc" #469214
 
