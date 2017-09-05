@@ -1,10 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
-PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5,3_6} )
 PYTHON_REQ_USE='wide-unicode(+)'
 DISTUTILS_OPTIONAL=1
 inherit distutils-r1
@@ -15,7 +13,7 @@ SRC_URI="https://liblouis.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="alpha amd64 ~arm ia64 ppc ppc64 sparc x86"
+KEYWORDS="*"
 IUSE="python"
 RDEPEND="python? ( ${PYTHON_DEPS} )"
 DEPEND="${RDEPEND}"
