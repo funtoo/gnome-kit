@@ -11,11 +11,11 @@ gnome-base/libglade python_single_target_python2_7
 gnome-extra/avant-window-navigator python_single_target_python2_7
 gnome-extra/chrome-gnome-shell python_single_target_python2_7
 =gnome-extra/cinnamon-screensaver-3.2.2-r1 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/cinnamon-screensaver-3.2.6 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/cinnamon-screensaver-3.2.2 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/cinnamon-screensaver-3.2.13-r1 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/cinnamon-screensaver-3.0.1 python_single_target_python2_7
 =gnome-extra/cinnamon-screensaver-2.8.0-r1 python_single_target_python2_7
+=gnome-extra/cinnamon-screensaver-3.0.1 python_single_target_python2_7
+=gnome-extra/cinnamon-screensaver-3.2.6 python_single_target_python3_4 python_targets_python3_4
+=gnome-extra/cinnamon-screensaver-3.2.13-r1 python_single_target_python3_4 python_targets_python3_4
+=gnome-extra/cinnamon-screensaver-3.2.2 python_single_target_python3_4 python_targets_python3_4
 =gnome-extra/cinnamon-screensaver-3.2.13-r2 python_single_target_python3_4 python_targets_python3_4
 gnome-extra/gnome-activity-journal python_single_target_python2_7
 gnome-extra/gnome-builder python_single_target_python3_3 python_targets_python3_3
