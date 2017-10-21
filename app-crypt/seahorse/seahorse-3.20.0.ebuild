@@ -1,6 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 inherit gnome2
@@ -46,7 +44,6 @@ src_prepare() {
 	sed -e '/CFLAGS="$CFLAGS -g/d' \
 		-e '/CFLAGS="$CFLAGS -O0/d' \
 		-i configure.ac configure || die "sed 1 failed"
-
 	gnome2_src_prepare
 }
 

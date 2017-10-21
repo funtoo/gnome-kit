@@ -1,10 +1,7 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="5"
-GCONF_DEBUG="no"
-
+EAPI=6
+GNOME2_EAUTORECONF="yes"
 inherit gnome2
 
 DESCRIPTION="A GNOME application for managing encryption keys"
@@ -13,7 +10,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Seahorse"
 LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
 IUSE="debug ldap zeroconf"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 COMMON_DEPEND="
 	>=app-crypt/gcr-3.11.91:=
@@ -48,7 +45,7 @@ src_prepare() {
 	sed -e '/CFLAGS="$CFLAGS -g/d' \
 		-e '/CFLAGS="$CFLAGS -O0/d' \
 		-i configure.ac configure || die "sed 1 failed"
-
+	eapply "${FILESDIR}"/${PN}-3.20.0-gnupg-2.2.patch
 	gnome2_src_prepare
 }
 
