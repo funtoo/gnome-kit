@@ -52,6 +52,12 @@ src_configure() {
 		$(systemd_with_unitdir)
 }
 
+src_compile() {
+	# prevent g-ir-scanner to use CACHE in $HOME to fix sandbox violation
+	export GI_SCANNER_DISABLE_CACHE=yes
+	gnome2_src_compile
+}
+
 pkg_preinst() {
 	enewgroup geoclue
 	enewuser geoclue -1 -1 /var/lib/geoclue geoclue
