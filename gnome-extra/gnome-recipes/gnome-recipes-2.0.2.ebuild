@@ -2,14 +2,14 @@
 
 EAPI="6"
 
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="An easy-to-use application that will help you to discover what to cook today"
 HOMEPAGE="https://wiki.gnome.org/Apps/Recipes"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~*"
 
 IUSE="+spell +archive +sound"
 
@@ -29,19 +29,15 @@ src_prepare() {
 	git clone https://git.gnome.org/browse/libgd
 	cd "${S}"
 	rm -rf build
-	default
+
+	gnome2_src_prepare
 }
 
 src_configure() {
-	meson --prefix=/usr build
-}
-
-src_compile() {
-	ninja -v -C build
-}
-
-src_install() {
-	export DESTDIR="${D}"
-	ninja -v -C build install
-	gnome2_src_install
+	local emesonargs=(
+		-D enable-autoar=$(usex archive yes no)
+		-D enable-gspell=$(usex spell yes no)
+		-D enable-canberra=$(usex sound yes no)
+	)
+	meson_src_configure
 }
