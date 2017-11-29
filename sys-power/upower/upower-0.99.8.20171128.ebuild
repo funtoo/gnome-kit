@@ -248,6 +248,9 @@ src_prepare() {
 		eapply "${FILESDIR}"/${PN}-0.99.7-0011-linux-add-test-for-bluetooth-le-battery-support.patch
 	fi
 
+	eapply "${FILESDIR}"/${PN}-0.99.7-0012-released-upower-0-99-7.patch
+	eapply "${FILESDIR}"/${PN}-0.99.8-0001-trivial-post-release-version-bump.patch
+
 	if use deprecated; then
 		# From Funtoo:
 		# 	https://bugs.funtoo.org/browse/FL-1329
