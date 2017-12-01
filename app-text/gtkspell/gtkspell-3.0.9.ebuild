@@ -18,6 +18,7 @@ REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
 	>=app-text/enchant-1.1.6
+	<app-text/enchant-2.0.0
 	app-text/iso-codes
 	dev-libs/glib:2
 	x11-libs/gtk+:3[introspection?]
