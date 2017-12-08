@@ -52,7 +52,6 @@ src_configure() {
 	gnome2_src_configure \
 		--disable-static \
 		--disable-upower \
-		$(use_enable deprecated) \
 		$(use_enable debug) \
 		$(use_with networkmanager connectivity nm)
 }
