@@ -1,17 +1,24 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 
 inherit cmake-utils toolchain-funcs xdg-utils
 
+if [[ "${PV}" == "9999" ]] ; then
+	inherit git-r3
+	EGIT_REPO_URI="git://git.freedesktop.org/git/${PN}/${PN}"
+	SLOT="0/9999"
+else
+	SRC_URI="https://poppler.freedesktop.org/${P}.tar.xz"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	SLOT="0/67"   # CHECK THIS WHEN BUMPING!!! SUBSLOT IS libpoppler.so SOVERSION
+fi
+
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="https://poppler.freedesktop.org/"
-SRC_URI="https://poppler.freedesktop.org/${P}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT="0/71"   # CHECK THIS WHEN BUMPING!!! SUBSLOT IS libpoppler.so SOVERSION
-KEYWORDS=""
-
 IUSE="cairo cjk curl cxx debug doc +introspection +jpeg +jpeg2k +lcms nss png qt4 qt5 tiff +utils"
 
 # No test data provided
@@ -50,12 +57,26 @@ RDEPEND="${COMMON_DEPEND}
 	cjk? ( >=app-text/poppler-data-0.4.7 )
 "
 
+DOCS=(AUTHORS NEWS README README-XPDF TODO)
+
 PATCHES=(
-	"${FILESDIR}/${PN}-0.60.1-qt5-dependencies.patch"
+	"${FILESDIR}/${PN}-0.26.0-qt5-dependencies.patch"
 	"${FILESDIR}/${PN}-0.28.1-fix-multilib-configuration.patch"
-	"${FILESDIR}/${PN}-0.60.1-respect-cflags.patch"
+	"${FILESDIR}/${PN}-0.53.0-respect-cflags.patch"
 	"${FILESDIR}/${PN}-0.33.0-openjpeg2.patch"
 	"${FILESDIR}/${PN}-0.40-FindQt4.patch"
+	"${FILESDIR}/${PN}-0.57.0-disable-internal-jpx.patch"
+	# Fedora backports from upstream
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14517.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14518.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14519.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14520.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14617.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14926.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14927.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14928.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14929.patch"
+	"${FILESDIR}/${PN}-0.57.0-CVE-2017-15565.patch"
 )
 
 src_prepare() {
@@ -76,7 +97,7 @@ src_prepare() {
 
 	if tc-is-clang && [[ ${CHOST} == *-darwin* ]] ; then
 		# we need to up the C++ version, bug #622526
-		export CXX="$(tc-getCXX) -std=c++11"
+		export CXX="$(tc-getCXX) -std=c++0x"
 	fi
 }
 
@@ -114,7 +135,7 @@ src_configure() {
 	if use jpeg2k; then
 		mycmakeargs+=(-DENABLE_LIBOPENJPEG=openjpeg2)
 	else
-		mycmakeargs+=(-DENABLE_LIBOPENJPEG=none)
+		mycmakeargs+=(-DENABLE_LIBOPENJPEG=)
 	fi
 	if use lcms; then
 		mycmakeargs+=(-DENABLE_CMS=lcms2)
@@ -127,4 +148,11 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
+
+	# live version doesn't provide html documentation
+	if use cairo && use doc && [[ ${PV} != 9999 ]]; then
+		# For now install gtk-doc there
+		insinto /usr/share/gtk-doc/html/poppler
+		doins -r "${S}"/glib/reference/html/*
+	fi
 }
