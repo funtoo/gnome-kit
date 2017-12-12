@@ -1,6 +1,8 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes" # Needed with USE 'sendto'
 
 inherit gnome2 readme.gentoo-r1 versionator meson

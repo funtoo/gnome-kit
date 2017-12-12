@@ -1,6 +1,9 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="6"
+VALA_MIN_API_VERSION="0.24"
 VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 vala virtualx
@@ -10,10 +13,11 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GtkSourceView"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="3.0/3"
-KEYWORDS="*"
 
 IUSE="glade +introspection vala"
 REQUIRED_USE="vala? ( introspection )"
+
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 
 RDEPEND="
 	>=dev-libs/glib-2.48:2

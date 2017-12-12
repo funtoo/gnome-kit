@@ -13,20 +13,17 @@ SRC_URI="https://github.com/${PN}/${PN}/releases/download/${PV}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
-
-IUSE="+X +emoji gconf +gtk +gtk2 +gtk3 +introspection kde +libnotify nls +python test vala wayland"
-REQUIRED_USE="emoji? ( gtk )
-	gtk2? ( gtk )
-	gtk3? ( gtk )
-	kde? ( gtk )
-	libnotify? ( gtk )
+KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~x86"
+IUSE="+X +emoji gconf +gtk3 +introspection kde +libnotify nls +python test vala wayland"
+REQUIRED_USE="emoji? ( gtk3 )
+	kde? ( gtk3 )
+	libnotify? ( gtk3 )
 	python? (
 		${PYTHON_REQUIRED_USE}
-		gtk
+		gtk3
 		introspection
 	)
-	test? ( gtk )
+	test? ( gtk3 )
 	vala? ( introspection )"
 
 CDEPEND="app-text/iso-codes
@@ -36,14 +33,12 @@ CDEPEND="app-text/iso-codes
 	sys-apps/dbus[X?]
 	X? (
 		x11-libs/libX11
-		!gtk3? ( x11-libs/gtk+:2 )
 	)
 	gconf? ( gnome-base/gconf:2 )
-	gtk? (
+	gtk3? (
+		x11-libs/gtk+:3
 		x11-libs/libX11
 		x11-libs/libXi
-		gtk2? ( x11-libs/gtk+:2 )
-		gtk3? ( >=x11-libs/gtk+-3.22:3 )
 	)
 	introspection? ( dev-libs/gobject-introspection:= )
 	kde? ( dev-qt/qtgui:5 )
@@ -59,7 +54,7 @@ CDEPEND="app-text/iso-codes
 	)"
 RDEPEND="${CDEPEND}
 	python? (
-		gtk? (
+		gtk3? (
 			x11-libs/gtk+:3[introspection]
 		)
 	)"
@@ -74,6 +69,10 @@ DEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
+	# From IBus:
+	# 	https://github.com/ibus/ibus/commits/master
+	eapply "${FILESDIR}"/1.5.18
+
 	vala_src_prepare --ignore-use
 	if ! use emoji; then
 		touch \
@@ -108,7 +107,7 @@ src_configure() {
 	if use python; then
 		python_setup
 		python_conf+=(
-			$(use_enable gtk setup)
+			$(use_enable gtk3 setup)
 			--with-python=${EPYTHON}
 		)
 	else
@@ -116,14 +115,14 @@ src_configure() {
 	fi
 
 	econf \
+		--disable-gtk2 \
 		$(use_enable X xim) \
 		$(use_enable emoji emoji-dict) \
 		$(use_with emoji unicode-emoji-dir "${unicodedir}"/emoji) \
 		$(use_with emoji emoji-annotation-dir "${unicodedir}"/cldr/common/annotations) \
 		$(use_enable gconf) \
-		$(use_enable gtk ui) \
-		$(use_enable gtk2) \
-		$(use_enable gtk3) \
+		$(use_enable gtk3 gtk3) \
+		$(use_enable gtk3 ui) \
 		$(use_enable introspection) \
 		$(use_enable kde appindicator) \
 		$(use_enable libnotify) \
@@ -168,7 +167,6 @@ pkg_preinst() {
 
 pkg_postinst() {
 	use gconf && gnome2_gconf_install
-	use gtk2 && gnome2_query_immodules_gtk2
 	use gtk3 && gnome2_query_immodules_gtk3
 	gnome2_icon_cache_update
 	gnome2_schemas_update
@@ -176,7 +174,6 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	use gtk2 && gnome2_query_immodules_gtk2
 	use gtk3 && gnome2_query_immodules_gtk3
 	gnome2_icon_cache_update
 	gnome2_schemas_update

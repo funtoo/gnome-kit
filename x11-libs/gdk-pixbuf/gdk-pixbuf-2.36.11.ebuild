@@ -41,6 +41,14 @@ MULTILIB_CHOST_TOOLS=(
 )
 
 src_prepare() {
+	# From GNOME:
+	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779012 (CVE-2017-6312)
+	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779016 (CVE-2017-6313)
+	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779020 (CVE-2017-6314)
+	eapply "${FILESDIR}"/${PN}-9999-CVE-2017-6312.patch
+	eapply "${FILESDIR}"/${PN}-9999-CVE-2017-6313.patch
+	eapply "${FILESDIR}"/${PN}-9999-CVE-2017-6314.patch
+
 	# This will avoid polluting the pkg-config file with versioned libpng,
 	# which is causing problems with libpng14 -> libpng15 upgrade
 	# See upstream bug #667068

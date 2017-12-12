@@ -1,7 +1,8 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="6"
-
+EAPI=6
 inherit gnome2
 
 DESCRIPTION="GNOME end user documentation"
@@ -9,12 +10,8 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-user-docs"
 
 LICENSE="CC-BY-3.0"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="test"
-
-# This ebuild does not install any binaries
-RESTRICT="binchecks strip"
 
 RDEPEND=""
 DEPEND="
@@ -25,6 +22,9 @@ DEPEND="
 # rebuilding translations requires:
 #	app-text/yelp-tools
 #	dev-util/gettext
+
+# This ebuild does not install any binaries
+RESTRICT="binchecks strip"
 
 src_configure() {
 	# itstool is only needed for rebuilding translations
