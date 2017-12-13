@@ -1,38 +1,41 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # Until bug #537330 glib is a reverse dependency of pkgconfig and, then
 # adding new dependencies end up making stage3 to grow. Every addition needs
 # then to be think very closely.
 
-EAPI="6"
+EAPI=6
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 # Completely useless with or without USE static-libs, people need to use
 # pkg-config
 GNOME2_LA_PUNT="yes"
 
-inherit autotools bash-completion-r1 epunt-cxx flag-o-matic gnome2 libtool linux-info \
-	multilib multilib-minimal pax-utils python-r1 toolchain-funcs versionator virtualx
+inherit autotools bash-completion-r1 eutils flag-o-matic gnome2 libtool linux-info \
+	multilib multilib-minimal pax-utils python-r1  toolchain-funcs versionator virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="https://www.gtk.org/"
 SRC_URI="${SRC_URI}
 	https://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz" # pkg.m4 for eautoreconf
 
-LICENSE="LGPL-2.1+"
-SLOT="2/54"
-KEYWORDS="*"
-
+LICENSE="LGPL-2+"
+SLOT="2"
 IUSE="dbus debug fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
 REQUIRED_USE="
-	${PYTHON_REQUIRED_USE}
+	utils? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )
 "
+
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 
 # Added util-linux multilib dependency to have libmount support (which
 # is always turned on on linux systems, unless explicitly disabled, but
 # this ebuild does not do that anyway) (bug #599586)
 
 RDEPEND="
+	!<dev-util/gdbus-codegen-${PV}
 	>=dev-libs/libpcre-8.13:3[${MULTILIB_USEDEP},static-libs?]
 	>=virtual/libiconv-0-r1[${MULTILIB_USEDEP}]
 	>=virtual/libffi-3.0.13-r1[${MULTILIB_USEDEP}]
@@ -42,9 +45,11 @@ RDEPEND="
 	selinux? ( >=sys-libs/libselinux-2.2.2-r5[${MULTILIB_USEDEP}] )
 	xattr? ( >=sys-apps/attr-2.4.47-r1[${MULTILIB_USEDEP}] )
 	fam? ( >=virtual/fam-0-r1[${MULTILIB_USEDEP}] )
-	${PYTHON_DEPS}
-	virtual/libelf:0=
-	=dev-util/gdbus-codegen-${PV}
+	utils? (
+		${PYTHON_DEPS}
+		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
+		virtual/libelf:0=
+	)
 "
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
@@ -55,6 +60,7 @@ DEPEND="${RDEPEND}
 	test? (
 		sys-devel/gdb
 		${PYTHON_DEPS}
+		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 		>=sys-apps/dbus-1.2.14 )
 	!<dev-util/gtk-doc-1.15-r2
 "
@@ -67,7 +73,7 @@ PDEPEND="!<gnome-base/gvfs-1.6.4-r990
 # Earlier versions of gvfs do not work with glib
 
 MULTILIB_CHOST_TOOLS=(
-	/usr/bin/gio-querymodules$(get_exeext)
+	/usr/bin/gio-querymodules
 )
 
 pkg_setup() {
@@ -111,6 +117,15 @@ src_prepare() {
 		# Don't build tests, also prevents extra deps, bug #512022
 		sed -i -e 's/ tests//' {.,gio,glib}/Makefile.am || die
 	fi
+
+	# gdbus-codegen is a separate package
+	eapply "${FILESDIR}"/${PN}-2.40.0-external-gdbus-codegen.patch
+
+	# Leave python shebang alone - handled by python_replicate_script
+	# We could call python_setup and give configure a valid --with-python
+	# arg, but that would mean a build dep on python when USE=utils.
+	sed -e '/${PYTHON}/d' \
+		-i glib/Makefile.{am,in} || die
 
 	# Also needed to prevent cross-compile failures, see bug #267603
 	eautoreconf
@@ -206,7 +221,12 @@ multilib_src_install() {
 multilib_src_install_all() {
 	einstalldocs
 
-	python_replicate_script "${ED}"/usr/bin/gtester-report
+	if use utils ; then
+		python_replicate_script "${ED}"/usr/bin/gtester-report
+	else
+		rm "${ED}usr/bin/gtester-report"
+		rm "${ED}usr/share/man/man1/gtester-report.1"
+	fi
 
 	# Do not install charset.alias even if generated, leave it to libiconv
 	rm -f "${ED}/usr/lib/charset.alias"
