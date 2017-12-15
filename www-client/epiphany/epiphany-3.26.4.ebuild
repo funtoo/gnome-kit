@@ -1,6 +1,8 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit gnome2 meson
@@ -10,9 +12,8 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Web"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="*"
-
 IUSE="test"
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.46.0:2[dbus]
@@ -39,6 +40,7 @@ RDEPEND="${COMMON_DEPEND}
 	!www-client/epiphany-extensions
 "
 # paxctl needed for bug #407085
+# eautoreconf requires gnome-common-3.5.5
 DEPEND="${COMMON_DEPEND}
 	app-text/yelp-tools
 	dev-libs/appstream-glib
@@ -63,7 +65,7 @@ src_configure() {
 	# firefox sync storage is not quite ready in 3.24; deps on hogweed/nettle
 	local emesonargs=(
 		-Ddeveloper_mode=false
-		-Ddistributor_name=Gentoo
+		-Ddistributor_name=Funtoo
 		-Dhttps_everywhere=false
 		-Dunit_tests=$(usex test true false)
 	)
