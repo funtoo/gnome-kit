@@ -1,6 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -13,7 +11,7 @@ HOMEPAGE="https://git.gnome.org/browse/libcroco/"
 
 LICENSE="LGPL-2"
 SLOT="0.6"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="test"
 
 RDEPEND="
@@ -31,6 +29,11 @@ src_prepare() {
 		sed 's/^\(SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
 			|| die "sed failed"
 	fi
+
+	# https://bugs.funtoo.org/browse/FL-4535
+	epatch "${FILESDIR}"/CVE-2017-7960.patch
+	epatch "${FILESDIR}"/CVE-2017-7961.patch
+
 
 	gnome2_src_prepare
 }
