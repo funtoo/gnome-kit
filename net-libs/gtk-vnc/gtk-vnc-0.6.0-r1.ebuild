@@ -1,8 +1,11 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
+VALA_MIN_API_VERSION="0.16"
 VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 multibuild python-r1 vala
@@ -12,8 +15,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/gtk-vnc"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="examples +gtk3 +introspection pulseaudio python sasl vala"
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -26,12 +28,12 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.30.1:2
 	>=dev-libs/libgcrypt-1.4.2:0=
 	dev-libs/libgpg-error
-	>=net-libs/gnutls-3.0:0=
+	>=net-libs/gnutls-3.0
 	>=x11-libs/cairo-1.2
 	>=x11-libs/gtk+-2.18:2
 	x11-libs/libX11
-	gtk3? ( >=x11-libs/gtk+-2.91.3:3[introspection?] )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.4:= )
+	gtk3? ( >=x11-libs/gtk+-2.91.3:3 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.4 )
 	pulseaudio? ( media-sound/pulseaudio )
 	python? (
 		${PYTHON_DEPS}
@@ -57,6 +59,8 @@ compute_variants() {
 }
 
 src_prepare() {
+	eapply "${FILESDIR}"/CVE-2017-5884-5.patch
+
 	prepare() {
 		mkdir -p "${BUILD_DIR}" || die
 
@@ -83,10 +87,10 @@ src_configure() {
 		$(use_enable introspection)
 		$(use_with pulseaudio)
 		$(use_with sasl)
-		$(use_enable vala)
 		--with-coroutine=gthread
 		--without-libview
 		--disable-static
+		--disable-vala
 	)
 
 	configure_python() {
@@ -96,7 +100,7 @@ src_configure() {
 			--with-python
 	}
 
-	configure_normal() {
+	configure() {
 		ECONF_SOURCE="${S}" gnome2_src_configure \
 			${myconf[@]} \
 			--with-gtk=${MULTIBUILD_VARIANT} \
@@ -111,7 +115,7 @@ src_configure() {
 
 	local MULTIBUILD_VARIANTS
 	compute_variants
-	multibuild_foreach_variant run_in_build_dir configure_normal
+	multibuild_foreach_variant run_in_build_dir configure
 }
 
 src_compile() {
@@ -125,7 +129,7 @@ src_compile() {
 			gtkvnc_la_DEPENDENCIES="${GTK2_BUILDDIR}/src/libgtk-vnc-1.0.la"
 	}
 
-	compile_normal() {
+	compile() {
 		gnome2_src_compile
 
 		if [[ ${MULTIBUILD_ID} == 2.0 ]] && use python ; then
@@ -136,7 +140,7 @@ src_compile() {
 
 	local MULTIBUILD_VARIANTS
 	compute_variants
-	multibuild_foreach_variant run_in_build_dir compile_normal
+	multibuild_foreach_variant run_in_build_dir compile
 }
 
 src_test() {
@@ -156,7 +160,7 @@ src_install() {
 			gtkvnc_la_DEPENDENCIES="${GTK2_BUILDDIR}/src/libgtk-vnc-1.0.la"
 	}
 
-	install_normal() {
+	install() {
 		gnome2_src_install
 
 		if [[ ${MULTIBUILD_ID} == 2.0 ]] && use python ; then
@@ -167,5 +171,5 @@ src_install() {
 
 	local MULTIBUILD_VARIANTS
 	compute_variants
-	multibuild_foreach_variant run_in_build_dir install_normal
+	multibuild_foreach_variant run_in_build_dir install
 }

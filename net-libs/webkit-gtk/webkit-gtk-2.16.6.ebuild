@@ -1,11 +1,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
-USE_RUBY="ruby22 ruby23 ruby24"
+USE_RUBY="ruby21 ruby22 ruby23 ruby24"
 
-inherit check-reqs cmake-utils flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs versionator virtualx
+inherit check-reqs cmake-utils eutils flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs versionator virtualx
 
 MY_P="webkitgtk-${PV}"
 DESCRIPTION="Open source web browser engine"
@@ -14,9 +14,10 @@ SRC_URI="http://www.webkitgtk.org/releases/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS="*"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE="aqua coverage doc +egl +geolocation gles2 gnome-keyring +gstreamer +introspection +jit libnotify nsplugin +opengl spell wayland +webgl X"
+
 # webgl needs gstreamer, bug #560612
 REQUIRED_USE="
 	geolocation? ( introspection )
@@ -37,6 +38,7 @@ RESTRICT="test"
 # use sqlite, svg by default
 # Aqua support in gtk3 is untested
 # Dependencies found at Source/cmake/OptionsGTK.cmake
+# Various compile-time optionals for gtk+-3.22.0 - ensure it
 RDEPEND="
 	dev-db/sqlite:3=
 	>=dev-libs/glib-2.36:2
@@ -52,8 +54,7 @@ RDEPEND="
 	dev-libs/libgcrypt:0=
 	>=net-libs/libsoup-2.42:2.4[introspection?]
 	>=x11-libs/cairo-1.10.2:=
-	x11-libs/gtk+:3=
-	>=x11-libs/gtk+-3.14:3[introspection?]
+	>=x11-libs/gtk+-3.20:3[introspection?]
 	>=x11-libs/pango-1.30.0
 	virtual/jpeg:0=
 
@@ -139,7 +140,7 @@ pkg_pretend() {
 			die "You need at least GCC 4.9.x or Clang >= 3.3 for C++11-specific compiler flags"
 		fi
 
-		if tc-is-gcc && [[ $(tc-getCXX) == *g++* && $(gcc-version) < 4.9 ]] ; then
+		if tc-is-gcc && [[ $(gcc-version) < 4.9 ]] ; then
 			die 'The active compiler needs to be gcc 4.9 (or newer)'
 		fi
 	fi
@@ -198,8 +199,10 @@ src_configure() {
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby24)"
 	elif has_version "virtual/rubygems[ruby_targets_ruby23]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby23)"
-	else
+	elif has_version "virtual/rubygems[ruby_targets_ruby22]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby22)"
+	else
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby21)"
 	fi
 
 	# TODO: Check Web Audio support
