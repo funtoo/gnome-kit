@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit flag-o-matic gnome2 multilib multilib-minimal
@@ -10,8 +11,7 @@ HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
 
 LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="*"
-
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="X debug +introspection jpeg jpeg2k tiff test"
 
 COMMON_DEPEND="
@@ -41,6 +41,10 @@ MULTILIB_CHOST_TOOLS=(
 )
 
 src_prepare() {
+	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
+	eapply "${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
+	eapply "${FILESDIR}"/${PN}-2.36.11-fix-libtiff-disable.patch
+
 	# From GNOME:
 	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779012 (CVE-2017-6312)
 	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779016 (CVE-2017-6313)
