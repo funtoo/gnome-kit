@@ -1,11 +1,12 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
 USE_RUBY="ruby22 ruby23 ruby24"
 
-inherit check-reqs cmake-utils flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs versionator virtualx
+inherit check-reqs cmake-utils eutils flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs versionator virtualx
 
 MY_P="webkitgtk-${PV}"
 DESCRIPTION="Open source web browser engine"
@@ -14,9 +15,10 @@ SRC_URI="http://www.webkitgtk.org/releases/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS="*"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 
 IUSE="aqua coverage doc +egl +geolocation gles2 gnome-keyring +gstreamer +introspection +jit libnotify nsplugin +opengl spell wayland +webgl X"
+
 # webgl needs gstreamer, bug #560612
 REQUIRED_USE="
 	geolocation? ( introspection )
@@ -36,14 +38,14 @@ RESTRICT="test"
 
 # Aqua support in gtk3 is untested
 # Dependencies found at Source/cmake/OptionsGTK.cmake
+# Various compile-time optionals for gtk+-3.22.0 - ensure it
 # Missing OpenWebRTC checks and conditionals, but ENABLE_MEDIA_STREAM/ENABLE_WEB_RTC is experimental upstream (PRIVATE OFF)
 RDEPEND="
 	>=x11-libs/cairo-1.10.2:=
 	>=media-libs/fontconfig-2.8.0:1.0
 	>=media-libs/freetype-2.4.2:2
 	>=dev-libs/libgcrypt-1.6.0:0=
-	x11-libs/gtk+:3=
-	>=x11-libs/gtk+-3.14:3[aqua?,introspection?,wayland?,X?]
+	>=x11-libs/gtk+-3.20:3[aqua?,introspection?,wayland?,X?]
 	>=media-libs/harfbuzz-1.3.3:=[icu(+)]
 	>=dev-libs/icu-3.8.1-r1:=
 	virtual/jpeg:0=
@@ -58,7 +60,7 @@ RDEPEND="
 	>=dev-libs/glib-2.40:2
 	>=dev-libs/libxslt-1.1.7
 	gnome-keyring? ( app-crypt/libsecret )
-	geolocation? ( >=app-misc/geoclue-2.4.0:2.0 )
+	geolocation? ( >=app-misc/geoclue-2.1.5:2.0 )
 	introspection? ( >=dev-libs/gobject-introspection-1.32.0:= )
 	dev-libs/libtasn1:=
 	>=dev-libs/libgcrypt-1.7.0:0=
@@ -194,8 +196,10 @@ src_configure() {
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby24)"
 	elif has_version "virtual/rubygems[ruby_targets_ruby23]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby23)"
-	else
+	elif has_version "virtual/rubygems[ruby_targets_ruby22]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby22)"
+	else
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby21)"
 	fi
 
 	# TODO: Check Web Audio support
