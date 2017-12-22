@@ -1,6 +1,8 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 
@@ -11,10 +13,8 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeOnlineAccounts"
 
 LICENSE="LGPL-2+"
 SLOT="0/1"
-KEYWORDS="*"
-
 IUSE="debug gnome +introspection kerberos vala" # telepathy"
-REQUIRED_USE="vala? ( introspection )"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
 # pango used in goaeditablelabel
 # libsoup used in goaoauthprovider
@@ -66,7 +66,7 @@ src_prepare() {
 
 src_configure() {
 	# TODO: Give users a way to set the G/FB/Windows Live secrets
-	# telepathy optional support is really badly done, bug #494456
+	# telepathy optional support is really a badly one, bug #494456
 	gnome2_src_configure \
 		--disable-static \
 		--enable-backend \

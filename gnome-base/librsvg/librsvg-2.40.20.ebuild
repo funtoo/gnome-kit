@@ -1,17 +1,19 @@
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 
-inherit autotools gnome2 multilib-minimal vala
+inherit autotools eutils gnome2 multilib-minimal vala
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="*"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="+introspection tools vala"
 REQUIRED_USE="vala? ( introspection )"
@@ -38,9 +40,6 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=653323
 	eapply "${FILESDIR}/${PN}-2.40.12-gtk-optional.patch"
-
-	# https://bugzilla.gnome.org/show_bug.cgi?id=731826
-	eapply "${FILESDIR}/${PN}-2.40.2-vala-out-of-source.patch"
 
 	eautoreconf
 
