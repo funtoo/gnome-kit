@@ -1,12 +1,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
 GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 
-inherit autotools bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd \
+inherit bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd \
 	user readme.gentoo-r1 toolchain-funcs vala versionator virtualx udev multilib-minimal
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
@@ -14,26 +14,24 @@ HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 
 LICENSE="GPL-2+"
 SLOT="0" # add subslot if libnm-util.so.2 or libnm-glib.so.4 bumps soname version
-KEYWORDS="~*"
 
-IUSE="audit bluetooth connection-sharing consolekit +dhclient dhcpcd elogind gnutls +introspection json kernel_linux +nss +modemmanager ncurses ofono openvswitch policykit +ppp resolvconf selinux systemd teamd test upower vala +vanilla +wext +wifi"
+IUSE="audit bluetooth connection-sharing consolekit +dhclient dhcpcd elogind gnutls +introspection json kernel_linux +nss +modemmanager ncurses ofono ovs policykit +ppp resolvconf selinux systemd teamd test vala +wext +wifi"
+
 REQUIRED_USE="
 	modemmanager? ( ppp )
 	vala? ( introspection )
-	vanilla? ( !dhcpcd )
 	wext? ( wifi )
 	^^ ( nss gnutls )
-	^^ ( dhclient dhcpcd )
-	?? ( consolekit elogind systemd upower )
+	?? ( consolekit elogind systemd )
 "
+
+KEYWORDS=""
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
-# TODO: need multilib janson (linked to libnm.so)
 COMMON_DEPEND="
 	>=sys-apps/dbus-1.2[${MULTILIB_USEDEP}]
 	>=dev-libs/dbus-glib-0.100[${MULTILIB_USEDEP}]
-	dev-libs/glib:2=[${MULTILIB_USEDEP}]
 	>=dev-libs/glib-2.37.6:2[${MULTILIB_USEDEP}]
 	>=dev-libs/libnl-3.2.8:3=[${MULTILIB_USEDEP}]
 	policykit? ( >=sys-auth/polkit-0.106 )
@@ -56,15 +54,12 @@ COMMON_DEPEND="
 		dev-libs/libgcrypt:0=[${MULTILIB_USEDEP}]
 		>=net-libs/gnutls-2.12:=[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
-	json? ( dev-libs/jansson )
+	json? ( dev-libs/jansson[${MULTILIB_USEDEP}] )
 	modemmanager? ( >=net-misc/modemmanager-0.7.991:0= )
 	ncurses? ( >=dev-libs/newt-0.52.15 )
 	nss? ( >=dev-libs/nss-3.11:=[${MULTILIB_USEDEP}] )
 	ofono? ( net-misc/ofono )
-	openvswitch? (
-		dev-libs/jansson
-		net-misc/openvswitch
-	)
+	ovs? ( dev-libs/jansson )
 	ppp? ( >=net-dialup/ppp-2.4.5:=[ipv6] )
 	resolvconf? ( net-dns/openresolv )
 	selinux? ( sys-libs/libselinux )
@@ -73,22 +68,13 @@ COMMON_DEPEND="
 		dev-libs/jansson
 		>=net-misc/libteam-1.9
 	)
-	upower? ( sys-power/upower )
 "
 RDEPEND="${COMMON_DEPEND}
 	|| (
 		net-misc/iputils[arping(+)]
 		net-analyzer/arping
 	)
-	wifi? (
-		!vanilla? (
-			|| (
-				>=sys-apps/util-linux-2.31_rc1
-				net-wireless/rfkill
-			)
-		)
-		>=net-wireless/wpa_supplicant-0.7.3-r3[dbus]
-	)
+	wifi? ( >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
 "
 DEPEND="${COMMON_DEPEND}
 	dev-util/gdbus-codegen
@@ -161,8 +147,6 @@ src_prepare() {
 	DOC_CONTENTS="To modify system network connections without needing to enter the
 		root password, add your user account to the 'plugdev' group."
 
-	eautoreconf
-
 	use vala && vala_src_prepare
 	gnome2_src_prepare
 }
@@ -190,19 +174,19 @@ multilib_src_configure() {
 		$(multilib_native_enable concheck)
 		--with-crypto=$(usex nss nss gnutls)
 		--with-session-tracking=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind $(multilib_native_usex consolekit consolekit no)))
-		--with-suspend-resume=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind $(multilib_native_usex consolekit consolekit upower)))
+		--with-suspend-resume=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind consolekit))
 		$(multilib_native_use_with audit libaudit)
 		$(multilib_native_use_enable bluetooth bluez5-dun)
 		$(use_with dhclient)
 		$(use_with dhcpcd)
 		$(multilib_native_use_enable introspection)
-		$(multilib_native_use_enable json json-validation)
+		$(use_enable json json-validation)
 		$(multilib_native_use_enable ppp)
 		--without-libpsl
 		$(multilib_native_use_with modemmanager modem-manager-1)
 		$(multilib_native_use_with ncurses nmtui)
 		$(multilib_native_use_with ofono)
-		$(multilib_native_use_enable openvswitch ovs)
+		$(multilib_native_use_enable ovs)
 		$(multilib_native_use_with resolvconf)
 		$(multilib_native_use_with selinux)
 		$(multilib_native_use_with systemd systemd-journal)
@@ -287,29 +271,17 @@ multilib_src_install() {
 multilib_src_install_all() {
 	! use systemd && readme.gentoo_create_doc
 
-	if use vanilla; then
-		if use elogind; then
-			newinitd "${FILESDIR}/init.d.NetworkManager-elogind" NetworkManager
-		else
-			newinitd "${FILESDIR}/init.d.NetworkManager" NetworkManager
-		fi
-		newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
-	else
-		newinitd "${FILESDIR}/init.d.NetworkManager-dhcpcd" NetworkManager
-		insinto /etc/NetworkManager
-		doins "${FILESDIR}"/NetworkManager.conf
-	fi
+	newinitd "${FILESDIR}/init.d.NetworkManager-r1" NetworkManager
+	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
 
 	# Need to keep the /etc/NetworkManager/dispatched.d for dispatcher scripts
 	keepdir /etc/NetworkManager/dispatcher.d
 
-	if use vanilla; then
-		# Provide openrc net dependency only when nm is connected
-		exeinto /etc/NetworkManager/dispatcher.d
-		newexe "${FILESDIR}/10-openrc-status-r4" 10-openrc-status
-		sed -e "s:@EPREFIX@:${EPREFIX}:g" \
-			-i "${ED}/etc/NetworkManager/dispatcher.d/10-openrc-status" || die
-	fi
+	# Provide openrc net dependency only when nm is connected
+	exeinto /etc/NetworkManager/dispatcher.d
+	newexe "${FILESDIR}/10-openrc-status-r4" 10-openrc-status
+	sed -e "s:@EPREFIX@:${EPREFIX}:g" \
+		-i "${ED}/etc/NetworkManager/dispatcher.d/10-openrc-status" || die
 
 	keepdir /etc/NetworkManager/system-connections
 	chmod 0600 "${ED}"/etc/NetworkManager/system-connections/.keep* # bug #383765, upstream bug #754594
