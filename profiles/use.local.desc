@@ -54,6 +54,17 @@ app-misc/tracker:playlist - Add support for playlists
 app-misc/tracker:stemmer - Add word stemming via dev-libs/snowball-stemmer.
 app-misc/tracker:thunderbird - Install email data miner plugin for mail-client/thunderbird and mail-client/thunderbird-bin
 app-misc/tracker:xps - Add support for XPS file format through app-text/libgxps.
+app-misc/tracker-miners:cue - Enable cue sheet parsing
+app-misc/tracker-miners:firefox-bookmarks - Install bookmark data miner plugin for www-client/firefox and www-client/firefox-bin
+app-misc/tracker-miners:gsf - Enable gnome-extra/libgsf based data extractor and for ODT.
+app-misc/tracker-miners:iptc - Enable extraction of IPTC data from pictures
+app-misc/tracker-miners:iso - Enable extraction of metadata from ISO disk images
+app-misc/tracker-miners:miner-fs - Enable tracker-miner-fs (required for filesystem indexing)
+app-misc/tracker-miners:nautilus - Enable tracker to integrate with gnome-base/nautilus by providing entries in its context menu
+app-misc/tracker-miners:playlist - Add support for playlists
+app-misc/tracker-miners:stemmer - Add word stemming via dev-libs/snowball-stemmer.
+app-misc/tracker-miners:thunderbird - Install email data miner plugin for mail-client/thunderbird and mail-client/thunderbird-bin
+app-misc/tracker-miners:xps - Add support for XPS file format through app-text/libgxps.
 app-text/evince:dvi - Enable the built-in DVI viewer
 app-text/evince:nautilus - Enable property page extension in gnome-base/nautilus
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer (media-libs/t1lib)
