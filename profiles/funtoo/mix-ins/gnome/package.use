@@ -13,7 +13,7 @@ media-libs/gegl cairo raw
 # for gnome-3.20
 >=virtual/libintl-0-r2 abi_x86_32
 >=dev-libs/libpcre-8.39 abi_x86_32
-x11-wm/mutter -kms deprecated-background
+x11-wm/mutter -kms -deprecated-background
 
 # for 3.16
 >=media-libs/clutter-1.22.4 egl
@@ -41,7 +41,7 @@ gnome-base/nautilus sendto
 gnome-extra/nm-applet bluetooth modemmanager
 mail-client/evolution spell
 net-im/empathy spell
-net-misc/networkmanager bluetooth connection-sharing consolekit upower wifi
+net-misc/networkmanager bluetooth connection-sharing wifi
 
 # Required by GNOME for a clean emerge.
 gnome-base/gvfs udisks
@@ -54,7 +54,7 @@ net-im/pidgin -eds
 
 # Required by gnome, for FL-343
 media-libs/gst-plugins-base theora
-dev-libs/folks vala
+dev-libs/folks vala -tracker
 gnome-extra/evolution-data-server vala
 
 # Required by gnome-base/gvfs and sys-fs/udisks
@@ -78,7 +78,7 @@ app-text/poppler cairo
 
 # Required by sys-auth/polkit[-systemd]
 sys-auth/consolekit policykit
-sys-auth/pambase consolekit
+sys-auth/pambase elogind
 
 # Required by media-libs/libcanberra[udev]
 media-libs/libcanberra alsa
@@ -130,3 +130,6 @@ gnome-extra/nm-applet bluetooth
 
 # Required by app-misc/tracker
 media-gfx/imagemagick png jpeg
+dev-libs/gsound vala
+net-libs/gnome-online-accounts vala
+media-libs/gd fontconfig
