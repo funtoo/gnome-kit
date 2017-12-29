@@ -73,6 +73,9 @@ dev-libs/glib:utils - Install gtester-report utility to generate test report fil
 dev-libs/gmime:smime - Enable experimental S/MIME support
 dev-libs/gobject-introspection:doctool - Install g-ir-doc-tool for generating documentation from introspected data
 dev-libs/libgdata:gnome-online-accounts - Enable net-libs/gnome-online-accounts support
+dev-libs/libgit2:gssapi - Enable GSSAPI support for SPNEGO auth
+dev-libs/libgit2:ssh - Enable SSH transport support
+dev-libs/libgit2:trace - Enable tracing support
 dev-libs/libgit2-glib:ssh - Enable SSH transport support
 dev-libs/libgweather:glade - Installs catalog files for dev-util/glade
 dev-libs/libpeas:glade - Install the glade catalog
