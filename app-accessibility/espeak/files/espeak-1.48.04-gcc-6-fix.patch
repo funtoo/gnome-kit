@@ -1,6 +1,7 @@
+https://src.fedoraproject.org/cgit/rpms/espeak.git/tree/espeak-1.48-gcc-6-fix.patch
 diff --git a/src/tr_languages.cpp b/src/tr_languages.cpp
---- a/src/tr_languages.cpp
-+++ b/src/tr_languages.cpp
+--- a/tr_languages.cpp
++++ b/tr_languages.cpp
 @@ -198,7 +198,7 @@ static const unsigned short chars_ignore_zwnj_hyphen[] = {
  	0x200d,  1, // zero width joiner
  	0, 0 };
