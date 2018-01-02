@@ -13,6 +13,8 @@ KEYWORDS="*"
 
 IUSE="+introspection"
 
+PATCHES=( "${FILESDIR}"/${P}-libical.patch )
+
 RDEPEND="
 	>=dev-libs/glib-2.43.4:2
 	>=dev-libs/libical-0.43

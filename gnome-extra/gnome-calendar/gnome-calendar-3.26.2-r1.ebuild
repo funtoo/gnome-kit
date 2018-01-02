@@ -13,6 +13,8 @@ KEYWORDS="*"
 
 IUSE=""
 
+PATCHES=( "${FILESDIR}"/${P}-libical.patch )
+
 # >=libical-1.0.1 for https://bugzilla.gnome.org/show_bug.cgi?id=751244
 RDEPEND="
 	>=dev-libs/glib-2.43.4:2
