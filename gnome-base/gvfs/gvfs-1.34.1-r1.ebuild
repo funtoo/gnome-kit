@@ -17,11 +17,11 @@ IUSE="afp archive bluray cdda elogind fuse google gnome-keyring gnome-online-acc
 REQUIRED_USE="
 	?? ( elogind systemd )
 	cdda? ( udev )
-	elogind? ( udisks )
+	elogind? ( !systemd udisks )
 	google? ( gnome-online-accounts )
 	mtp? ( udev )
 	udisks? ( udev )
-	systemd? ( udisks )
+	systemd? ( !elogind udisks )
 "
 
 # Tests with multiple failures, this is being handled upstream at:
