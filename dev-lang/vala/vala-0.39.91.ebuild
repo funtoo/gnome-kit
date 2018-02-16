@@ -9,7 +9,7 @@ DESCRIPTION="Compiler for the GObject type system"
 HOMEPAGE="https://wiki.gnome.org/Projects/Vala"
 
 LICENSE="LGPL-2.1"
-SLOT="0.32"
+SLOT="0.38"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE="test"
 
@@ -23,11 +23,16 @@ DEPEND="${RDEPEND}
 	sys-devel/flex
 	virtual/pkgconfig
 	virtual/yacc
+	>=media-gfx/graphviz-2.16
 	test? (
 		dev-libs/dbus-glib
 		>=dev-libs/glib-2.26:2 )
 "
 
 src_configure() {
-	gnome2_src_configure --disable-unversioned
+	# weasyprint enables generation of PDF from HTML
+	gnome2_src_configure \
+		--disable-unversioned \
+		VALAC=: \
+		WEASYPRINT=:
 }
