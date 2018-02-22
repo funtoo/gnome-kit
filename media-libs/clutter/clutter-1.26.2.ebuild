@@ -1,22 +1,24 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit gnome2 virtualx
 
-DESCRIPTION="Clutter is a library for creating graphical user interfaces"
 HOMEPAGE="https://wiki.gnome.org/Projects/Clutter"
+DESCRIPTION="Clutter is a library for creating graphical user interfaces"
 
 LICENSE="LGPL-2.1+ FDL-1.1+"
 SLOT="1.0"
-KEYWORDS="*"
 
 IUSE="aqua debug doc egl gtk +introspection test wayland X"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	wayland? ( egl )
 "
+
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sparc x86"
 
 # NOTE: glx flavour uses libdrm + >=mesa-7.3
 # >=libX11-1.3.1 needed for X Generic Event support
@@ -29,11 +31,12 @@ RDEPEND="
 	>=x11-libs/cairo-1.14:=[aqua?,glib]
 	>=x11-libs/pango-1.30[introspection?]
 
+	virtual/opengl
 	x11-libs/libdrm:=
 
 	egl? (
 		>=dev-libs/libinput-0.19.0
-		media-libs/cogl[gles2,wayland]
+		media-libs/cogl[gles2,kms]
 		>=virtual/libgudev-136
 		x11-libs/libxkbcommon
 	)
@@ -63,12 +66,6 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	if ! use wayland; then
-		# From GNOME:
-		# 	https://git.gnome.org/browse/clutter/commit/?id=be8602fbb491c30c1e2febb92553375b2f4ce584
-		eapply "${FILESDIR}"/${PN}-1.26.2-reorganize-backends.patch
-	fi
-
 	# We only need conformance tests, the rest are useless for us
 	sed -e 's/^\(SUBDIRS =\).*/\1 accessibility conform/g' \
 		-i tests/Makefile.am || die "am tests sed failed"

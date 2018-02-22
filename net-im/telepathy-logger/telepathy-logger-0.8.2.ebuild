@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"
@@ -46,5 +45,5 @@ src_configure() {
 }
 
 src_test() {
-	Xemake check
+	virtx emake -j1 check
 }

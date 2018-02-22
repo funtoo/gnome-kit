@@ -1,8 +1,7 @@
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-VALA_MAX_API_VERSION="0.34"
-
+EAPI=6
 # Keep cmake-utils at the end
 inherit gnome2 vala cmake-utils
 
@@ -11,15 +10,15 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Geary"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~x86"
 IUSE="nls"
 
 DEPEND="
 	>=app-crypt/gcr-3.10.1:0=[gtk,introspection,vala]
 	app-crypt/libsecret
+	app-text/iso-codes
 	dev-db/sqlite:3
-	dev-libs/glib:2[dbus]
+	>=dev-libs/glib-2.42:2[dbus]
 	>=dev-libs/libgee-0.8.5:0.8=
 	dev-libs/libxml2:2
 	dev-libs/gmime:2.6
@@ -42,7 +41,7 @@ DEPEND="${DEPEND}
 
 src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=751557
-	eapply "${FILESDIR}"/${PN}-0.12.0-vapigen.patch
+	sed -i -e 's/vapigen --library/${VAPIGEN} --library/' src/CMakeLists.txt || die
 
 	local i
 	if use nls ; then
@@ -69,6 +68,7 @@ src_configure() {
 		-DGSETTINGS_COMPILE=OFF
 		-DICON_UPDATE=OFF
 		-DVALA_EXECUTABLE="${VALAC}"
+		-DVAPIGEN="${VAPIGEN}"
 		-DWITH_UNITY=OFF
 		-DDESKTOP_VALIDATE=OFF
 	)

@@ -7,18 +7,18 @@ inherit eutils flag-o-matic autotools multilib-minimal
 
 if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="git://anongit.freedesktop.org/git/cairo"
+	EGIT_REPO_URI="https://anongit.freedesktop.org/git/cairo"
 	SRC_URI=""
 else
-	SRC_URI="http://cairographics.org/releases/${P}.tar.xz"
+	SRC_URI="https://www.cairographics.org/releases/${P}.tar.xz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 fi
 
 DESCRIPTION="A vector graphics library with cross-device output support"
-HOMEPAGE="http://cairographics.org/"
+HOMEPAGE="https://www.cairographics.org"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-IUSE="X aqua debug directfb gles2 +glib opengl static-libs +svg utils valgrind xcb"
+IUSE="X aqua debug gles2 +glib opengl static-libs +svg utils valgrind xcb"
 # gtk-doc regeneration doesn't seem to work with out-of-source builds
 #[[ ${PV} == *9999* ]] && IUSE="${IUSE} doc" # API docs are provided in tarball, no need to regenerate
 
@@ -32,10 +32,9 @@ RDEPEND="
 	sys-libs/binutils-libs:0=[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
 	>=x11-libs/pixman-0.32.4[${MULTILIB_USEDEP}]
-	directfb? ( dev-libs/DirectFB )
 	gles2? ( >=media-libs/mesa-9.1.6[gles2,${MULTILIB_USEDEP}] )
 	glib? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}] )
-	opengl? ( || ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] media-libs/opengl-apple ) )
+	opengl? ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] )
 	utils? ( >=dev-libs/lzo-2.06-r1[${MULTILIB_USEDEP}] )
 	X? (
 		>=x11-libs/libXrender-0.9.8[${MULTILIB_USEDEP}]
@@ -64,10 +63,6 @@ DEPEND="${RDEPEND}
 REQUIRED_USE="
 	gles2? ( !opengl )
 "
-
-MULTILIB_WRAPPED_HEADERS=(
-	/usr/include/cairo/cairo-directfb.h
-)
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.12.18-disable-test-suite.patch
@@ -99,12 +94,6 @@ multilib_src_configure() {
 
 	use elibc_FreeBSD && myopts+=" --disable-symbol-lookup"
 
-	# TODO: remove this (and add USE-dep) when DirectFB is converted,
-	# bug #484248 -- but beware of the circular dep.
-	if ! multilib_is_native_abi; then
-		myopts+=" --disable-directfb"
-	fi
-
 	# TODO: remove this (and add USE-dep) when qtgui is converted, bug #498010
 	if ! multilib_is_native_abi; then
 		myopts+=" --disable-qt"
@@ -122,7 +111,6 @@ multilib_src_configure() {
 		$(use_enable aqua quartz) \
 		$(use_enable aqua quartz-image) \
 		$(use_enable debug test-surfaces) \
-		$(use_enable directfb) \
 		$(use_enable gles2 glesv2) \
 		$(use_enable glib gobject) \
 		$(use_enable opengl gl) \
@@ -139,6 +127,7 @@ multilib_src_configure() {
 		--enable-png \
 		--enable-ps \
 		--disable-drm \
+		--disable-directfb \
 		--disable-gallium \
 		--disable-qt \
 		--disable-vg \

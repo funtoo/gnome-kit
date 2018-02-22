@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -14,7 +13,7 @@ HOMEPAGE="https://library.gnome.org/devel/libgnome/stable/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="branding"
 
 SRC_URI="${SRC_URI}
@@ -40,6 +39,10 @@ PDEPEND="gnome-base/gvfs"
 src_prepare() {
 	# Make sure menus have icons. People don't like change
 	epatch "${FILESDIR}/${PN}-2.28.0-menus-have-icons.patch"
+
+	# Remove UTF-8 character from headers
+	# https://bugs.gentoo.org/639336
+	epatch "${FILESDIR}"/${PN}-2.32.1-utf8-header.patch
 
 	use branding && epatch "${FILESDIR}"/${PN}-2.26.0-branding.patch
 

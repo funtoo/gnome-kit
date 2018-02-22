@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
@@ -14,7 +13,7 @@ SRC_URI="https://github.com/linuxmint/cinnamon-settings-daemon/archive/${PV}.tar
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+colord cups input_devices_wacom smartcard"
+IUSE="+colord cups input_devices_wacom smartcard systemd"
 
 # udev is non-optional since lots of plugins, not just gudev, pull it in
 RDEPEND="
@@ -44,8 +43,12 @@ RDEPEND="
 		x11-drivers/xf86-input-wacom
 		x11-libs/libXtst )
 	smartcard? ( >=dev-libs/nss-3.11.2 )
-	>=sys-power/upower-0.9
-	sys-auth/consolekit
+	systemd? (
+		sys-apps/systemd:0=
+		>=sys-power/upower-0.9.11:= )
+	!systemd? (
+		sys-auth/consolekit:0=
+		|| ( >=sys-power/upower-0.9.11 sys-power/upower-pm-utils ) )
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxml2:2
@@ -76,6 +79,7 @@ src_configure() {
 		$(use_enable colord color) \
 		$(use_enable cups) \
 		$(use_enable smartcard smartcard-support) \
+		$(use_enable systemd logind) \
 		$(use_enable input_devices_wacom wacom)
 }
 

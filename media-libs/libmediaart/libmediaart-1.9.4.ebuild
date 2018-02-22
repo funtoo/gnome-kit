@@ -1,8 +1,10 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
 VALA_USE_DEPEND="vapigen"
+VALA_MIN_API_VERSION="0.16"
 
 inherit autotools flag-o-matic gnome2 vala virtualx
 
@@ -11,8 +13,7 @@ HOMEPAGE="https://github.com/GNOME/libmediaart"
 
 LICENSE="LGPL-2.1+"
 SLOT="2.0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE="gtk +introspection qt5 vala"
 REQUIRED_USE="
 	?? ( gtk qt5 )

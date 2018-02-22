@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 GNOME_ORG_MODULE="network-manager-applet"
 
@@ -11,13 +12,11 @@ HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
-
-IUSE="gcr +introspection +modemmanager selinux teamd"
+IUSE="+introspection gcr +modemmanager selinux teamd"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 x86"
 
 RDEPEND="
 	>=app-crypt/libsecret-0.18
-	dev-libs/glib:2=
 	>=dev-libs/glib-2.32:2[dbus]
 	>=dev-libs/dbus-glib-0.88
 	>=sys-apps/dbus-1.4.1
@@ -53,8 +52,8 @@ src_configure() {
 		--disable-more-warnings
 		--disable-static
 		--localstatedir=/var
-		$(use_with gcr)
 		$(use_enable introspection)
+		$(use_with gcr)
 		$(use_with modemmanager wwan)
 		$(use_with selinux)
 		$(use_with teamd team)

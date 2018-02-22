@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit gnome2
@@ -10,9 +11,8 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Brasero"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0/3.1" # subslot is 3.suffix of libbrasero-burn3
-KEYWORDS="*"
-
 IUSE="+css +introspection +libburn mp3 nautilus packagekit playlist test tracker"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.29.14:2

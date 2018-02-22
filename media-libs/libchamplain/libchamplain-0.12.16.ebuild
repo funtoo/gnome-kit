@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 vala
@@ -8,9 +9,9 @@ inherit gnome2 vala
 DESCRIPTION="Clutter based world map renderer"
 HOMEPAGE="https://wiki.gnome.org/Projects/libchamplain"
 
-LICENSE="LGPL-2"
 SLOT="0.12"
-KEYWORDS="*"
+LICENSE="LGPL-2"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
 
 IUSE="debug +gtk +introspection vala"
 REQUIRED_USE="vala? ( introspection )"

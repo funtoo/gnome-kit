@@ -1,9 +1,8 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
-PYTHON_COMPAT=( python3_4 )
+PYTHON_COMPAT=( python3_{4,5,6} )
 
 inherit autotools gnome2 multilib python-single-r1
 
@@ -13,7 +12,8 @@ SRC_URI="https://github.com/linuxmint/cinnamon-screensaver/archive/${PV}.tar.gz 
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE="debug doc pam"
+IUSE="debug doc pam systemd"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND="
@@ -35,14 +35,15 @@ COMMON_DEPEND="
 	x11-libs/libXxf86misc
 	x11-libs/libXxf86vm
 	x11-themes/adwaita-icon-theme
-	x11-libs/xapps
+	x11-libs/xapps[introspection]
 
 	${PYTHON_DEPS}
 
 	pam? ( virtual/pam )
+	systemd? ( >=sys-apps/systemd-31:0= )
 "
 # our cinnamon-1.8 ebuilds installed a cinnamon-screensaver.desktop hack
-RDEPEND="
+RDEPEND="${COMMON_DEPEND}
 	!~gnome-extra/cinnamon-1.8.8.1
 	!systemd? ( sys-auth/consolekit )
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
@@ -63,14 +64,11 @@ DEPEND="${COMMON_DEPEND}
 		app-text/docbook-xml-dtd:4.4 )
 "
 
-PATCHES=( "${FILESDIR}/${PN}-3.2.13-pamfile.patch" ) #FL-3475
-
 pkg_setup() {
 	python_setup
 }
 
-src_prepare(){
-	eapply_user
+src_prepare() {
 	python_fix_shebang screensavers
 	eautoreconf
 	gnome2_src_prepare

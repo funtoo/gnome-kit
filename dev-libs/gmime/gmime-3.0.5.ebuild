@@ -1,6 +1,7 @@
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 VALA_USE_DEPEND="vapigen"
 
 inherit flag-o-matic gnome2 vala
@@ -8,10 +9,9 @@ inherit flag-o-matic gnome2 vala
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
 HOMEPAGE="http://spruce.sourceforge.net/gmime/ https://developer.gnome.org/gmime/stable/"
 
-LICENSE="LGPL-2.1"
 SLOT="3.0"
-KEYWORDS="*"
-
+LICENSE="LGPL-2.1"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="crypt doc idn static-libs test vala"
 
 RDEPEND="

@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 
 inherit gnome2 vala
 
@@ -11,14 +12,12 @@ SRC_URI="mirror://sourceforge/project/${PN}/${PV}/${MY_P}.tar.xz"
 
 LICENSE="GPL-2+"
 SLOT="3/0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="+introspection vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
 	>=app-text/enchant-1.1.6
-	<app-text/enchant-2.0.0
 	app-text/iso-codes
 	dev-libs/glib:2
 	x11-libs/gtk+:3[introspection?]

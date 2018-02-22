@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit gnome2 multilib-minimal
@@ -10,8 +11,7 @@ HOMEPAGE="https://git.gnome.org/browse/libcroco/"
 
 LICENSE="LGPL-2"
 SLOT="0.6"
-KEYWORDS="*"
-
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="test"
 
 RDEPEND="
@@ -24,8 +24,8 @@ DEPEND="${RDEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-0.6.12-CVE-2017-7960.patch
-	"${FILESDIR}"/${PN}-0.6.12-CVE-2017-7961.patch
+	"${FILESDIR}"/${PV}-CVE-2017-7960.patch
+	"${FILESDIR}"/${PV}-CVE-2017-7961.patch
 )
 
 src_prepare() {
@@ -54,5 +54,6 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
+	DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
 	einstalldocs
 }

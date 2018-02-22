@@ -10,4 +10,4 @@ RDEPEND=>=x11-libs/gtk+-2.19.7:2[introspection?] >=dev-libs/glib-2.16:2 x11-libs
 SLOT=1
 SRC_URI=mirror://gnome/sources/libwnck/2.31/libwnck-2.31.0.tar.xz
 _eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	gnome.org	ad34f378a3d57a6f2f2b8b4aaca4543e	gnome2	6e4acb9c9da2cfa25f2dfedb93bb4a43	gnome2-utils	c6dcdf3a2c22b578b16adb945dc85c35	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	xdg	a5c4c5ce4f5ce9a2e777f5d9a40a8723	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
-_md5_=3352186ab199b27265f1a0c1f66c1a0e
+_md5_=26a09f3105a9d2fe30fb8b4fe2687b28

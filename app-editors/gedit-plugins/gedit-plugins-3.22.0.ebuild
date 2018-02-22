@@ -1,19 +1,20 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 GNOME2_LA_PUNT="yes" # plugins are dlopened
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 PYTHON_REQ_USE="xml"
 VALA_MIN_API_VERSION="0.28"
 
-inherit gnome2 multilib python-single-r1 vala
+inherit eutils gnome2 multilib python-single-r1 vala
 
 DESCRIPTION="Official plugins for gedit"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gedit/ShippedPlugins"
 
 LICENSE="GPL-2+"
+KEYWORDS="amd64 x86"
 SLOT="0"
-KEYWORDS="*"
 
 IUSE_plugins="charmap git terminal vala zeitgeist"
 IUSE="+python ${IUSE_plugins}"

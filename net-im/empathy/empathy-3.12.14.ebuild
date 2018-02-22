@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 
@@ -11,9 +12,8 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Empathy"
 
 LICENSE="GPL-2 CC-BY-SA-3.0 FDL-1.3 LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
-
 IUSE="debug +geolocation gnome gnome-online-accounts +map spell test +v4l"
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-linux"
 
 # False positives caused by nested configure scripts
 QA_CONFIGURE_OPTIONS=".*"
@@ -94,8 +94,8 @@ pkg_setup() {
 }
 
 src_configure() {
+	DOCS="CONTRIBUTORS AUTHORS ChangeLog NEWS README"
 	gnome2_src_configure \
-		--disable-Werror \
 		--disable-coding-style-checks \
 		--disable-static \
 		--disable-ubuntu-online-accounts \

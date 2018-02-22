@@ -1,6 +1,7 @@
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit autotools flag-o-matic gnome2 multilib virtualx multilib-minimal
@@ -9,14 +10,14 @@ DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
-SLOT="3/22" # From WebKit: http://trac.webkit.org/changeset/195811
-KEYWORDS="*"
-
-IUSE="aqua broadway cloudprint colord cups examples +introspection test vim-syntax wayland X xinerama"
+SLOT="3"
+IUSE="aqua broadway cloudprint colord cups examples +introspection test vim-syntax wayland +X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
 "
+
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 # Upstream wants us to do their job:
 # https://bugzilla.gnome.org/show_bug.cgi?id=768662#c1
@@ -88,8 +89,8 @@ RDEPEND="${COMMON_DEPEND}
 "
 # librsvg for svg icons (PDEPEND to avoid circular dep), bug #547710
 PDEPEND="
-	>=x11-themes/adwaita-icon-theme-3.14
 	gnome-base/librsvg[${MULTILIB_USEDEP}]
+	>=x11-themes/adwaita-icon-theme-3.14
 	vim-syntax? ( app-vim/gtk-syntax )
 "
 
@@ -107,10 +108,6 @@ strip_builddir() {
 }
 
 src_prepare() {
-	# -O3 and company cause random crashes in applications. Bug #133469
-	replace-flags -O3 -O2
-	strip-flags
-
 	if ! use test ; then
 		# don't waste time building tests
 		strip_builddir SRC_SUBDIRS testsuite Makefile.{am,in}
@@ -129,14 +126,17 @@ src_prepare() {
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
 	eapply "${FILESDIR}"/${PN}-3.22.2-update-icon-cache.patch
 
-	# call eapply_user (implicitly) before eautoreconf
-	gnome2_src_prepare
+	# Fix broken autotools logic
+	eapply "${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
+
 	eautoreconf
+	gnome2_src_prepare
 }
 
 multilib_src_configure() {
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
+	# cloudprovider is not packaged in Gentoo
 	ECONF_SOURCE=${S} \
 	gnome2_src_configure \
 		$(use_enable aqua quartz-backend) \
@@ -153,8 +153,9 @@ multilib_src_configure() {
 		$(use_enable X xkb) \
 		$(use_enable X xrandr) \
 		$(use_enable xinerama) \
-		--disable-papi \
+		--disable-cloudproviders \
 		--disable-mir-backend \
+		--disable-papi \
 		--enable-man \
 		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
@@ -181,6 +182,8 @@ multilib_src_install() {
 multilib_src_install_all() {
 	insinto /etc/gtk-3.0
 	doins "${FILESDIR}"/settings.ini
+	# Skip README.{in,commits,win32} and useless ChangeLog that would get installed by default
+	DOCS=( AUTHORS NEWS README )
 	einstalldocs
 }
 

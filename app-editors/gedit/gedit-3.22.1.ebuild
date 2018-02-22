@@ -1,22 +1,24 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 GNOME2_LA_PUNT="yes" # plugins are dlopened
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 VALA_MIN_API_VERSION="0.26"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 multilib python-single-r1 vala virtualx
+inherit eutils gnome2 multilib python-single-r1 vala virtualx
 
 DESCRIPTION="A text editor for the GNOME desktop"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gedit"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="*"
 
 IUSE="+introspection +python spell vala"
 REQUIRED_USE="python? ( introspection ${PYTHON_REQUIRED_USE} )"
+
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 
 # X libs are not needed for OSX (aqua)
 COMMON_DEPEND="
@@ -63,6 +65,8 @@ src_prepare() {
 }
 
 src_configure() {
+	DOCS="AUTHORS ChangeLog MAINTAINERS NEWS README"
+
 	gnome2_src_configure \
 		--disable-deprecations \
 		--disable-updater \

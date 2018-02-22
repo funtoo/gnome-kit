@@ -1,10 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
-DESCRIPTION="CLI designed to validate AppData descriptions for standards compliance and to the style guide"
+DESCRIPTION="CLI designed to validate AppData descriptions for standards and style compliance"
 HOMEPAGE="https://github.com/hughsie/appdata-tools/"
 SRC_URI=""
 

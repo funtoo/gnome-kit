@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 
 inherit gnome.org meson xdg-utils
 
@@ -9,12 +10,8 @@ HOMEPAGE="https://wiki.gnome.org/Projects/libgxps"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~*"
-
+KEYWORDS="alpha amd64 ~arm ~arm64 ia64 ppc ppc64 sparc x86"
 IUSE="+introspection jpeg lcms tiff"
-
-# There is no automatic test suite, only an interactive test application
-RESTRICT="test"
 
 RDEPEND="
 	>=app-arch/libarchive-2.8
@@ -33,6 +30,9 @@ DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am
 	virtual/pkgconfig
 "
+
+# There is no automatic test suite, only an interactive test application
+RESTRICT="test"
 
 src_configure() {
 	local emesonargs=(

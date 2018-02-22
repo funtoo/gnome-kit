@@ -1,7 +1,7 @@
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
+EAPI=6
 inherit gnome2
 
 DESCRIPTION="CD ripper for GNOME"
@@ -9,8 +9,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/SoundJuicer"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="debug flac test vorbis"
 
 COMMON_DEPEND="

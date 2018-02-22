@@ -1,18 +1,16 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
 VALA_USE_DEPEND="vapigen"
 
-inherit autotools db-use flag-o-matic gnome2 java-pkg-opt-2 python-single-r1 vala
+inherit autotools db-use eutils flag-o-matic gnome2 java-pkg-opt-2 python-single-r1 vala
 
 DESCRIPTION="GNOME database access library"
 HOMEPAGE="http://www.gnome-db.org/"
-
 LICENSE="GPL-2+ LGPL-2+"
-SLOT="5/4" # subslot = libgda-5.0 soname version
-KEYWORDS="*"
 
 IUSE="berkdb canvas debug firebird gnome-keyring gtk graphviz http +introspection json ldap mdb mysql oci8 postgres reports sourceview ssl vala"
 REQUIRED_USE="
@@ -22,14 +20,10 @@ REQUIRED_USE="
 	sourceview? ( gtk )
 	vala? ( introspection )
 "
-
 # firebird license is not GPL compatible
-# FIXME: lots of tests failing. Check if they still fail in 5.1.2
-# firebird support bindist-restricted because it is not GPL compatible
-RESTRICT="
-	test
-	firebird? ( bindist )
-"
+
+SLOT="5/4" # subslot = libgda-5.0 soname version
+KEYWORDS="~alpha amd64 ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 
 RDEPEND="
 	app-text/iso-codes
@@ -74,6 +68,13 @@ DEPEND="${RDEPEND}
 	vala? ( $(vala_depend) )
 "
 
+# FIXME: lots of tests failing. Check if they still fail in 5.1.2
+# firebird support bindist-restricted because it is not GPL compatible
+RESTRICT="
+	test
+	firebird? ( bindist )
+"
+
 pkg_setup() {
 	java-pkg-opt-2_pkg_setup
 	use reports && python-single-r1_pkg_setup
@@ -100,7 +101,7 @@ src_prepare() {
 	# Prevent file collisions with libgda:4
 	eapply "${FILESDIR}/${PN}-4.99.1-gda-browser-doc-collision.patch"
 	eapply "${FILESDIR}/${PN}-4.99.1-control-center-icon-collision.patch"
-	# Move files with mv (since eapply can't handle rename diffs) and
+	# Move files with mv (since epatch can't handle rename diffs) and
 	# update pre-generated gtk-doc files (for non-git versions of libgda)
 	local f
 	for f in tools/browser/doc/gda-browser* ; do

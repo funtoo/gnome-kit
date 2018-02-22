@@ -1,19 +1,12 @@
-=dev-libs/gobject-introspection-1.44.0 python_single_target_python2_7
-=dev-libs/gobject-introspection-1.46.0 python_single_target_python2_7
-=dev-libs/gobject-introspection-1.48.0 python_single_target_python2_7
-=dev-util/devhelp-3.18.1 python_single_target_python3_3 python_targets_python3_3
-=dev-util/devhelp-3.20.0 python_single_target_python3_3 python_targets_python3_3
 =gnome-extra/cinnamon-screensaver-2.8.0-r1 python_single_target_python2_7
 =gnome-extra/cinnamon-screensaver-3.0.1 python_single_target_python2_7
 =gnome-extra/cinnamon-screensaver-3.2.13-r1 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/cinnamon-screensaver-3.2.13-r2 python_single_target_python3_4 python_targets_python3_4
 =gnome-extra/cinnamon-screensaver-3.2.2 python_single_target_python3_4 python_targets_python3_4
 =gnome-extra/cinnamon-screensaver-3.2.2-r1 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/cinnamon-screensaver-3.2.6 python_single_target_python3_4 python_targets_python3_4
-=gnome-extra/gnome-builder-3.18.1 python_single_target_python3_3 python_targets_python3_3
-=media-video/totem-3.18.1 python_single_target_python2_7
-app-admin/system-config-printer python_single_target_python2_7
-app-i18n/ibus python_single_target_python2_7
+=gnome-extra/gnome-commander-1.6.1 python_single_target_python2_7
+=gnome-extra/gnome-commander-1.6.3 python_single_target_python2_7
+=gnome-extra/gnome-commander-1.6.4 python_single_target_python2_7
+=gnome-extra/gnome-commander-1.8.0 python_single_target_python2_7
 dev-util/anjuta python_single_target_python2_7
 dev-util/glade python_single_target_python2_7
 dev-util/gtk-builder-convert python_single_target_python2_7
@@ -22,7 +15,6 @@ gnome-base/libglade python_single_target_python2_7
 gnome-extra/avant-window-navigator python_single_target_python2_7
 gnome-extra/chrome-gnome-shell python_single_target_python2_7
 gnome-extra/gnome-activity-journal python_single_target_python2_7
-gnome-extra/gnome-commander python_single_target_python2_7
 gnome-extra/libgda python_single_target_python2_7
 gnome-extra/zeitgeist-datasources python_single_target_python2_7
 net-irc/telepathy-idle python_single_target_python2_7

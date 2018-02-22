@@ -1,8 +1,10 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
+VALA_MIN_API_VERSION="0.16"
 VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 multibuild python-r1 vala
@@ -12,8 +14,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/gtk-vnc"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 IUSE="examples +gtk3 +introspection pulseaudio python sasl vala"
 REQUIRED_USE="
 	python? ( ${PYTHON_REQUIRED_USE} )
@@ -47,7 +48,7 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 	vala? (
 		$(vala_depend)
-		>=dev-libs/gobject-introspection-0.9.4:= )
+		>=dev-libs/gobject-introspection-0.9.4 )
 "
 # eautoreconf requires gnome-common
 
@@ -83,10 +84,10 @@ src_configure() {
 		$(use_enable introspection)
 		$(use_with pulseaudio)
 		$(use_with sasl)
-		$(use_enable vala)
 		--with-coroutine=gthread
 		--without-libview
 		--disable-static
+		--disable-vala
 	)
 
 	configure_python() {

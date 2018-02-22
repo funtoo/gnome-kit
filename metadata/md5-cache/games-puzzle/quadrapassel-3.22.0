@@ -3,10 +3,10 @@ DEPEND=dev-libs/glib:2 >=gnome-base/librsvg-2.32.0:2 >=media-libs/clutter-1:1.0 
 DESCRIPTION=Fit falling blocks together
 EAPI=6
 HOMEPAGE=https://wiki.gnome.org/Apps/Quadrapassel
-KEYWORDS=*
+KEYWORDS=amd64 ~arm x86
 LICENSE=GPL-2+ CC-BY-SA-3.0
 RDEPEND=dev-libs/glib:2 >=gnome-base/librsvg-2.32.0:2 >=media-libs/clutter-1:1.0 >=media-libs/clutter-gtk-0.91.6:1.0 >=media-libs/libcanberra-0.26[gtk3] >=x11-libs/gtk+-3.12:3
 SLOT=0
 SRC_URI=mirror://gnome/sources/quadrapassel/3.22/quadrapassel-3.22.0.tar.xz
 _eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	gnome.org	ad34f378a3d57a6f2f2b8b4aaca4543e	gnome2	6e4acb9c9da2cfa25f2dfedb93bb4a43	gnome2-utils	c6dcdf3a2c22b578b16adb945dc85c35	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	vala	97c40da4c895d5a1662731fcc582b4af	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	xdg	a5c4c5ce4f5ce9a2e777f5d9a40a8723	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
-_md5_=550ef01d6179a88b7b84d4322450caa4
+_md5_=f5e0fe5fb53be53799e1a65cfafc50a7

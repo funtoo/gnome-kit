@@ -11,4 +11,4 @@ REQUIRED_USE=|| ( python_targets_python2_7 )
 SLOT=0
 SRC_URI=https://fedorahosted.org/releases/n/e/newt/newt-0.52.15.tar.gz
 _eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	b83a2420b796f7c6eff682679d08fe25	libtool	e32ea84bf82cf8987965b574672dba93	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	c9de01becf9df3f8c10aeec3dc693f5d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=5c74ce8d3c60bdf764f51cb889ede602
+_md5_=f03887f5ff80fbc74943d4bfcd2bf1d4

@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
@@ -45,6 +44,9 @@ PATCHES=(
 
 	# Fix compiliation warnings & errors, fixed in next version
 	"${FILESDIR}/${P}-fix-build.patch"
+
+	# Fix building with GCC-6 and CXXFLAGS="-Werror=terminate"
+	"${FILESDIR}/${P}-gcc6-throw-in-dtors.patch"
 )
 
 src_configure() {
