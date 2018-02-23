@@ -34,6 +34,7 @@ net-voip
 net-wireless
 sci-geosciences
 sys-apps
+sys-auth
 sys-power
 virtual
 www-client

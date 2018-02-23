@@ -264,6 +264,8 @@ net-misc/vinagre:telepathy - Enable access to remote desktop via a net-libs/tele
 net-misc/vino:telepathy - Enable desktop sharing through a telepathy client
 net-voip/telepathy-gabble:plugins - Enable plugin loader
 sys-apps/gnome-disk-utility:fat - Include FAT16/FAT32 support (sys-fs/dosfstools)
+sys-auth/polkit:elogind - Use sys-auth/elogind instead of sys-auth/consolekit for session tracking
+sys-auth/polkit:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for session tracking
 www-client/epiphany:nss - Import passwords from older gecko based www-client/epiphany keyring.
 x11-libs/cairo:gles2 - Build the OpenGL ES 2 backend
 x11-libs/cairo:glib - Compile with GLib Object System support
