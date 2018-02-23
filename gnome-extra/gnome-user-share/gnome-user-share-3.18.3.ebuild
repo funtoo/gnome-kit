@@ -3,6 +3,7 @@
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
+GNOME2_EAUTORECONF="yes"
 
 inherit gnome2 multilib systemd
 
@@ -39,11 +40,13 @@ PATCHES=(
 	# that is problematic for us (bug #551012)
 	# https://bugzilla.gnome.org/show_bug.cgi?id=750525#c2
 	"${FILESDIR}"/${PN}-3.18.1-no-prefork.patch
+
+	# https://git.gnome.org/browse/vino/commit/?id=1538798a89653b8921ca574aebb3f153543b4921
+	"${FILESDIR}"/${PN}-3.18.2-allow-building-on-non-systemd-systems.patch
 )
 
 src_configure() {
 	gnome2_src_configure \
 		--with-httpd=apache2 \
-		--with-modules-path=/usr/$(get_libdir)/apache2/modules/ \
-		--with-systemduserunitdir="$(systemd_get_userunitdir)"
+		--with-modules-path=/usr/$(get_libdir)/apache2/modules/
 }
