@@ -1,10 +1,10 @@
 DEFINED_PHASES=install
-DEPEND=dev-libs/glib:2= || ( gnome-extra/gnome-shell-extensions gnome-base/gnome-shell )
+DEPEND=dev-libs/glib:2= || ( gnome-extra/gnome-shell-extensions gnome-base/gnome-shell ) !<=gnome-base/gnome-shell-3.21
 DESCRIPTION=A sub-package that provides common GNOME Shell files
 EAPI=6
 HOMEPAGE=https://wiki.gnome.org/Projects/GnomeShell
 KEYWORDS=*
 LICENSE=GPL-2
-RDEPEND=dev-libs/glib:2= || ( gnome-extra/gnome-shell-extensions gnome-base/gnome-shell )
+RDEPEND=dev-libs/glib:2= || ( gnome-extra/gnome-shell-extensions gnome-base/gnome-shell ) !<=gnome-base/gnome-shell-3.21
 SLOT=0
-_md5_=691e72f76852cc77e11203320c8b0969
+_md5_=f1e908db6a9d67667340ddd3feb0a6c7
