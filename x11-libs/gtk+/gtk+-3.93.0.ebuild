@@ -3,16 +3,16 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit autotools flag-o-matic gnome2 multilib virtualx multilib-minimal
+inherit flag-o-matic gnome2 meson multilib virtualx multilib-minimal
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
-SLOT="3/22" # From WebKit: http://trac.webkit.org/changeset/195811
+SLOT="4/0" # From WebKit: http://trac.webkit.org/changeset/195811
 KEYWORDS="*"
 
-IUSE="aqua broadway cloudprint colord cups examples +introspection test vim-syntax wayland X xinerama"
+IUSE="aqua broadway cloudprint colord cups examples +introspection locale test vim-syntax wayland X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -25,10 +25,10 @@ RESTRICT="test"
 # FIXME: introspection data is built against system installation of gtk+:3,
 # bug #????
 COMMON_DEPEND="
-	>=dev-libs/atk-2.15[introspection?,${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.49.4:2[${MULTILIB_USEDEP}]
+	>=dev-libs/atk-2.15.1[introspection?,${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.53.7:2[${MULTILIB_USEDEP}]
 	media-libs/fontconfig[${MULTILIB_USEDEP}]
-	>=media-libs/libepoxy-1.0[X(+)?,${MULTILIB_USEDEP}]
+	>=media-libs/libepoxy-1.4[X(+)?,${MULTILIB_USEDEP}]
 	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?,${MULTILIB_USEDEP}]
 	>=x11-libs/gdk-pixbuf-2.30:2[introspection?,${MULTILIB_USEDEP}]
 	>=x11-libs/pango-1.37.3[introspection?,${MULTILIB_USEDEP}]
@@ -94,7 +94,7 @@ PDEPEND="
 "
 
 MULTILIB_CHOST_TOOLS=(
-	/usr/bin/gtk-query-immodules-3.0$(get_exeext)
+	/usr/bin/gtk4-query-immodules$(get_exeext)
 )
 
 strip_builddir() {
@@ -111,67 +111,63 @@ src_prepare() {
 	replace-flags -O3 -O2
 	strip-flags
 
-	if ! use test ; then
-		# don't waste time building tests
-		strip_builddir SRC_SUBDIRS testsuite Makefile.{am,in}
+	eapply "${FILESDIR}/${PF}"-noschema.patch
 
-		# the tests dir needs to be build now because since commit
-		# 7ff3c6df80185e165e3bf6aa31bd014d1f8bf224 tests/gtkgears.o needs to be there
-		# strip_builddir SRC_SUBDIRS tests Makefile.{am,in}
-	fi
-
-	if ! use examples; then
-		# don't waste time building demos
-		strip_builddir SRC_SUBDIRS demos Makefile.{am,in}
-		strip_builddir SRC_SUBDIRS examples Makefile.{am,in}
+	if ! use locale; then
+		sed -i -e "s/^\([[:space:]]*\)subdir('po')/#\1subdir('po')/" "${S}"/meson.build
+		sed -i -e "s/^\([[:space:]]*\)subdir('po-properties')/#\1subdir('po-properties')/" "${S}"/meson.build
 	fi
 
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	eapply "${FILESDIR}"/${PN}-3.22.2-update-icon-cache.patch
+	# eapply "${FILESDIR}"/${PN}-3.22.2-update-icon-cache.patch
 
 	# Fix broken autotools logic
-	eapply "${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
+	# eapply "${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
 
 	# call eapply_user (implicitly) before eautoreconf
 	gnome2_src_prepare
-	eautoreconf
+	# eautoreconf
+}
+
+meson_multilib_native_use() {
+	if multilib_is_native_abi && use "$1"; then
+		echo true
+	else
+		echo false
+	fi
 }
 
 multilib_src_configure() {
-	# need libdir here to avoid a double slash in a path that libtool doesn't
-	# grok so well during install (// between $EPREFIX and usr ...)
-	# cloudprovider is not packaged in Gentoo
-	ECONF_SOURCE=${S} \
-	gnome2_src_configure \
-		$(use_enable aqua quartz-backend) \
-		$(use_enable broadway broadway-backend) \
-		$(use_enable cloudprint) \
-		$(use_enable colord) \
-		$(use_enable cups cups auto) \
-		$(multilib_native_use_enable introspection) \
-		$(use_enable wayland wayland-backend) \
-		$(use_enable X x11-backend) \
-		$(use_enable X xcomposite) \
-		$(use_enable X xdamage) \
-		$(use_enable X xfixes) \
-		$(use_enable X xkb) \
-		$(use_enable X xrandr) \
-		$(use_enable xinerama) \
-		--disable-cloudproviders \
-		--disable-mir-backend \
-		--disable-papi \
-		--enable-man \
-		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
+	# Not sure how to handle
+	#	$(use_enable X xcomposite) \
+	#	$(use_enable X xdamage) \
+	#	$(use_enable X xfixes) \
+	#	$(use_enable X xkb) \
+	#	$(use_enable X xrandr) \
+	#	--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
 
-	# work-around gtk-doc out-of-source brokedness
-	if multilib_is_native_abi; then
-		local d
-		for d in gdk gtk libgail-util; do
-			ln -s "${S}"/docs/reference/${d}/html docs/reference/${d}/html || die
-		done
-	fi
+	local emesonargs=(
+		-D enable-quartz-backend=$(usex aqua true false)
+		-D enable-broadway-backend=$(usex broadway true false)
+		-D enable-cloudprint-print-backend=$(usex cloudprint yes no)
+		-D enable-colord=$(usex colord yes no)
+		-D enable-cups-print-backend=$(usex cups yes no)
+		-D enable-wayland-backend=$(usex wayland true false)
+		-D enable-x11-backend=$(usex X true false)
+		-D enable-xinerama=$(usex xinerama yes no)
+		-D enable-cloudproviders=false
+		-D enable-mir-backend=false
+		-D enable-papi-print-backend=no
+		-D build-tests=$(usex test true false)
+		-D demos=$(usex examples true false)
+		-D install-tests=false
+		-D introspection=$(meson_multilib_native_use introspection)
+		-D man-pages=true
+		-D libdir="${EPREFIX}"/usr/$(get_libdir)
+		-D CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
+	)
+
+	meson_src_configure
 }
 
 multilib_src_test() {
@@ -179,12 +175,20 @@ multilib_src_test() {
 	GSETTINGS_SCHEMA_DIR="${S}/gtk" virtx emake check
 }
 
+multilib_src_compile() {
+	meson_src_compile
+
+	sed -i -e "s/\(\"\)\/.*gsk\//\1/" gsk/gskenumtypes.h
+	sed -i -e "s/\(\"\)\/.*gdk\//\1/" gdk/gdkenumtypes.h
+	sed -i -e "s/\(\"\)\/.*gtk\//\1/" gtk/gtktypebuiltins.h
+}
+
 multilib_src_install() {
-	gnome2_src_install
+	meson_src_install
 }
 
 multilib_src_install_all() {
-	insinto /etc/gtk-3.0
+	insinto /etc/gtk-4.0
 	doins "${FILESDIR}"/settings.ini
 	einstalldocs
 }
@@ -194,7 +198,7 @@ pkg_preinst() {
 
 	multilib_pkg_preinst() {
 		# Make immodules.cache belongs to gtk+ alone
-		local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+		local cache="usr/$(get_libdir)/gtk-4.0/4.0.0/immodules.cache"
 
 		if [[ -e ${EROOT}${cache} ]]; then
 			cp "${EROOT}"${cache} "${ED}"/${cache} || die
@@ -209,7 +213,7 @@ pkg_postinst() {
 	gnome2_pkg_postinst
 
 	multilib_pkg_postinst() {
-		gnome2_query_immodules_gtk3 \
+		gnome2_query_immodules_gtk4 \
 			|| die "Update immodules cache failed (for ${ABI})"
 	}
 	multilib_parallel_foreach_abi multilib_pkg_postinst
@@ -226,7 +230,7 @@ pkg_postrm() {
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		multilib_pkg_postrm() {
-			rm -f "${EROOT}"usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache
+			rm -f "${EROOT}"usr/$(get_libdir)/gtk-4.0/4.0.0/immodules.cache
 		}
 		multilib_foreach_abi multilib_pkg_postrm
 	fi

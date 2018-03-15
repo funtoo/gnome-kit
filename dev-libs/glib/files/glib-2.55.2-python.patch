@@ -1,0 +1,20 @@
+diff --git a/gobject/glib-genmarshal.in b/gobject/glib-genmarshal.in
+index 3656bf93c..aa06a0d19 100755
+--- a/gobject/glib-genmarshal.in
++++ b/gobject/glib-genmarshal.in
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @PYTHON@
++#!/usr/bin/env python
+ 
+ # pylint: disable=too-many-lines, missing-docstring, invalid-name
+ 
+diff --git a/gobject/glib-mkenums.in b/gobject/glib-mkenums.in
+index d551cdcf4..3949c7404 100755
+--- a/gobject/glib-mkenums.in
++++ b/gobject/glib-mkenums.in
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @PYTHON@
++#!/usr/bin/env python
+ 
+ # If the code below looks horrible and unpythonic, do not panic.
+ #

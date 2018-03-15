@@ -1,32 +1,49 @@
-===========================
-gnome-kit
-===========================
-3.26-prime branch
----------------------------
+Skeleton Overlay
+================
 
-Gnome-kit contains the functionality of GNOME 3.26 for Funtoo Linux. It is designed to be a part of the Funtoo Linux
-kits system.
+This is a "skeleton" overlay -- an empty overlay to use as the starting point
+for collaborating with Funtoo Linux. To start using the overlay, perform the
+following steps:
 
-The ``3.26-prime`` is in active development and will eventually attain 'stable' status, but should only be used for
-development for the time being.
+1. Review COPYRIGHT.txt and LICENSE.txt. What is provide are reasonable defaults,
+   using the GNU General Public License Version 2. If you are using existing ebuilds from
+   Gentoo Linux and/or Funtoo LInux, then the copyright information is probably
+   accurate. Otherwise, you will want to change the copyright notice to read:
 
----------------
-Security fixes
----------------
+::
 
-January 24, 2018
-~~~~~~~~~~~~~~~~
+  Copyright 2014 Firstname Lastname. Distributed under the terms of the GNU
+  General Public License version 2.
 
-- ``net-libs/webkit-gtk`` has been updated to 2.18.6 to address CVE-2018-4088, CVE-2018-4089, CVE-2018-4096, CVE-2017-7153, CVE-2017-7160, CVE-2017-7161, CVE-2017-7165, CVE-2017-13884 and CVE-2017-13885.
+2. Modify ``profiles/repo_name`` and enter a single-word name for your repository.
 
-January 24, 2018
-~~~~~~~~~~~~~~~~
+3. Modify this README.rst file to accurately reflect how to contribute. You should
+   be able to remove this top part and simply use what follows it as a template.
 
-- ``app-text/poppler`` has been updated to 0.56.0-r2 to address CVE-2017-2820, CVE-2017-7515, CVE-2017-9083 and CVE-2017-9865.
+4. Add ebuilds :)
 
----------------
-Reporting Bugs
----------------
 
-To report bugs or suggest improvements to gnome-kit, please use the Funtoo Linux bug tracker at https://bugs.funtoo.org.
-Thank you! :)
+=================================
+How to Contribute to this Overlay
+=================================
+
+:author: Daniel Robbins
+:contact: drobbins@funtoo.org
+:language: English
+
+Greetings GitHub Users!
+=======================
+
+.. _bugs.funtoo.org: https://bugs.funtoo.org
+
+To contribute bug reports for this overlay, you can open up a GitHub issue or send
+me a pull request.
+
+If you are using ebuilds in this overlay as part of Funtoo Linux (because they are
+merged into the main Funtoo Linux Portage tree, for example,) then
+please also open an issue at `bugs.funtoo.org`_.
+
+
+TODO:
+
+Remove enchant from local-gnome-kit when official version is greater than 2.1.3

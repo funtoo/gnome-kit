@@ -1,0 +1,36 @@
+--- a/gtk/meson.build
++++ b/gtk/meson.build
+@@ -859,14 +859,14 @@
+   gtk_deps += cloudproviders_dep
+ endif
+ 
+-gtk_settings_schemas = [
+-  'org.gtk.Settings.FileChooser.gschema.xml',
+-  'org.gtk.Settings.ColorChooser.gschema.xml',
+-  'org.gtk.Settings.EmojiChooser.gschema.xml',
+-  'org.gtk.Settings.Debug.gschema.xml',
+-]
+-install_data(gtk_settings_schemas, install_dir: gtk_schemasdir)
+-gnome.compile_schemas()
++#gtk_settings_schemas = [
++#  'org.gtk.Settings.FileChooser.gschema.xml',
++#  'org.gtk.Settings.ColorChooser.gschema.xml',
++#  'org.gtk.Settings.EmojiChooser.gschema.xml',
++#  'org.gtk.Settings.Debug.gschema.xml',
++#]
++#install_data(gtk_settings_schemas, install_dir: gtk_schemasdir)
++#gnome.compile_schemas()
+ 
+ # Check for more things
+ if cc.has_header('langinfo.h')
+@@ -1058,8 +1058,8 @@
+ install_data('gtkbuilder.rng',
+              install_dir: join_paths(gtk_datadir, 'gtk-4.0'))
+ 
+-install_data('gtkbuilder.loc', 'gtkbuilder.its',
+-             install_dir: join_paths(gtk_datadir, 'gettext/its'))
++#install_data('gtkbuilder.loc', 'gtkbuilder.its',
++#             install_dir: join_paths(gtk_datadir, 'gettext/its'))
+ 
+ if quartz_enabled
+   # HACK: install_data() doesn't allow installing under a different name (#1487)

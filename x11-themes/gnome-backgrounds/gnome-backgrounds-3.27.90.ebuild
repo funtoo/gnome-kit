@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="A set of backgrounds packaged with the GNOME desktop"
 HOMEPAGE="https://git.gnome.org/browse/gnome-backgrounds"
@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="vanilla-live"
+IUSE="vanilla-live locale"
 
 RDEPEND="!<x11-themes/gnome-themes-standard-3.14"
 DEPEND="
@@ -19,10 +19,17 @@ DEPEND="
 	sys-devel/gettext
 "
 
+src_prepare() {
+	default
+	if ! use locale; then
+		sed -i -e "s/^\([[:space:]]*\)subdir('po')/#\1subdir('po')/" "${S}"/meson.build
+	fi
+}
+
 src_compile() {
 	if ! use vanilla-live; then
 		cp "${FILESDIR}"/"${PN}"-3.14.1-restore-3.10-backgrounds/* "${S}"/backgrounds
 	fi
 
-	gnome2_src_compile
+	meson_src_compile
 }
