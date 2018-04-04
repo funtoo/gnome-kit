@@ -8,7 +8,7 @@ HOMEPAGE="https://abiword.github.io/enchant/"
 SRC_URI="https://github.com/AbiWord/enchant/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="0/2"
+SLOT="1"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
 IUSE="aspell +hunspell static-libs test zemberek"
@@ -42,7 +42,11 @@ src_configure() {
 		--with-hunspell-dir="${EPREFIX}"/usr/share/hunspell/
 }
 
+src_compile() {
+	emake pkgdatadir=/usr/share/enchant-2
+}
+
 src_install() {
-	default
+	emake pkgdatadir=/usr/share/enchant-2 DESTDIR=${ED} install
 	find "${D}" -name '*.la' -delete || die
 }

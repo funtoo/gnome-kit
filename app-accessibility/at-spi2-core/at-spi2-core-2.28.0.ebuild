@@ -12,7 +12,7 @@ LICENSE="LGPL-2+"
 SLOT="2"
 KEYWORDS="*"
 
-IUSE="X +introspection locale"
+IUSE="X +introspection"
 
 # x11-libs/libSM is needed until upstream #719808 is solved either
 # making the dep unneeded or fixing their configure
@@ -43,10 +43,6 @@ src_prepare() {
 		# disable teamspaces test since that requires Novell.ICEDesktop.Daemon
 		"${FILESDIR}/${PN}-2.0.2-disable-teamspaces-test.patch"
 	)
-
-	if ! use locale; then
-		sed -i -e "s/^\([[:space:]]*\)subdir('po')/#\1subdir('po')/" "${S}"/meson.build
-	fi
 }
 
 multilib_src_configure() {

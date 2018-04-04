@@ -133,3 +133,7 @@ media-gfx/imagemagick png jpeg
 dev-libs/gsound vala
 net-libs/gnome-online-accounts vala
 media-libs/gd fontconfig
+
+sci-libs/gsl -deprecated
+sys-power/upower -deprecated
+net-im/telepathy-mission-control -deprecated

@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="Disk usage browser for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Baobab"
@@ -32,7 +32,5 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_configure() {
-	gnome2_src_configure   \
-		VALAC=$(type -P true)  \
-		VAPIGEN=$(type -P true)
+	meson_src_configure
 }

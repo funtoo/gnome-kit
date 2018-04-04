@@ -11,7 +11,7 @@ DESCRIPTION="C++ interface for the ATK library"
 HOMEPAGE="http://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+"
-SLOT="0"
+SLOT="1"
 KEYWORDS="alpha amd64 arm hppa ~ia64 ppc ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="doc"
 

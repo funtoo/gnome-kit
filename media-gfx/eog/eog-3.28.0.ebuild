@@ -5,7 +5,7 @@
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="The Eye of GNOME image viewer"
 HOMEPAGE="https://wiki.gnome.org/Apps/EyeOfGnome"
@@ -13,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/EyeOfGnome"
 LICENSE="GPL-2+"
 SLOT="1"
 
-IUSE="debug +exif +introspection +jpeg lcms +svg tiff xmp"
+IUSE="doc +exif +introspection +jpeg lcms +svg tiff xmp tests"
 REQUIRED_USE="exif? ( jpeg )"
 
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
@@ -45,12 +45,16 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	gnome2_src_configure \
-		$(usex debug --enable-debug=yes ' ') \
-		$(use_enable introspection) \
-		$(use_with jpeg libjpeg) \
-		$(use_with exif libexif) \
-		$(use_with lcms cms) \
-		$(use_with xmp) \
-		$(use_with svg librsvg)
+	local emesonargs=(
+		-D introspection=$(usex introspection true false)
+		-D libjpeg=$(usex jpeg true false)
+		-D libexif=$(usex exif true false)
+		-D cms=$(usex lcms true false)
+		-D xmp=$(usex xmp true false)
+		-D librsvg=$(usex svg true false)
+		-D gtk_doc=$(usex doc true false)
+		-D installed_tests=$(usex tests true false)
+	)
+
+	meson_src_configure
 }

@@ -10,7 +10,7 @@ HOMEPAGE="https://www.cairographics.org/cairomm/"
 SRC_URI="https://www.cairographics.org/releases/${P}.tar.gz"
 
 LICENSE="LGPL-2+"
-SLOT="0"
+SLOT="1"
 KEYWORDS="*"
 
 IUSE="aqua doc +svg X"

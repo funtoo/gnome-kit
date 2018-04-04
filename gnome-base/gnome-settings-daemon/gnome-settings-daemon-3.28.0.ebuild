@@ -1,11 +1,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-GNOME2_EAUTORECONF="yes"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools gnome2 python-any-r1 systemd udev virtualx
+inherit gnome2 python-any-r1 systemd udev virtualx meson
 
 DESCRIPTION="Gnome Settings Daemon"
 HOMEPAGE="https://git.gnome.org/browse/gnome-settings-daemon"
@@ -14,10 +13,9 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+colord +cups debug elogind input_devices_wacom networkmanager policykit smartcard systemd test +udev wayland"
+IUSE="alsa +cups elogind networkmanager smartcard systemd +udev wayland"
 REQUIRED_USE="
 	?? ( elogind systemd )
-	input_devices_wacom? ( udev )
 	smartcard? ( udev )
 	wayland? ( udev )
 "
@@ -54,15 +52,15 @@ COMMON_DEPEND="
 	>=sci-geosciences/geocode-glib-3.10
 	>=sys-auth/polkit-0.103
 
-	colord? (
-		>=media-libs/lcms-2.2:2
-		>=x11-misc/colord-1.0.2:= )
+	>=media-libs/lcms-2.2:2
+	>=x11-misc/colord-1.0.2:=
+
+	>=dev-libs/libwacom-0.7
+	>=x11-libs/pango-1.20
+	x11-drivers/xf86-input-wacom
+	virtual/libgudev:=
+
 	cups? ( >=net-print/cups-1.4[dbus] )
-	input_devices_wacom? (
-		>=dev-libs/libwacom-0.7
-		>=x11-libs/pango-1.20
-		x11-drivers/xf86-input-wacom
-		virtual/libgudev:= )
 	networkmanager? ( >=net-misc/networkmanager-1.0:= )
 	smartcard? ( >=dev-libs/nss-3.11.2 )
 	udev? ( virtual/libgudev:= )
@@ -100,12 +98,6 @@ DEPEND="${COMMON_DEPEND}
 "
 
 PATCHES=(
-	# Make colord and wacom optional; requires eautoreconf
-	"${FILESDIR}"/${PN}-3.24.3-optional.patch
-	# Allow specifying udevrulesdir via configure, bug 509484; requires eautoreconf
-	"${FILESDIR}"/${PN}-3.26.2-udevrulesdir-configure.patch
-	# Fix build when Wayland is disabled
-	"${FILESDIR}"/${PN}-3.24.3-fix-without-gdkwayland.patch
 )
 
 python_check_deps() {
@@ -119,25 +111,17 @@ pkg_setup() {
 	use test && python-any-r1_pkg_setup
 }
 
-src_prepare() {
-	default
-	eautoreconf
-}
-
 src_configure() {
-	gnome2_src_configure \
-		--disable-static \
-		--enable-man \
-		--with-udevrulesdir="$(get_udevdir)"/rules.d \
-		$(use_enable colord color) \
-		$(use_enable cups) \
-		$(use_enable debug) \
-		$(use_enable debug more-warnings) \
-		$(use_enable networkmanager network-manager) \
-		$(use_enable smartcard smartcard-support) \
-		$(use_enable udev gudev) \
-		$(use_enable input_devices_wacom wacom) \
-		$(use_enable wayland)
+	local emesonargs=(
+		-D udev_dir="$(get_udevdir)"/rules.d
+		-D gudev=$(usex udev true false)
+		-D cups=$(usex cups true false)
+		-D network_manager=$(usex networkmanager true false)
+		-D smartcard=$(usex smartcard true false)
+		-D wayland=$(usex wayland true false)
+	)
+
+	meson_src_configure
 }
 
 src_test() {

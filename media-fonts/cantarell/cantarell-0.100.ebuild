@@ -1,10 +1,10 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 GNOME_ORG_MODULE="${PN}-fonts"
 
-inherit font gnome.org
+inherit font gnome.org meson
 
 DESCRIPTION="Default fontset for GNOME Shell"
 HOMEPAGE="https://wiki.gnome.org/Projects/CantarellFonts"

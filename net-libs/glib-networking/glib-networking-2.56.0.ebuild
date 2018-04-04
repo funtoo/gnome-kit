@@ -12,7 +12,7 @@ LICENSE="LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+gnome +libproxy smartcard +ssl install_test locale test"
+IUSE="+gnome +libproxy smartcard +ssl install_test test"
 
 RDEPEND="
 	>=dev-libs/glib-2.55.1:2[${MULTILIB_USEDEP}]
@@ -43,10 +43,6 @@ src_prepare() {
 	sed -i -e "/install_dir: installed_tests_/d" "${S}"/tls/tests/meson.build
 	sed -i -e "/install:/d" "${S}"/proxy/tests/meson.build
 	sed -i -e "/install_dir: installed_tests_/d" "${S}"/proxy/tests/meson.build
-	fi
-
-	if ! use locale; then
-		sed -i -e "s/^\([[:space:]]*\)subdir('po')/#\1subdir('po')/" "${S}"/meson.build
 	fi
 }
 

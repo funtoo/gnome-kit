@@ -12,7 +12,7 @@ LICENSE="LGPL-2+"
 SLOT="4/0" # From WebKit: http://trac.webkit.org/changeset/195811
 KEYWORDS="*"
 
-IUSE="aqua broadway cloudprint colord cups examples +introspection locale test vim-syntax wayland X xinerama"
+IUSE="aqua broadway cloudprint colord cups examples +introspection test vim-syntax wayland X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -112,11 +112,6 @@ src_prepare() {
 	strip-flags
 
 	eapply "${FILESDIR}/${PF}"-noschema.patch
-
-	if ! use locale; then
-		sed -i -e "s/^\([[:space:]]*\)subdir('po')/#\1subdir('po')/" "${S}"/meson.build
-		sed -i -e "s/^\([[:space:]]*\)subdir('po-properties')/#\1subdir('po-properties')/" "${S}"/meson.build
-	fi
 
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
 	# eapply "${FILESDIR}"/${PN}-3.22.2-update-icon-cache.patch

@@ -11,7 +11,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="debug elogind gles2 input_devices_wacom deprecated-background +introspection test udev wayland"
+IUSE="debug elogind gles2 input_devices_wacom +introspection test udev wayland"
 REQUIRED_USE="
 	wayland? ( elogind )
 "
@@ -94,16 +94,8 @@ src_prepare() {
 	fi
 
 	if use elogind; then
-		eapply "${FILESDIR}"/${PN}-3.24.3-support-elogind.patch
+		eapply "${FILESDIR}"/${PN}-3.28.0-support-elogind.patch
 	fi
-
-	if use deprecated-background; then
-		eapply "${FILESDIR}"/${PN}-3.26.1-restore-deprecated-background-code.patch
-	fi
-
-	# From Zhu Hai:
-	# 	https://bugzilla.gnome.org/show_bug.cgi?id=789166
-	eapply "${FILESDIR}"/${PN}-3.26.2-wayland-check-monitor-before-use-to-avoid-crash.patch
 
 	eautoreconf
 	gnome2_src_prepare

@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 GCONF_DEBUG="no"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Library and tool for working with Microsoft Cabinet (CAB) files"
 HOMEPAGE="https://wiki.gnome.org/msitools"
@@ -37,10 +37,9 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf
-	use vala || myconf="VAPIGEN=no"
-	gnome2_src_configure \
-		--disable-static \
-		$(use_enable introspection) \
-		${myconf}
+	local emesonarg=(
+		-D introspection=$(usex introspection true false)
+	)
+	
+	meson_src_configure
 }

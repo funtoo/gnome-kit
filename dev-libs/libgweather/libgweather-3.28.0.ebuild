@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Library to access weather information from online services"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibGWeather"
@@ -12,7 +12,7 @@ LICENSE="GPL-2+"
 SLOT="2/3-6" # subslot = 3-(libgweather-3 soname suffix)
 KEYWORDS="*"
 
-IUSE="glade +introspection vala"
+IUSE="glade +introspection vala doc"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
@@ -43,9 +43,11 @@ src_prepare() {
 }
 
 src_configure() {
-	gnome2_src_configure \
-		--disable-static \
-		$(use_enable glade glade-catalog) \
-		$(use_enable introspection) \
-		$(use_enable vala)
+	local emesonargs=(
+		-D glade_catalog=$(usex glade true false)
+		-D enable_vala=$(usex vala true false)
+		-D gtk_doc=$(usex doc true false)
+	)
+
+	meson_src_configure
 }

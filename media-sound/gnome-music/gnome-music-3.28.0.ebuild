@@ -3,7 +3,7 @@
 EAPI="6"
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 
-inherit gnome2 python-single-r1
+inherit gnome2 python-single-r1 meson
 
 DESCRIPTION="Music management for Gnome"
 HOMEPAGE="https://wiki.gnome.org/Apps/Music"
@@ -57,6 +57,6 @@ src_prepare() {
 }
 
 src_install() {
-	gnome2_src_install
+	meson_src_install
 	python_fix_shebang "${D}"usr/bin/gnome-music
 }

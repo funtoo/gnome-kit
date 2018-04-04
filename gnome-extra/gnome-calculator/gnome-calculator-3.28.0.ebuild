@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome2 vala meson
 
 DESCRIPTION="A calculator application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Calculator"
@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="locale"
+IUSE=""
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.40:2
@@ -33,10 +33,11 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	default
+	vala_src_prepare
+}
+
 src_configure() {
-	if ! use locale; then
-		sed -i -e "s/^\([[:space:]]*\)subdir('po')/#\1subdir('po')/" "${S}"/meson.build
-	fi
-	
 	meson_src_configure
 }

@@ -13,7 +13,7 @@ LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+bluetooth browser-extension deprecated-background elogind +ibus +networkmanager nsplugin systemd vanilla-motd vanilla-screen"
+IUSE="+bluetooth browser-extension elogind +ibus +networkmanager nsplugin systemd vanilla-motd vanilla-screen"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	?? ( elogind systemd )
 "
@@ -40,12 +40,13 @@ COMMON_DEPEND="
 	>=sys-auth/polkit-0.100[introspection]
 	>=x11-libs/libXfixes-5.0
 	x11-libs/libXtst
-	>=x11-wm/mutter-3.26.0[deprecated-background=,introspection]
+	>=x11-wm/mutter-3.28.0[introspection]
 	>=x11-libs/startup-notification-0.11
 
 	${PYTHON_DEPS}
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
 
+	dev-lang/sassc
 	dev-libs/dbus-glib
 	dev-libs/libxml2:2
 	media-libs/libcanberra[gtk3]
@@ -107,6 +108,7 @@ PDEPEND="
 	browser-extension? ( gnome-extra/chrome-gnome-shell )
 "
 DEPEND="${COMMON_DEPEND}
+
 	dev-libs/libxslt
 	>=dev-util/gdbus-codegen-2.45.3
 	>=dev-util/gtk-doc-am-1.17
@@ -117,31 +119,28 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	if use deprecated-background; then
-		eapply "${FILESDIR}"/${PN}-3.26.1-restore-deprecated-background-code.patch
-	fi
-
-	if ! use vanilla-motd; then
-		eapply "${FILESDIR}"/${PN}-3.26.1-improve-motd-handling.patch
-	fi
-
-	if ! use vanilla-screen; then
-		eapply "${FILESDIR}"/${PN}-3.16.4-improve-screen-blanking.patch
-	fi
-
-	# Change favorites defaults, bug #479918
-	eapply "${FILESDIR}"/${PN}-3.22.0-defaults.patch
+# 	if ! use vanilla-motd; then
+# 		eapply "${FILESDIR}"/${PN}-3.26.1-improve-motd-handling.patch
+# 	fi
+# 
+# 	if ! use vanilla-screen; then
+# 		eapply "${FILESDIR}"/${PN}-3.16.4-improve-screen-blanking.patch
+# 	fi
+# 
+# 	# Change favorites defaults, bug #479918
+# 	eapply "${FILESDIR}"/${PN}-3.22.0-defaults.patch
 
 	gnome2_src_prepare
 }
 
 src_configure() {
 	local emesonargs=(
-		-D enable-browser-plugin=$(usex nsplugin true false)
-		-D enable-networkmanager=$(usex networkmanager yes no)
-		-D enable-systemd=$(usex systemd yes no)
-		-D enable-man=true
+		-Dbrowser_plugin=$(usex nsplugin true false)
+		-Dnetworkmanager=$(usex networkmanager true false)
+		-Dsystemd=$(usex systemd true false)
+		-Dman=true
 	)
+
 	meson_src_configure
 }
 

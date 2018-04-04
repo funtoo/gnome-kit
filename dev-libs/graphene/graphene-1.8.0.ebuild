@@ -32,7 +32,7 @@ src_prepare() {
 	default
 
 	# decouple gobject-types and gobject-introspection
-	eapply "${FILESDIR}"/${PN}-1.6.0-gobject.patch
+	eapply "${FILESDIR}"/${PN}-1.8.0-gobject.patch
 
 	gnome2_src_prepare
 }
@@ -47,9 +47,9 @@ meson_multilib_native_use() {
 
 multilib_src_configure() {
 	local emesonargs=(
-		-D enable-gtk-doc=false
-		-D enable-arm-neon=false
-		-D enable-introspection=$(meson_multilib_native_use introspection)
+		-D gtk-doc=false
+		-D arm-neon=false
+		-D introspection=$(meson_multilib_native_use introspection)
 	)
 	meson_src_configure
 }

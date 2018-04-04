@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 GNOME2_EAUTORECONF="yes"
-inherit gnome2 systemd
+inherit gnome2 systemd meson
 
 DESCRIPTION="Virtual filesystem implementation for gio"
 HOMEPAGE="https://wiki.gnome.org/Projects/gvfs"
@@ -85,46 +85,44 @@ PATCHES=(
 )
 
 src_prepare() {
-	if ! use udev; then
-		sed -e 's/gvfsd-burn/ /' \
-			-e 's/burn.mount.in/ /' \
-			-e 's/burn.mount/ /' \
-			-i daemon/Makefile.am || die
-	fi
-
+# 	if ! use udev; then
+# 		sed -e 's/gvfsd-burn/ /' \
+# 			-e 's/burn.mount.in/ /' \
+# 			-e 's/burn.mount/ /' \
+# 			-i daemon/Makefile.am || die
+# 	fi
+# 
 	gnome2_src_prepare
 }
 
 src_configure() {
-	# --enable-documentation installs man pages
-	# --disable-obexftp, upstream bug #729945
-	gnome2_src_configure \
-		--disable-gdu \
-		--enable-documentation \
-		--enable-gcr \
-		--with-dbus-service-dir="${EPREFIX}"/usr/share/dbus-1/services \
-		--with-systemduserunitdir="$(systemd_get_userunitdir)" \
-		$(use_enable afp) \
-		$(use_enable archive) \
-		$(use_enable bluray) \
-		$(use_enable cdda) \
-		$(use_enable elogind libelogind) \
-		$(use_enable fuse) \
-		$(use_enable gnome-keyring keyring) \
-		$(use_enable gnome-online-accounts goa) \
-		$(use_enable google) \
-		$(use_enable gphoto2) \
-		$(use_enable gtk) \
-		$(use_enable http) \
-		$(use_enable ios afc) \
-		$(use_enable mtp libmtp) \
-		$(use_enable mtp libusb) \
-		$(use_enable nfs) \
-		$(use_enable policykit admin) \
-		$(use_enable samba) \
-		$(use_enable systemd libsystemd-login) \
-		$(use_enable udev gudev) \
-		$(use_enable udev) \
-		$(use_enable udisks udisks2) \
-		$(use_enable zeroconf avahi)
+	local emesonargs=(
+		-Ddbus_service_dir="${EPREFIX}"/usr/share/dbus-1/services
+		-Dsystemduserunitdir=no
+		-Dtmpfilesdir=no
+		-Dadmin=$(usex policykit true false)
+		-Dafc=$(usex ios true false)
+		-Dafp=$(usex afp true false)
+		-Darchive=$(usex archive true false)
+		-Dcdda=$(usex cdda true false)
+		-Dgdu=false
+		-Dgoa=$(usex gnome-online-accounts true false)
+		-Dgoogle=$(usex google true false)
+		-Dgphoto2=$(usex gphoto2 true false)
+		-Dhttp=$(usex http true false)
+		-Dmtp=$(usex mtp true false)
+		-Dnfs=$(usex nfs true false)
+		-Dsmb=$(usex samba true false)
+		-Dudisks2=$(usex udisks true false)
+		-Dbluray=$(usex bluray true false)
+		-Dfuse=$(usex fuse true false)
+		-Dgcr=true
+		-Dgudev=$(usex udev true false)
+		-Dkeyring=$(usex gnome-keyring true false)
+		-Dlogind=$(usex elogind true false)
+		-Dlibusb=$(usex mtp true false)
+		-Dman=true
+	)
+
+	meson_src_configure
 }

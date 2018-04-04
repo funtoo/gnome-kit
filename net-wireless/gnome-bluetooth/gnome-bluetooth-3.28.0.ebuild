@@ -42,10 +42,6 @@ pkg_setup() {
 	enewgroup plugdev
 }
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-3.26.1-fix-post-install.patch
-)
-
 src_configure() {
 	local emesonargs=(
 		-Denable-introspection=$(usex introspection true false)
