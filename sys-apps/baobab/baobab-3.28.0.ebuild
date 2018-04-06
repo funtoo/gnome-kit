@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome2 vala meson
 
 DESCRIPTION="Disk usage browser for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Baobab"
@@ -30,6 +30,11 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	default
+	vala_src_prepare
+}
 
 src_configure() {
 	meson_src_configure
