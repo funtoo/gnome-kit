@@ -23,6 +23,7 @@ RDEPEND="
 	>=gnome-base/librsvg-2.35:2
 	systemd? ( >=sys-apps/systemd-44:0= )
 	X? ( >=x11-libs/libwnck-2.91.0:3 )
+	>=sys-auth/polkit-0.113:0
 "
 # eautoreconf requires gnome-base/gnome-common
 DEPEND="${RDEPEND}

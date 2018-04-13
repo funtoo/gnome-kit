@@ -26,6 +26,7 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15.1[introspection?,${MULTILIB_USEDEP}]
+	>=dev-libs/graphene-1.8.0[introspection?,${MULTILIB_USEDEP}]
 	>=dev-libs/glib-2.53.7:2[${MULTILIB_USEDEP}]
 	media-libs/fontconfig[${MULTILIB_USEDEP}]
 	>=media-libs/libepoxy-1.4[X(+)?,${MULTILIB_USEDEP}]

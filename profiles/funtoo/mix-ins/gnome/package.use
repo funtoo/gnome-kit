@@ -137,3 +137,5 @@ media-libs/gd fontconfig
 sci-libs/gsl -deprecated
 sys-power/upower -deprecated
 net-im/telepathy-mission-control -deprecated
+
+x11-libs/gtksourceview vala
