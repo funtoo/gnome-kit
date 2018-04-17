@@ -8,7 +8,7 @@ DESCRIPTION="C++ interface for glib2"
 HOMEPAGE="https://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+ GPL-2+" # GPL-2+ applies only to the build system
-SLOT="3"
+SLOT="2"
 KEYWORDS="*"
 
 IUSE="doc debug test"

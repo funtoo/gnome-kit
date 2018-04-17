@@ -43,15 +43,6 @@ MULTILIB_CHOST_TOOLS=(
 src_prepare() {
 	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
 	eapply "${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
-	eapply "${FILESDIR}"/${PN}-2.36.11-fix-libtiff-disable.patch
-
-	# From GNOME:
-	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779012 (CVE-2017-6312)
-	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779016 (CVE-2017-6313)
-	# 	https://bugzilla.gnome.org/show_bug.cgi?id=779020 (CVE-2017-6314)
-	eapply "${FILESDIR}"/${PN}-9999-CVE-2017-6312.patch
-	eapply "${FILESDIR}"/${PN}-9999-CVE-2017-6313.patch
-	eapply "${FILESDIR}"/${PN}-9999-CVE-2017-6314.patch
 
 	# This will avoid polluting the pkg-config file with versioned libpng,
 	# which is causing problems with libpng14 -> libpng15 upgrade

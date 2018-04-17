@@ -15,7 +15,7 @@ IUSE="doc"
 
 COMMON_DEPEND="
 	>=x11-libs/pango-1.38.0[${MULTILIB_USEDEP}]
-	>=dev-cpp/glibmm-2.55.2:3[${MULTILIB_USEDEP}]
+	>=dev-cpp/glibmm-2.57.1:3[${MULTILIB_USEDEP}]
 	>=dev-cpp/cairomm-1.15.5[${MULTILIB_USEDEP}]
 	>=dev-libs/libsigc++-2.3.2:2[${MULTILIB_USEDEP}]
 "
@@ -29,6 +29,8 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	!<dev-cpp/gtkmm-2.13:2.4
 "
+
+PATCHES=( "${FILESDIR}"/pangomm-2.41.5-glibmm-2.58.patch )
 
 multilib_src_configure() {
 	ECONF_SOURCE="${S}" gnome2_src_configure \
