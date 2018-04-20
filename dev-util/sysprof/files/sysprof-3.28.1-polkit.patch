@@ -1,0 +1,13 @@
+--- a/lib/meson.build	2018-03-13 19:48:38.000000000 -0500
++++ b/lib/meson.build	2018-04-20 15:00:10.022708686 -0500
+@@ -70,8 +70,9 @@
+ version_link_arg = '-Wl,--version-script,' + join_paths(meson.current_source_dir(), 'sysprof.map')
+ libsysprof_c_args = []
+ 
++libsysprof_deps += dependency('polkit-gobject-1')
++
+ if get_option('with_sysprofd') != 'none'
+-  libsysprof_deps += dependency('polkit-gobject-1')
+   libsysprof_c_args += '-DENABLE_POLKIT'
+ endif
+ 

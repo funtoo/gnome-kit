@@ -56,13 +56,13 @@ RDEPEND="
 		dev-libs/libgit2[ssh,threads]
 		>=dev-libs/libgit2-glib-0.25.0[ssh] )
 	>=x11-libs/vte-0.46:2.91
-	sysprof? ( >=dev-util/sysprof-3.23.91[gtk] )
+	sysprof? ( >=dev-util/sysprof-3.28.0[gtk] )
 	dev-libs/libpcre:3
 	${PYTHON_DEPS}
 	vala? ( $(vala_depend) )
 	>=x11-libs/libdazzle-3.25
-	>=dev-libs/template-glib-3.25
-	>=dev-libs/jsonrpc-glib-3.25
+	>=dev-libs/template-glib-3.27
+	>=dev-libs/jsonrpc-glib-3.27
 	dev-util/devhelp
 "
 # desktop-file-utils for desktop-file-validate check in configure for 3.22.4
