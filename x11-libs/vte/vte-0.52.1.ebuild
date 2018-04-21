@@ -43,6 +43,8 @@ RDEPEND="${RDEPEND}
 	!x11-libs/vte:2.90[glade]
 "
 
+PATCHES=( "${FILESDIR}"/vte-0.52.1-command-notify-scroll-speed.patch )
+
 src_prepare() {
 	eautoreconf
 	use vala && vala_src_prepare
