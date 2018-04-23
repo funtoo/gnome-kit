@@ -11,8 +11,8 @@ if [[ "${PV}" == "9999" ]] ; then
 	SLOT="0/9999"
 else
 	SRC_URI="https://poppler.freedesktop.org/${P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-	SLOT="0/67"   # CHECK THIS WHEN BUMPING!!! SUBSLOT IS libpoppler.so SOVERSION
+	KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	SLOT="0/68"   # CHECK THIS WHEN BUMPING!!! SUBSLOT IS libpoppler.so SOVERSION
 fi
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
@@ -65,22 +65,18 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0.53.0-respect-cflags.patch"
 	"${FILESDIR}/${PN}-0.33.0-openjpeg2.patch"
 	"${FILESDIR}/${PN}-0.40-FindQt4.patch"
-	"${FILESDIR}/${PN}-0.57.0-disable-internal-jpx.patch"
+	"${FILESDIR}/${P}-disable-internal-jpx.patch"
 	# Fedora backports from upstream
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14517.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14518.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14519.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14520.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14617.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14926.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14927.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14928.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-14929.patch"
-	"${FILESDIR}/${PN}-0.57.0-CVE-2017-15565.patch"
-	"${FILESDIR}/CVE-2017-2820.patch"
-	"${FILESDIR}/CVE-2017-7515.patch"
-	"${FILESDIR}/CVE-2017-9083.patch"
-	"${FILESDIR}/CVE-2017-9865.patch"
+	"${FILESDIR}/${P}-CVE-2017-14517.patch"
+	"${FILESDIR}/${P}-CVE-2017-14518.patch"
+	"${FILESDIR}/${P}-CVE-2017-14519.patch"
+	"${FILESDIR}/${P}-CVE-2017-14520.patch"
+	"${FILESDIR}/${P}-CVE-2017-14617.patch"
+	"${FILESDIR}/${P}-CVE-2017-14926.patch"
+	"${FILESDIR}/${P}-CVE-2017-14927.patch"
+	"${FILESDIR}/${P}-CVE-2017-14928.patch"
+	"${FILESDIR}/${P}-CVE-2017-14929.patch"
+	"${FILESDIR}/${P}-CVE-2017-15565.patch"
 )
 
 src_prepare() {
@@ -101,7 +97,7 @@ src_prepare() {
 
 	if tc-is-clang && [[ ${CHOST} == *-darwin* ]] ; then
 		# we need to up the C++ version, bug #622526
-		export CXX="$(tc-getCXX) -std=c++0x"
+		export CXX="$(tc-getCXX) -std=c++11"
 	fi
 }
 
@@ -139,7 +135,7 @@ src_configure() {
 	if use jpeg2k; then
 		mycmakeargs+=(-DENABLE_LIBOPENJPEG=openjpeg2)
 	else
-		mycmakeargs+=(-DENABLE_LIBOPENJPEG=)
+		mycmakeargs+=(-DENABLE_LIBOPENJPEG=none)
 	fi
 	if use lcms; then
 		mycmakeargs+=(-DENABLE_CMS=lcms2)
