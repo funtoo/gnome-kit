@@ -130,7 +130,7 @@ gnome-extra/nm-applet bluetooth
 
 # Required by app-misc/tracker
 media-gfx/imagemagick png jpeg
-dev-libs/gsound vala
+media-libs/gsound vala
 net-libs/gnome-online-accounts vala
 media-libs/gd fontconfig
 
