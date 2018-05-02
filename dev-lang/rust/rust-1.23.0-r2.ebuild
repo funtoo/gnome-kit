@@ -153,15 +153,16 @@ multilib_src_install() {
 	dodir /etc/env.d/rust
 	insinto /etc/env.d/rust
 	doins "${T}/provider-${P}"
-}
 
-pkg_postinst() {
 	LIB32="/usr/lib32/rustlib/${CHOST_x86}"
 
 	if [[ ${ABI} == "amd64" && -e "${LIB32}" ]]; then
-		ln -sf "${LIB32}" /usr/lib64/rustlib/
+		dosym "${LIB32}" /usr/lib64/rustlib/"${CHOST_x86}"
 	fi
 
+}
+
+pkg_postinst() {
 	eselect rust update --if-unset
 
 	elog "Rust installs a helper script for calling GDB and LLDB,"
@@ -178,10 +179,6 @@ pkg_postinst() {
 	if has_version 'app-shells/zsh'; then
 		elog "install app-shells/rust-zshcomp to get zsh completion for rust."
 	fi
-}
-
-pkg_prerm() {
-	rm -f /usr/lib64/rustlib/i686-unknown-linux-gnu
 }
 
 pkg_postrm() {

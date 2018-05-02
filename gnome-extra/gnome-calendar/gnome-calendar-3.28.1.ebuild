@@ -28,6 +28,6 @@ DEPEND="${RDEPEND}
 	dev-util/gdbus-codegen
 	>=dev-util/intltool-0.40.6
 	sys-devel/gettext
-	x11-libs/libdazzle
+	>=x11-libs/libdazzle-3.26.1
 	virtual/pkgconfig
 "
