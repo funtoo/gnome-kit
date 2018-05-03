@@ -11,7 +11,7 @@ LICENSE="GPL-2+ FDL-1.1+ LGPL-2+"
 SLOT="3/12" # subslot = libgnome-desktop-3 soname version
 KEYWORDS="*"
 
-IUSE="debug +introspection udev"
+IUSE="debug +introspection +seccomp udev"
 
 # cairo[X] needed for gnome-bg
 COMMON_DEPEND="
@@ -22,8 +22,9 @@ COMMON_DEPEND="
 	x11-libs/cairo:=[X]
 	x11-libs/libX11
 	x11-misc/xkeyboard-config
-	>=gnome-base/gsettings-desktop-schemas-3.5.91
+	>=gnome-base/gsettings-desktop-schemas-3.27.0
 	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
+	seccomp? ( >=sys-libs/libseccomp-2.0 )
 	udev? (
 		sys-apps/hwids
 		virtual/libudev:= )
@@ -43,6 +44,10 @@ DEPEND="${COMMON_DEPEND}
 "
 
 # Includes X11/Xatom.h in libgnome-desktop/gnome-bg.c which comes from xproto
+
+src_prepare() {
+	gnome2_src_prepare
+}
 
 src_configure() {
 	gnome2_src_configure \

@@ -21,7 +21,7 @@ RDEPEND="
 	>=dev-libs/glib-2.46:2
 	>=sys-apps/dbus-0.95
 	>=net-libs/telepathy-glib-0.20
-	deprecated? ( sys-power/upower[deprecated] )
+	sys-power/upower
 	networkmanager? ( >=net-misc/networkmanager-1:= )
 "
 DEPEND="${RDEPEND}

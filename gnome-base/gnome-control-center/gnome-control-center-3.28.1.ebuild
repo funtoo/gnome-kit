@@ -123,38 +123,6 @@ DEPEND="${COMMON_DEPEND}
 #	sys-devel/autoconf-archive
 
 src_prepare() {
-	# From GNOME:
-	# 	https://bugzilla.gnome.org/show_bug.cgi?id=773673
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-user-accounts-prevent-segfault-when-user-list-is-empty.patch
-# 
-# 	# Make some panels and dependencies optional; requires eautoreconf
-# 	# https://bugzilla.gnome.org/686840, 697478, 700145
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-optional.patch
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-optional-wayland.patch
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-optional-networkmanager.patch
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-optional-cups.patch
-# 
-# 	# Fix some absolute paths to be appropriate for Gentoo
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-gentoo-paths.patch
-# 
-# 	# From GNOME:
-# 	# 	https://bugzilla.gnome.org/show_bug.cgi?id=774324
-# 	# 	https://bugzilla.gnome.org/show_bug.cgi?id=780544
-# 	eapply "${FILESDIR}"/${PN}-3.24.2-fix-without-gdkwayland.patch
-# 
-# 	if ! use vanilla-datetime; then
-# 		# From Funtoo:
-# 		# 	https://bugs.funtoo.org/browse/FL-1389
-# 		eapply "${FILESDIR}"/${PN}-3.18.2-disable-automatic-datetime-and-timezone-options.patch
-# 	fi
-# 
-# 	if ! use vanilla-hostname; then
-# 		# From Funtoo:
-# 		# 	https://bugs.funtoo.org/browse/FL-1391
-# 		eapply "${FILESDIR}"/${PN}-3.26.1-disable-changing-hostname.patch
-# 	fi
-
-# 	eautoreconf
 	gnome2_src_prepare
 }
 

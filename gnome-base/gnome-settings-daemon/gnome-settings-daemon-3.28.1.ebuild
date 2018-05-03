@@ -13,7 +13,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="alsa +cups elogind networkmanager smartcard systemd +udev wayland"
+IUSE="alsa +cups elogind +networkmanager smartcard systemd +udev wayland"
 REQUIRED_USE="
 	?? ( elogind systemd )
 	smartcard? ( udev )
