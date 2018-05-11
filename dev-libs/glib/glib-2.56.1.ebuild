@@ -57,10 +57,10 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11
 	>=dev-util/gtk-doc-am-1.20
 	systemtap? ( >=dev-util/systemtap-1.3 )
+	>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 	test? (
 		sys-devel/gdb
 		${PYTHON_DEPS}
-		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 		>=sys-apps/dbus-1.2.14 )
 	!<dev-util/gtk-doc-1.15-r2
 "
