@@ -94,7 +94,7 @@ src_prepare() {
 	fi
 
 	if use elogind; then
-		eapply "${FILESDIR}"/${PN}-3.28.1-support-elogind.patch
+		eapply "${FILESDIR}"/${PN}-3.28.2-support-elogind.patch
 	fi
 
 	eautoreconf

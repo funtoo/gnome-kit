@@ -14,7 +14,7 @@ LICENSE="GPL-2+ LGPL-2+ FDL-1.1"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="exif gnome +introspection packagekit +previewer selinux sendto vanilla-menu vanilla-menu-compress vanilla-rename vanilla-search vanilla-thumbnailer xmp"
+IUSE="doc gnome +introspection packagekit +previewer selinux sendto vanilla-menu vanilla-menu-compress vanilla-rename vanilla-search vanilla-thumbnailer test"
 
 # FIXME: tests fails under Xvfb, but pass when building manually
 # "FAIL: check failed in nautilus-file.c, line 8307"
@@ -27,7 +27,7 @@ COMMON_DEPEND="
 	>=app-arch/gnome-autoar-0.2.1
 	>=dev-libs/glib-2.51.2:2[dbus]
 	>=x11-libs/pango-1.28.3
-	>=x11-libs/gtk+-3.21.6:3[introspection?]
+	>=x11-libs/gtk+-3.22.26:3[introspection?]
 	>=dev-libs/libxml2-2.7.8:2
 	>=gnome-base/gnome-desktop-3:3=
 
@@ -37,32 +37,23 @@ COMMON_DEPEND="
 	x11-libs/libXext
 	x11-libs/libXrender
 
-	exif? ( >=media-libs/libexif-0.6.20 )
+	doc? ( >=dev-util/gtk-doc-am-1.10 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
 	selinux? ( >=sys-libs/libselinux-2 )
-	xmp? ( >=media-libs/exempi-2.1.0:2 )
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-lang/perl-5
 	>=dev-util/gdbus-codegen-2.33
-	>=dev-util/gtk-doc-am-1.10
 	>=sys-devel/gettext-0.19.7
 	virtual/pkgconfig
-	x11-proto/xproto
+	x11-base/xorg-proto
 	app-misc/tracker
+	>=media-libs/gexiv2-0.10.0
 "
 RDEPEND="${COMMON_DEPEND}
 	packagekit? ( app-admin/packagekit-base )
 	sendto? ( !<gnome-extra/nautilus-sendto-3.0.1 )
 "
-
-# For eautoreconf
-#	gnome-base/gnome-common
-#	dev-util/gtk-doc-am"
-
-# original from PDEPEND
-#	>=media-video/totem-$(get_version_component_range 1-2)[vanilla-thumbnailer=]
-
 PDEPEND="
 	gnome? ( x11-themes/adwaita-icon-theme )
 	previewer? ( >=gnome-extra/sushi-0.1.9 )
@@ -85,13 +76,12 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		-Denable-exif=$(usex exif true false)
-		-Denable-xmp=$(usex xmp true false)
-		-Denable-packagekit=$(usex packagekit true false)
-		-Denable-nst-extension=$(usex sendto true false)
-		-Denable-selinux=$(usex selinux true false)
-		-Denable-profiling=false
-		-Denable-desktop=true
+		-Ddocs=$(usex doc true false)
+		-Dprofiling=false
+		-Dextensions=$(usex sendto true false)
+		-Dpackagekit=$(usex packagekit true false)
+		-Dselinux=$(usex selinux true false)
+		-Dtests=$(usex test all none)
 	)
 	meson_src_configure
 }

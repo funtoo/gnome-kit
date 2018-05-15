@@ -1,7 +1,7 @@
 diff '--exclude=.git' -urN a/configure.ac b/configure.ac
---- a/configure.ac	2018-04-13 13:11:54.000000000 -0400
-+++ b/configure.ac	2018-04-27 04:53:31.912842304 -0400
-@@ -265,19 +265,18 @@
+--- a/configure.ac	2018-05-07 16:29:42.000000000 -0400
++++ b/configure.ac	2018-05-13 04:12:27.066958979 -0400
+@@ -265,16 +265,18 @@
  PKG_CHECK_MODULES(ELOGIND, [libelogind], [have_elogind=yes], [have_elogind=no])
  
  if test x$have_elogind = xyes; then
@@ -12,15 +12,13 @@ diff '--exclude=.git' -urN a/configure.ac b/configure.ac
  
  PKG_CHECK_MODULES(SYSTEMD, [libsystemd], [have_systemd=yes], [have_systemd=no])
  
- if test x$have_systemd = xyes; then
+-if test x$have_systemd = xyes -o -z "$logind_provider"; then
 -     logind_provider="libsystemd"
++if test x$have_systemd = xyes; then
 +     AC_DEFINE(WITH_SYSTEMD, 1, [Define if systemd is used])
 +     libsystemd="libsystemd"
  fi
  
--AS_IF([test -z "$logind_provider"],
--  AC_MSG_ERROR([Could not find either systemd or elogind as logind provider])])
--
 -MUTTER_NATIVE_BACKEND_MODULES="libdrm $logind_provider libinput >= 1.4 gudev-1.0 gbm >= 10.3"
 +MUTTER_NATIVE_BACKEND_MODULES="libdrm >= 2.4.83 $libsystemd libinput >= 1.4 gudev-1.0 gbm >= 17.1"
  
