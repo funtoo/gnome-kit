@@ -29,6 +29,7 @@ DEPEND="${RDEPEND}
 	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1
 	>=dev-util/intltool-0.40
+	>=x11-libs/libnotify-0.7
 	sys-devel/gettext
 	virtual/pkgconfig
 "

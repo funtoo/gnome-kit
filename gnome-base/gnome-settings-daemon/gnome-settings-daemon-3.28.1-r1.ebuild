@@ -97,8 +97,7 @@ DEPEND="${COMMON_DEPEND}
 	>=x11-proto/xproto-7.0.15
 "
 
-PATCHES=(
-)
+PATCHES=( "${FILESDIR}/${P}-disable-autosleep.patch" )
 
 python_check_deps() {
 	if use test; then
