@@ -35,7 +35,7 @@ src_prepare() {
 multilib_src_configure() {
 	local emesonargs=(
 		-Dintrospection=$(usex introspection true false)
-		-Ddoc=true
+		-Ddocs=true
 	)
 	meson_src_configure
 
