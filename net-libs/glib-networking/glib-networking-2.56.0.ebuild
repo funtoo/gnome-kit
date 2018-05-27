@@ -48,6 +48,7 @@ src_prepare() {
 
 multilib_src_configure() {
 	local emesonargs=(
+		-Doption=disable-static
 		-Dca_certificates_path="${EPREFIX}"/etc/ssl/certs/ca-certificates.crt
 		-Dlibproxy_support=$(usex libproxy true false)
 		-Dgnome_proxy_support=$(usex gnome true false)

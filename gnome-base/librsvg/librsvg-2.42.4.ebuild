@@ -19,7 +19,7 @@ IUSE="+introspection tools vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
-	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.48.0:2[${MULTILIB_USEDEP}]
 	>=x11-libs/cairo-1.12.14-r4[${MULTILIB_USEDEP}]
 	>=x11-libs/pango-1.38.0[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.1-r4:2[${MULTILIB_USEDEP}]
@@ -41,6 +41,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=653323
 	eapply "${FILESDIR}/${PN}-2.42.2-gtk-optional.patch"
+	eapply "${FILESDIR}"/${PN}-2.42.2-dladdr-libdl.patch
 
 	eautoreconf
 
