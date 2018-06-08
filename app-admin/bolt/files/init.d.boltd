@@ -1,0 +1,23 @@
+#!/sbin/openrc-run
+# Copyright 2012 Alexandre Rostovtsev <tetromino@gentoo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+description="Userspace system daemon to enable security levels for Thunderbolt 3 on Linux"
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting boltd"
+	start-stop-daemon --start --quiet --background --exec "/usr/libexec/boltd"
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping boltd"
+	start-stop-daemon --stop --quiet --name "/usr/libexec/boltd"
+	eend $?
+}
+
+# vim: set ft=gentoo-init-d ts=4 :

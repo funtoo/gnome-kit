@@ -1,0 +1,51 @@
+From 2d1da22e17f703e27ff1b3177e35a54aa0c3aecc Mon Sep 17 00:00:00 2001
+From: Christian Kellner <christian@kellner.me>
+Date: Fri, 13 Apr 2018 16:03:21 +0200
+Subject: [PATCH 4/4] thunderbolt: move to the 'Devices' page
+
+The 'Devices' page is a fitting place for the thunderbolt, being
+an IO technology. It is expected that people that need to go to
+that page will be sent there via a gnome-shell notification, so
+there is no need for it to be on the main page.
+Ok'ed by the design team (jimmac).
+---
+ panels/thunderbolt/gnome-thunderbolt-panel.desktop.in.in | 2 +-
+ shell/cc-panel-list.c                                    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/panels/thunderbolt/gnome-thunderbolt-panel.desktop.in.in b/panels/thunderbolt/gnome-thunderbolt-panel.desktop.in.in
+index db2477e45a74..abd317341bfd 100644
+--- a/panels/thunderbolt/gnome-thunderbolt-panel.desktop.in.in
++++ b/panels/thunderbolt/gnome-thunderbolt-panel.desktop.in.in
+@@ -7,7 +7,7 @@ Terminal=false
+ Type=Application
+ NoDisplay=true
+ StartupNotify=true
+-Categories=GNOME;GTK;Settings;X-GNOME-Settings-Panel;HardwareSettings;X-GNOME-DevicesSettings;X-GNOME-ConnectivitySettings;
++Categories=GNOME;GTK;Settings;X-GNOME-Settings-Panel;HardwareSettings;X-GNOME-DevicesSettings;
+ OnlyShowIn=GNOME;Unity;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-control-center
+diff --git a/shell/cc-panel-list.c b/shell/cc-panel-list.c
+index 99d8a91144ad..f5b83509d646 100644
+--- a/shell/cc-panel-list.c
++++ b/shell/cc-panel-list.c
+@@ -276,7 +276,6 @@ static const gchar * const panel_order[] = {
+   "wifi",
+   "mobile-broadband",
+   "bluetooth",
+-  "thunderbolt",
+   "background",
+   "notifications",
+   "search",
+@@ -295,6 +294,7 @@ static const gchar * const panel_order[] = {
+   "mouse",
+   "printers",
+   "removable-media",
++  "thunderbolt",
+   "wacom",
+   "color",
+ 
+-- 
+2.17.0
+
