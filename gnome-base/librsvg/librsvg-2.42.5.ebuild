@@ -15,7 +15,7 @@ LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
-IUSE="+introspection tools vala"
+IUSE="+introspection tools +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
@@ -47,6 +47,14 @@ src_prepare() {
 
 	use vala && vala_src_prepare
 	gnome2_src_prepare
+
+	# Work around issue where vala file is expected in local
+	# directory instead of source directory.
+	for v in $(multilib_get_enabled_abi_pairs); do
+		build_dir="${S%%/}-${v}"
+		mkdir -p "${build_dir}"
+		cp -p "${S}/Rsvg-2.0-custom.vala" "${build_dir}"|| die
+	done
 }
 
 multilib_src_configure() {
