@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit bash-completion-r1 gnome2
+inherit bash-completion-r1 gnome2 meson
 
 DESCRIPTION="Provides GObjects and helper methods to read and write AppStream metadata"
 HOMEPAGE="https://people.freedesktop.org/~hughsient/appstream-glib/"
@@ -13,7 +13,7 @@ LICENSE="LGPL-2.1"
 SLOT="0/8" # soname version
 KEYWORDS="~*"
 
-IUSE="+introspection nls stemmer"
+IUSE="doc +introspection nls stemmer"
 
 RDEPEND="
 	app-arch/gcab
@@ -46,16 +46,17 @@ RDEPEND="${RDEPEND}
 "
 
 src_configure() {
-	gnome2_src_configure \
-		--enable-builder \
-		--enable-firmware \
-		--enable-fonts \
-		--disable-rpm \
-		--disable-static \
-		--enable-dep11 \
-		--enable-man \
-		$(use_enable nls) \
-		$(use_enable introspection) \
-		$(use_enable stemmer) \
-		--with-bashcompletiondir="$(get_bashcompdir)"
+	local emesonargs=(
+		-Ddep11=true
+		-Dbuilder=true
+		-Drpm=false
+		-Dalpm=false
+		-Dfonts=true
+		-Dstemmer=$(usex stemmer true false)
+		-Dman=true
+		-Dgtk-doc=$(usex doc true false)
+		-Dintrospection=$(usex introspection true false)
+	)
+
+	meson_src_configure
 }
