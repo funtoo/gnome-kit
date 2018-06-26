@@ -8,7 +8,6 @@ DISABLE_AUTOFORMATTING=1
 FORCE_PRINT_ELOG=1
 GNOME2_ECLASS_ICONS=1
 GNOME2_ECLASS_GLIB_SCHEMAS=1
-VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 python-single-r1 vala virtualx readme.gentoo-r1 meson
 
@@ -64,6 +63,8 @@ RDEPEND="
 	>=dev-libs/template-glib-3.27
 	>=dev-libs/jsonrpc-glib-3.27
 	dev-util/devhelp
+	dev-python/jedi
+	dev-python/lxml
 "
 # desktop-file-utils for desktop-file-validate check in configure for 3.22.4
 DEPEND="${RDEPEND}
@@ -81,11 +82,7 @@ that are currently available with packages include:
 * dev-util/ctags with exuberant-ctags selected via "eselect ctags" for
   C, C++, Python, JavaScript, CSS, HTML and Ruby autocompletion, semantic
   highlighting and symbol resolving support.
-* dev-python/jedi and dev-python/lxml for more accurate Python
-  autocompletion support.
 * dev-util/valgrind for integration with valgrind.
-* dev-util/meson for integration with the Meson build system.
-* dev-util/cargo for integration with the Rust Cargo build system.
 '
 # FIXME: Package gnome-code-assistance and mention here, or maybe USE flag and default enable because it's rather important
 # eslint for additional diagnostics in JavaScript files
@@ -99,8 +96,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	default
 	use vala && vala_src_prepare
-	gnome2_src_prepare
 }
 
 src_configure() {
