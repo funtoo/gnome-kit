@@ -10,5 +10,5 @@ RDEPEND=python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7[threads(+)] )
 REQUIRED_USE=|| ( python_targets_python2_7 python_targets_python3_4 )
 SLOT=0
 SRC_URI=http://cairographics.org/releases/py2cairo-1.10.0.tar.bz2 http://cairographics.org/releases/pycairo-1.10.0.tar.bz2
-_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	a453650f79ed740ee0229bc1e0f23527	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	waf-utils	ad531aa675f973db58b1482419008d08
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	waf-utils	ad531aa675f973db58b1482419008d08
 _md5_=bacdfb3bedb54ec128894ee7cbde7256
