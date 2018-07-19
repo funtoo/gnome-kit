@@ -25,7 +25,7 @@ REQUIRED_USE="
 	?? ( consolekit elogind systemd )
 "
 
-KEYWORDS=""
+KEYWORDS="~*"
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
@@ -270,7 +270,12 @@ multilib_src_install() {
 multilib_src_install_all() {
 	! use systemd && readme.gentoo_create_doc
 
-	newinitd "${FILESDIR}/init.d.NetworkManager-r1" NetworkManager
+	if use elogind; then
+		newinitd "${FILESDIR}/init.d.NetworkManager-elogind" NetworkManager
+	else
+		newinitd "${FILESDIR}/init.d.NetworkManager-r1" NetworkManager
+	fi
+
 	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
 
 	# Need to keep the /etc/NetworkManager/dispatched.d for dispatcher scripts
