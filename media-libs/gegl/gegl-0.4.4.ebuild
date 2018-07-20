@@ -16,7 +16,7 @@ DESCRIPTION="A graph based image processing framework"
 HOMEPAGE="http://www.gegl.org/"
 
 LICENSE="|| ( GPL-3 LGPL-3 )"
-SLOT="0.3"
+SLOT="0.4"
 
 IUSE="cairo cpu_flags_x86_mmx cpu_flags_x86_sse debug ffmpeg +introspection jpeg2k lcms lensfun openexr raw sdl svg test tiff umfpack vala v4l webp"
 REQUIRED_USE="
@@ -30,7 +30,7 @@ REQUIRED_USE="
 RDEPEND="
 	>=dev-libs/glib-2.44:2
 	dev-libs/json-glib
-	>=media-libs/babl-0.1.38
+	>=media-libs/babl-0.1.52
 	sys-libs/zlib
 	>=x11-libs/gdk-pixbuf-2.32:2
 	x11-libs/pango
