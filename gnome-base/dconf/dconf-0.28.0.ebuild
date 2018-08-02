@@ -1,16 +1,15 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
-inherit gnome2 bash-completion-r1 virtualx vala meson
+EAPI=6
+inherit gnome-meson bash-completion-r1 virtualx vala
 
 DESCRIPTION="Simple low-level configuration system"
 HOMEPAGE="https://wiki.gnome.org/action/show/Projects/dconf"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~sh sparc x86 ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="
@@ -34,11 +33,8 @@ src_prepare() {
 }
 
 src_configure() {
-	local emesonargs=(
-	-D enable-man=true
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+	-Denable-man=true
 }
 
 src_test() {
@@ -46,7 +42,7 @@ src_test() {
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 
 	# GSettings backend may be one of: memory, gconf, dconf
 	# Only dconf is really considered functional by upstream
@@ -57,7 +53,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 	# Kill existing dconf-service processes as recommended by upstream due to
 	# possible changes in the dconf private dbus API.
 	# dconf-service will be dbus-activated on next use.

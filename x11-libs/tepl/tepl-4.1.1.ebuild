@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 vala virtualx
@@ -9,7 +9,7 @@ DESCRIPTION="GtkSourceView-based text editors and IDE helper library"
 HOMEPAGE="https://wiki.gnome.org/Projects/Gtef"
 
 LICENSE="LGPL-2.1+"
-SLOT="3"
+SLOT="4"
 KEYWORDS="*"
 
 IUSE="+introspection test vala"

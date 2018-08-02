@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 vala meson
+inherit gnome-meson vala
 
 DESCRIPTION="A calculator application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Calculator"
@@ -39,5 +39,5 @@ src_prepare() {
 }
 
 src_configure() {
-	meson_src_configure
+	gnome-meson_src_configure
 }

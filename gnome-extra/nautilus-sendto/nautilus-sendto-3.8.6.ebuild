@@ -19,7 +19,6 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.9
 	>=dev-util/intltool-0.35
-	>=dev-libs/appstream-glib-0.7
 	sys-devel/gettext
 	virtual/pkgconfig
 "

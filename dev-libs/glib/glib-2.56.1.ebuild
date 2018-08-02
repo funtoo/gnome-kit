@@ -57,10 +57,10 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11
 	>=dev-util/gtk-doc-1.20
 	systemtap? ( >=dev-util/systemtap-1.3 )
-	>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 	test? (
 		sys-devel/gdb
 		${PYTHON_DEPS}
+		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 		>=sys-apps/dbus-1.2.14 )
 	!<dev-util/gtk-doc-1.15-r2
 "
@@ -119,7 +119,7 @@ src_prepare() {
 	fi
 
 	# gdbus-codegen is a separate package
-	eapply "${FILESDIR}"/${PN}-2.55.2-external-gdbus-codegen.patch
+	eapply "${FILESDIR}"/${PN}-2.56.0-external-gdbus-codegen.patch
 
 	# Leave python shebang alone - handled by python_replicate_script
 	# We could call python_setup and give configure a valid --with-python

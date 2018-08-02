@@ -120,6 +120,11 @@ src_install() {
 		doins src/examples/{*.c,*.policy*}
 	fi
 
+	# allow "plugdev" group to access and manipulate removable media by default:
+	insopts -m0660 -o polkitd -g root
+	insinto /etc/polkit-1/rules.d
+	doins $FILESDIR/50-udisks.rules
+
 	find "${D}" -name '*.la' -delete || die
 }
 

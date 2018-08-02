@@ -3,7 +3,7 @@
 EAPI="6"
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 
-inherit gnome2 python-single-r1 meson
+inherit gnome-meson python-single-r1
 
 DESCRIPTION="Music management for Gnome"
 HOMEPAGE="https://wiki.gnome.org/Apps/Music"
@@ -53,10 +53,10 @@ pkg_setup() {
 
 src_prepare() {
 	sed -e '/sys.path.insert/d' -i "${S}"/gnome-music.in || die "python fixup sed failed"
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 	python_fix_shebang "${D}"usr/bin/gnome-music
 }

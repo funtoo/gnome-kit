@@ -4,7 +4,7 @@ EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
 
-inherit gnome2 python-any-r1 systemd udev virtualx meson
+inherit gnome-meson python-any-r1 systemd udev virtualx
 
 DESCRIPTION="Gnome Settings Daemon"
 HOMEPAGE="https://git.gnome.org/browse/gnome-settings-daemon"
@@ -111,16 +111,13 @@ pkg_setup() {
 }
 
 src_configure() {
-	local emesonargs=(
-		-D udev_dir="$(get_udevdir)"/rules.d
-		-D gudev=$(usex udev true false)
-		-D cups=$(usex cups true false)
-		-D network_manager=$(usex networkmanager true false)
-		-D smartcard=$(usex smartcard true false)
-		-D wayland=$(usex wayland true false)
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Dudev_dir="$(get_udevdir)"/rules.d \
+		$(meson_use gudev udev) \
+		$(meson_use cups cups) \
+		$(meson_use networkmanager network_manager) \
+		$(meson_use smartcard smartcard ) \
+		$(meson_use wayland wayland)
 }
 
 src_test() {
@@ -128,7 +125,7 @@ src_test() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 
 	if use systemd && ! systemd_is_booted; then
 		ewarn "${PN} needs Systemd to be *running* for working"

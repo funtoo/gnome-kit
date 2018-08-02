@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 readme.gentoo-r1 meson
+inherit gnome-meson readme.gentoo-r1
 
 DESCRIPTION="JavaScript extensions for GNOME Shell"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell/Extensions"
@@ -53,20 +53,17 @@ src_prepare() {
 	sed -e '/.*calendar-today.svg.*/d' \
 		-i data/meson.build || die "sed failed"
 
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-Dextension_set=all
+	gnome-meson_src_configure \
+		-Dextension_set=all \
 		-Dclassic_mode=false
-	)
-
-	meson_src_configure
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 
 	local example="example@gnome-shell-extensions.gcampax.github.com"
 	if use examples; then
@@ -80,7 +77,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 
 	ebegin "Updating list of installed extensions"
 	eselect gnome-shell-extensions update

@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2 meson multilib-minimal
+inherit gnome-meson multilib-minimal
 
 DESCRIPTION="D-Bus accessibility specifications and registration daemon"
 HOMEPAGE="https://wiki.gnome.org/Accessibility"
@@ -37,22 +37,17 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 "
 
-src_prepare() {
-	default
-	PATCHES=(
-		# disable teamspaces test since that requires Novell.ICEDesktop.Daemon
-		"${FILESDIR}/${PN}-2.0.2-disable-teamspaces-test.patch"
-	)
-}
+PATCHES=(
+	# disable teamspaces test since that requires Novell.ICEDesktop.Daemon
+	"${FILESDIR}/${PN}-2.0.2-disable-teamspaces-test.patch"
+)
 
 multilib_src_configure() {
-	local emesonargs=(
-		-D enable-introspection=$(usex introspection yes no)
-		-D enable-x11=$(usex X yes no)
-		-D enable_docs=false
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Denable-introspection=$(usex introspection yes no) \
+		-Denable-x11=$(usex X yes no) \
+		-Denable_docs=false
 }
 
-multilib_src_compile() { meson_src_compile; }
-multilib_src_install() { meson_src_install; }
+multilib_src_compile() { gnome-meson_src_compile; }
+multilib_src_install() { gnome-meson_src_install; }

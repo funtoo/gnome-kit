@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit bash-completion-r1 gnome2 meson
+inherit bash-completion-r1 gnome-meson
 
 DESCRIPTION="GNOME's main interface to configure various aspects of the desktop"
 HOMEPAGE="https://git.gnome.org/browse/gnome-control-center/"
@@ -130,20 +130,17 @@ PATCHES=(
 )
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-Dcheese=$(usex v4l true false)
-		-Dwayland=$(usex wayland true false)
-		-Dibus=$(usex ibus true false)
-		-Ddocumentation=true
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Ddocumentation=true \
+		$(meson_use v4l cheese) \
+		$(meson_use wayland wayland) \
+		$(meson_use ibus ibus)
 }
 
 src_install() {
-	meson_src_install completiondir="$(get_bashcompdir)"
+	gnome-meson_src_install completiondir="$(get_bashcompdir)"
 }

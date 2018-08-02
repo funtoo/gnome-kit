@@ -1,6 +1,8 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
+VALA_MIN_API_VERSION="0.24"
 
 inherit gnome2 vala
 
@@ -9,8 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Quadrapassel"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~arm x86"
 IUSE=""
 
 RDEPEND="

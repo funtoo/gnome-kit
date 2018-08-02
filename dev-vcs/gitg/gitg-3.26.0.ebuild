@@ -1,8 +1,9 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python{3_4,3_5} )
 VALA_MIN_API_VERSION="0.32" # Needed when gtk+-3.20 is found
 
 inherit gnome2 pax-utils python-r1 vala
@@ -12,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Gitg"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
 IUSE="glade +python"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"

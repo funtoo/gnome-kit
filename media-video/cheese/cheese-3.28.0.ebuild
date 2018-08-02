@@ -72,6 +72,5 @@ src_configure() {
 }
 
 src_test() {
-	"${EROOT}${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/data" || die
-	GSETTINGS_SCHEMA_DIR="${S}/data" virtx emake check
+	virtx emake check
 }

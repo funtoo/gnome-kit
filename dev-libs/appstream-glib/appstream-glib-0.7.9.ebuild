@@ -1,9 +1,10 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit bash-completion-r1 gnome2 meson
+inherit bash-completion-r1 gnome-meson
 
 DESCRIPTION="Provides GObjects and helper methods to read and write AppStream metadata"
 HOMEPAGE="https://people.freedesktop.org/~hughsient/appstream-glib/"
@@ -11,9 +12,8 @@ SRC_URI="https://people.freedesktop.org/~hughsient/${PN}/releases/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="0/8" # soname version
-KEYWORDS="~*"
-
-IUSE="doc +introspection nls stemmer"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ppc ppc64 sparc x86"
+IUSE="doc +introspection stemmer"
 
 RDEPEND="
 	app-arch/gcab
@@ -46,17 +46,14 @@ RDEPEND="${RDEPEND}
 "
 
 src_configure() {
-	local emesonargs=(
-		-Ddep11=true
-		-Dbuilder=true
-		-Drpm=false
-		-Dalpm=false
-		-Dfonts=true
-		-Dstemmer=$(usex stemmer true false)
-		-Dman=true
-		-Dgtk-doc=$(usex doc true false)
-		-Dintrospection=$(usex introspection true false)
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Ddep11=true \
+		-Dbuilder=true \
+		-Drpm=false \
+		-Dalpm=false \
+		-Dfonts=true \
+		-Dman=true \
+		$(meson_use doc gtk-doc) \
+		$(meson_use introspection introspection) \
+		$(meson_use stemmer stemmer)
 }

@@ -1,7 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
+EAPI=6
 inherit gnome2 multilib-minimal virtualx
 
 DESCRIPTION="C++ interface for GTK+"
@@ -9,7 +8,7 @@ HOMEPAGE="https://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+"
 SLOT="4.0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ppc ppc64 ~sh sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-solaris"
 
 IUSE="aqua doc test wayland X"
 REQUIRED_USE="|| ( aqua wayland X )"
@@ -21,11 +20,10 @@ RDEPEND="
 	>=dev-cpp/atkmm-2.27.1[${MULTILIB_USEDEP}]
 	>=dev-cpp/cairomm-1.15.5[${MULTILIB_USEDEP}]
 	>=dev-cpp/pangomm-2.41.2:2[${MULTILIB_USEDEP}]
-	dev-libs/libsigc++:2=[${MULTILIB_USEDEP}]
 	>=dev-libs/libsigc++-2.3.2:2[${MULTILIB_USEDEP}]
 "
 DEPEND="${RDEPEND}
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	doc? (
 		media-gfx/graphviz
 		dev-libs/libxslt
@@ -48,8 +46,7 @@ src_prepare() {
 }
 
 multilib_src_configure() {
-	ECONF_SOURCE="${S}" \
-	gnome2_src_configure \
+	ECONF_SOURCE="${S}" gnome2_src_configure \
 		--enable-api-atkmm \
 		$(multilib_native_use_enable doc documentation) \
 		$(use_enable aqua quartz-backend) \

@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -18,7 +17,7 @@ SLOT="0"
 IUSE="+crypt +introspection test vala"
 REQUIRED_USE="vala? ( introspection )"
 
-KEYWORDS="alpha amd64 arm ~arm64 ~ia64 ~mips ppc ppc64 ~sparc x86 ~amd64-fbsd"
+KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 sparc x86 ~amd64-fbsd"
 
 RDEPEND="
 	>=dev-libs/glib-2.38:2
@@ -28,6 +27,7 @@ RDEPEND="
 PDEPEND=">=gnome-base/gnome-keyring-3
 "
 # PDEPEND to avoid circular dep (bug #547456)
+# gnome-keyring needed at runtime as explained at https://bugs.gentoo.org/475182#c2
 # Add ksecrets to PDEPEND when it's added to portage
 DEPEND="${RDEPEND}
 	dev-libs/libxslt

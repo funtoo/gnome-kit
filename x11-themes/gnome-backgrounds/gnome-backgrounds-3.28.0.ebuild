@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="A set of backgrounds packaged with the GNOME desktop"
 HOMEPAGE="https://git.gnome.org/browse/gnome-backgrounds"
@@ -20,5 +20,5 @@ DEPEND="
 "
 
 src_compile() {
-	meson_src_compile
+	gnome-meson_src_compile
 }

@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 
 inherit gnome2
 
@@ -9,8 +10,7 @@ HOMEPAGE="https://www.gnome.org"
 
 LICENSE="LGPL-2+"
 SLOT="0/8"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-solaris"
-
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="+introspection test"
 
 RDEPEND="

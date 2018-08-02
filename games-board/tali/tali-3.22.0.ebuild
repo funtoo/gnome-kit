@@ -1,7 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
+EAPI=6
 inherit gnome2
 
 DESCRIPTION="Beat the odds in a poker-style dice game"
@@ -9,8 +9,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Tali"
 
 LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~arm x86"
 IUSE=""
 
 RDEPEND="

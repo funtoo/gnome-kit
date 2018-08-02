@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
 inherit gnome2
@@ -10,8 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/gthumb"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="cdr debug exif gnome-keyring gstreamer http jpeg json lcms raw slideshow svg tiff test webkit webp"
 
 RDEPEND="

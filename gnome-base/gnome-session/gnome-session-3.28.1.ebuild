@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit autotools gnome2 meson
+inherit autotools gnome-meson
 
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="https://git.gnome.org/browse/gnome-session"
@@ -73,25 +73,22 @@ DEPEND="${COMMON_DEPEND}
 # gnome-base/gdm does not provide gnome.desktop anymore
 
 src_prepare() {
-	eapply "${FILESDIR}"/${PN}-3.27.92-support-elogind.patch
+	eapply "${FILESDIR}"/${PN}-3.28.0-support-elogind.patch
 
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-D systemd=$(usex systemd true false)
-		-D elogind=$(usex elogind true false)
-		-D consolekit=$(usex consolekit true false)
-		-D docbook=$(usex doc true false)
-		-D session_selector=true
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Dsession_selector=true \
+		$(meson_use systemd systemd) \
+		$(meson_use elogind elogind) \
+		$(meson_use consolekit consolekit) \
+		$(meson_use doc docbook)
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 
 	dodir /etc/X11/Sessions
 	exeinto /etc/X11/Sessions
@@ -114,7 +111,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 
 	if ! has_version gnome-base/gdm && ! has_version x11-misc/sddm; then
 		ewarn "If you use a custom .xinitrc for your X session,"

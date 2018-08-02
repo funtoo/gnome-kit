@@ -99,7 +99,7 @@ RDEPEND="${COMMON_DEPEND}
 	networkmanager? (
 		net-misc/mobile-broadband-provider-info
 		sys-libs/timezone-data )
-	ibus? ( >=app-i18n/ibus-1.4.99[dconf(+),gtk3,introspection] )
+	ibus? ( >=app-i18n/ibus-1.4.99[dconf(+),gtk,introspection] )
 "
 # avoid circular dependency, see bug #546134
 PDEPEND="
@@ -117,6 +117,11 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.19.6
 	virtual/pkgconfig
 "
+
+PATCHES=(
+	"${FILESDIR}/gnome-shell-3.28.0-improve-motd-handling.patch"
+	"${FILESDIR}/gnome-shell-3.28.0-improve-screen-blanking.patch"
+)
 
 src_prepare() {
 	gnome2_src_prepare

@@ -1,6 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 
 inherit gnome2
 
@@ -9,12 +10,8 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeVideoEffects"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE=""
-
-# This ebuild does not install any binaries
-RESTRICT="binchecks strip"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -22,3 +19,5 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.17
 "
 
+# This ebuild does not install any binaries
+RESTRICT="binchecks strip"

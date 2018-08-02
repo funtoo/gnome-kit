@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala meson
+inherit gnome-meson vala
 
 DESCRIPTION="Library to access weather information from online services"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibGWeather"
@@ -39,15 +39,12 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	use vala && vala_src_prepare
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-D glade_catalog=$(usex glade true false)
-		-D enable_vala=$(usex vala true false)
-		-D gtk_doc=$(usex doc true false)
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		$(meson_use glade glade_catalog) \
+		$(meson_use vala enable_vala) \
+		$(meson_use doc gtk_doc)
 }

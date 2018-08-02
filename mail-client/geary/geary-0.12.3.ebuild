@@ -1,6 +1,7 @@
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 VALA_MAX_API_VERSION="0.34"
 
 # Keep cmake-utils at the end
@@ -11,8 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Geary"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~x86"
 IUSE="nls"
 
 DEPEND="

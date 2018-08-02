@@ -1,16 +1,17 @@
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit autotools gnome2 multilib-minimal toolchain-funcs
+inherit gnome2 multilib-minimal toolchain-funcs
 
 DESCRIPTION="Internationalized text layout and rendering library"
 HOMEPAGE="http://www.pango.org/"
 
 LICENSE="LGPL-2+ FTL"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="X +introspection test"
 
@@ -35,17 +36,6 @@ DEPEND="${RDEPEND}
 	X? ( >=x11-proto/xproto-7.0.24[${MULTILIB_USEDEP}] )
 	!<=sys-devel/autoconf-2.63:2.5
 "
-
-src_prepare() {
-	# From GNOME:
-	# 	https://git.gnome.org/browse/pango/commit/?id=0813fcabf5b13b2b90780ec45f3018ad00927da5
-	# 	https://git.gnome.org/browse/pango/commit/?id=3e5769aca2200b9f20614b1b9ec71f1bcf057ffe
-	# eapply "${FILESDIR}"/${PN}-1.40.15-fix-test-build.patch
-	# eapply "${FILESDIR}"/${PN}-1.40.15-pangocairo-pick-up-font-options-from-cairo-t.patch
-
-	eautoreconf
-	gnome2_src_prepare
-}
 
 multilib_src_configure() {
 	tc-export CXX

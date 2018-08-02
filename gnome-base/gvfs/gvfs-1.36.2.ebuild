@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 GNOME2_EAUTORECONF="yes"
-inherit gnome2 systemd meson
+inherit gnome-meson systemd
 
 DESCRIPTION="Virtual filesystem implementation for gio"
 HOMEPAGE="https://wiki.gnome.org/Projects/gvfs"
@@ -85,44 +85,34 @@ PATCHES=(
 )
 
 src_prepare() {
-# 	if ! use udev; then
-# 		sed -e 's/gvfsd-burn/ /' \
-# 			-e 's/burn.mount.in/ /' \
-# 			-e 's/burn.mount/ /' \
-# 			-i daemon/Makefile.am || die
-# 	fi
-# 
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-Ddbus_service_dir="${EPREFIX}"/usr/share/dbus-1/services
-		-Dsystemduserunitdir=no
-		-Dtmpfilesdir=no
-		-Dadmin=$(usex policykit true false)
-		-Dafc=$(usex ios true false)
-		-Dafp=$(usex afp true false)
-		-Darchive=$(usex archive true false)
-		-Dcdda=$(usex cdda true false)
-		-Dgdu=false
-		-Dgoa=$(usex gnome-online-accounts true false)
-		-Dgoogle=$(usex google true false)
-		-Dgphoto2=$(usex gphoto2 true false)
-		-Dhttp=$(usex http true false)
-		-Dmtp=$(usex mtp true false)
-		-Dnfs=$(usex nfs true false)
-		-Dsmb=$(usex samba true false)
-		-Dudisks2=$(usex udisks true false)
-		-Dbluray=$(usex bluray true false)
-		-Dfuse=$(usex fuse true false)
-		-Dgcr=true
-		-Dgudev=$(usex udev true false)
-		-Dkeyring=$(usex gnome-keyring true false)
-		-Dlogind=$(usex elogind true false)
-		-Dlibusb=$(usex mtp true false)
-		-Dman=true
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Ddbus_service_dir="${EPREFIX}"/usr/share/dbus-1/services \
+		-Dsystemduserunitdir=no \
+		-Dtmpfilesdir=no \
+		-Dgdu=false \
+		-Dgcr=true \
+		-Dman=true \
+		$(meson_use policykit admin) \
+		$(meson_use ios afc) \
+		$(meson_use afp afp) \
+		$(meson_use archive archive) \
+		$(meson_use cdda cdda)\
+		$(meson_use gnome-online-accounts goa) \
+		$(meson_use google google) \
+		$(meson_use gphoto2 gphoto2) \
+		$(meson_use http http) \
+		$(meson_use mtp mtp) \
+		$(meson_use nfs nfs) \
+		$(meson_use samba smb) \
+		$(meson_use udisks udisks2) \
+		$(meson_use bluray bluray) \
+		$(meson_use fuse fuse) \
+		$(meson_use udev gudev) \
+		$(meson_use gnome-keyring keyring) \
+		$(meson_use elogind logind) \
+		$(meson_use mtp libusb)
 }

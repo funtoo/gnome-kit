@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 udev user meson
+inherit gnome-meson udev user
 
 DESCRIPTION="Bluetooth graphical utilities integrated with GNOME"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeBluetooth"
@@ -43,21 +43,19 @@ pkg_setup() {
 }
 
 src_configure() {
-	local emesonargs=(
-		-Denable-introspection=$(usex introspection true false)
-		-Denable-gtk-doc=true
-		-Denable-icon-update=false
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Denable-gtk-doc=true \
+		-Denable-icon-update=false \
+		$(meson_use introspection enable-introspection)
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 	udev_dorules "${FILESDIR}"/61-${PN}.rules
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 	if ! has_version sys-auth/consolekit[acl] && ! has_version sys-apps/systemd[acl] ; then
 		elog "Don't forget to add yourself to the plugdev group "
 		elog "if you want to be able to control bluetooth transmitter."

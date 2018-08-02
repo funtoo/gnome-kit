@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 multilib-minimal meson
+inherit gnome-meson multilib-minimal
 
 DESCRIPTION="GTK+ & GNOME Accessibility Toolkit"
 HOMEPAGE="https://wiki.gnome.org/Accessibility"
@@ -25,21 +25,18 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 
 	# Building out of sources fails, https://bugzilla.gnome.org/show_bug.cgi?id=752507
 	multilib_copy_sources
 }
 
 multilib_src_configure() {
-	local emesonargs=(
-		-Dintrospection=$(usex introspection true false)
-		-Ddocs=$(usex introspection true false)
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		$(meson_use introspection introspection) \
+		$(meson_use doc docs)
 }
 
 multilib_src_install() {
-	meson_src_install
+	gnome-meson_src_install
 }

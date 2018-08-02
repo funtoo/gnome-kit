@@ -3,14 +3,14 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala meson
+inherit gnome-meson vala
 
 DESCRIPTION="GNOME contact management application"
 HOMEPAGE="https://wiki.gnome.org/Design/Apps/Contacts"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~*"
 
 IUSE="v4l"
 
@@ -51,18 +51,13 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=(
-)
-
 src_prepare() {
 	vala_src_prepare
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-D with-cheese=$(usex v4l yes no)
-		-D with-manpage=true
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-D with-manpage=true \
+		$(meson_use v4l with-cheese)
 }

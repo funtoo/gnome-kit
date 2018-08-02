@@ -1,7 +1,7 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
+EAPI=6
 inherit autotools gnome2 linux-info vala
 
 DESCRIPTION="VNC client for the GNOME desktop"
@@ -9,8 +9,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Vinagre"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="*"
-
+KEYWORDS="amd64 ~arm ~ia64 ~ppc ~ppc64 x86"
 IUSE="rdp +ssh spice +telepathy zeroconf"
 
 # cairo used in vinagre-tab
@@ -46,7 +45,6 @@ DEPEND="${RDEPEND}
 	gnome-base/gnome-common
 "
 # gnome-base/gnome-common needed for eautoreconf
-
 pkg_pretend() {
 	# Needed for VNC ssh tunnel, bug #518574
 	CONFIG_CHECK="~IPV6"

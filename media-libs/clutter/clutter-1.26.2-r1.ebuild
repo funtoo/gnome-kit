@@ -82,7 +82,6 @@ src_prepare() {
 	sed -e 's/^\(SUBDIRS =\)[^\]*/\1  accessibility conform/g' \
 		-i tests/Makefile.in || die "in tests sed failed"
 
-	eautoreconf
 	gnome2_src_prepare
 }
 

@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 multilib-minimal meson
+inherit gnome-meson multilib-minimal
 
 DESCRIPTION="Library providing GLib serialization and deserialization for the JSON format"
 HOMEPAGE="https://wiki.gnome.org/Projects/JsonGlib"
@@ -29,15 +29,13 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	# Do not touch CFLAGS with --enable-debug=yes
 	sed -e 's/CFLAGS -g/CFLAGS/' -i "${S}"/configure || die
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 multilib_src_configure() {
-	local emesonargs=(
-		-Dintrospection=$(usex introspection true false)
-		-Ddocs=true
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Ddocs=true \
+		$(meson_use introspection introspection)
 
 	if multilib_is_native_abi; then
 		ln -s "${S}"/doc/html doc/html || die
@@ -45,9 +43,9 @@ multilib_src_configure() {
 }
 
 multilib_src_compile() {
-	meson_src_compile
+	gnome-meson_src_compile
 }
 
 multilib_src_install() {
-	meson_src_install
+	gnome-meson_src_install
 }

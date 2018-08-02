@@ -1,18 +1,18 @@
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 )
 
 inherit gnome2 python-any-r1
 
-DESCRIPTION="GStreamer integration library for Clutter"
 HOMEPAGE="https://blogs.gnome.org/clutter/"
+DESCRIPTION="GStreamer integration library for Clutter"
 
 LICENSE="LGPL-2.1+"
 SLOT="3.0"
-KEYWORDS="*"
-
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86"
 IUSE="X debug examples +introspection udev"
 
 # >=cogl-1.18 provides cogl-2.0-experimental

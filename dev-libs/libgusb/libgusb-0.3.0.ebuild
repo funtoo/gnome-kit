@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 multilib-minimal vala meson
+inherit gnome-meson multilib-minimal vala
 
 DESCRIPTION="GObject wrapper for libusb"
 HOMEPAGE="https://github.com/hughsie/libgusb"
@@ -11,7 +11,7 @@ SRC_URI="https://people.freedesktop.org/~hughsient/releases/${P}.tar.xz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~*"
 
 IUSE="+introspection static-libs +vala"
 REQUIRED_USE="vala? ( introspection )"
@@ -32,22 +32,15 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 	use vala && vala_src_prepare
 }
 
 multilib_src_configure() {
-	local emesonargs=(
-		-Dvapi=$(usex vala true false)
-	)
-
-	meson_src_configure
-
-	if multilib_is_native_abi; then
-		ln -s "${S}"/docs/api/html docs/api/html || die
-	fi
+	gnome-meson_src_configure \
+		$(meson_use vala vapi)
 }
 
 multilib_src_install() {
-	meson_src_install
+	gnome-meson_src_install
 }

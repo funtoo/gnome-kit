@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 vala meson
+inherit gnome-meson vala
 
 DESCRIPTION="Graphical tool for editing the dconf configuration database"
 HOMEPAGE="https://git.gnome.org/browse/dconf-editor"
@@ -32,5 +32,5 @@ src_prepare() {
 }
 
 src_configure() {
-	meson_src_configure
+	gnome-meson_src_configure
 }

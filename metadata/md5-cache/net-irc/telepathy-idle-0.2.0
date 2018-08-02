@@ -11,4 +11,4 @@ REQUIRED_USE=python_targets_python2_7
 SLOT=0
 SRC_URI=https://telepathy.freedesktop.org/releases/telepathy-idle/telepathy-idle-0.2.0.tar.gz
 _eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	multilib	97f470f374f2e94ccab04a2fb21d811e	python-single-r1	2ebea8fbab356d63110245129a67a6dd	python-utils-r1	c9de01becf9df3f8c10aeec3dc693f5d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=c38fcce215a13797ae5a3d678bdf7608
+_md5_=478ba5c88e15040752a7025092f2c988
