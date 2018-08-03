@@ -10,7 +10,7 @@ HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="4"
-IUSE="aqua broadway cloudprint colord cups examples +introspection test vim-syntax wayland X xinerama"
+IUSE="aqua broadway cloudprint colord cups docs examples +introspection test vim-syntax vulkan wayland X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -131,14 +131,19 @@ multilib_src_configure() {
 		-D enable-cups-print-backend=$(usex cups yes no)
 		-D enable-wayland-backend=$(usex wayland true false)
 		-D enable-x11-backend=$(usex X true false)
+		-D enable-vulkan=$(usex vulkan yes no)
 		-D enable-xinerama=$(usex xinerama yes no)
+		-D documentation=$(usex docs true false)
 		-D enable-cloudproviders=false
 		-D enable-mir-backend=false
+		-D enable-win32-backend=false
+		-D disable-modules=false
+		-D enable-test-print-backend=no
 		-D enable-papi-print-backend=no
 		-D build-tests=$(usex test true false)
 		-D demos=$(usex examples true false)
 		-D install-tests=false
-		-D introspection=$(meson_multilib_native_use introspection)
+		-D introspection=$(usex introspection true false)
 		-D man-pages=true
 		-D libdir="${EPREFIX}"/usr/$(get_libdir)
 		-D CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
@@ -168,7 +173,7 @@ multilib_src_install_all() {
 	insinto /etc/gtk-4.0
 	doins "${FILESDIR}"/settings.ini
 	# Skip README.{in,commits,win32} and useless ChangeLog that would get installed by default
-	DOCS=( AUTHORS NEWS README )
+	DOCS=( AUTHORS NEWS README.md )
 	einstalldocs
 }
 

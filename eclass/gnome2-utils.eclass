@@ -469,6 +469,20 @@ gnome2_query_immodules_gtk3() {
 	eend $?
 }
 
+# @FUNCTION: gnome2_query_immodules_gtk4
+# @USAGE: gnome2_query_immodules_gtk4
+# @DESCRIPTION:
+# Updates gtk2 immodules/gdk-pixbuf loaders listing.
+gnome2_query_immodules_gtk4() {
+	local updater=${EPREFIX}/usr/bin/${CHOST}-gtk4-query-immodules
+	[[ ! -x ${updater} ]] && updater=${EPREFIX}/usr/bin/gtk4-query-immodules
+
+	ebegin "Updating gtk4 input method module cache"
+	GTK_IM_MODULE_FILE="${EROOT}usr/$(get_libdir)/gtk-4.0/4.0.0/immodules.cache" \
+		"${updater}" --update-cache
+	eend $?
+}
+
 # @FUNCTION: gnome2_giomodule_cache_update
 # @USAGE: gnome2_giomodule_cache_update
 # @DESCRIPTION:
