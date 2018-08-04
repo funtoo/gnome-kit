@@ -40,7 +40,7 @@ RDEPEND="
 	dev-lang/vala:0.$(echo $(( ${VALA_MAX_API_VERSION/0./} - 2 )))
 	dev-lang/vala:${VALA_MAX_API_VERSION}
 
-	python? ( >=dev-python/pygobject-${PV}:3 )
+	python? ( >=dev-python/pygobject-3.29.2:3 )
 "
 DEPEND=""
 
