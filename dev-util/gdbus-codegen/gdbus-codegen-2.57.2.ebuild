@@ -7,7 +7,7 @@ GNOME_ORG_MODULE="glib"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 PYTHON_REQ_USE="xml"
 
-inherit eutils gnome.org distutils-r1
+inherit eutils gnome.org distutils-r1 meson
 
 DESCRIPTION="GDBus code and documentation generator"
 HOMEPAGE="https://www.gtk.org/"
@@ -28,6 +28,7 @@ S="${WORKDIR}/glib-${PV}/gio/gdbus-2.0/codegen"
 python_prepare_all() {
 	PATCHES=(
 		"${FILESDIR}/${PN}-2.56.0-sitedir.patch"
+		"${FILESDIR}/${PN}-2.57.2-man-page.patch"
 	)
 	distutils-r1_python_prepare_all
 

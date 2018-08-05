@@ -1,0 +1,35 @@
+--- a/meson.build	2018-07-31 13:31:07.000000000 -0500
++++ b/meson.build	2018-08-04 22:26:51.701524085 -0500
+@@ -1898,15 +1898,15 @@
+ 
+ pkg = import('pkgconfig')
+ windows = import('windows')
+-subdir('glib')
+-subdir('gobject')
+-subdir('gthread')
+-subdir('gmodule')
+-subdir('gio')
+-if xgettext.found()
+-  subdir('po')
+-endif
+-subdir('tests')
++# subdir('glib')
++# subdir('gobject')
++# subdir('gthread')
++# subdir('gmodule')
++# subdir('gio')
++# if xgettext.found()
++#   subdir('po')
++# endif
++# subdir('tests')
+ 
+ # Install glib-gettextize executable, if a UNIX-style shell is found
+ if have_sh
+@@ -1962,5 +1962,5 @@
+ 
+ gnome = import('gnome')
+ subdir('docs/reference/glib')
+-subdir('docs/reference/gobject')
+-subdir('docs/reference/gio')
++# subdir('docs/reference/gobject')
++# subdir('docs/reference/gio')
