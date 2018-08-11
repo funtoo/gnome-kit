@@ -7,7 +7,7 @@ GNOME_ORG_MODULE="glib"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 PYTHON_REQ_USE="xml"
 
-inherit eutils gnome.org distutils-r1 meson
+inherit eutils gnome.org meson distutils-r1
 
 DESCRIPTION="GDBus code and documentation generator"
 HOMEPAGE="https://www.gtk.org/"
@@ -23,16 +23,28 @@ DEPEND="${RDEPEND}"
 # To prevent circular dependencies with glib[test]
 PDEPEND=">=dev-libs/glib-${PV}:2"
 
-S="${WORKDIR}/glib-${PV}/gio/gdbus-2.0/codegen"
+src_prepare() {
+	default
+	eapply "${FILESDIR}/${PN}-2.57.2-man-page.patch"
+	eapply "${FILESDIR}/${PN}-2.56.0-sitedir.patch"
+}
 
-python_prepare_all() {
-	PATCHES=(
-		"${FILESDIR}/${PN}-2.56.0-sitedir.patch"
-		"${FILESDIR}/${PN}-2.57.2-man-page.patch"
+src_configure() {
+	local emesonargs=(
+		-Dman=true
 	)
+
+	meson_src_configure
+}
+
+src_compile() {
+	meson_src_compile
+
+	S="${WORKDIR}/gdbus-codegen-${PV}-build/gio/gdbus-2.0/codegen"
+	cd "${S}"
+
 	distutils-r1_python_prepare_all
 
-	sed -e 's:@PYTHON@:python:' gdbus-codegen.in > gdbus-codegen || die
 	cp "${FILESDIR}/setup.py-2.32.4" setup.py || die "cp failed"
 	sed -e "s/@PV@/${PV}/" -i setup.py || die "sed setup.py failed"
 }
@@ -44,5 +56,5 @@ src_test() {
 
 python_install_all() {
 	distutils-r1_python_install_all # no-op, but prevents QA warning
-	doman "${WORKDIR}/glib-${PV}/docs/reference/gio/gdbus-codegen.1"
+	doman "${WORKDIR}/gdbus-codegen-${PV}-build/docs/reference/gio/gdbus-codegen.1"
 }

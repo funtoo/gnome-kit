@@ -4,7 +4,7 @@ EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 
-inherit gnome2 python-r1 virtualx
+inherit gnome-meson python-r1 virtualx
 
 DESCRIPTION="GLib's GObject library bindings for Python"
 HOMEPAGE="https://wiki.gnome.org/Projects/PyGObject"
@@ -52,17 +52,12 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	# Test fail with xvfb but not X
-	sed -e 's/^.*TEST_NAMES=compat_test_pygtk .*;/echo "Test disabled";/' \
-		-i tests/Makefile.{am,in} || die
-
 	# FAIL: test_cairo_font_options (test_cairo.TestPango)
 	# AssertionError: <type 'cairo.SubpixelOrder'> != <type 'int'>
 	sed -e 's/^.*type(font_opts.get_subpixel_order()), int.*/#/' \
 		-i tests/test_cairo.py || die
 
-	gnome2_src_prepare
-	python_copy_sources
+	gnome-meson_src_prepare
 }
 
 src_configure() {
@@ -70,22 +65,16 @@ src_configure() {
 	# glib-2.29.x rdepend on it anyway
 	# docs disabled by upstream default since they are very out of date
 	configuring() {
-		gnome2_src_configure \
-			$(use_enable cairo) \
-			$(use_enable threads thread)
-
-		# Pyflakes tests work only in python2, bug #516744
-		if use test && [[ ${EPYTHON} != python2.7 ]]; then
-			sed -e 's/if type pyflakes/if false/' \
-				-i Makefile || die "sed failed"
-		fi
+		gnome-meson_src_configure \
+		    -Dpython=${EPYTHON} \
+			$(meson_use cairo pycairo)
 	}
 
 	python_foreach_impl run_in_build_dir configuring
 }
 
 src_compile() {
-	python_foreach_impl run_in_build_dir gnome2_src_compile
+	python_foreach_impl run_in_build_dir gnome-meson_src_compile
 }
 
 src_test() {
@@ -103,7 +92,7 @@ src_test() {
 }
 
 src_install() {
-	python_foreach_impl run_in_build_dir gnome2_src_install
+	python_foreach_impl run_in_build_dir gnome-meson_src_install
 
 	dodoc -r examples
 }

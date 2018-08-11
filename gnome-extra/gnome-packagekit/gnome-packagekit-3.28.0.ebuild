@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 virtualx meson
+inherit gnome-meson virtualx
 
 DESCRIPTION="PackageKit client for the GNOME desktop"
 HOMEPAGE="https://www.freedesktop.org/software/PackageKit/"
@@ -45,10 +45,8 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	local emesonargs=(
-		-D enable-tests=false
-		-D enable-systemd=$(usex systemd true false)
-		-D enable-small-form-facto=false
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-D enable-tests=false \
+		-D enable-small-form-facto=false \
+		$(meson_use systemd enable-systemd)
 }

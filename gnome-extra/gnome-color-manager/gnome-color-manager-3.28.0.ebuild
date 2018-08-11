@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="Color profile manager for the GNOME desktop"
 HOMEPAGE="https://git.gnome.org/browse/gnome-color-manager"
@@ -41,10 +41,8 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	local emesonargs=(
-		-D enable-tests=false
-		-D enable-exiv=$(usex raw true false)
-		-D enable-packagekit=$(usex packagekit true false)
-	)
-	meson_src_configure
+	gnome-src-configure \
+		-Denable-tests=false \
+		-Denable-exiv=$(usex raw true false) \
+		-Denable-packagekit=$(usex packagekit true false)
 }

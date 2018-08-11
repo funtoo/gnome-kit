@@ -44,7 +44,7 @@ PATCHES=(
 
 multilib_src_configure() {
 	gnome-meson_src_configure \
-		-Denable-introspection=$(usex introspection yes no) \
+		-Denable-introspection=$(multilib_native_usex introspection yes no) \
 		-Denable-x11=$(usex X yes no) \
 		-Denable_docs=false
 }

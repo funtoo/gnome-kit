@@ -9,7 +9,7 @@ FORCE_PRINT_ELOG=1
 GNOME2_ECLASS_ICONS=1
 GNOME2_ECLASS_GLIB_SCHEMAS=1
 
-inherit gnome2 python-single-r1 vala virtualx readme.gentoo-r1 meson
+inherit gnome2 meson python-single-r1 vala virtualx readme.gentoo-r1
 
 DESCRIPTION="Builder attempts to be an IDE for writing software for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Builder"

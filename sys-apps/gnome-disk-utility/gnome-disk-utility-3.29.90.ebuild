@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="Disk Utility for GNOME using udisks"
 HOMEPAGE="https://git.gnome.org/browse/gnome-disk-utility"
@@ -39,9 +39,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_configure() {
-	local emesonargs=(
-		-D enable-libsystemd=$(usex systemd true false)
-		-D enable-gsd-plugin=$(usex gnome true false)
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		$(meson_use systemd enable-libsystemd) \
+		-Denable-gsd-plugin=$(usex gnome true false)
 }

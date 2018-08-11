@@ -152,12 +152,11 @@ multilib_src_install() {
 	insinto /etc/env.d/rust
 	doins "${T}/provider-${P}"
 
-	LIB32="/usr/lib32/rustlib/${CHOST_x86}"
+	LIB32="usr/lib32/rustlib/${CHOST_x86}"
 
-	if [[ ${ABI} == "amd64" && -e "${LIB32}" ]]; then
-		dosym "${LIB32}" /usr/lib64/rustlib/"${CHOST_x86}"
+	if [[ ${ABI} == "amd64" && -e "${D}${LIB32}" ]]; then
+		dosym "${D}${LIB32}" /usr/lib64/rustlib/"${CHOST_x86}"
 	fi
-
 }
 
 pkg_postinst() {

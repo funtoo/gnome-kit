@@ -1,0 +1,11 @@
+--- a/gdk-pixbuf/gdk-pixbuf-enum-types.h.template	2018-08-09 07:39:11.189834326 -0500
++++ b/gdk-pixbuf/gdk-pixbuf-enum-types.h.template	2018-08-09 07:39:25.125833831 -0500
+@@ -15,7 +15,7 @@
+ 
+ /*** BEGIN file-production ***/
+ 
+-/* enumerations from "@filename@" */
++/* enumerations from "@basename@" */
+ /*** END file-production ***/
+ 
+ /*** BEGIN value-header ***/

@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="Personal task manager"
 HOMEPAGE="https://wiki.gnome.org/Apps/Todo"
@@ -32,17 +32,15 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	local emesonargs=(
-		-D enable-background-plugin=true
-		-D enable-dark-theme-plugin=true
-		-D enable-scheduled-panel-plugin=true
-		-D enable-score-plugin=true
-		-D enable-today-panel-plugin=true
-		-D enable-unscheduled-panel-plugin=true
-		-D enable-todo-txt-plugin=true
-		-D enable-todoist-plugin=true
-		-D enable-gtk-doc=false
-		-D enable-introspection=$(usex introspection true false)
-	)
-	meson_src_configure
+	gnome-meson_src-configure \
+		-Denable-background-plugin=true \
+		-Denable-dark-theme-plugin=true \
+		-Denable-scheduled-panel-plugin=true \
+		-Denable-score-plugin=true \
+		-Denable-today-panel-plugin=true \
+		-Denable-unscheduled-panel-plugin=true \
+		-Denable-todo-txt-plugin=true \
+		-Denable-todoist-plugin=true \
+		-Denable-gtk-doc=false \
+		$(meson_use introspection instrospection)
 }

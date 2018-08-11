@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="An easy-to-use application that will help you to discover what to cook today"
 HOMEPAGE="https://wiki.gnome.org/Apps/Recipes"
@@ -30,14 +30,12 @@ src_prepare() {
 	cd "${S}"
 	rm -rf build
 
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-D enable-autoar=$(usex archive yes no)
-		-D enable-gspell=$(usex spell yes no)
-		-D enable-canberra=$(usex sound yes no)
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Denable-autoar=$(usex archive yes no) \
+		-Denable-gspell=$(usex spell yes no) \
+		-Denable-canberra=$(usex sound yes no)
 }

@@ -44,4 +44,3 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/itstool
 	virtual/pkgconfig
 "
-# eautoreconf requires yelp-tools

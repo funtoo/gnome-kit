@@ -31,6 +31,8 @@ DEPEND="${RDEPEND}
 	vala? ( $(vala_depend) )
 "
 
+PATCHES=("${FILESDIR}/${P}-introspection.patch")
+
 src_prepare() {
 	gnome-meson_src_prepare
 	use vala && vala_src_prepare
@@ -38,6 +40,7 @@ src_prepare() {
 
 multilib_src_configure() {
 	gnome-meson_src_configure \
+		-Dintrospection=$(multilib_native_usex introspection true false) \
 		$(meson_use vala vapi)
 }
 

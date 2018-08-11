@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="GNOME power management service"
 HOMEPAGE="https://projects.gnome.org/gnome-power-manager/"
@@ -37,9 +37,6 @@ DEPEND="${COMMON_DEPEND}
 # docbook-xml-dtd-4.4 and -4.1.2 are used by the xml files under ${S}/docs.
 
 src_configure() {
-	local emesonargs=(
-		-D enable-tests=$(usex test true false)
-	)
-
-	meson_src_configure
+	gnome-meson_src_configure \
+		$(meson_use test enable-tests)
 }

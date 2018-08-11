@@ -35,7 +35,7 @@ src_prepare() {
 
 src_configure() {
 	local emasonargs=(
-		-D enable-introspection=$(usex introspection true false)
+		$(meson_use introspection introspection)
 	)
 	python_foreach_impl meson_src_configure
 }

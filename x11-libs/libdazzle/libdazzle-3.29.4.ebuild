@@ -5,7 +5,7 @@ GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 multilib python-r1 vala meson
+inherit gnome-meson multilib python-r1 vala
 
 DESCRIPTION="Companion library to GObject and GTK+"
 HOMEPAGE="https://github.com/chergert/libdazzle"
@@ -26,5 +26,5 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	use vala && vala_src_prepare
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }

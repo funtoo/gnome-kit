@@ -5,7 +5,7 @@ EAPI=6
 GNOME2_LA_PUNT="yes"
 GNOME2_EAUTORECONF="yes"
 
-inherit flag-o-matic gnome2 multilib multilib-minimal
+inherit flag-o-matic gnome-meson multilib multilib-minimal
 
 DESCRIPTION="Image loading library for GTK+"
 HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
@@ -13,7 +13,7 @@ HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
 LICENSE="LGPL-2+"
 SLOT="2"
 KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="X debug +introspection jpeg jpeg2k tiff test"
+IUSE="X doc +introspection jpeg jpeg2k tiff test"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.48.0:2[${MULTILIB_USEDEP}]
@@ -44,47 +44,36 @@ MULTILIB_CHOST_TOOLS=(
 PATCHES=(
 	# Do not run lowmem test on uclibc
 	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
-	eapply "${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
+	"${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
+	"${FILESDIR}"/${P}-enum.patch
 )
 
 src_prepare() {
-	# This will avoid polluting the pkg-config file with versioned libpng,
-	# which is causing problems with libpng14 -> libpng15 upgrade
-	# See upstream bug #667068
-	# First check that the pattern is present, to catch upstream changes on bumps,
-	# because sed doesn't return failure code if it doesn't do any replacements
-	grep -q  'l in libpng16' configure || die "libpng check order has changed upstream"
-	sed -e 's:l in libpng16:l in libpng libpng16:' -i configure || die
-	[[ ${CHOST} == *-solaris* ]] && append-libs intl
-
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 multilib_src_configure() {
 	# png always on to display icons
-	ECONF_SOURCE="${S}" \
-	gnome2_src_configure \
-		$(usex debug --enable-debug=yes "") \
-		$(use_with jpeg libjpeg) \
-		$(use_with jpeg2k libjasper) \
-		$(use_with tiff libtiff) \
-		$(multilib_native_use_enable introspection) \
-		$(use_with X x11) \
-		--with-libpng
-
-	# work-around gtk-doc out-of-source brokedness
-	if multilib_is_native_abi; then
-		ln -s "${S}"/docs/reference/${PN}/html docs/reference/${PN}/html || die
-	fi
+	gnome-meson_src_configure \
+		-Dpng=true \
+		-Dman=true \
+		-Dbuiltin_loaders=none \
+		-Dgir=$(multilib_native_usex introspection true false) \
+		$(meson_use tiff tiff) \
+		$(meson_use jpeg jpeg) \
+		$(meson_use jpeg2k jasper) \
+		$(meson_use X x11) \
+		$(meson_use doc docs) \
+		$(meson_use test installed_tests)
 }
 
 multilib_src_install() {
 	# Parallel install fails when no gdk-pixbuf is already installed, bug #481372
-	MAKEOPTS="${MAKEOPTS} -j1" gnome2_src_install
+	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_install
 }
 
 pkg_preinst() {
-	gnome2_pkg_preinst
+	gnome-meson_pkg_preinst
 
 	multilib_pkg_preinst() {
 		# Make sure loaders.cache belongs to gdk-pixbuf alone
@@ -104,7 +93,7 @@ pkg_postinst() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	multilib_foreach_abi gnome2_pkg_postinst
+	multilib_foreach_abi gnome-meson_pkg_postinst
 
 	# Migration snippet for when this was handled by gtk+
 	if [ -e "${EROOT}"usr/lib/gtk-2.0/2.*/loaders ]; then
@@ -115,7 +104,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome2_pkg_postrm
+	gnome-meson_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		rm -f "${EROOT}"usr/lib*/${PN}-2.0/2.10.0/loaders.cache

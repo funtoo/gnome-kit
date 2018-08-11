@@ -12,8 +12,8 @@ PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 # pkg-config
 GNOME2_LA_PUNT="yes"
 
-inherit autotools bash-completion-r1 eutils flag-o-matic gnome2 libtool linux-info \
-	multilib multilib-minimal pax-utils python-r1  toolchain-funcs versionator virtualx
+inherit bash-completion-r1 flag-o-matic gnome2 linux-info meson \
+	multilib-minimal ninja-utils python-r1 toolchain-funcs versionator virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="https://www.gtk.org/"
@@ -22,7 +22,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2+"
 SLOT="2"
-IUSE="dbus debug fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
+IUSE="dbus +doc fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
 REQUIRED_USE="
 	utils? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )
@@ -55,7 +55,7 @@ DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	>=dev-libs/libxslt-1.0
 	>=sys-devel/gettext-0.11
-	>=dev-util/gtk-doc-1.20
+	doc? ( >=dev-util/gtk-doc-1.20 )
 	systemtap? ( >=dev-util/systemtap-1.3 )
 	test? (
 		sys-devel/gdb
@@ -89,7 +89,7 @@ pkg_setup() {
 
 src_prepare() {
 	# Prevent build failure in stage3 where pkgconfig is not available, bug #481056
-	mv -f "${WORKDIR}"/pkg-config-*/pkg.m4 "${S}"/m4macros/ || die
+	# mv -f "${WORKDIR}"/pkg-config-*/pkg.m4 "${S}"/m4macros/ || die
 
 	if use test; then
 		# Disable tests requiring dev-util/desktop-file-utils when not installed, bug #286629, upstream bug #629163
@@ -110,32 +110,18 @@ src_prepare() {
 		# https://bugzilla.gnome.org/show_bug.cgi?id=722604
 		sed -i -e "/timer\/stop/d" glib/tests/timer.c || die
 		sed -i -e "/timer\/basic/d" glib/tests/timer.c || die
-
-		ewarn "Tests for search-utils have been skipped"
-		sed -i -e "/search-utils/d" glib/tests/Makefile.am || die
 	else
 		# Don't build tests, also prevents extra deps, bug #512022
-		sed -i -e 's/ tests//' {.,gio,glib}/Makefile.am || die
+		sed -i -e "s/ subdir('tests')//" {.,gio,glib}/meson.build || die
 	fi
 
 	# gdbus-codegen is a separate package
-	eapply "${FILESDIR}"/${PN}-2.56.0-external-gdbus-codegen.patch
-
-	# Leave python shebang alone - handled by python_replicate_script
-	# We could call python_setup and give configure a valid --with-python
-	# arg, but that would mean a build dep on python when USE=utils.
-	sed -e '/${PYTHON}/d' \
-		-i glib/Makefile.{am,in} || die
-
-	# Also needed to prevent cross-compile failures, see bug #267603
-	eautoreconf
+	eapply "${FILESDIR}"/${PN}-2.57.2-external-gdbus-codegen.patch
 
 	gnome2_src_prepare
-
-	epunt_cxx
 }
 
-multilib_src_configure() {
+src_configure() {
 	# Avoid circular depend with dev-util/pkgconfig and
 	# native builds (cross-compiles won't need pkg-config
 	# in the target ROOT to work here)
@@ -161,35 +147,28 @@ multilib_src_configure() {
 		export ac_cv_func_posix_get{pwuid,grgid}_r=yes
 	fi
 
-	local myconf
-
-	case "${CHOST}" in
-		*-mingw*) myconf="${myconf} --with-threads=win32" ;;
-		*)        myconf="${myconf} --with-threads=posix" ;;
-	esac
-
 	# libelf used only by the gresource bin
-	ECONF_SOURCE="${S}" gnome2_src_configure ${myconf} \
-		$(usex debug --enable-debug=yes ' ') \
-		$(use_enable xattr) \
-		$(use_enable fam) \
-		$(use_enable kernel_linux libmount) \
-		$(use_enable selinux) \
-		$(use_enable static-libs static) \
-		$(use_enable systemtap dtrace) \
-		$(use_enable systemtap systemtap) \
-		$(multilib_native_use_enable utils libelf) \
-		--disable-compile-warnings \
-		--enable-man \
-		--with-pcre=system \
-		--with-xml-catalog="${EPREFIX}/etc/xml/catalog"
+	# Prevent conflicts with i686 cross toolchain, bug 559726
+	tc-export AR CC NM OBJCOPY RANLIB
+	multilib-minimal_src_configure
+}
 
-	if multilib_is_native_abi; then
-		local d
-		for d in glib gio gobject; do
-			ln -s "${S}"/docs/reference/${d}/html docs/reference/${d}/html || die
-		done
-	fi
+multilib_src_configure() {
+	local emesonargs=(
+		-Dman=true
+		-Dinternal_pcre=false
+		-Dforce_posix_threads=false
+		-Dgtk_doc=$(multilib_native_usex doc true false)
+		$(meson_use xattr xattr)
+		$(meson_use fam fam)
+		$(meson_use kernel_linux libmount)
+		$(meson_use selinux selinux)
+		$(meson_use systemtap dtrace)
+		$(meson_use systemtap systemtap)
+		$(meson_use test installed_tests)
+	)
+
+	meson_src_configure
 }
 
 multilib_src_test() {
@@ -214,7 +193,7 @@ multilib_src_test() {
 }
 
 multilib_src_install() {
-	gnome2_src_install completiondir="$(get_bashcompdir)"
+	meson_src_install completiondir="$(get_bashcompdir)"
 	keepdir /usr/$(get_libdir)/gio/modules
 }
 

@@ -58,6 +58,6 @@ src_prepare() {
 
 src_configure() {
 	gnome-meson_src_configure \
-		-D with-manpage=true \
+		-Dwith-manpage=true \
 		$(meson_use v4l with-cheese)
 }

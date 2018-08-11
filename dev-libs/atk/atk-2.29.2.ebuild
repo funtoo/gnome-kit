@@ -24,16 +24,15 @@ DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.19.2 )
 "
 
+PATCHES=("${FILESDIR}/${P}-enum.patch")
+
 src_prepare() {
 	gnome-meson_src_prepare
-
-	# Building out of sources fails, https://bugzilla.gnome.org/show_bug.cgi?id=752507
-	multilib_copy_sources
 }
 
 multilib_src_configure() {
 	gnome-meson_src_configure \
-		$(meson_use introspection introspection) \
+		-Dintrospection=$(multilib_native_usex introspection true false) \
 		$(meson_use doc docs)
 }
 

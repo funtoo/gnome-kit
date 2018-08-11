@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="Manage your online calendars with simple and modern interface"
 HOMEPAGE="https://wiki.gnome.org/Apps/Calendar"

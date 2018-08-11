@@ -35,7 +35,7 @@ src_prepare() {
 multilib_src_configure() {
 	gnome-meson_src_configure \
 		-Ddocs=true \
-		$(meson_use introspection introspection)
+		-Dintrospection=$(multilib_native_usex introspection true false)
 
 	if multilib_is_native_abi; then
 		ln -s "${S}"/doc/html doc/html || die

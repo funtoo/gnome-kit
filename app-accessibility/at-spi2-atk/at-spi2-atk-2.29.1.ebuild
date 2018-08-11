@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2 multilib-minimal virtualx
+inherit gnome-meson multilib-minimal virtualx
 
 DESCRIPTION="Gtk module for bridging AT-SPI to Atk"
 HOMEPAGE="https://wiki.gnome.org/Accessibility"
@@ -32,19 +32,17 @@ src_prepare() {
 	# Upstream forgot to put this in tarball, upstream #770615
 	cp -n "${FILESDIR}"/${PN}-2.20.0-tests-data/*.xml "${S}"/tests/data/ || die
 
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 multilib_src_configure() {
-	ECONF_SOURCE=${S} \
-	gnome2_src_configure \
-		--enable-p2p \
-		$(use_with test tests)
+	gnome-meson_src_configure \
+		-Ddisable_p2p=false
 }
 
 multilib_src_test() {
 	virtx emake check TESTS_ENVIRONMENT="dbus-run-session"
 }
 
-multilib_src_compile() { gnome2_src_compile; }
-multilib_src_install() { gnome2_src_install; }
+multilib_src_compile() { gnome-meson_src_compile; }
+multilib_src_install() { gnome-meson_src_install; }

@@ -124,29 +124,29 @@ multilib_src_configure() {
 	#	--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
 
 	local emesonargs=(
-		-D enable-quartz-backend=$(usex aqua true false)
-		-D enable-broadway-backend=$(usex broadway true false)
-		-D enable-cloudprint-print-backend=$(usex cloudprint yes no)
-		-D enable-colord=$(usex colord yes no)
-		-D enable-cups-print-backend=$(usex cups yes no)
-		-D enable-wayland-backend=$(usex wayland true false)
-		-D enable-x11-backend=$(usex X true false)
-		-D enable-vulkan=$(usex vulkan yes no)
-		-D enable-xinerama=$(usex xinerama yes no)
-		-D documentation=$(usex docs true false)
-		-D enable-cloudproviders=false
-		-D enable-mir-backend=false
-		-D enable-win32-backend=false
-		-D disable-modules=false
-		-D enable-test-print-backend=no
-		-D enable-papi-print-backend=no
-		-D build-tests=$(usex test true false)
-		-D demos=$(usex examples true false)
-		-D install-tests=false
-		-D introspection=$(usex introspection true false)
-		-D man-pages=true
-		-D libdir="${EPREFIX}"/usr/$(get_libdir)
-		-D CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
+		-Denable-quartz-backend=$(usex aqua true false)
+		-Denable-broadway-backend=$(usex broadway true false)
+		-Denable-cloudprint-print-backend=$(usex cloudprint yes no)
+		-Denable-colord=$(usex colord yes no)
+		-Denable-cups-print-backend=$(usex cups yes no)
+		-Denable-wayland-backend=$(usex wayland true false)
+		-Denable-x11-backend=$(usex X true false)
+		-Denable-vulkan=$(usex vulkan yes no)
+		-Denable-xinerama=$(usex xinerama yes no)
+		-Ddocumentation=$(usex docs true false)
+		-Denable-cloudproviders=false
+		-Denable-mir-backend=false
+		-Denable-win32-backend=false
+		-Ddisable-modules=false
+		-Denable-test-print-backend=no
+		-Denable-papi-print-backend=no
+		-Dbuild-tests=$(usex test true false)
+		-Ddemos=$(usex examples true false)
+		-Dinstall-tests=false
+		-Dintrospection=$(multilib_native_usex introspection true false)
+		-Dman-pages=true
+		-Dlibdir="${EPREFIX}"/usr/$(get_libdir)
+		-DCUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
 	)
 
 	meson_src_configure

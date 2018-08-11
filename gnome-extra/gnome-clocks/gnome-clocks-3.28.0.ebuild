@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 vala meson
+inherit gnome-meson vala
 
 DESCRIPTION="Clocks application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Clocks"
@@ -31,5 +31,5 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	vala_src_prepare
-	gnome2_src_prepare
+	gnome_meson_src_prepare
 }

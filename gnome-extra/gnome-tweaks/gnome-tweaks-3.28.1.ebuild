@@ -4,7 +4,7 @@ EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 
-inherit gnome2 python-single-r1 meson
+inherit gnome-meson python-single-r1
 
 DESCRIPTION="Tool to customize GNOME 3 options"
 HOMEPAGE="https://wiki.gnome.org/action/show/Apps/GnomeTweakTool"
@@ -45,10 +45,10 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 	python_fix_shebang "${D}"usr/bin/"${PN}"
 }

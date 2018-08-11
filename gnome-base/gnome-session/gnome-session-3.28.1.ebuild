@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit autotools gnome-meson
+inherit gnome-meson
 
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="https://git.gnome.org/browse/gnome-session"

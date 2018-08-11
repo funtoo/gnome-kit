@@ -31,7 +31,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
 	dev-libs/vala-common
-	dev-lang/rust
+	>=dev-lang/rust-1.26
 	>=dev-util/gtk-doc-am-1.13
 	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
 	vala? ( $(vala_depend) )
@@ -41,7 +41,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=653323
 	eapply "${FILESDIR}/${PN}-2.42.2-gtk-optional.patch"
-	eapply "${FILESDIR}"/${PN}-2.42.2-dladdr-libdl.patch
+	eapply "${FILESDIR}"/${PN}-2.43.3-dladdr-libdl.patch
 
 	eautoreconf
 

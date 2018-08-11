@@ -13,11 +13,12 @@ diff -ur librsvg-2.42.2.orig/configure.ac librsvg-2.42.2/configure.ac
  # ===========================================================================
 --- librsvg-2.42.2.orig/Makefile.am	2018-05-11 00:24:02.424962390 +0200
 +++ librsvg-2.42.2/Makefile.am	2018-05-11 00:22:55.024962390 +0200
-@@ -169,6 +169,7 @@
+@@ -187,7 +187,8 @@
  librsvg_@RSVG_API_MAJOR_VERSION@_la_LIBADD = \
  	$(LIBRSVG_LIBS) 	\
  	$(LIBM)			\
 +	$(LIBDL)		\
- 	$(RUST_LIB)
- 
+ 	$(RUST_LIB)		\
+ 	$(DLOPEN_LIBS)
+
  librsvgincdir = $(includedir)/librsvg-$(RSVG_API_VERSION)/librsvg

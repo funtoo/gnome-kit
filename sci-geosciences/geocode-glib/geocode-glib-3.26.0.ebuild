@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="GLib geocoding library that uses the Yahoo! Place Finder service"
 HOMEPAGE="https://git.gnome.org/browse/geocode-glib"
@@ -30,20 +30,18 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	local emesonargs=(
-		-D enable-introspection=$(usex introspection true false)
-		-D enable-installed-tests=$(usex test true false)
-		-D enable-gtk-doc=true
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Denable-introspection=$(usex introspection true false) \
+		-Denable-installed-tests=$(usex test true false) \
+		-Denable-gtk-doc=true
 }
 
 src_compile() {
 	export MAKEOPTS="-j1"
-	meson_src_compile
+	gnome-meson_src_compile
 }
 
 src_install() {
         export MAKEOPTS="-j1"
-        meson_src_install
+        gnome-meson_src_install
 }

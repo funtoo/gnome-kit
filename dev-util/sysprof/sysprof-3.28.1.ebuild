@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome2 linux-info systemd meson
+inherit gnome-meson linux-info systemd
 
 DESCRIPTION="System-wide Linux Profiler"
 HOMEPAGE="http://sysprof.com/"
@@ -40,16 +40,14 @@ pkg_pretend() {
 src_configure() {
 	# introspection & vala not use in build system
 	# --with-sysprofd=host currently unavailable from ebuild
-	local emesonargs=(
-		-Denable_gtk=$(usex gtk true false)
-		-Dwith_sysprofd=$(usex systemd bundled none)
-		-Dwith-systemdsystemunitdir=$(systemd_get_systemunitdir)
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Dwith-systemdsystemunitdir=$(systemd_get_systemunitdir) \
+		-Dwith_sysprofd=$(usex systemd bundled none) \
+		$(meson_use gtk enable_gtk)
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 
 	elog "On many systems, especially amd64, it is typical that with a modern"
 	elog "toolchain -fomit-frame-pointer for gcc is the default, because"

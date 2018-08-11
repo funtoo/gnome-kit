@@ -59,7 +59,7 @@ EXPORT_FUNCTIONS src_configure src_compile src_test src_install
 if [[ -z ${_MESON_ECLASS} ]]; then
 _MESON_ECLASS=1
 
-MESON_DEPEND=">=dev-util/meson-0.42.1
+MESON_DEPEND=">=dev-util/meson-0.40.0
 	>=dev-util/ninja-1.7.2"
 
 # @ECLASS-VARIABLE: MESON_AUTO_DEPEND
@@ -218,24 +218,9 @@ meson_src_configure() {
 		--wrap-mode nodownload
 		)
 
-	# Both meson(1) and _meson_create_cross_file need these
-	local -x AR=$(tc-getAR)
-	local -x CC=$(tc-getCC)
-	local -x CXX=$(tc-getCXX)
-	local -x PKG_CONFIG=$(tc-getPKG_CONFIG)
-	local -x STRIP=$(tc-getSTRIP)
-
-	if tc-is-cross-compiler; then
+	if tc-is-cross-compiler || [[ ${ABI} != ${DEFAULT_ABI-${ABI}} ]]; then
 		_meson_create_cross_file || die "unable to write meson cross file"
-		mesonargs+=(
-			--cross-file "${T}/meson.${CHOST}"
-		)
-		# In cross mode, meson uses these as the native/build programs
-		AR=$(tc-getBUILD_AR)
-		CC=$(tc-getBUILD_CC)
-		CXX=$(tc-getBUILD_CXX)
-		PKG_CONFIG=$(tc-getBUILD_PKG_CONFIG)
-		STRIP=$(tc-getBUILD_STRIP)
+		mesonargs+=( --cross-file "${T}/meson.${CHOST}.${ABI}" )
 	fi
 
 	# https://bugs.gentoo.org/625396

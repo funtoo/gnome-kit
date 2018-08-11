@@ -4,7 +4,7 @@ EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 
-inherit autotools gnome2 multilib pax-utils python-r1 systemd meson
+inherit gnome2 meson multilib pax-utils python-r1 systemd
 
 DESCRIPTION="Provides core UI functions for the GNOME 3 desktop"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"

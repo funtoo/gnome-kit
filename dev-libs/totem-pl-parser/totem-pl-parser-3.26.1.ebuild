@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome-meson
 
 DESCRIPTION="Playlist parsing library"
 HOMEPAGE="https://developer.gnome.org/totem-pl-parser/stable/"
@@ -43,15 +43,13 @@ src_prepare() {
 		-e 's:\(g_test_add_func.*/parser/parsability.*\):/*\1/:'\
 		-i plparse/tests/parser.c || die "sed failed"
 
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local emesonargs=(
-		-D enable-quvi=$(usex quvi yes no)
-		-D enable-libarchive=$(usex archive yes no)
-		-D enable-libgcrypt=$(usex crypt yes no)
-		-D enable-gtk-doc=true
-	)
-	meson_src_configure
+	gnome-meson_src_configure \
+		-Denable-quvi=$(usex quvi yes no) \
+		-Denable-libarchive=$(usex archive yes no) \
+		-Denable-libgcrypt=$(usex crypt yes no) \
+		-Denable-gtk-doc=true
 }
