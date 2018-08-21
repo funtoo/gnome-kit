@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome-meson
+inherit gnome-meson vala
 
 DESCRIPTION="Disk usage browser for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Baobab"
@@ -31,8 +31,11 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	default
+	vala_src_prepare
+}
+
 src_configure() {
-	gnome-meson_src_configure \
-		VALAC=$(type -P true) \
-		VAPIGEN=$(type -P true)
+	gnome-meson_src_configure
 }

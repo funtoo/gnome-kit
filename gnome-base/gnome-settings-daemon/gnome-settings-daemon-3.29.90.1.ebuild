@@ -113,7 +113,7 @@ pkg_setup() {
 src_configure() {
 	gnome-meson_src_configure \
 		-Dudev_dir="$(get_udevdir)"/rules.d \
-		$(meson_use gudev udev) \
+		$(meson_use udev gudev) \
 		$(meson_use cups cups) \
 		$(meson_use networkmanager network_manager) \
 		$(meson_use smartcard smartcard ) \

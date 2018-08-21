@@ -41,7 +41,10 @@ DOC_CONTENTS="To get previous working directory inherited in new opened
 	tab you will need to add the following line to your ~/.bashrc:\n
 	. /etc/profile.d/vte-2.91.sh"
 
-PATCHES=( "${FILESDIR}"/gnome-terminal-3.28.1-notify-open-title-transparency.patch )
+PATCHES=(
+	"${FILESDIR}"/gnome-terminal-3.28.1-notify-open-title-transparency.patch
+	"${FILESDIR}"/gnome-terminal-3.28.2-new-vte.patch
+)
 
 src_prepare() {
 	gnome2_src_prepare

@@ -10,7 +10,7 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~*"
 IUSE="elogind examples gtk +introspection jit kde nls pam selinux test"
 
 CDEPEND="
@@ -74,14 +74,6 @@ src_prepare() {
 
 	# disable broken test - bug #624022
 	sed -i -e "/^SUBDIRS/s/polkitbackend//" test/Makefile.am || die
-
-	# From PolicyKit:
-	# 	https://cgit.freedesktop.org/polkit/commit/?id=5d998d5c7ae36ffd4a7099d382f26d289c759ba1
-	eapply -R "${FILESDIR}"/${PN}-0.114-configure-enable-elogind-support-in-policykit.patch
-
-	# From Gentoo:
-	# 	https://bugs.gentoo.org/598615
-	eapply "${FILESDIR}"/${PN}-0.114-elogind.patch
 
 	# Fix cross-building, bug #590764, elogind patch, bug #598615
 	eautoreconf

@@ -32,7 +32,7 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	gnome-meson_src-configure \
+	gnome-meson_src_configure \
 		-Denable-background-plugin=true \
 		-Denable-dark-theme-plugin=true \
 		-Denable-scheduled-panel-plugin=true \

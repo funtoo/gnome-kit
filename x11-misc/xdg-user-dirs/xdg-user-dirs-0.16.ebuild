@@ -22,7 +22,7 @@ DEPEND="app-text/docbook-xml-dtd:4.3
 PDEPEND="gtk? ( x11-misc/xdg-user-dirs-gtk )"
 
 DOCS=( AUTHORS ChangeLog NEWS )
-PATCHES=( "${FILESDIR}"/${PN}-0.15-libiconv.patch )
+PATCHES=( "${FILESDIR}"/${PN}-0.16-libiconv.patch )
 
 src_prepare() {
 	default

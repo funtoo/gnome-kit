@@ -31,5 +31,5 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	vala_src_prepare
-	gnome_meson_src_prepare
+	gnome-meson_src_prepare
 }

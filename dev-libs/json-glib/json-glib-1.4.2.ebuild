@@ -11,7 +11,7 @@ LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="~*"
 
-IUSE="debug +introspection"
+IUSE="+doc debug +introspection"
 
 RDEPEND="
 	>=dev-libs/glib-2.37.6:2[${MULTILIB_USEDEP}]
@@ -26,6 +26,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 "
 
+PATCHES=( "${FILESDIR}/${P}-enum.patch" )
+
 src_prepare() {
 	# Do not touch CFLAGS with --enable-debug=yes
 	sed -e 's/CFLAGS -g/CFLAGS/' -i "${S}"/configure || die
@@ -34,12 +36,8 @@ src_prepare() {
 
 multilib_src_configure() {
 	gnome-meson_src_configure \
-		-Ddocs=true \
+		-Ddocs=$(multilib_native_usex doc true false) \
 		-Dintrospection=$(multilib_native_usex introspection true false)
-
-	if multilib_is_native_abi; then
-		ln -s "${S}"/doc/html doc/html || die
-	fi
 }
 
 multilib_src_compile() {

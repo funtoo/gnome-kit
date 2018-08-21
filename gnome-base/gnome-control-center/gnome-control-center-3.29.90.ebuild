@@ -122,13 +122,6 @@ DEPEND="${COMMON_DEPEND}
 #	gnome-base/gnome-common
 #	sys-devel/autoconf-archive
 
-PATCHES=(
-	"${FILESDIR}/${P}"-shell-dont-set-per-panel-icon.patch
-	"${FILESDIR}/${P}"-shell-icon-name-helper-returns-symbolic-name.patch
-	"${FILESDIR}/${P}"-thunderbolt-new-panel-for-device-management.patch
-	"${FILESDIR}/${P}"-thunderbolt-move-to-the-devices-page.patch
-)
-
 src_prepare() {
 	gnome-meson_src_prepare
 }

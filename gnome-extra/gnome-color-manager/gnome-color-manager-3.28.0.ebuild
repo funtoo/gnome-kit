@@ -41,7 +41,7 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	gnome-src-configure \
+	gnome-meson_src_configure \
 		-Denable-tests=false \
 		-Denable-exiv=$(usex raw true false) \
 		-Denable-packagekit=$(usex packagekit true false)

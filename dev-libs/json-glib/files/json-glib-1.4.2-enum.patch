@@ -1,0 +1,11 @@
+--- a/json-glib/json-enum-types.h.in	2018-08-11 19:11:48.174221320 -0500
++++ b/json-glib/json-enum-types.h.in	2018-08-11 19:12:01.058220862 -0500
+@@ -14,7 +14,7 @@
+ /*** END file-header ***/
+ 
+ /*** BEGIN file-production ***/
+-/* enumerations from "@filename@" */
++/* enumerations from "@basename@" */
+ /*** END file-production ***/
+ 
+ /*** BEGIN file-tail ***/

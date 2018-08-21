@@ -10,4 +10,4 @@ PDEPEND=gtk? ( x11-misc/xdg-user-dirs-gtk )
 SLOT=0
 SRC_URI=https://user-dirs.freedesktop.org/releases/xdg-user-dirs-0.16.tar.gz
 _eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=e3e49f41bc565aa37e17cbc3b79f8790
+_md5_=2cae66f6bc49a83ff931fd42f8f84c8d

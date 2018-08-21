@@ -20,8 +20,8 @@ COMMON_DEPEND="
 	gnome-base/gsettings-desktop-schemas
 	>=dev-libs/libgdata-0.15.2:0=[gnome-online-accounts]
 	media-libs/babl
-	>=media-libs/gegl-0.3.15:0.3[cairo,jpeg2k,raw]
-	media-libs/gexiv2
+	>=media-libs/gegl-0.4.6:0.4[cairo,jpeg2k,raw]
+	>=media-libs/gexiv2-0.10.8
 	>=media-libs/grilo-0.3.0:0.3=
 	>=media-libs/libpng-1.6:0=
 	>=net-libs/gnome-online-accounts-3.8:=
