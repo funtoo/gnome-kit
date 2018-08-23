@@ -1,0 +1,40 @@
+--- a/gtk/meson.build	2018-08-23 14:49:01.597142211 -0500
++++ b/gtk/meson.build	2018-08-23 14:48:44.965044353 -0500
+@@ -916,16 +916,16 @@
+ # the object just does nothing being in the deplist
+ gtk_deps += libintl_dep
+ 
+-gtk_settings_schemas = [
+-  'org.gtk.Settings.FileChooser.gschema.xml',
+-  'org.gtk.Settings.ColorChooser.gschema.xml',
+-  'org.gtk.Settings.EmojiChooser.gschema.xml',
+-  'org.gtk.Settings.Debug.gschema.xml',
+-]
+-install_data(gtk_settings_schemas, install_dir: gtk_schemasdir)
+-gnome.compile_schemas(depend_files: files(gtk_settings_schemas),
+-                      build_by_default: true)
+-gtk_schema_build_dir = meson.current_build_dir()
++# gtk_settings_schemas = [
++#   'org.gtk.Settings.FileChooser.gschema.xml',
++#   'org.gtk.Settings.ColorChooser.gschema.xml',
++#   'org.gtk.Settings.EmojiChooser.gschema.xml',
++#   'org.gtk.Settings.Debug.gschema.xml',
++# ]
++# install_data(gtk_settings_schemas, install_dir: gtk_schemasdir)
++# gnome.compile_schemas(depend_files: files(gtk_settings_schemas),
++#                       build_by_default: true)
++# gtk_schema_build_dir = meson.current_build_dir()
+ 
+ # Check for more things
+ if cc.has_header('langinfo.h')
+@@ -1102,8 +1102,8 @@
+ install_data('gtkbuilder.rng',
+              install_dir: join_paths(gtk_datadir, 'gtk-4.0'))
+ 
+-install_data('gtkbuilder.loc', 'gtkbuilder.its',
+-             install_dir: join_paths(gtk_datadir, 'gettext/its'))
++#install_data('gtkbuilder.loc', 'gtkbuilder.its',
++#             install_dir: join_paths(gtk_datadir, 'gettext/its'))
+ 
+ if quartz_enabled
+   # HACK: install_data() doesn't allow installing under a different name (#1487)

@@ -121,7 +121,7 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/gnome-shell-3.28.0-improve-motd-handling.patch"
 	"${FILESDIR}/gnome-shell-3.28.0-improve-screen-blanking.patch"
-	# "${FILESDIR}/gnome-shell-3.29.90-tcrypt.patch"
+	"${FILESDIR}/gnome-shell-3.29.90-tcrypt.patch"
 )
 
 src_prepare() {

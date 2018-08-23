@@ -26,7 +26,7 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15.1[introspection?,${MULTILIB_USEDEP}]
-	>=dev-libs/graphene-1.8.0[introspection?,${MULTILIB_USEDEP}]
+	>=media-libs/graphene-1.8.0[introspection?,${MULTILIB_USEDEP}]
 	>=dev-libs/glib-2.53.7:2[${MULTILIB_USEDEP}]
 	media-libs/fontconfig[${MULTILIB_USEDEP}]
 	>=media-libs/libepoxy-1.4[X(+)?,${MULTILIB_USEDEP}]
@@ -42,8 +42,8 @@ COMMON_DEPEND="
 	cups? ( >=net-print/cups-1.2[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
 	wayland? (
-		>=dev-libs/wayland-1.9.91[${MULTILIB_USEDEP}]
-		>=dev-libs/wayland-protocols-1.9
+		>=dev-libs/wayland-1.14.91[${MULTILIB_USEDEP}]
+		>=dev-libs/wayland-protocols-1.16
 		media-libs/mesa[wayland,${MULTILIB_USEDEP}]
 		>=x11-libs/libxkbcommon-0.2[${MULTILIB_USEDEP}]
 	)
@@ -94,10 +94,6 @@ PDEPEND="
 	vim-syntax? ( app-vim/gtk-syntax )
 "
 
-MULTILIB_CHOST_TOOLS=(
-	/usr/bin/gtk4-query-immodules$(get_exeext)
-)
-
 strip_builddir() {
 	local rule=$1
 	shift
@@ -108,7 +104,6 @@ strip_builddir() {
 }
 
 src_prepare() {
-
 	eapply "${FILESDIR}/${PF}"-noschema.patch
 
 	gnome2_src_prepare
@@ -145,7 +140,6 @@ multilib_src_configure() {
 		-Dinstall-tests=false
 		-Dintrospection=$(multilib_native_usex introspection true false)
 		-Dman-pages=true
-		-Dlibdir="${EPREFIX}"/usr/$(get_libdir)
 		-DCUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
 	)
 
@@ -195,12 +189,6 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-
-	multilib_pkg_postinst() {
-		gnome2_query_immodules_gtk4 \
-			|| die "Update immodules cache failed (for ${ABI})"
-	}
-	multilib_parallel_foreach_abi multilib_pkg_postinst
 
 	if ! has_version "app-text/evince"; then
 		elog "Please install app-text/evince for print preview functionality."

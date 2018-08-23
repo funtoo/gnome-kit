@@ -8,7 +8,7 @@ DESCRIPTION="GTK+ & GNOME Accessibility Toolkit"
 HOMEPAGE="https://wiki.gnome.org/Accessibility"
 
 LICENSE="LGPL-2+"
-SLOT="1"
+SLOT="0"
 KEYWORDS="*"
 
 IUSE="doc +introspection nls"

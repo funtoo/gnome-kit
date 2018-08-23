@@ -1,6 +1,5 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: gnome2-utils.eclass
 # @MAINTAINER:
@@ -19,7 +18,7 @@
 inherit eutils xdg-utils
 
 case "${EAPI:-0}" in
-	0|1|2|3|4|5|6) ;;
+	0|1|2|3|4|5|6|7) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -100,12 +99,12 @@ gnome2_environment_reset() {
 	export GST_REGISTRY="${T}/registry.xml"
 
 	# Ensure we don't rely on dconf/gconf while building, bug #511946
-	export GSETTINGS_BACKEND="memory" 
+	export GSETTINGS_BACKEND="memory"
 
 	if has ${EAPI:-0} 6; then
 		# Try to cover the packages honoring this variable, bug #508124
 		export GST_INSPECT="$(type -P true)"
-		
+
 		# Stop relying on random DISPLAY variable values, bug #534312
 		unset DISPLAY
 	fi
@@ -231,40 +230,35 @@ gnome2_icon_cache_update() {
 		return
 	fi
 
-	if [[ -z "${GNOME2_ECLASS_ICONS}" ]]; then
-		debug-print "No icon cache to update"
-		return
-	fi
-
 	ebegin "Updating icons cache"
 
 	local retval=0
 	local fails=( )
 
-	for dir in ${GNOME2_ECLASS_ICONS}
+	for dir in "${EROOT%/}"/usr/share/icons/*
 	do
-		if [[ -f "${EROOT}${dir}/index.theme" ]] ; then
+		if [[ -f "${dir}/index.theme" ]] ; then
 			local rv=0
 
-			"${updater}" -qf "${EROOT}${dir}"
+			"${updater}" -qf "${dir}"
 			rv=$?
 
 			if [[ ! $rv -eq 0 ]] ; then
-				debug-print "Updating cache failed on ${EROOT}${dir}"
+				debug-print "Updating cache failed on ${dir}"
 
 				# Add to the list of failures
-				fails[$(( ${#fails[@]} + 1 ))]="${EROOT}${dir}"
+				fails+=( "${dir}" )
 
 				retval=2
 			fi
-		elif [[ $(ls "${EROOT}${dir}") = "icon-theme.cache" ]]; then
+		elif [[ $(ls "${dir}") = "icon-theme.cache" ]]; then
 			# Clear stale cache files after theme uninstallation
-			rm "${EROOT}${dir}/icon-theme.cache"
+			rm "${dir}/icon-theme.cache"
 		fi
 
-		if [[ -z $(ls "${EROOT}${dir}") ]]; then
+		if [[ -z $(ls "${dir}") ]]; then
 			# Clear empty theme directories after theme uninstallation
-			rmdir "${EROOT}${dir}"
+			rmdir "${dir}"
 		fi
 	done
 
@@ -387,11 +381,6 @@ gnome2_schemas_update() {
 		return
 	fi
 
-	if [[ -z ${GNOME2_ECLASS_GLIB_SCHEMAS} ]]; then
-		debug-print "No GSettings schemas to update"
-		return
-	fi
-
 	ebegin "Updating GSettings schemas"
 	${updater} --allow-any-name "$@" "${EROOT%/}/usr/share/glib-2.0/schemas" &>/dev/null
 	eend $?
@@ -465,20 +454,6 @@ gnome2_query_immodules_gtk3() {
 
 	ebegin "Updating gtk3 input method module cache"
 	GTK_IM_MODULE_FILE="${EROOT}usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache" \
-		"${updater}" --update-cache
-	eend $?
-}
-
-# @FUNCTION: gnome2_query_immodules_gtk4
-# @USAGE: gnome2_query_immodules_gtk4
-# @DESCRIPTION:
-# Updates gtk2 immodules/gdk-pixbuf loaders listing.
-gnome2_query_immodules_gtk4() {
-	local updater=${EPREFIX}/usr/bin/${CHOST}-gtk4-query-immodules
-	[[ ! -x ${updater} ]] && updater=${EPREFIX}/usr/bin/gtk4-query-immodules
-
-	ebegin "Updating gtk4 input method module cache"
-	GTK_IM_MODULE_FILE="${EROOT}usr/$(get_libdir)/gtk-4.0/4.0.0/immodules.cache" \
 		"${updater}" --update-cache
 	eend $?
 }
