@@ -43,7 +43,7 @@ DOC_CONTENTS="To get previous working directory inherited in new opened
 
 PATCHES=(
 	"${FILESDIR}"/gnome-terminal-3.30.0-notify-open-title-transparency.patch
-	# "${FILESDIR}"/gnome-terminal-3.28.2-new-vte.patch
+	"${FILESDIR}"/gnome-terminal-3.28.2-new-vte.patch
 )
 
 src_prepare() {

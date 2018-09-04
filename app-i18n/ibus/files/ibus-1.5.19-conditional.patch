@@ -1,0 +1,10 @@
+--- a/bindings/pygobject/Makefile.am	2018-09-04 11:08:44.150813845 -0500
++++ b/bindings/pygobject/Makefile.am	2018-09-04 11:08:57.874896283 -0500
+@@ -29,6 +29,7 @@
+ overrides_PYTHON =				\
+ 	gi/overrides/IBus.py			\
+ 	$(NULL)
++endif
+ 
+ TESTS =
+ 

@@ -4832,15 +4832,14 @@ diff --git a/src/terminal-screen.c b/src/terminal-screen.c
 index cdf1a2baecfc..faf906c763e7 100644
 --- a/src/terminal-screen.c
 +++ b/src/terminal-screen.c
-@@ -88,13 +88,17 @@ struct _TerminalScreenPrivate
+@@ -88,13 +88,16 @@
    GSettings *profile; /* never NULL */
    guint profile_changed_id;
    guint profile_forgotten_id;
 -  char *title;
-+  char *raw_title, *raw_icon_title;
-+  char *cooked_title, *cooked_icon_title;
++  char *raw_title;
++  char *cooked_title;
 +  char *override_title;
-+  gboolean icon_title_set;
    char *initial_working_directory;
    char **initial_env;
    char **override_command;
@@ -4851,20 +4850,21 @@ index cdf1a2baecfc..faf906c763e7 100644
    GSList *match_tags;
    guint launch_child_source_id;
  };
-@@ -114,5 +118,4 @@ enum {
+@@ -112,7 +115,6 @@
+   PROP_0,
+   PROP_PROFILE,
    PROP_TITLE,
 -  PROP_DESCRIPTION,
    PROP_INITIAL_ENVIRONMENT
  };
  
-@@ -161,8 +164,14 @@ static void terminal_screen_icon_title_changed        (VteTerminal *vte_terminal
+@@ -161,8 +163,13 @@
  
  static void update_color_scheme                      (TerminalScreen *screen);
  
 +static gboolean terminal_screen_format_title (TerminalScreen *screen, const char *raw_title, char **old_cooked_title);
 +
 +static void terminal_screen_cook_title      (TerminalScreen *screen);
-+static void terminal_screen_cook_icon_title (TerminalScreen *screen);
 +
  static char* terminal_screen_check_hyperlink   (TerminalScreen            *screen,
                                                  GdkEvent                  *event);
@@ -4872,17 +4872,17 @@ index cdf1a2baecfc..faf906c763e7 100644
  static void terminal_screen_check_extra (TerminalScreen *screen,
                                           GdkEvent       *event,
                                           char           **number_info);
-@@ -401,6 +410,9 @@ terminal_screen_init (TerminalScreen *screen)
+@@ -401,6 +408,9 @@
    gtk_target_table_free (targets, n_targets);
    gtk_target_list_unref (target_list);
  
 +  priv->override_title = NULL;
 +  priv->user_title = FALSE;
-+  
++
    g_signal_connect (screen, "window-title-changed",
                      G_CALLBACK (terminal_screen_window_title_changed),
                      screen);
-@@ -437,9 +449,6 @@ terminal_screen_get_property (GObject *object,
+@@ -437,9 +447,6 @@
        case PROP_TITLE:
          g_value_set_string (value, terminal_screen_get_title (screen));
          break;
@@ -4892,13 +4892,15 @@ index cdf1a2baecfc..faf906c763e7 100644
        default:
          G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
          break;
-@@ -465,5 +474,4 @@ terminal_screen_set_property (GObject *object,
+@@ -463,7 +470,6 @@
+         terminal_screen_set_initial_environment (screen, g_value_get_boxed (value));
+         break;
        case PROP_TITLE:
 -      case PROP_DESCRIPTION:
          /* not writable */
        default:
          G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-@@ -551,13 +559,6 @@ terminal_screen_class_init (TerminalScreenClass *klass)
+@@ -551,13 +557,6 @@
                            NULL,
                            G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
  
@@ -4912,7 +4914,7 @@ index cdf1a2baecfc..faf906c763e7 100644
    g_object_class_install_property
      (object_class,
       PROP_INITIAL_ENVIRONMENT,
-@@ -643,7 +644,11 @@ terminal_screen_finalize (GObject *object)
+@@ -643,7 +642,9 @@
  
    terminal_screen_set_profile (screen, NULL);
  
@@ -4920,12 +4922,10 @@ index cdf1a2baecfc..faf906c763e7 100644
 +  g_free (priv->raw_title);
 +  g_free (priv->cooked_title);
 +  g_free (priv->override_title);
-+  g_free (priv->raw_icon_title);
-+  g_free (priv->cooked_icon_title);
    g_free (priv->initial_working_directory);
    g_strfreev (priv->override_command);
    g_strfreev (priv->initial_env);
-@@ -690,28 +695,8 @@ terminal_screen_new (GSettings       *profile,
+@@ -690,28 +691,8 @@
                           g_settings_get_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS_KEY),
                           g_settings_get_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS_KEY));
  
@@ -4956,27 +4956,26 @@ index cdf1a2baecfc..faf906c763e7 100644
  
    priv->initial_working_directory = g_strdup (working_dir);
  
-@@ -766,46 +751,175 @@ terminal_screen_exec (TerminalScreen *screen,
-   return terminal_screen_do_exec (screen, data, error);
+@@ -767,27 +748,138 @@
  }
  
-+const char*
+ const char*
 +terminal_screen_get_raw_title (TerminalScreen *screen)
 +{
 +  TerminalScreenPrivate *priv = screen->priv;
-+  
++
 +  if (priv->raw_title)
 +    return priv->raw_title;
 +
 +  return "";
 +}
 +
- const char*
++const char*
  terminal_screen_get_title (TerminalScreen *screen)
  {
 -  return vte_terminal_get_window_title (VTE_TERMINAL (screen));
 +  TerminalScreenPrivate *priv = screen->priv;
-+  
++
 +  if (priv->cooked_title == NULL)
 +    terminal_screen_cook_title (screen);
 +
@@ -4985,29 +4984,6 @@ index cdf1a2baecfc..faf906c763e7 100644
 +    return priv->cooked_title;
 +  else
 +    return "";
- }
- 
- const char*
- terminal_screen_get_icon_title (TerminalScreen *screen)
- {
--  return vte_terminal_get_icon_title (VTE_TERMINAL (screen));
-+  TerminalScreenPrivate *priv = screen->priv;
-+  
-+  if (priv->cooked_icon_title == NULL)
-+    terminal_screen_cook_icon_title (screen);
-+
-+  /* cooked_icon_title may still be NULL */
-+  if (priv->cooked_icon_title != NULL)
-+    return priv->cooked_icon_title;
-+  else
-+    return "";
- }
- 
- gboolean
- terminal_screen_get_icon_title_set (TerminalScreen *screen)
- {
--  return vte_terminal_get_icon_title (VTE_TERMINAL (screen)) != NULL;
-+  return screen->priv->icon_title_set;
  }
  
 -char *
@@ -5039,7 +5015,7 @@ index cdf1a2baecfc..faf906c763e7 100644
 + * @screen:
 + * @raw_title: main ingredient
 + * @titleptr <inout>: pointer of the current title string
-+ * 
++ *~
 + * Format title according @format, and stores it in <literal>*titleptr</literal>.
 + * Always ensures that *titleptr will be non-NULL.
 + *
@@ -5112,41 +5088,25 @@ index cdf1a2baecfc..faf906c763e7 100644
 +      *titleptr = g_string_free (title, FALSE);
 +      return TRUE;
 +    }
- 
--  return g_strdup_printf ("%s — %d",
--                          title && title[0] ? title : _("Terminal"),
--                          screen->priv->child_pid);
++
 +  g_string_free (title, TRUE);
 +  return FALSE;
 +}
 +
-+static void 
++static void
 +terminal_screen_cook_title (TerminalScreen *screen)
 +{
 +  TerminalScreenPrivate *priv = screen->priv;
-+  
+ 
+-  return g_strdup_printf ("%s — %d",
+-                          title && title[0] ? title : _("Terminal"),
+-                          screen->priv->child_pid);
 +  if (terminal_screen_format_title (screen, priv->raw_title, &priv->cooked_title))
 +    g_object_notify (G_OBJECT (screen), "title");
-+}
-+
-+static void 
-+terminal_screen_cook_icon_title (TerminalScreen *screen)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  if (terminal_screen_format_title (screen, priv->raw_icon_title, &priv->cooked_icon_title))
-+    g_object_notify (G_OBJECT (screen), "icon-title");
  }
  
  static void
- terminal_screen_profile_changed_cb (GSettings     *profile,
-                                     const char    *prop_name,
--                                    TerminalScreen *screen)
-+                                   TerminalScreen *screen)
- {
-   TerminalScreenPrivate *priv = screen->priv;
-   GObject *object = G_OBJECT (screen);
-@@ -829,9 +943,11 @@ terminal_screen_profile_changed_cb (GSettings     *profile,
+@@ -829,9 +921,10 @@
      }
  
    if (!prop_name ||
@@ -5154,12 +5114,20 @@ index cdf1a2baecfc..faf906c763e7 100644
        prop_name == I_(TERMINAL_PROFILE_TITLE_KEY))
      {
 -      g_object_notify (object, "description");
-+      terminal_screen_cook_title (screen);
-+      terminal_screen_cook_icon_title (screen);
++        terminal_screen_cook_title (screen);
      }
  
    if (gtk_widget_get_realized (GTK_WIDGET (screen)) &&
-@@ -1113,7 +1229,6 @@ terminal_screen_set_profile (TerminalScreen *screen,
+@@ -873,7 +966,7 @@
+       prop_name == I_(TERMINAL_PROFILE_SCROLLBACK_UNLIMITED_KEY))
+     {
+       glong lines = g_settings_get_boolean (profile, TERMINAL_PROFILE_SCROLLBACK_UNLIMITED_KEY) ?
+-		    -1 : g_settings_get_int (profile, TERMINAL_PROFILE_SCROLLBACK_LINES_KEY);
++                    -1 : g_settings_get_int (profile, TERMINAL_PROFILE_SCROLLBACK_LINES_KEY);
+       vte_terminal_set_scrollback_lines (vte_terminal, lines);
+     }
+ 
+@@ -1113,7 +1206,6 @@
      g_object_unref (old_profile);
  
    g_object_notify (G_OBJECT (screen), "profile");
@@ -5167,7 +5135,7 @@ index cdf1a2baecfc..faf906c763e7 100644
  }
  
  GSettings*
-@@ -1444,8 +1559,6 @@ spawn_result_cb (VteTerminal *terminal,
+@@ -1444,8 +1536,6 @@
  
    priv->child_pid = pid;
  
@@ -5176,7 +5144,7 @@ index cdf1a2baecfc..faf906c763e7 100644
    if (error) {
      GtkWidget *info_bar;
  
-@@ -1757,33 +1870,83 @@ terminal_screen_focus_in (GtkWidget     *widget,
+@@ -1757,33 +1847,45 @@
    return GTK_WIDGET_CLASS (terminal_screen_parent_class)->focus_in_event (widget, event);
  }
  
@@ -5186,117 +5154,68 @@ index cdf1a2baecfc..faf906c763e7 100644
 +static void
 +terminal_screen_set_dynamic_title (TerminalScreen *screen,
 +                                   const char     *title,
-+				   gboolean	  userset)
++                                   gboolean      userset)
  {
    TerminalScreenPrivate *priv = screen->priv;
  
 -  g_return_if_fail (TERMINAL_IS_SCREEN (screen));
 +  g_assert (TERMINAL_IS_SCREEN (screen));
-+  
+ 
+-  if (g_strcmp0 (priv->title, title) == 0)
 +  if ((priv->user_title && !userset) ||
 +      (priv->raw_title && title &&
 +       strcmp (priv->raw_title, title) == 0))
-+    return;
- 
--  if (g_strcmp0 (priv->title, title) == 0)
-+  g_free (priv->raw_title);
-+  priv->raw_title = g_strdup (title);
-+  terminal_screen_cook_title (screen);
-+}
-+
-+static void
-+terminal_screen_set_dynamic_icon_title (TerminalScreen *screen,
-+                                        const char     *icon_title,
-+					gboolean       userset)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+  GObject *object = G_OBJECT (screen);
-+  
-+  g_assert (TERMINAL_IS_SCREEN (screen));
-+
-+  if ((priv->user_title && !userset) ||  
-+      (priv->icon_title_set &&
-+       priv->raw_icon_title &&
-+       icon_title &&
-+       strcmp (priv->raw_icon_title, icon_title) == 0))
      return;
  
 -  g_free (priv->title);
 -  priv->title = title && title[0] ? g_strdup (title) : NULL;
-+  g_object_freeze_notify (object);
-+
-+  g_free (priv->raw_icon_title);
-+  priv->raw_icon_title = g_strdup (icon_title);
-+  priv->icon_title_set = TRUE;
-+
-+  g_object_notify (object, "icon-title-set");
-+  terminal_screen_cook_icon_title (screen);
++  g_free (priv->raw_title);                                                                                                        
++  priv->raw_title = g_strdup (title);                                                                                              
++  terminal_screen_cook_title (screen);                                                                                             
++}                                                                                                                                  
  
 -  g_object_notify (G_OBJECT (screen), "description");
-+  g_object_thaw_notify (object);
- }
- 
--const char*
--terminal_screen_get_user_title (TerminalScreen *screen)
 +void
 +terminal_screen_set_override_title (TerminalScreen *screen,
 +                                    const char     *title)
++{
++  TerminalScreenPrivate *priv = screen->priv;                                                                                      
++  char *old_title;                                                                                                                 
++
++  old_title = priv->override_title;                                                                                                
++  priv->override_title = g_strdup (title);                                                                                         
++  g_free (old_title);                                                                                                              
++
++  terminal_screen_set_dynamic_title (screen, title, FALSE);
+ }
+ 
+ const char*
+-terminal_screen_get_user_title (TerminalScreen *screen)
++terminal_screen_get_dynamic_title (TerminalScreen *screen)
  {
 -  TerminalScreenPrivate *priv;
-+  TerminalScreenPrivate *priv = screen->priv;
-+  char *old_title;
- 
--  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
-+  old_title = priv->override_title;
-+  priv->override_title = g_strdup (title);
-+  g_free (old_title);
+-
+   g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
  
 -  priv = screen->priv;
-+  terminal_screen_set_dynamic_title (screen, title, FALSE);
-+  terminal_screen_set_dynamic_icon_title (screen, title, FALSE);
-+}
- 
+-
 -  return priv->title ? priv->title : _("Terminal");
-+const char*
-+terminal_screen_get_dynamic_title (TerminalScreen *screen)
-+{
-+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
-+  
 +  return screen->priv->raw_title;
-+}
-+
-+const char*
-+terminal_screen_get_dynamic_icon_title (TerminalScreen *screen)
-+{
-+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
-+  
-+  return screen->priv->raw_icon_title;
  }
  
  /**
-@@ -1816,15 +1979,18 @@ static void
+@@ -1816,7 +1918,9 @@
  terminal_screen_window_title_changed (VteTerminal *vte_terminal,
                                        TerminalScreen *screen)
  {
 -  g_object_notify (G_OBJECT (screen), "title");
-+  terminal_screen_set_dynamic_title (screen,
-+                                     vte_terminal_get_window_title (vte_terminal),
-+				     FALSE);
++  terminal_screen_set_dynamic_title (screen,                                                                                       
++                                     vte_terminal_get_window_title (vte_terminal),                                                 
++                                     FALSE);                                                                                        
  }
  
  static void
- terminal_screen_icon_title_changed (VteTerminal *vte_terminal,
-                                     TerminalScreen *screen)
- {
--  g_object_notify (G_OBJECT (screen), "icon-title");
--  g_object_notify (G_OBJECT (screen), "icon-title-set");
-+  terminal_screen_set_dynamic_icon_title (screen,
-+                                          vte_terminal_get_icon_title (vte_terminal),
-+					  FALSE);
- }
- 
- static void
-@@ -1839,8 +2005,6 @@ terminal_screen_child_exited (VteTerminal *terminal,
+@@ -1839,8 +1943,6 @@
  
    priv->child_pid = -1;
    
@@ -5305,7 +5224,7 @@ index cdf1a2baecfc..faf906c763e7 100644
    action = g_settings_get_enum (priv->profile, TERMINAL_PROFILE_EXIT_ACTION_KEY);
    
    switch (action)
-@@ -1884,6 +2048,24 @@ terminal_screen_child_exited (VteTerminal *terminal,
+@@ -1884,6 +1986,23 @@
      }
  }
  
@@ -5323,26 +5242,62 @@ index cdf1a2baecfc..faf906c763e7 100644
 +    {
 +      priv->user_title = TRUE;
 +      terminal_screen_set_dynamic_title (screen, text, TRUE);
-+      terminal_screen_set_dynamic_icon_title (screen, text, TRUE);
 +    }
 +}
 +
  static void
  terminal_screen_notification_received (VteTerminal *terminal,
                                         const char  *summary,
+@@ -2151,8 +2270,8 @@
+ 
+ void
+ terminal_screen_get_size (TerminalScreen *screen,
+-			  int       *width_chars,
+-			  int       *height_chars)
++                          int       *width_chars,
++                          int       *height_chars)
+ {
+   VteTerminal *terminal = VTE_TERMINAL (screen);
+ 
+@@ -2162,8 +2281,8 @@
+ 
+ void
+ terminal_screen_get_cell_size (TerminalScreen *screen,
+-			       int                  *cell_width_pixels,
+-			       int                  *cell_height_pixels)
++                               int                  *cell_width_pixels,
++                               int                  *cell_height_pixels)
+ {
+   VteTerminal *terminal = VTE_TERMINAL (screen);
+ 
+@@ -2193,11 +2312,11 @@
+     {
+       TagData *tag_data = (TagData*) tags->data;
+       if (tag_data->tag == tag)
+-	{
+-	  if (flavor)
+-	    *flavor = tag_data->flavor;
+-	  return match;
+-	}
++        {
++          if (flavor)
++            *flavor = tag_data->flavor;
++          return match;
++        }
+     }
+ 
+   g_free (match);
 diff --git a/src/terminal-screen.h b/src/terminal-screen.h
 index 63f9c47e115a..51472685f402 100644
 --- a/src/terminal-screen.h
 +++ b/src/terminal-screen.h
-@@ -103,15 +103,19 @@ void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
+@@ -103,13 +103,16 @@ void         terminal_screen_set_initial_environment (TerminalScreen  *screen,
                                                        char           **argv);
  char **      terminal_screen_get_initial_environment (TerminalScreen  *screen);
  
 -const char *terminal_screen_get_user_title     (TerminalScreen *screen);
 +const char* terminal_screen_get_raw_title      (TerminalScreen *screen);
  const char* terminal_screen_get_title          (TerminalScreen *screen);
- const char* terminal_screen_get_icon_title     (TerminalScreen *screen);
- gboolean    terminal_screen_get_icon_title_set (TerminalScreen *screen);
 -char *      terminal_screen_get_description    (TerminalScreen *screen);
  
  void terminal_screen_set_user_title (TerminalScreen *screen,
@@ -5352,7 +5307,6 @@ index 63f9c47e115a..51472685f402 100644
 +                                                    const char     *title);
 +
 +const char *terminal_screen_get_dynamic_title      (TerminalScreen *screen);
-+const char *terminal_screen_get_dynamic_icon_title (TerminalScreen *screen);
  
  char *terminal_screen_get_current_dir (TerminalScreen *screen);
  
