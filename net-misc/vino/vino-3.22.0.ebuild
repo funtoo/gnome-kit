@@ -63,3 +63,8 @@ src_configure() {
 		$(use_with zlib) \
 		--with-systemduserunitdir="$(systemd_get_userunitdir)"
 }
+
+src_install() {
+	gnome2_src_install
+	dosym '/usr/share/applications/vino-server.desktop' /etc/xdg/autostart/vino-server.desktop
+}
