@@ -103,14 +103,6 @@ that are currently available with packages include:
 # autotools stuff for autotools plugin; gtkmm/autoconf-archive for C++ template
 # gjs/gettext/mono/PHPize stuff, but most of these are probably installed for other reasons anyways, when needed inside IDE
 
-PATCHES=(
-	"${FILESDIR}"/${PV}-python37-fix.patch # async 3.7 keyword usage removal
-	"${FILESDIR}"/${PV}-jedi-0.12-compat.patch # preliminary jedi-0.12 compatibility from 3.29.9x/git
-	"${FILESDIR}"/${PV}-valac.patch # Make valapack honor VALAC env var - https://gitlab.gnome.org/GNOME/gnome-builder/merge_requests/109
-	"${FILESDIR}"/${PV}-fix-docs-option.patch # Fix USE=doc to work without USE=gtk-doc
-	"${FILESDIR}"/${PV}-fix-tests-schemadir.patch # Fix tests GSETTINGS_SCHEMA_DIR handling (or tests fail on fresh install) - https://gitlab.gnome.org/GNOME/gnome-builder/merge_requests/111
-)
-
 llvm_check_deps() {
 	has_version "sys-devel/clang:${LLVM_SLOT}"
 }

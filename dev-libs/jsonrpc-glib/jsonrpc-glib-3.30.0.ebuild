@@ -12,7 +12,7 @@ LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="debug +introspection +vala"
+IUSE="doc +introspection +vala"
 
 RDEPEND="
 	>=dev-libs/glib-2.53.4:2[${MULTILIB_USEDEP}]
@@ -31,4 +31,19 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	use vala && vala_src_prepare
 	gnome-meson_src_prepare
+}
+
+multilib_src_configure() {
+	gnome-meson_src_configure \
+		-Dwith_introspection=$(multilib_native_usex introspection true false) \
+		$(meson_use vala with_vapi) \
+		$(meson_use doc enable_gtk_doc)
+}
+
+multilib_src_compile() {
+	gnome-meson_src_compile
+}
+
+multilib_src_install() {
+	gnome-meson_src_install
 }

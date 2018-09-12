@@ -3,7 +3,7 @@
 EAPI="6"
 PYTHON_COMPAT=( python2_7 )
 
-inherit gnome2 python-any-r1 virtualx
+inherit gnome-meson python-any-r1 virtualx
 
 DESCRIPTION="Gnome install & update software"
 HOMEPAGE="https://wiki.gnome.org/Apps/Software"
@@ -50,29 +50,33 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# valgrind fails with SIGTRAP
-	sed -e 's/TESTS = .*/TESTS =/' \
-		-i "${S}"/src/Makefile.{am,in} || die
-
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
 	# FIXME: investigate limba and firmware update support
-	gnome2_src_configure \
-		--enable-man \
-		--enable-packagekit \
-		--enable-polkit \
-		--disable-firmware \
-		--disable-limba \
-		--disable-ostree \
-		--disable-rpm \
-		--disable-steam \
-		--disable-xdg-app \
-		$(use_enable spell gtkspell) \
-		$(use_enable test dogtail) \
-		$(use_enable test tests) \
-		$(use_enable udev gudev)
+	gnome-meson_src_configure \
+		-Denable-man=true \
+		-Denable-packagekit=true \
+		-Denable-polkit=true \
+		-Denable-shell-extensions=true \
+		-Denable-firmware=false \
+		-Denable-limba=false \
+		-Denable-rpm-ostree=false \
+		-Denable-flatpak=false \
+		-Denable-fwupd=false \
+		-Denable-steam=false \
+		-Denable-odrs=false \
+		-Denable-ubuntuone=false \
+		-Denable-ubuntu-reviews=false \
+		-Denable-webapps=false \
+		-Denable-snap=false \
+		-Denable-external-appstream=false \
+		-Denable-valgrind=false \
+		$(meson_use gnome enable-gnome-desktop) \
+		$(meson_use spell enable-gspell) \
+		$(meson_use test enable-tests) \
+		$(meson_use udev enable-gudev)
 }
 
 src_test() {

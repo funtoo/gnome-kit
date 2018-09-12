@@ -4,7 +4,7 @@ EAPI="6"
 VALA_USE_DEPEND="vapigen"
 VALA_MIN_API_VERSION="0.28"
 
-inherit gnome2 linux-info readme.gentoo-r1 vala
+inherit gnome-meson linux-info readme.gentoo-r1 vala
 
 DESCRIPTION="Simple GNOME 3 application to access remote or virtual systems"
 HOMEPAGE="https://wiki.gnome.org/Apps/Boxes"
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="*" # qemu-kvm[spice] is 64bit-only
 
 # We force 'bindist' due to licenses from gnome-boxes-nonfree
-IUSE="" #bindist
+IUSE="rdp" #bindist
 
 # NOTE: sys-fs/* stuff is called via exec()
 # FIXME: ovirt is not available in tree
@@ -32,13 +32,15 @@ RDEPEND="
 	>=app-emulation/qemu-1.3.1[spice,smartcard,usbredir]
 	>=app-emulation/libvirt-0.9.3[libvirtd,qemu]
 	>=app-emulation/libvirt-glib-0.2.3
+	>=app-emulation/libgovirt-0.3.4
 	>=x11-libs/gtk+-3.19.8:3
-	>=net-libs/gtk-vnc-0.4.4[gtk3]
-	app-crypt/libsecret
+	>=net-libs/gtk-vnc-0.4.4[gtk3,vala]
+	app-crypt/libsecret[vala]
 	app-emulation/spice[smartcard]
-	>=net-misc/spice-gtk-0.32[gtk3,smartcard,usbredir]
+	>=net-misc/spice-gtk-0.32[gtk3,smartcard,usbredir,vala]
 	virtual/libusb:1
 
+	rdp? ( net-misc/freerdp )
 	>=app-misc/tracker-0.16:0=[iso]
 
 	>=sys-apps/util-linux-2.20
@@ -77,28 +79,23 @@ pkg_pretend() {
 }
 
 src_prepare() {
-	# Do not change CFLAGS, wondering about VALA ones but appears to be
-	# needed as noted in configure comments below
-	sed 's/CFLAGS="$CFLAGS -O0 -ggdb3"//' -i configure{.ac,} || die
-
 	vala_src_prepare
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
 	# debug needed for splitdebug proper behavior (cardoe), bug #????
-	gnome2_src_configure \
-		--enable-debug \
-		--disable-strict-cc \
-		--disable-ovirt
+	gnome-meson_src_configure \
+		-Dovirt=true \
+		$(meson_use rdp rdp)
 }
 
 src_install() {
-	gnome2_src_install
+	gnome-meson_src_install
 	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 	readme.gentoo_print_elog
 }

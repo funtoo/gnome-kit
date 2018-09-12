@@ -7,7 +7,7 @@ EAPI=6
 # https://bugzilla.redhat.com/show_bug.cgi?id=979450
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 
-inherit gnome2 python-single-r1 toolchain-funcs
+inherit gnome-meson python-single-r1 toolchain-funcs
 
 DESCRIPTION="An API documentation browser for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Devhelp"
@@ -15,7 +15,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Devhelp"
 LICENSE="GPL-2+"
 SLOT="0/3-3" # subslot = 3-(libdevhelp-3 soname version)
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
-IUSE="gedit +introspection"
+IUSE="doc gedit +introspection"
 REQUIRED_USE="gedit? ( ${PYTHON_REQUIRED_USE} )"
 
 COMMON_DEPEND="
@@ -36,22 +36,17 @@ DEPEND="${COMMON_DEPEND}
 	${PYTHON_DEPS}
 	>=dev-util/gtk-doc-am-1.25
 	virtual/pkgconfig
+	>=x11-libs/amtk-5.0
 "
 pkg_setup() {
 	use gedit && python-single-r1_pkg_setup
 }
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome-meson_src_prepare
 }
 
 src_configure() {
-	local myconf=""
-	# ICC is crazy, silence warnings (bug #154010)
-	if [[ $(tc-getCC) == "icc" ]] ; then
-		myconf="--with-compile-warnings=no"
-	fi
-	gnome2_src_configure \
-		$(use_enable introspection) \
-		${myconf}
+	gnome-meson_src_configure \
+		$(meson_use doc gtk_doc)
 }
