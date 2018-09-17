@@ -14,6 +14,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 COMMON_DEPEND="dev-libs/glib:2"
+
 RDEPEND="${COMMON_DEPEND}
 	app-eselect/eselect-gnome-shell-extensions
 	>=dev-libs/gjs-1.48
@@ -33,7 +34,9 @@ https://github.com/andyholmes/gnome-shell-extension-gsconnect/wiki/Installation"
 
 src_install() {
 	meson_src_install
-	# Rule for install is not complete, only ready for install-zip
+
+	# Rule for install is not complete, only works for install-zip
+	# target
 	glib-compile-schemas "${ED}"/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/schemas || die
 
 	readme.gentoo_create_doc
