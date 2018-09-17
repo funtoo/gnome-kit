@@ -44,10 +44,6 @@ src_prepare() {
 	# avoid autoreconf
 	sed -e 's/-Wall //g' -i configure || die "sed failed"
 
-	# From GNOME:
-	# 	https://git.gnome.org/browse/gucharmap/commit/?id=4ad97abc893ded93296f7c157631369fbddcf90a
-	eapply "${FILESDIR}"/${PN}-10.0.5-build-explicitly-link-to-libdl.patch
-
 	eautoreconf
 
 	use vala && vala_src_prepare
