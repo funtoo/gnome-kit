@@ -26,8 +26,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 "
 
-PATCHES=( "${FILESDIR}/${P}-enum.patch" )
-
 src_prepare() {
 	# Do not touch CFLAGS with --enable-debug=yes
 	sed -e 's/CFLAGS -g/CFLAGS/' -i "${S}"/configure || die

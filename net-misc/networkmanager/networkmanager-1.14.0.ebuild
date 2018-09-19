@@ -8,7 +8,7 @@ VALA_USE_DEPEND="vapigen"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 
 inherit bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd \
-	user readme.gentoo-r1 toolchain-funcs vala versionator virtualx udev multilib-minimal
+	user readme.gentoo-r1 vala virtualx udev multilib-minimal
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -16,7 +16,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 LICENSE="GPL-2+"
 SLOT="0" # add subslot if libnm-util.so.2 or libnm-glib.so.4 bumps soname version
 
-IUSE="audit bluetooth connection-sharing consolekit +dhclient dhcpcd elogind gnutls +introspection json kernel_linux +nss +modemmanager ncurses ofono ovs policykit +ppp resolvconf selinux systemd teamd test vala +wext +wifi"
+IUSE="audit bluetooth connection-sharing consolekit +dhclient dhcpcd elogind gnutls +introspection iwd json kernel_linux +nss +modemmanager ncurses ofono ovs policykit +ppp resolvconf selinux systemd teamd test vala +wext +wifi"
 
 REQUIRED_USE="
 	modemmanager? ( ppp )
@@ -33,7 +33,8 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 COMMON_DEPEND="
 	>=sys-apps/dbus-1.2[${MULTILIB_USEDEP}]
 	>=dev-libs/dbus-glib-0.100[${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.37.6:2[${MULTILIB_USEDEP}]
+	dev-libs/glib:2=[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.40:2[${MULTILIB_USEDEP}]
 	>=dev-libs/libnl-3.2.8:3=[${MULTILIB_USEDEP}]
 	policykit? ( >=sys-auth/polkit-0.106 )
 	net-libs/libndp[${MULTILIB_USEDEP}]
@@ -55,12 +56,15 @@ COMMON_DEPEND="
 		dev-libs/libgcrypt:0=[${MULTILIB_USEDEP}]
 		>=net-libs/gnutls-2.12:=[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
-	json? ( dev-libs/jansson[${MULTILIB_USEDEP}] )
+	json? ( >=dev-libs/jansson-2.5[${MULTILIB_USEDEP}] )
 	modemmanager? ( >=net-misc/modemmanager-0.7.991:0= )
 	ncurses? ( >=dev-libs/newt-0.52.15 )
 	nss? ( >=dev-libs/nss-3.11:=[${MULTILIB_USEDEP}] )
 	ofono? ( net-misc/ofono )
-	ovs? ( dev-libs/jansson )
+	ovs? (
+		dev-libs/jansson
+		net-misc/openvswitch
+	)
 	ppp? ( >=net-dialup/ppp-2.4.5:=[ipv6] )
 	resolvconf? ( net-dns/openresolv )
 	selinux? ( sys-libs/libselinux )
@@ -75,7 +79,10 @@ RDEPEND="${COMMON_DEPEND}
 		net-misc/iputils[arping(+)]
 		net-analyzer/arping
 	)
-	wifi? ( >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
+	wifi? (
+		!iwd? ( >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
+		iwd? ( net-wireless/iwd )
+	)
 "
 DEPEND="${COMMON_DEPEND}
 	dev-util/gdbus-codegen
@@ -159,9 +166,6 @@ multilib_src_configure() {
 		--localstatedir=/var
 		--disable-lto
 		--disable-config-plugin-ibft
-		# ifnet plugin always disabled until someone volunteers to actively
-		# maintain and fix it
-		--disable-ifnet
 		--disable-qt
 		--without-netconfig
 		--with-dbus-sys-dir=/etc/dbus-1/system.d
@@ -195,6 +199,7 @@ multilib_src_configure() {
 		$(multilib_native_use_enable test tests)
 		$(multilib_native_use_enable vala)
 		--without-valgrind
+		$(multilib_native_use_with wifi iwd)
 		$(multilib_native_use_with wext)
 		$(multilib_native_use_enable wifi)
 	)
@@ -295,6 +300,17 @@ multilib_src_install_all() {
 	# Allow users in plugdev group to modify system connections
 	insinto /usr/share/polkit-1/rules.d/
 	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
+
+	if use iwd; then
+		# This goes to $nmlibdir/conf.d/ and $nmlibdir is '${prefix}'/lib/$PACKAGE, thus always lib, not get_libdir
+		cat <<-EOF > "${ED%/}"/usr/lib/NetworkManager/conf.d/iwd.conf
+		[device]
+		wifi.backend=iwd
+		EOF
+	fi
+
+	# Empty
+	rmdir "${ED%/}"/var{/lib{/NetworkManager,},} || die
 }
 
 pkg_postinst() {
