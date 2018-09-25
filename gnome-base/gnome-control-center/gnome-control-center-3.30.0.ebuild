@@ -71,6 +71,8 @@ COMMON_DEPEND="
 
 	ibus? ( >=app-i18n/ibus-1.5.2 )
 	v4l? ( >=media-video/cheese-3.5.91 )
+
+	sys-apps/bolt
 "
 # <gnome-color-manager-3.1.2 has file collisions with g-c-c-3.1.x
 # libgnomekbd needed only for gkbd-keyboard-display tool

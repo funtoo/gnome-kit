@@ -12,16 +12,15 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="elogind"
+IUSE="systemd"
 
 RDEPEND=""
 DEPEND=""
 
-PATCHES=( "$FILESDIR/${P}-elogind.patch" )
-
 src_configure() {
-	gnome-meson_src_confiugre
-		-Delogind=$(usex elogind true false)
+	gnome-meson_src_configure \
+		$(meson_use systemd systemd) \
+		-Dman=true
 }
 
 src_compile() {
