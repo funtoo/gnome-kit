@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit autotools ltprune systemd
+inherit autotools ltprune systemd xdg-utils
 
 DESCRIPTION="Abstraction for enumerating power devices, listening to device events and querying history and statistics"
 HOMEPAGE="https://upower.freedesktop.org/"
@@ -10,9 +10,9 @@ SRC_URI="https://${PN}.freedesktop.org/releases/${PN}-0.99.3.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/3" # based on SONAME of libupower-glib.so
-KEYWORDS=""
+KEYWORDS="~*"
 
-IUSE="doc +deprecated integration-test +introspection ios kernel_FreeBSD kernel_linux selinux"
+IUSE="ck doc integration-test +introspection ios kernel_FreeBSD kernel_linux selinux"
 
 COMMON_DEPS="
 	>=dev-libs/dbus-glib-0.100
@@ -20,7 +20,7 @@ COMMON_DEPS="
 	dev-util/gdbus-codegen
 	sys-apps/dbus:=
 	>=sys-auth/polkit-0.110
-	deprecated? (
+	ck? (
 		sys-power/acpid
 		sys-power/pm-utils
 	)
@@ -68,7 +68,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.4-0008-update-upower-hid-rules-supported-devices-list.patch
 	eapply "${FILESDIR}"/${PN}-0.99.4-0009-up-tool-remove-unused-variables.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.4-0010-up-backend-remove-unused-private-member.patch
 		eapply "${FILESDIR}"/${PN}-0.99.4-0011-daemon-port-upkbdbacklight-to-gdbus.patch
 		eapply "${FILESDIR}"/${PN}-0.99.4-0012-daemon-port-upwakeups-to-gdbus.patch
@@ -80,7 +80,7 @@ src_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-0.99.4-0017-integration-test-fix-typo-in-interface-name.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.4-0018-share-generated-code-between-daemon-and-library.patch
 		eapply "${FILESDIR}"/${PN}-0.99.4-0019-daemon-make-updevice-a-subclass-of-upexporteddevices.patch
 		eapply "${FILESDIR}"/${PN}-0.99.4-0020-daemon-make-updaemon-a-subclass-of-upexporteddaemon.patch
@@ -93,7 +93,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.4-0025-support-g-autoptr-for-all-libupower-glib-object-type.patch
 	eapply "${FILESDIR}"/${PN}-0.99.4-0026-build-fix-missing-includes.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.4-0027-build-always-ship-upower-service-in.patch
 	fi
 
@@ -103,7 +103,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.4-0031-rules-fix-distcheck-ing-not-being-able-to-install-ud.patch
 	eapply "${FILESDIR}"/${PN}-0.99.4-0032-etc-change-the-default-low-battery-policy.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.4-0033-etc-update-ignorelid-documentation.patch
 	fi
 
@@ -112,7 +112,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.5-0001-trivial-post-release-version-bump.patch
 	eapply "${FILESDIR}"/${PN}-0.99.5-0002-update-readme.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.5-0003-daemon-fix-get-critical-action.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0004-lib-add-proper-error-and-cancellable-handling-to-upc.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0005-up-tool-exit-early-when-connecting-to-upower-fails.patch
@@ -146,7 +146,7 @@ src_prepare() {
 		eapply "${FILESDIR}"/${PN}-0.99.5-0029-revert-linux-disable-crashing-test.patch
 	fi
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.5-0030-upkbdbacklight-add-new-brightnesschangedwithsource-s.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0031-upkbdbacklight-allow-reading-from-alternate-fd-in-b.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0032-upkbdbacklight-send-notifications-about-hardware-bri.patch
@@ -155,7 +155,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.5-0033-integration-test-hid-mouse-is-a-mouse.patch
 	eapply "${FILESDIR}"/${PN}-0.99.5-0034-linux-fix-compilation-warning.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.5-0035-daemon-fix-polling-helper-debug-output.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0036-device-remove-extraneous-linefeed-in-g-debug.patch
 	fi
@@ -166,7 +166,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.5-0040-linux-fix-critical-when-searching-for-sibling-device.patch
 	eapply "${FILESDIR}"/${PN}-0.99.5-0041-integration-test-add-test-for-unparented-input-devic.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.5-0042-daemon-add-support-for-pausing-and-resuming-poll.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0043-linux-refresh-devices-after-waking-up-from-sleep.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0044-linux-use-inhibitor-lock-to-guard-poll-pausing.patch
@@ -180,7 +180,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.5-0050-linux-add-support-for-capacity-level-attribute.patch
 	eapply "${FILESDIR}"/${PN}-0.99.5-0051-lib-add-more-members-to-updevicelevel-struct.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.5-0052-all-add-batterylevel-property.patch
 		eapply "${FILESDIR}"/${PN}-0.99.5-0053-daemon-move-a-number-of-constants-to-a-shared-file.patch
 	fi
@@ -190,13 +190,13 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.5-0056-released-upower-0-99-5.patch
 	eapply "${FILESDIR}"/${PN}-0.99.6-0001-trivial-post-release-version-bump.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.6-0002-linux-correctly-close-inhibitor-fd.patch
 	fi
 
 	eapply "${FILESDIR}"/${PN}-0.99.6-0003-linux-add-test-for-wireless-joypad-connected-via-usb.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.6-0004-lib-add-up-device-kind-gaming-input-for-gaming-devic.patch
 		eapply "${FILESDIR}"/${PN}-0.99.6-0005-linux-detect-joysticks-as-gaming-input-devices.patch
 		eapply "${FILESDIR}"/${PN}-0.99.6-0006-linux-move-function-to-prepare-for-new-use.patch
@@ -206,8 +206,8 @@ src_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-0.99.6-0009-freebsd-fix-lid-detection-on-freebsd.patch
 
-	if ! use deprecated; then
-	eapply "${FILESDIR}"/${PN}-0.99.6-0010-linux-don-t-throw-an-error-if-there-s-no-data-to-rea.patch
+	if ! use ck; then
+		eapply "${FILESDIR}"/${PN}-0.99.6-0010-linux-don-t-throw-an-error-if-there-s-no-data-to-rea.patch
 		eapply "${FILESDIR}"/${PN}-0.99.6-0011-linux-add-better-debug-to-sysfs-get-capacity-level.patch
 	fi
 
@@ -216,7 +216,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.6-0014-daemon-fix-crash-when-is-present-in-the-device-name.patch
 	eapply "${FILESDIR}"/${PN}-0.99.6-0015-linux-add-test-for-crash-when-battery-has-funky-name.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.6-0016-daemon-only-reset-poll-if-warning-level-changed.patch
 		eapply "${FILESDIR}"/${PN}-0.99.6-0017-daemon-move-two-functions-up.patch
 		eapply "${FILESDIR}"/${PN}-0.99.6-0018-daemon-more-efficient-poll-resetting.patch
@@ -224,7 +224,7 @@ src_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-0.99.6-0019-openbsd-remove-sensor-max-types-upper-bound.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.6-0020-revert-bug-99862-patchset.patch
 	fi
 
@@ -233,14 +233,14 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.7-0002-daemon-fix-critical-action-after-resume-from-hiberna.patch
 	eapply "${FILESDIR}"/${PN}-0.99.7-0003-linux-fix-compilation-with-libimobiledevice-git.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.7-0004-daemon-allow-to-be-replaced-via-replace-r.patch
 		eapply "${FILESDIR}"/${PN}-0.99.7-0005-linux-remove-empty-api-docs.patch
 	fi
 
 	eapply "${FILESDIR}"/${PN}-0.99.7-0006-linux-add-example-to-run-a-single-test.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.7-0007-linux-use-g-clear-object-when-possible.patch
 		eapply "${FILESDIR}"/${PN}-0.99.7-0008-main-use-g-clear-object-when-possible.patch
 		eapply "${FILESDIR}"/${PN}-0.99.7-0009-docs-better-documentation-for-the-batterylevel-prop.patch
@@ -254,7 +254,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.8-0003-linux-prevent-crash-after-attaching-an-apple-tv.patch
 	eapply "${FILESDIR}"/${PN}-0.99.8-0004-linux-check-hasbattery-key-for-newer-ios-versions.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.8-0005-linux-fix-crash-if-logind-doesn-t-return-an-error.patch
 		eapply "${FILESDIR}"/${PN}-0.99.8-0006-linux-fix-memory-leak-if-logind-returns-an-error.patch
 	fi
@@ -264,14 +264,35 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.8-0009-lib-simplify-resource-destruction.patch
 	eapply "${FILESDIR}"/${PN}-0.99.8-0010-linux-add-a-readme-with-a-couple-of-debugging-comman.patch
 
-	if ! use deprecated; then
+	if ! use ck; then
 		eapply "${FILESDIR}"/${PN}-0.99.8-0011-linux-add-support-for-unknown-capacity-level.patch
 		eapply "${FILESDIR}"/${PN}-0.99.8-0012-daemon-add-battery-level-specific-icons.patch
 		eapply "${FILESDIR}"/${PN}-0.99.8-0013-linux-add-a-test-for-logitech-hid-charging-states.patch
 		eapply "${FILESDIR}"/${PN}-0.99.8-0014-lib-mention-that-battery-level-is-preferred-when-pre.patch
+		eapply "${FILESDIR}"/${PN}-0.99.8-0015-lib-add-a-new-version-of-up-client-get-devices-which.patch
 	fi
 
-	if use deprecated; then
+	eapply "${FILESDIR}"/${PN}-0.99.8-0016-add-commitment-file-as-part-of-gpl-common-cure-right.patch
+
+	if ! use ck; then
+		eapply "${FILESDIR}"/${PN}-0.99.8-0017-linux-better-error-reporting-from-sysfs-get-double-w.patch
+	fi
+
+	eapply "${FILESDIR}"/${PN}-0.99.8-0018-linux-remove-extra-linefeed.patch
+	eapply "${FILESDIR}"/${PN}-0.99.8-0019-linux-clean-up-after-running-test-suite-in-distcheck.patch
+	eapply "${FILESDIR}"/${PN}-0.99.8-0020-build-add-ci.patch
+
+	if ! use ck; then
+		eapply "${FILESDIR}"/${PN}-0.99.8-0021-linux-fix-possible-double-close-on-exit.patch
+		eapply "${FILESDIR}"/${PN}-0.99.8-0022-linux-make-sure-unknown-poll-lasts-5-seconds.patch
+		eapply "${FILESDIR}"/${PN}-0.99.8-0023-linux-detect-hardware-that-needs-more-polling-after.patch
+		eapply "${FILESDIR}"/${PN}-0.99.8-0024-linux-refresh-for-5-seconds-after-plug-unplug-on-mac.patch
+	fi
+
+	eapply "${FILESDIR}"/${PN}-0.99.8-0025-linux-add-test-for-macbook-uevent-behaviour.patch
+	eapply "${FILESDIR}"/${PN}-0.99.8-0026-0-99-8.patch
+
+	if use ck; then
 		# From Funtoo:
 		# 	https://bugs.funtoo.org/browse/FL-1329
 		eapply "${FILESDIR}"/${PN}-0.99.2-restore-deprecated-code.patch
@@ -314,11 +335,12 @@ src_configure() {
 		--with-html-dir="${EPREFIX%/}"/usr/share/doc/${PF}/html
 		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
 		--with-systemdutildir="$(systemd_get_utildir)"
-		$(use_enable deprecated)
+		$(use_enable ck deprecated)
 		$(use_enable doc gtk-doc-html)
 		$(use_enable introspection)
 		$(use_with ios idevice)
 	)
+	xdg_environment_reset
 	econf "${myeconfargs[@]}"
 }
 

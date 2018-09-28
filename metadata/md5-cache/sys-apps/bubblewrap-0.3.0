@@ -8,6 +8,6 @@ KEYWORDS=~*
 LICENSE=LGPL-2+
 RDEPEND=sys-libs/libseccomp
 SLOT=0
-SRC_URI=https://github.com/projectatomic/bubblewrap/archive/v0.2.1.tar.gz -> bubblewrap-0.2.1.tar.gz
+SRC_URI=https://github.com/projectatomic/bubblewrap/archive/v0.3.0.tar.gz -> bubblewrap-0.3.0.tar.gz
 _eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
 _md5_=a70d5e93c72f3ce85fb2dbaadd433231

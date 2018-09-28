@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-GNOME_ORG_MODULE="gnome-themes-standard"
+GNOME_ORG_MODULE="gnome-themes-extra"
 
 inherit ltprune gnome.org multilib-minimal
 
 DESCRIPTION="Adwaita GTK+2 theme engine"
-HOMEPAGE="https://git.gnome.org/browse/gnome-themes-standard/"
+HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-themes-extra/"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
@@ -18,7 +18,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-2.24.15:2[${MULTILIB_USEDEP}]
 "
 RDEPEND="${COMMON_DEPEND}
-	!<x11-themes/gnome-themes-standard-3.20.2-r1
+	!<x11-themes/gnome-themes-extra-${PV}
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
