@@ -14,10 +14,11 @@ KEYWORDS="~*"
 IUSE="elogind examples gtk +introspection jit kde nls pam selinux test"
 
 CDEPEND="
-	dev-lang/spidermonkey:0/mozjs185[-debug]
+	dev-lang/spidermonkey:52[-debug]
 	dev-libs/glib:2
 	dev-libs/expat
 	elogind? ( sys-auth/elogind )
+	introspection? ( dev-libs/gobject-introspection:= )
 	pam? (
 		sys-auth/pambase
 		virtual/pam
@@ -26,7 +27,7 @@ CDEPEND="
 DEPEND="${CDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	app-text/docbook-xsl-stylesheets
-	dev-libs/gobject-introspection
+	dev-libs/gobject-introspection-common
 	dev-libs/libxslt
 	dev-util/gtk-doc-am
 	dev-util/intltool
@@ -75,6 +76,14 @@ src_prepare() {
 	# disable broken test - bug #624022
 	sed -i -e "/^SUBDIRS/s/polkitbackend//" test/Makefile.am || die
 
+	# From PolicyKit:
+	# 	https://cgit.freedesktop.org/polkit/commit/?id=5d998d5c7ae36ffd4a7099d382f26d289c759ba1
+	eapply -R "${FILESDIR}"/${PN}-0.114-configure-enable-elogind-support-in-policykit.patch
+
+	# From Gentoo:
+	# 	https://bugs.gentoo.org/598615
+	eapply "${FILESDIR}"/${PN}-0.115-elogind.patch
+
 	# Fix cross-building, bug #590764, elogind patch, bug #598615
 	eautoreconf
 }
@@ -85,16 +94,15 @@ src_configure() {
 	econf \
 		--localstatedir="${EPREFIX}"/var \
 		--disable-static \
-		--enable-introspection=yes \
 		--enable-man-pages \
 		--disable-gtk-doc \
 		--disable-examples \
-		--disable-libsystemd-login \
-		--with-mozjs=mozjs185 \
 		$(use_enable elogind libelogind) \
+		$(use_enable introspection) \
 		$(use_enable nls) \
 		$(use pam && echo --with-pam-module-dir="$(getpam_mod_dir)") \
 		--with-authfw=$(usex pam pam shadow) \
+		--disable-libsystemd-login \
 		$(use_enable test) \
 		--with-os-type=gentoo
 }
