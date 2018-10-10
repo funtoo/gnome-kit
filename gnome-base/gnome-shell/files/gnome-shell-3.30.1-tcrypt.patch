@@ -2,7 +2,7 @@ diff --git a/data/theme/gnome-shell-sass/_common.scss b/data/theme/gnome-shell-s
 index f1e6ae5253ca35ed02eed193e48a7598fe0d7adb..f909f5b3832c4cbf7887eb092a53cdfafeb8d0c3 100644
 --- a/data/theme/gnome-shell-sass/_common.scss
 +++ b/data/theme/gnome-shell-sass/_common.scss
-@@ -387,6 +387,10 @@ StScrollBar {
+@@ -391,6 +391,10 @@ StScrollBar {
      padding-bottom: 1em;
    }
  
@@ -13,7 +13,7 @@ index f1e6ae5253ca35ed02eed193e48a7598fe0d7adb..f909f5b3832c4cbf7887eb092a53cdfa
    .prompt-dialog-error-label {
      font-size: 10pt;
      color: $error_color;
-@@ -407,6 +411,10 @@ StScrollBar {
+@@ -411,6 +415,10 @@ StScrollBar {
      padding-bottom: 8px;
    }
  
@@ -28,7 +28,7 @@ diff --git a/js/ui/components/automountManager.js b/js/ui/components/automountMa
 index 2d8f3f8fba84770fbea4893c380fac609e21f15d..43fac7532151be6fe13f9008d3faff4e339eb222 100644
 --- a/js/ui/components/automountManager.js
 +++ b/js/ui/components/automountManager.js
-@@ -198,8 +198,18 @@ var AutomountManager = new Lang.Class({
+@@ -199,8 +199,18 @@ var AutomountManager = new Lang.Class({
              // FIXME: we will always get G_IO_ERROR_FAILED from the gvfs udisks
              // backend in this case, see 
              // https://bugs.freedesktop.org/show_bug.cgi?id=51271
@@ -48,19 +48,21 @@ index 2d8f3f8fba84770fbea4893c380fac609e21f15d..43fac7532151be6fe13f9008d3faff4e
              } else {
                  if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.FAILED_HANDLED))
                      log('Unable to mount volume ' + volume.get_name() + ': ' + e.toString());
-@@ -214,11 +224,13 @@ var AutomountManager = new Lang.Class({
+@@ -219,12 +229,15 @@ var AutomountManager = new Lang.Class({
              this._volumeQueue.filter(element => (element != volume));
      },
  
 -    _reaskPassword(volume) {
 +    _reaskPassword(volume, params) {
 +        params = Params.parse(params, { errorMessage: null });
-         let existingDialog = volume._operation ? volume._operation.borrowDialog() : null;
+         let prevOperation = this._activeOperations.get(volume);
+         let existingDialog = prevOperation ? prevOperation.borrowDialog() : null;
          let operation = 
              new ShellMountOperation.ShellMountOperation(volume,
 -                                                        { existingDialog: existingDialog });
 +                                                        { existingDialog: existingDialog,
 +                                                          errorMessage: errorMessage });
++
          this._mountVolume(volume, operation);
      },
  
@@ -76,12 +78,14 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
  const CheckBox = imports.ui.checkBox;
  const Dialog = imports.ui.dialog;
  const Main = imports.ui.main;
-@@ -17,9 +18,15 @@ const MessageTray = imports.ui.messageTray;
+@@ -17,11 +18,17 @@ const MessageTray = imports.ui.messageTray;
  const ModalDialog = imports.ui.modalDialog;
  const Params = imports.misc.params;
  const ShellEntry = imports.ui.shellEntry;
 +const Util = imports.misc.util;
 +const Tweener = imports.ui.tweener;
+ 
+ const { loadInterfaceXML } = imports.misc.fileUtils;
  
  var LIST_ITEM_ICON_SIZE = 48;
  
@@ -92,7 +96,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
  const REMEMBER_MOUNT_PASSWORD_KEY = 'remember-mount-password';
  
  /* ------ Common Utils ------- */
-@@ -101,12 +108,14 @@ var ShellMountOperation = new Lang.Class({
+@@ -103,12 +110,14 @@ var ShellMountOperation = new Lang.Class({
      Name: 'ShellMountOperation',
  
      _init(source, params) {
@@ -108,7 +112,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
  
          this.mountOp = new Shell.MountOperation();
  
-@@ -151,13 +160,13 @@ var ShellMountOperation = new Lang.Class({
+@@ -153,13 +162,13 @@ var ShellMountOperation = new Lang.Class({
      _onAskPassword(op, message, defaultUser, defaultDomain, flags) {
          if (this._existingDialog) {
              this._dialog = this._existingDialog;
@@ -124,7 +128,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
                  if (choice == -1) {
                      this.mountOp.reply(Gio.MountOperationResult.ABORTED);
                  } else {
-@@ -167,6 +176,9 @@ var ShellMountOperation = new Lang.Class({
+@@ -169,6 +178,9 @@ var ShellMountOperation = new Lang.Class({
                          this.mountOp.set_password_save(Gio.PasswordSave.NEVER);
  
                      this.mountOp.set_password(password);
@@ -134,7 +138,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
                      this.mountOp.reply(Gio.MountOperationResult.HANDLED);
                  }
              });
-@@ -306,6 +318,24 @@ var ShellMountPasswordDialog = new Lang.Class({
+@@ -309,6 +320,24 @@ var ShellMountPasswordDialog = new Lang.Class({
  
          let content = new Dialog.MessageDialogContent({ icon, title, body });
          this.contentLayout.add_actor(content);
@@ -159,7 +163,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
  
          this._passwordBox = new St.BoxLayout({ vertical: false, style_class: 'prompt-dialog-password-box' });
          content.messageBox.add(this._passwordBox);
-@@ -323,8 +353,13 @@ var ShellMountPasswordDialog = new Lang.Class({
+@@ -325,8 +355,13 @@ var ShellMountPasswordDialog = new Lang.Class({
          this._passwordBox.add(this._passwordEntry, {expand: true });
          this.setInitialKeyFocus(this._passwordEntry);
  
@@ -175,7 +179,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
          this._errorMessageLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
          this._errorMessageLabel.clutter_text.line_wrap = true;
          this._errorMessageLabel.hide();
-@@ -340,6 +375,44 @@ var ShellMountPasswordDialog = new Lang.Class({
+@@ -342,6 +377,44 @@ var ShellMountPasswordDialog = new Lang.Class({
              this._rememberChoice = null;
          }
  
@@ -220,7 +224,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
          let buttons = [{ label: _("Cancel"),
                           action: this._onCancelButton.bind(this),
                           key:    Clutter.Escape
-@@ -352,9 +425,36 @@ var ShellMountPasswordDialog = new Lang.Class({
+@@ -354,9 +427,36 @@ var ShellMountPasswordDialog = new Lang.Class({
          this.setButtons(buttons);
      },
  
@@ -258,7 +262,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
      },
  
      _onCancelButton() {
-@@ -366,12 +466,35 @@ var ShellMountPasswordDialog = new Lang.Class({
+@@ -368,12 +468,35 @@ var ShellMountPasswordDialog = new Lang.Class({
      },
  
      _onEntryActivate() {
@@ -295,7 +299,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
      }
  });
  
-@@ -569,7 +692,7 @@ var GnomeShellMountOpHandler = new Lang.Class({
+@@ -540,7 +663,7 @@ var GnomeShellMountOpHandler = new Lang.Class({
  
          this._dialog = new ShellMountPasswordDialog(message, this._createGIcon(iconName), flags);
          this._dialog.connect('response',
@@ -304,7 +308,7 @@ index dee7799e35e34dacb87553e5c1630b89b6e20182..4ff412e6958b211f63abf76f57de80ff
                  let details = {};
                  let response;
  
-@@ -581,6 +704,9 @@ var GnomeShellMountOpHandler = new Lang.Class({
+@@ -552,6 +675,9 @@ var GnomeShellMountOpHandler = new Lang.Class({
                      let passSave = remember ? Gio.PasswordSave.PERMANENTLY : Gio.PasswordSave.NEVER;
                      details['password_save'] = GLib.Variant.new('u', passSave);
                      details['password'] = GLib.Variant.new('s', password);
