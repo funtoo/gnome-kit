@@ -13,7 +13,11 @@ SLOT="0"
 LICENSE="Axosoft, LLC"
 IUSE=""
 
-RDEPEND="x11-libs/libXScrnSaver"
+RDEPEND="x11-libs/libXScrnSaver
+		gnome-base/libgnome-keyring
+"
+
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${PN}"
 
