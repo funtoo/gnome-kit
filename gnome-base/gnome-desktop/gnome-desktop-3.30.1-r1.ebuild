@@ -46,6 +46,8 @@ DEPEND="${COMMON_DEPEND}
 
 # Includes X11/Xatom.h in libgnome-desktop/gnome-bg.c which comes from xproto
 
+PATCHES=( "${FILESDIR}/${P}-thumbnail.patch" )
+
 src_prepare() {
 	gnome2_src_prepare
 }

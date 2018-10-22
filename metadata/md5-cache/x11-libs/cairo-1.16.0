@@ -10,6 +10,6 @@ RDEPEND=>=dev-libs/lzo-2.06-r1[abi_x86_32(-)?,abi_x86_64(-)?,abi_x86_x32(-)?,abi
 REQUIRED_USE=gles2? ( !opengl )
 RESTRICT=test
 SLOT=0
-SRC_URI=https://cairographics.org/snapshots/cairo-1.15.12.tar.xz
+SRC_URI=https://cairographics.org/releases/cairo-1.16.0.tar.xz
 _eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	libtool	e32ea84bf82cf8987965b574672dba93	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	multilib-build	8fe2e81aeb36cdf8a6cc5f50443879cc	multilib-minimal	0224dee31c0f98405d572e14ad6dee65	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
-_md5_=14ba66acf17a5ea3ed38b99cf373b79c
+_md5_=d0f0cf5e2e39d6a6cdf4cb949645ab82
