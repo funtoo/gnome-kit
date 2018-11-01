@@ -6,16 +6,13 @@ EAPI=6
 inherit eutils flag-o-matic autotools multilib-minimal
 
 SRC_URI="https://cairographics.org/releases/${P}.tar.xz"
-# SRC_URI="https://cairographics.org/snapshots/${P}.tar.xz"
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="https://www.cairographics.org"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-IUSE="X aqua debug gles2 +glib opengl static-libs +svg valgrind xcb"
-# gtk-doc regeneration doesn't seem to work with out-of-source builds
-#[[ ${PV} == *9999* ]] && IUSE="${IUSE} doc" # API docs are provided in tarball, no need to regenerate
+IUSE="X aqua debug gles2 +glib opengl static-libs +svg utils valgrind xcb"
 
 # Test causes a circular depend on gtk+... since gtk+ needs cairo but test needs gtk+ so we need to block it
 RESTRICT="test"
@@ -38,21 +35,12 @@ RDEPEND=">=dev-libs/lzo-2.06-r1[${MULTILIB_USEDEP}]
 	xcb? (
 		>=x11-libs/libxcb-1.9.1[${MULTILIB_USEDEP}]
 	)
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-gtklibs-20131008-r1
-		!app-emulation/emul-linux-x86-gtklibs[-abi_x86_32(-)]
-	)"
+"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	>=sys-devel/libtool-2
-	X? (
-		>=x11-proto/renderproto-0.11.1-r1[${MULTILIB_USEDEP}]
-	)"
-#[[ ${PV} == *9999* ]] && DEPEND="${DEPEND}
-#	doc? (
-#		>=dev-util/gtk-doc-1.6
-#		~app-text/docbook-xml-dtd-4.2
-#	)"
+	X? ( x11-base/xorg-proto )
+"
 
 REQUIRED_USE="
 	gles2? ( !opengl )
@@ -71,13 +59,6 @@ src_prepare() {
 		sed -e '/^SUBDIRS/ s#boilerplate test perf# #' -i Makefile.am || die
 	fi
 
-	# Slightly messed build system YAY
-	if [[ ${PV} == *9999* ]]; then
-		touch boilerplate/Makefile.am.features
-		touch src/Makefile.am.features
-		touch ChangeLog
-	fi
-
 	eautoreconf
 }
 
@@ -87,14 +68,6 @@ multilib_src_configure() {
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
 	use elibc_FreeBSD && myopts+=" --disable-symbol-lookup"
-	[[ ${CHOST} == *-darwin* ]] && myopts+=" --disable-symbol-lookup"
-
-	# TODO: remove this (and add USE-dep) when qtgui is converted, bug #498010
-	if ! multilib_is_native_abi; then
-		myopts+=" --disable-qt"
-	fi
-
-	# [[ ${PV} == *9999* ]] && myopts+=" $(use_enable doc gtk-doc)"
 
 	ECONF_SOURCE="${S}" \
 	econf \
@@ -111,6 +84,7 @@ multilib_src_configure() {
 		$(use_enable opengl gl) \
 		$(use_enable static-libs static) \
 		$(use_enable svg) \
+		$(use_enable utils trace) \
 		$(use_enable valgrind) \
 		$(use_enable xcb) \
 		$(use_enable xcb xcb-shm) \
@@ -118,8 +92,10 @@ multilib_src_configure() {
 		--enable-pdf \
 		--enable-png \
 		--enable-ps \
-		--disable-directfb \
+		--enable-script \
+		--enable-interpreter \
 		--disable-drm \
+		--disable-directfb \
 		--disable-gallium \
 		--disable-qt \
 		--disable-vg \

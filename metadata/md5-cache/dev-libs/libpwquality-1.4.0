@@ -10,5 +10,5 @@ RDEPEND=>=sys-libs/cracklib-2.8:=[static-libs(+)?] pam? ( virtual/pam ) python? 
 REQUIRED_USE=python? ( || ( python_targets_python2_7 python_targets_python3_4 python_targets_python3_5 python_targets_python3_6 ) )
 SLOT=0
 SRC_URI=https://github.com/libpwquality/libpwquality/releases/download/libpwquality-1.4.0/libpwquality-1.4.0.tar.bz2
-_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	pam	3ecd5b75e39b0bb05a3183c08fcdfdb4	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	c9de01becf9df3f8c10aeec3dc693f5d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	pam	3ecd5b75e39b0bb05a3183c08fcdfdb4	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
 _md5_=b60ca7f6bea0826b6ed4aaf57823798e

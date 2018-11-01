@@ -1,8 +1,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
+PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} )
 
-inherit autotools ltprune systemd xdg-utils
+inherit autotools ltprune python-single-r1 systemd xdg-utils
 
 DESCRIPTION="Abstraction for enumerating power devices, listening to device events and querying history and statistics"
 HOMEPAGE="https://upower.freedesktop.org/"
@@ -13,8 +14,10 @@ SLOT="0/3" # based on SONAME of libupower-glib.so
 KEYWORDS="~*"
 
 IUSE="ck doc integration-test +introspection ios kernel_FreeBSD kernel_linux selinux"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPS="
+	${PYTHON_DEPS}
 	>=dev-libs/dbus-glib-0.100
 	>=dev-libs/glib-2.34:2
 	dev-util/gdbus-codegen
@@ -24,7 +27,10 @@ COMMON_DEPS="
 		sys-power/acpid
 		sys-power/pm-utils
 	)
-	integration-test? ( dev-util/umockdev )
+	integration-test? (
+		dev-python/dbusmock[${PYTHON_USEDEP}]
+		dev-util/umockdev
+	)
 	introspection? ( dev-libs/gobject-introspection:= )
 	kernel_linux? (
 		virtual/libusb:1
@@ -54,6 +60,10 @@ DEPEND="
 QA_MULTILIB_PATHS="usr/lib/${PN}/.*"
 
 S="${WORKDIR}/${PN}-0.99.3"
+
+pkg_setup() {
+	python-single-r1_pkg_setup
+}
 
 src_prepare() {
 	# From UPower:
@@ -312,6 +322,20 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-0.99.9-0010-build-build-upower-out-of-tree.patch
 	eapply "${FILESDIR}"/${PN}-0.99.9-0011-daemon-fix-upower-s-keyboard-backlight-support.patch
 
+	if ! use ck; then
+		eapply "${FILESDIR}"/${PN}-0.99.9-0012-docs-mention-to-try-and-not-use-iconname-when-possib.patch
+	fi
+
+	eapply "${FILESDIR}"/${PN}-0.99.9-0013-src-linux-up-device-hid-c-usage-code-is-defined-as-a.patch
+
+	if ! use ck; then
+		eapply "${FILESDIR}"/${PN}-0.99.9-0014-build-fix-up-daemon-generated-h-not-being-found-on-d.patch
+		eapply "${FILESDIR}"/${PN}-0.99.9-0015-doc-fix-dist-not-working.patch
+	fi
+
+	eapply "${FILESDIR}"/${PN}-0.99.9-0016-ci-run-distcheck-as-a-test.patch
+	eapply "${FILESDIR}"/${PN}-0.99.9-0017-0-99-9.patch
+
 	if use ck; then
 		# From Funtoo:
 		# 	https://bugs.funtoo.org/browse/FL-1329
@@ -375,6 +399,7 @@ src_install() {
 
 	if use integration-test; then
 		newbin src/linux/integration-test upower-integration-test
+		python_fix_shebang "${D}"usr/bin/upower-integration-test
 	fi
 
 	keepdir /var/lib/upower #383091

@@ -10,5 +10,5 @@ RDEPEND=>=x11-libs/cairo-1.13.1[svg,xcb?] python_targets_python2_7? ( >=dev-lang
 REQUIRED_USE=|| ( python_targets_python2_7 python_targets_python3_4 python_targets_python3_5 python_targets_python3_6 )
 SLOT=0
 SRC_URI=https://github.com/pygobject/pycairo/releases/download/v1.17.0/pycairo-1.17.0.tar.gz
-_eclasses_=distutils-r1	039ba10839816478cfb070fdeb053906	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	c9de01becf9df3f8c10aeec3dc693f5d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_eclasses_=distutils-r1	039ba10839816478cfb070fdeb053906	multibuild	742139c87a9fa3766f0c2b155e5522bf	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	python-r1	0f6937650a475d673baa5d0c8c0b37b3	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
 _md5_=ec7b818e8697ee104c4286d76186f461
