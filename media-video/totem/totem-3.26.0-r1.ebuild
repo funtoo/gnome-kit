@@ -128,6 +128,10 @@ src_configure() {
 		-Dwith-plugins=${plugins}
 }
 
+src_compile() {
+	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_compile #parallel build workaround FL-5760
+}
+
 src_install() {
 	gnome-meson_src_install
 	if use python ; then
