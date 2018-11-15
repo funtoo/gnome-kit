@@ -59,6 +59,8 @@ PDEPEND="
 "
 # Need gvfs[gtk] for recent:/// support
 
+PATCHES=( "${FILESDIR}/${P}-thumbnail.patch" )
+
 src_prepare() {
 	if use previewer; then
 		DOC_CONTENTS="nautilus uses gnome-extra/sushi to preview media files.
