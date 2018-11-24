@@ -51,7 +51,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	>=sys-devel/libtool-2
 	X? (
-		>=x11-proto/renderproto-0.11.1-r1[${MULTILIB_USEDEP}]
+		x11-base/xorg-proto
 	)"
 #[[ ${PV} == *9999* ]] && DEPEND="${DEPEND}
 #	doc? (
