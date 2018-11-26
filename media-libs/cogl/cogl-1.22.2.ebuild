@@ -12,7 +12,7 @@ LICENSE="MIT BSD"
 SLOT="1.0/20" # subslot = .so version
 
 # doc and profile disable for now due to bugs #484750 and #483332
-IUSE="debug examples gles2 gstreamer +introspection +kms +opengl +pango test wayland" # doc profile
+IUSE="debug examples gles2 gstreamer +introspection +kms +opengl +pango test -wayland" # doc profile
 REQUIRED_USE="
 	wayland? ( gles2 )
 	|| ( gles2 opengl )
