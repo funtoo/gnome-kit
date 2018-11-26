@@ -30,7 +30,7 @@ RDEPEND="idn? (
 	) )"
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
-	doc? ( dev-util/gtk-doc )
+	dev-util/gtk-doc
 	builtin-psl? (
 	icu? ( dev-libs/icu:=[${MULTILIB_USEDEP}] )
 	libidn? (
