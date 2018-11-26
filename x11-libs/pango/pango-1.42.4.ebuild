@@ -30,7 +30,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.20
-	>=dev-libs/fribidi-0.19
+	>=dev-libs/fribidi-0.19[${MULTILIB_USEDEP}]
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	test? ( media-fonts/cantarell )
 	X? ( >=x11-proto/xproto-7.0.24[${MULTILIB_USEDEP}] )
