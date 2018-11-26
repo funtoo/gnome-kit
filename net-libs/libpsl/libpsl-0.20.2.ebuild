@@ -1,74 +1,75 @@
-# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+PYTHON_COMPAT=( python3_{4..7} )
 
-PYTHON_COMPAT=( python2_7 )
+inherit autotools python-single-r1
 
-inherit multilib-minimal python-any-r1
+DESCRIPTION=""
+HOMEPAGE=""
 
-DESCRIPTION="C library to handle the Public Suffix List"
-HOMEPAGE="https://github.com/rockdaboot/libpsl"
-SRC_URI="https://github.com/rockdaboot/${PN}/releases/download/${P}/${P}.tar.gz"
-
-LICENSE="MIT"
+LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="doc static-libs +icu -libidn -libidn2 +builtin-psl +idn"
-REQUIRED_USE="builtin-psl? ( ^^ ( icu libidn libidn2 ) )
-	idn? ( ^^ ( icu libidn libidn2 ) )"
-
-RDEPEND="idn? (
-	icu? ( dev-libs/icu:=[${MULTILIB_USEDEP},static-libs?] )
-	libidn? (
-		net-dns/libidn[${MULTILIB_USEDEP},static-libs?]
-		dev-libs/libunistring[${MULTILIB_USEDEP},static-libs?]
-	)
-	libidn2? (
-		net-dns/libidn2[${MULTILIB_USEDEP},static-libs?]
-		dev-libs/libunistring[${MULTILIB_USEDEP},static-libs?]
-	) )"
-DEPEND="${RDEPEND}
-	${PYTHON_DEPS}
-	dev-util/gtk-doc
-	builtin-psl? (
-	icu? ( dev-libs/icu:=[${MULTILIB_USEDEP}] )
-	libidn? (
-		net-dns/libidn[${MULTILIB_USEDEP}]
-		dev-libs/libunistring[${MULTILIB_USEDEP}]
-	)
-	libidn2? (
-		net-dns/libidn2[${MULTILIB_USEDEP}]
-		dev-libs/libunistring[${MULTILIB_USEDEP}]
-	) )"
+KEYWORDS="*"
+IUSE="doc man nls static-libs rpath +icu -idn -idn2"
+GITHUB_REPO="$PN"
+GITHUB_USER="rockdaboot"
+SRC_URI="https://github.com/${GITHUB_USER}/${PN}/releases/download/libpsl-${PV}/libpsl-${PV}.tar.gz"
+REQUIRED_USE="^^ ( idn2 icu idn )"
+DEPEND="sys-devel/gettext
+	virtual/pkgconfig
+	sys-devel/libtool
+	doc? ( dev-util/gtk-doc )
+	man? ( dev-libs/libxslt )
+	idn2? ( net-dns/libidn2[static-libs?] )
+	idn? ( net-dns/libidn[static-libs?] )
+	icu? ( dev-libs/icu[static-libs?] )
+"
+RDEPEND="$DEPEND"
+PDEPEND=""
 
 src_prepare() {
-	sed -i "s/env python/env python2/g" src/psl-make-dafsa || die
-	multilib_copy_sources
-	eapply_user
+	default
+	if ! use doc ; then
+		## this copies ./autogen.sh
+		rm -f gtk-doc.make
+		echo "EXTRA_DIST =" >gtk-doc.make || die
+		echo "CLEANFILES =" >>gtk-doc.make || die
+	fi
+	eautoreconf
 }
 
-multilib_src_configure() {
-	if use icu; then
-		idnalib="libicu"
-	else
-		idnalib=$(usex libidn2 libidn2 libidn)
-	fi
+src_configure() {
+    local idna_lib
+    if use idn2; then
+        idna_lib=libidn2
+    elif use icu; then
+        idna_lib=libicu
+    else
+        idna_lib=libidn
+    fi
+	local myeconfargs=(
+		--disable-cfi
+		--disable-ubsan
+		--disable-asan
+		--enable-runtime=$idna_lib
+		--enable-builtin=$idna_lib
+		$(use_enable doc gtk-doc)
+		$(use_enable doc gtk-doc-html)
+		$(use_enable doc gtk-doc-pdf)
+		$(use_enable man)
+		$(use_enable static-libs static)
+		$(use_enable nls)
+		$(use_enable rpath)
+	)
+	econf "${myeconfargs[@]}"
+}
 
-	if multilib_is_native_abi; then
-		docconf="--enable-man \
-			$(use_enable doc gtk-doc) \
-			$(use_enable doc gtk-doc-html)"
-	else
-		docconf="--disable-man \
-			--disable-gtk-doc \
-			--disable-gtk-doc-html"
-	fi
+src_install() {
+	default
 
-	econf \
-		${docconf} \
-		--disable-gtk-doc-pdf \
-		$(use_enable static-libs static) \
-		$(use_enable builtin-psl builtin ${idnalib}) \
-		$(use_enable idn runtime ${idnalib})
+	exeinto /usr/libexec
+	doexe src/psl-make-dafsa
+
+	prune_libtool_files
 }
