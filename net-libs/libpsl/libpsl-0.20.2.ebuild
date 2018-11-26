@@ -3,7 +3,7 @@
 EAPI=6
 PYTHON_COMPAT=( python3_{4..7} )
 
-inherit autotools python-single-r1
+inherit autotools python-single-r1 ltprune
 
 DESCRIPTION=""
 HOMEPAGE=""
