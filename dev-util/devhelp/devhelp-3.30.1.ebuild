@@ -5,7 +5,7 @@
 EAPI=6
 # gedit-3.8 is python3 only, this also per:
 # https://bugzilla.redhat.com/show_bug.cgi?id=979450
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3_{4,5,6,7} )
 
 inherit gnome-meson python-single-r1 toolchain-funcs
 

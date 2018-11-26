@@ -2,7 +2,7 @@
 
 EAPI="5"
 
-PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5,3_6} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5,3_6,3_7} )
 PYTHON_REQ_USE='wide-unicode(+)'
 DISTUTILS_OPTIONAL=1
 inherit distutils-r1

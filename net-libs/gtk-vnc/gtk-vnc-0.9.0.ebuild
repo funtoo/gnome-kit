@@ -3,7 +3,7 @@
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python3_6 )
+PYTHON_COMPAT=( python3_{6,7} )
 VALA_MIN_API_VERSION="0.16"
 VALA_USE_DEPEND="vapigen"
 

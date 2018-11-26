@@ -6,7 +6,7 @@ GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 VALA_MIN_API_VERSION="0.16"
 VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python3_6 )
+PYTHON_COMPAT=( python3_{6,7} )
 
 inherit gnome2 python-any-r1 vala multilib-minimal
 
