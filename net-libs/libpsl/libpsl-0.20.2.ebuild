@@ -8,7 +8,7 @@ inherit autotools python-single-r1 ltprune
 DESCRIPTION=""
 HOMEPAGE=""
 
-LICENSE="GPL-2"
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="*"
 IUSE="doc man nls static-libs rpath +icu -idn -idn2"
