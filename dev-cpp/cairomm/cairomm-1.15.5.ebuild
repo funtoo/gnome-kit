@@ -30,6 +30,11 @@ DEPEND="${RDEPEND}
 		media-gfx/graphviz )
 "
 
+pkg_setup() {
+    export CFLAGS="-std=c++17 $CFLAGS"
+    export CXXFLAGS="-std=c++17 $CXXFLAGS"
+}
+
 src_prepare() {
 	# don't waste time building examples because they are marked as "noinst"
 	sed -i 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' Makefile.in || die
