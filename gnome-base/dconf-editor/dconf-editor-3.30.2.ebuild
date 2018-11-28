@@ -4,6 +4,8 @@ EAPI="6"
 
 inherit gnome-meson vala
 
+VALA_MIN_API_VERSION="0.40"
+
 DESCRIPTION="Graphical tool for editing the dconf configuration database"
 HOMEPAGE="https://git.gnome.org/browse/dconf-editor"
 
@@ -12,6 +14,7 @@ SLOT="0"
 KEYWORDS="*"
 
 COMMON_DEPEND="
+    $(vala_depend)
 	dev-libs/appstream-glib
 	>=dev-libs/glib-2.46.0:2
 	>=gnome-base/dconf-0.25.1
