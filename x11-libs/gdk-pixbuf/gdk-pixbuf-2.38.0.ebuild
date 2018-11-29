@@ -1,28 +1,27 @@
-# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
 GNOME2_EAUTORECONF="yes"
 
-inherit flag-o-matic gnome-meson multilib multilib-minimal
+inherit flag-o-matic gnome-meson
 
 DESCRIPTION="Image loading library for GTK+"
 HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
 
 LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="*"
 IUSE="X doc +introspection jpeg jpeg2k tiff test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.48.0:2[${MULTILIB_USEDEP}]
-	>=media-libs/libpng-1.4:0=[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.48.0:2
+	>=media-libs/libpng-1.4:0=
 	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
-	jpeg? ( virtual/jpeg:0=[${MULTILIB_USEDEP}] )
-	jpeg2k? ( media-libs/jasper:=[${MULTILIB_USEDEP}] )
-	tiff? ( >=media-libs/tiff-3.9.2:0=[${MULTILIB_USEDEP}] )
-	X? ( x11-libs/libX11[${MULTILIB_USEDEP}] )
+	jpeg? ( virtual/jpeg:0= )
+	jpeg2k? ( media-libs/jasper:= )
+	tiff? ( >=media-libs/tiff-3.9.2:0= )
+	X? ( x11-libs/libX11 )
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/gtk-doc-am-1.20
@@ -52,13 +51,13 @@ src_prepare() {
 	gnome-meson_src_prepare
 }
 
-multilib_src_configure() {
+src_configure() {
 	# png always on to display icons
 	gnome-meson_src_configure \
 		-Dpng=true \
 		-Dman=true \
 		-Dbuiltin_loaders=none \
-		-Dgir=$(multilib_native_usex introspection true false) \
+		-Dgir=$(usex introspection true false) \
 		$(meson_use tiff tiff) \
 		$(meson_use jpeg jpeg) \
 		$(meson_use jpeg2k jasper) \
@@ -67,7 +66,7 @@ multilib_src_configure() {
 		$(meson_use test installed_tests)
 }
 
-multilib_src_install() {
+src_install() {
 	# Parallel install fails when no gdk-pixbuf is already installed, bug #481372
 	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_install
 }
@@ -75,25 +74,21 @@ multilib_src_install() {
 pkg_preinst() {
 	gnome-meson_pkg_preinst
 
-	multilib_pkg_preinst() {
-		# Make sure loaders.cache belongs to gdk-pixbuf alone
-		local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
+    # Make sure loaders.cache belongs to gdk-pixbuf alone
+    local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
 
-		if [[ -e ${EROOT}${cache} ]]; then
-			cp "${EROOT}"${cache} "${ED}"/${cache} || die
-		else
-			touch "${ED}"/${cache} || die
-		fi
-	}
-
-	multilib_foreach_abi multilib_pkg_preinst
+    if [[ -e ${EROOT}${cache} ]]; then
+        cp "${EROOT}"${cache} "${ED}"/${cache} || die
+    else
+        touch "${ED}"/${cache} || die
+    fi
 }
 
 pkg_postinst() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	multilib_foreach_abi gnome-meson_pkg_postinst
+	gnome-meson_pkg_postinst
 
 	# Migration snippet for when this was handled by gtk+
 	if [ -e "${EROOT}"usr/lib/gtk-2.0/2.*/loaders ]; then
