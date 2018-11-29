@@ -26,13 +26,13 @@ RESTRICT="test"
 # FIXME: introspection data is built against system installation of gtk+:3,
 # bug #????
 COMMON_DEPEND="
-	>=dev-libs/atk-2.15[introspection?,]
+	>=dev-libs/atk-2.15[introspection?,
 	>=dev-libs/glib-2.49.4:2
 	media-libs/fontconfig
-	>=media-libs/libepoxy-1.0[X(+)?,]
-	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?,]
-	>=x11-libs/gdk-pixbuf-2.30:2[introspection?,]
-	>=x11-libs/pango-1.37.3[introspection?,]
+	>=media-libs/libepoxy-1.0[X(+)?]
+	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?]
+	>=x11-libs/gdk-pixbuf-2.30:2[introspection?]
+	>=x11-libs/pango-1.37.3[introspection?]
 	x11-misc/shared-mime-info
 
 	cloudprint? (
@@ -44,7 +44,7 @@ COMMON_DEPEND="
 	wayland? (
 		>=dev-libs/wayland-1.9.91
 		>=dev-libs/wayland-protocols-1.9
-		media-libs/mesa[wayland,]
+		media-libs/mesa[wayland]
 		>=x11-libs/libxkbcommon-0.2
 	)
 	X? (
