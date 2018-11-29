@@ -1,6 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # Until bug #537330 glib is a reverse dependency of pkgconfig and, then
 # adding new dependencies end up making stage3 to grow. Every addition needs
@@ -12,8 +10,7 @@ PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
 # pkg-config
 GNOME2_LA_PUNT="yes"
 
-inherit bash-completion-r1 flag-o-matic gnome2 linux-info meson \
-	multilib-minimal ninja-utils python-r1 toolchain-funcs versionator virtualx
+inherit bash-completion-r1 flag-o-matic gnome2 linux-info meson ninja-utils python-r1 toolchain-funcs versionator virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="https://www.gtk.org/"
@@ -28,23 +25,19 @@ REQUIRED_USE="
 	test? ( ${PYTHON_REQUIRED_USE} )
 "
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
-
-# Added util-linux multilib dependency to have libmount support (which
-# is always turned on on linux systems, unless explicitly disabled, but
-# this ebuild does not do that anyway) (bug #599586)
+KEYWORDS="*"
 
 RDEPEND="
 	!<dev-util/gdbus-codegen-${PV}
-	>=dev-libs/libpcre-8.13:3[${MULTILIB_USEDEP},static-libs?]
-	>=virtual/libiconv-0-r1[${MULTILIB_USEDEP}]
-	>=virtual/libffi-3.0.13-r1[${MULTILIB_USEDEP}]
-	>=virtual/libintl-0-r2[${MULTILIB_USEDEP}]
-	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
-	kernel_linux? ( sys-apps/util-linux[${MULTILIB_USEDEP}] )
-	selinux? ( >=sys-libs/libselinux-2.2.2-r5[${MULTILIB_USEDEP}] )
-	xattr? ( >=sys-apps/attr-2.4.47-r1[${MULTILIB_USEDEP}] )
-	fam? ( >=virtual/fam-0-r1[${MULTILIB_USEDEP}] )
+	>=dev-libs/libpcre-8.13:3[static-libs?]
+	>=virtual/libiconv-0-r1
+	>=virtual/libffi-3.0.13-r1
+	>=virtual/libintl-0-r2
+	>=sys-libs/zlib-1.2.8-r1
+	kernel_linux? ( sys-apps/util-linux )
+	selinux? ( >=sys-libs/libselinux-2.2.2-r5 )
+	xattr? ( >=sys-apps/attr-2.4.47-r1 )
+	fam? ( >=virtual/fam-0-r1] )
 	utils? (
 		${PYTHON_DEPS}
 		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
@@ -150,15 +143,14 @@ src_configure() {
 	# libelf used only by the gresource bin
 	# Prevent conflicts with i686 cross toolchain, bug 559726
 	tc-export AR CC NM OBJCOPY RANLIB
-	multilib-minimal_src_configure
 }
 
-multilib_src_configure() {
+src_configure() {
 	local emesonargs=(
 		-Dman=true
 		-Dinternal_pcre=false
 		-Dforce_posix_threads=false
-		-Dgtk_doc=$(multilib_native_usex doc true false)
+		-Dgtk_doc=$(usex doc true false)
 		$(meson_use xattr xattr)
 		$(meson_use fam fam)
 		$(meson_use kernel_linux libmount)
@@ -167,11 +159,10 @@ multilib_src_configure() {
 		$(meson_use systemtap systemtap)
 		$(meson_use test installed_tests)
 	)
-
 	meson_src_configure
 }
 
-multilib_src_test() {
+src_test() {
 	export XDG_CONFIG_DIRS=/etc/xdg
 	export XDG_DATA_DIRS=/usr/local/share:/usr/share
 	export G_DBUS_COOKIE_SHA1_KEYRING_DIR="${T}/temp"
@@ -192,12 +183,12 @@ multilib_src_test() {
 	virtx emake check
 }
 
-multilib_src_install() {
+src_install() {
 	meson_src_install completiondir="$(get_bashcompdir)"
 	keepdir /usr/$(get_libdir)/gio/modules
 }
 
-multilib_src_install_all() {
+src_install_all() {
 	einstalldocs
 
 	if use utils ; then
@@ -226,41 +217,29 @@ pkg_preinst() {
 		touch "${ED}"/${cache} || die
 	fi
 
-	multilib_pkg_preinst() {
-		# Make giomodule.cache belong to glib alone
-		local cache="usr/$(get_libdir)/gio/giomodule.cache"
+    # Make giomodule.cache belong to glib alone
+    local cache="usr/$(get_libdir)/gio/giomodule.cache"
 
-		if [[ -e ${EROOT}${cache} ]]; then
-			cp "${EROOT}"${cache} "${ED}"/${cache} || die
-		else
-			touch "${ED}"/${cache} || die
-		fi
-	}
+    if [[ -e ${EROOT}${cache} ]]; then
+        cp "${EROOT}"${cache} "${ED}"/${cache} || die
+    else
+        touch "${ED}"/${cache} || die
+    fi
 
-	multilib_foreach_abi multilib_pkg_preinst
 }
 
 pkg_postinst() {
 	# force (re)generation of gschemas.compiled
 	GNOME2_ECLASS_GLIB_SCHEMAS="force"
-
 	gnome2_pkg_postinst
-
-	multilib_pkg_postinst() {
-		gnome2_giomodule_cache_update \
-			|| die "Update GIO modules cache failed (for ${ABI})"
-	}
-	multilib_foreach_abi multilib_pkg_postinst
+	gnome2_giomodule_cache_update || die "Update GIO modules cache failed"
 }
 
 pkg_postrm() {
 	gnome2_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
-		multilib_pkg_postrm() {
-			rm -f "${EROOT}"usr/$(get_libdir)/gio/giomodule.cache
-		}
-		multilib_foreach_abi multilib_pkg_postrm
+		rm -f "${EROOT}"usr/$(get_libdir)/gio/giomodule.cache
 		rm -f "${EROOT}"usr/share/glib-2.0/schemas/gschemas.compiled
 	fi
 }
