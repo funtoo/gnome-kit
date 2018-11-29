@@ -37,7 +37,7 @@ RDEPEND="
 	kernel_linux? ( sys-apps/util-linux )
 	selinux? ( >=sys-libs/libselinux-2.2.2-r5 )
 	xattr? ( >=sys-apps/attr-2.4.47-r1 )
-	fam? ( >=virtual/fam-0-r1] )
+	fam? ( >=virtual/fam-0-r1 )
 	utils? (
 		${PYTHON_DEPS}
 		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
