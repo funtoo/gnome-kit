@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,8 +6,7 @@ GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} )
 
-inherit bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd \
-	user readme.gentoo-r1 vala virtualx udev multilib-minimal
+inherit bash-completion-r1 gnome2 linux-info python-any-r1 systemd user readme.gentoo-r1 vala virtualx udev
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -26,23 +24,23 @@ REQUIRED_USE="
 	?? ( consolekit elogind systemd )
 "
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
 COMMON_DEPEND="
-	>=sys-apps/dbus-1.2[${MULTILIB_USEDEP}]
-	>=dev-libs/dbus-glib-0.100[${MULTILIB_USEDEP}]
-	dev-libs/glib:2=[${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.40:2[${MULTILIB_USEDEP}]
-	>=dev-libs/libnl-3.2.8:3=[${MULTILIB_USEDEP}]
+	>=sys-apps/dbus-1.2
+	>=dev-libs/dbus-glib-0.100
+	dev-libs/glib:2=
+	>=dev-libs/glib-2.40:2
+	>=dev-libs/libnl-3.2.8:3=
 	policykit? ( >=sys-auth/polkit-0.106 )
-	net-libs/libndp[${MULTILIB_USEDEP}]
+	net-libs/libndp
 	>=net-misc/curl-7.24
 	net-misc/iputils
-	sys-apps/util-linux[${MULTILIB_USEDEP}]
+	sys-apps/util-linux
 	sys-libs/readline:0=
-	>=virtual/libudev-175:=[${MULTILIB_USEDEP}]
+	>=virtual/libudev-175:=
 	audit? ( sys-process/audit )
 	bluetooth? ( >=net-wireless/bluez-5 )
 	connection-sharing? (
@@ -53,13 +51,13 @@ COMMON_DEPEND="
 	dhcpcd? ( net-misc/dhcpcd )
 	elogind? ( >=sys-auth/elogind-219 )
 	gnutls? (
-		dev-libs/libgcrypt:0=[${MULTILIB_USEDEP}]
-		>=net-libs/gnutls-2.12:=[${MULTILIB_USEDEP}] )
+		dev-libs/libgcrypt:0=
+		>=net-libs/gnutls-2.12:= )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
-	json? ( >=dev-libs/jansson-2.5[${MULTILIB_USEDEP}] )
+	json? ( >=dev-libs/jansson-2.5 )
 	modemmanager? ( >=net-misc/modemmanager-0.7.991:0= )
 	ncurses? ( >=dev-libs/newt-0.52.15 )
-	nss? ( >=dev-libs/nss-3.11:=[${MULTILIB_USEDEP}] )
+	nss? ( >=dev-libs/nss-3.11:= )
 	ofono? ( net-misc/ofono )
 	ovs? (
 		dev-libs/jansson
@@ -90,7 +88,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
 	>=sys-devel/gettext-0.17
 	>=sys-kernel/linux-headers-2.6.29
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	introspection? (
 		$(python_gen_any_dep 'dev-python/pygobject:3[${PYTHON_USEDEP}]')
 		dev-lang/perl
@@ -159,7 +157,7 @@ src_prepare() {
 	gnome2_src_prepare
 }
 
-multilib_src_configure() {
+src_configure() {
 	local myconf=(
 		--disable-more-warnings
 		--disable-static
@@ -176,39 +174,35 @@ multilib_src_configure() {
 		--with-udev-dir="$(get_udevdir)"
 		--with-config-plugins-default=keyfile
 		--with-iptables=/sbin/iptables
-		$(multilib_native_enable concheck)
+		$(enable concheck)
 		--with-crypto=$(usex nss nss gnutls)
-		--with-session-tracking=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind $(multilib_native_usex consolekit consolekit no)))
-		--with-suspend-resume=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind consolekit))
-		$(multilib_native_use_with audit libaudit)
-		$(multilib_native_use_enable bluetooth bluez5-dun)
+		--with-session-tracking=$(usex systemd systemd $(usex elogind elogind $(usex consolekit consolekit no)))
+		--with-suspend-resume=$(usex systemd systemd $(usex elogind elogind consolekit))
+		$(use_with audit libaudit)
+		$(use_enable bluetooth bluez5-dun)
 		$(use_with dhclient)
 		$(use_with dhcpcd)
-		$(multilib_native_use_enable introspection)
+		$(use_enable introspection)
 		$(use_enable json json-validation)
-		$(multilib_native_use_enable ppp)
+		$(use_enable ppp)
 		--without-libpsl
-		$(multilib_native_use_with modemmanager modem-manager-1)
-		$(multilib_native_use_with ncurses nmtui)
-		$(multilib_native_use_with ofono)
-		$(multilib_native_use_enable ovs)
-		$(multilib_native_use_with resolvconf)
-		$(multilib_native_use_with selinux)
-		$(multilib_native_use_with systemd systemd-journal)
-		$(multilib_native_use_enable teamd teamdctl)
-		$(multilib_native_use_enable test tests)
-		$(multilib_native_use_enable vala)
+		$(use_with modemmanager modem-manager-1)
+		$(use_with ncurses nmtui)
+		$(use_with ofono)
+		$(use_enable ovs)
+		$(use_with resolvconf)
+		$(use_with selinux)
+		$(use_with systemd systemd-journal)
+		$(use_enable teamd teamdctl)
+		$(use_enable test tests)
+		$(use_enable vala)
 		--without-valgrind
-		$(multilib_native_use_with wifi iwd)
-		$(multilib_native_use_with wext)
-		$(multilib_native_use_enable wifi)
+		$(use_with wifi iwd)
+		$(use_with wext)
+		$(use_enable wifi)
 	)
 
-	if multilib_is_native_abi && use policykit; then
-		myconf+=( --enable-polkit=yes )
-	else
-		myconf+=( --enable-polkit=disabled )
-	fi
+	myconf+=( --enable-polkit=yes )
 
 	# Same hack as net-dialup/pptpd to get proper plugin dir for ppp, bug #519986
 	if use ppp; then
@@ -222,59 +216,28 @@ multilib_src_configure() {
 	# otherwise systemd support is not disabled completely, bug #524534
 	use systemd && myconf+=( --with-systemdsystemunitdir="$(systemd_get_systemunitdir)" )
 
-	if multilib_is_native_abi; then
-		# work-around man out-of-source brokenness, must be done before configure
-		ln -s "${S}/docs" docs || die
-		ln -s "${S}/man" man || die
-	fi
+	# work-around man out-of-source brokenness, must be done before configure
+	ln -s "${S}/docs" docs || die
+	ln -s "${S}/man" man || die
 
 	ECONF_SOURCE=${S} runstatedir="/run" gnome2_src_configure "${myconf[@]}"
 }
 
-multilib_src_compile() {
-	if multilib_is_native_abi; then
-		emake
-	else
-		local targets=(
-			libnm/libnm.la
-			libnm-util/libnm-util.la
-			libnm-glib/libnm-glib.la
-			libnm-glib/libnm-glib-vpn.la
-		)
-		emake "${targets[@]}"
-	fi
+src_compile() {
+	emake
 }
 
-multilib_src_test() {
-	if use test && multilib_is_native_abi; then
+src_test() {
+	if use test; then
 		python_setup
 		virtx emake check
 	fi
 }
 
-multilib_src_install() {
-	if multilib_is_native_abi; then
-		# Install completions at proper place, bug #465100
-		gnome2_src_install completiondir="$(get_bashcompdir)"
-	else
-		local targets=(
-			install-libLTLIBRARIES
-			install-libdeprecatedHEADERS
-			install-libnm_glib_libnmvpnHEADERS
-			install-libnm_glib_libnmincludeHEADERS
-			install-libnm_util_libnm_util_includeHEADERS
-			install-libnmincludeHEADERS
-			install-nodist_libnm_glib_libnmincludeHEADERS
-			install-nodist_libnm_glib_libnmvpnHEADERS
-			install-nodist_libnm_util_libnm_util_includeHEADERS
-			install-nodist_libnmincludeHEADERS
-			install-pkgconfigDATA
-		)
-		emake DESTDIR="${D}" "${targets[@]}"
-	fi
-}
+src_install() {
+	# Install completions at proper place, bug #465100
+	gnome2_src_install completiondir="$(get_bashcompdir)"
 
-multilib_src_install_all() {
 	! use systemd && readme.gentoo_create_doc
 
 	if use elogind; then
