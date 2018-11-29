@@ -4,7 +4,7 @@
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit autotools flag-o-matic gnome2 multilib virtualx multilib-minimal
+inherit autotools flag-o-matic gnome2 virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
@@ -26,38 +26,38 @@ RESTRICT="test"
 # FIXME: introspection data is built against system installation of gtk+:3,
 # bug #????
 COMMON_DEPEND="
-	>=dev-libs/atk-2.15[introspection?,${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.49.4:2[${MULTILIB_USEDEP}]
-	media-libs/fontconfig[${MULTILIB_USEDEP}]
-	>=media-libs/libepoxy-1.0[X(+)?,${MULTILIB_USEDEP}]
-	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?,${MULTILIB_USEDEP}]
-	>=x11-libs/gdk-pixbuf-2.30:2[introspection?,${MULTILIB_USEDEP}]
-	>=x11-libs/pango-1.37.3[introspection?,${MULTILIB_USEDEP}]
+	>=dev-libs/atk-2.15[introspection?,]
+	>=dev-libs/glib-2.49.4:2
+	media-libs/fontconfig
+	>=media-libs/libepoxy-1.0[X(+)?,]
+	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?,]
+	>=x11-libs/gdk-pixbuf-2.30:2[introspection?,]
+	>=x11-libs/pango-1.37.3[introspection?,]
 	x11-misc/shared-mime-info
 
 	cloudprint? (
-		>=net-libs/rest-0.7[${MULTILIB_USEDEP}]
-		>=dev-libs/json-glib-1.0[${MULTILIB_USEDEP}] )
-	colord? ( >=x11-misc/colord-0.1.9:0=[${MULTILIB_USEDEP}] )
-	cups? ( >=net-print/cups-1.2[${MULTILIB_USEDEP}] )
+		>=net-libs/rest-0.7
+		>=dev-libs/json-glib-1.0 )
+	colord? ( >=x11-misc/colord-0.1.9:0= )
+	cups? ( >=net-print/cups-1.2 )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
 	wayland? (
-		>=dev-libs/wayland-1.9.91[${MULTILIB_USEDEP}]
+		>=dev-libs/wayland-1.9.91
 		>=dev-libs/wayland-protocols-1.9
-		media-libs/mesa[wayland,${MULTILIB_USEDEP}]
-		>=x11-libs/libxkbcommon-0.2[${MULTILIB_USEDEP}]
+		media-libs/mesa[wayland,]
+		>=x11-libs/libxkbcommon-0.2
 	)
 	X? (
-		>=app-accessibility/at-spi2-atk-2.5.3[${MULTILIB_USEDEP}]
-		x11-libs/libX11[${MULTILIB_USEDEP}]
-		>=x11-libs/libXi-1.3[${MULTILIB_USEDEP}]
-		x11-libs/libXext[${MULTILIB_USEDEP}]
-		>=x11-libs/libXrandr-1.5[${MULTILIB_USEDEP}]
-		x11-libs/libXcursor[${MULTILIB_USEDEP}]
-		x11-libs/libXfixes[${MULTILIB_USEDEP}]
-		x11-libs/libXcomposite[${MULTILIB_USEDEP}]
-		x11-libs/libXdamage[${MULTILIB_USEDEP}]
-		xinerama? ( x11-libs/libXinerama[${MULTILIB_USEDEP}] )
+		>=app-accessibility/at-spi2-atk-2.5.3
+		x11-libs/libX11
+		>=x11-libs/libXi-1.3
+		x11-libs/libXext
+		>=x11-libs/libXrandr-1.5
+		x11-libs/libXcursor
+		x11-libs/libXfixes
+		x11-libs/libXcomposite
+		x11-libs/libXdamage
+		xinerama? ( x11-libs/libXinerama )
 	)
 "
 DEPEND="${COMMON_DEPEND}
@@ -67,14 +67,14 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/gobject-introspection-common
 	>=dev-util/gdbus-codegen-2.48
 	>=dev-util/gtk-doc-am-1.20
-	>=sys-devel/gettext-0.19.7[${MULTILIB_USEDEP}]
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	>=sys-devel/gettext-0.19.7
+	virtual/pkgconfig
 	X? (
-		x11-proto/xextproto[${MULTILIB_USEDEP}]
-		x11-proto/xproto[${MULTILIB_USEDEP}]
-		x11-proto/inputproto[${MULTILIB_USEDEP}]
-		x11-proto/damageproto[${MULTILIB_USEDEP}]
-		xinerama? ( x11-proto/xineramaproto[${MULTILIB_USEDEP}] )
+		x11-proto/xextproto
+		x11-proto/xproto
+		x11-proto/inputproto
+		x11-proto/damageproto
+		xinerama? ( x11-proto/xineramaproto )
 	)
 	test? (
 		media-fonts/font-misc-misc
@@ -89,7 +89,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 # librsvg for svg icons (PDEPEND to avoid circular dep), bug #547710
 PDEPEND="
-	gnome-base/librsvg[${MULTILIB_USEDEP}]
+	gnome-base/librsvg
 	>=x11-themes/adwaita-icon-theme-3.14
 	vim-syntax? ( app-vim/gtk-syntax )
 "
@@ -133,7 +133,7 @@ src_prepare() {
 	gnome2_src_prepare
 }
 
-multilib_src_configure() {
+src_configure() {
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
 	# cloudprovider is not packaged in Gentoo
@@ -144,7 +144,7 @@ multilib_src_configure() {
 		$(use_enable cloudprint) \
 		$(use_enable colord) \
 		$(use_enable cups cups auto) \
-		$(multilib_native_use_enable introspection) \
+		$(use_enable introspection) \
 		$(use_enable wayland wayland-backend) \
 		$(use_enable X x11-backend) \
 		$(use_enable X xcomposite) \
@@ -162,24 +162,22 @@ multilib_src_configure() {
 		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
 
 	# work-around gtk-doc out-of-source brokedness
-	if multilib_is_native_abi; then
-		local d
-		for d in gdk gtk libgail-util; do
-			ln -s "${S}"/docs/reference/${d}/html docs/reference/${d}/html || die
-		done
-	fi
+    local d
+    for d in gdk gtk libgail-util; do
+        ln -s "${S}"/docs/reference/${d}/html docs/reference/${d}/html || die
+    done
 }
 
-multilib_src_test() {
+src_test() {
 	"${EROOT}${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/gtk" || die
 	GSETTINGS_SCHEMA_DIR="${S}/gtk" virtx emake check
 }
 
-multilib_src_install() {
+src_install() {
 	gnome2_src_install
 }
 
-multilib_src_install_all() {
+src_install_all() {
 	insinto /etc/gtk-3.0
 	doins "${FILESDIR}"/settings.ini
 	# Skip README.{in,commits,win32} and useless ChangeLog that would get installed by default
@@ -190,27 +188,19 @@ multilib_src_install_all() {
 pkg_preinst() {
 	gnome2_pkg_preinst
 
-	multilib_pkg_preinst() {
-		# Make immodules.cache belongs to gtk+ alone
-		local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+    # Make immodules.cache belongs to gtk+ alone
+    local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 
-		if [[ -e ${EROOT}${cache} ]]; then
-			cp "${EROOT}"${cache} "${ED}"/${cache} || die
-		else
-			touch "${ED}"/${cache} || die
-		fi
-	}
-	multilib_parallel_foreach_abi multilib_pkg_preinst
+    if [[ -e ${EROOT}${cache} ]]; then
+        cp "${EROOT}"${cache} "${ED}"/${cache} || die
+    else
+        touch "${ED}"/${cache} || die
+    fi
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
-
-	multilib_pkg_postinst() {
-		gnome2_query_immodules_gtk3 \
-			|| die "Update immodules cache failed (for ${ABI})"
-	}
-	multilib_parallel_foreach_abi multilib_pkg_postinst
+	gnome2_query_immodules_gtk3 || die "Update immodules cache failed"
 
 	if ! has_version "app-text/evince"; then
 		elog "Please install app-text/evince for print preview functionality."
@@ -221,11 +211,7 @@ pkg_postinst() {
 
 pkg_postrm() {
 	gnome2_pkg_postrm
-
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
-		multilib_pkg_postrm() {
-			rm -f "${EROOT}"usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache
-		}
-		multilib_foreach_abi multilib_pkg_postrm
+		rm -f "${EROOT}"usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache
 	fi
 }
