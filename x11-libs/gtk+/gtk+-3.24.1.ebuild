@@ -26,7 +26,7 @@ RESTRICT="test"
 # FIXME: introspection data is built against system installation of gtk+:3,
 # bug #????
 COMMON_DEPEND="
-	>=dev-libs/atk-2.15[introspection?,
+	>=dev-libs/atk-2.15[introspection?]
 	>=dev-libs/glib-2.49.4:2
 	media-libs/fontconfig
 	>=media-libs/libepoxy-1.0[X(+)?]
