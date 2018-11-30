@@ -1,17 +1,7 @@
-From cc37137637a7bf1e1b48ec328ae13e47b63aaa88 Mon Sep 17 00:00:00 2001
-From: Richard Hughes <richard@hughsie.com>
-Date: Tue, 28 Nov 2017 11:16:37 +0000
-Subject: [PATCH] trivial: post release version bump
-
----
- configure.ac | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/configure.ac b/configure.ac
-index 547776a..3df3055 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
+diff -Nuar /var/tmp/portage/sys-power/upower-0.99.8.20171128/work/upower-0.99.3/configure.ac /var/tmp/portage/sys-power/upower-0.99.8.20171128/work/upower-0.99.3-fixed/configure.ac
+--- a/configure.ac	2018-11-30 19:40:18.055403653 +0000
++++ b/configure.ac	2018-11-30 19:41:35.408202003 +0000
+@@ -2,7 +2,7 @@
  
  m4_define([up_major_version], [0])
  m4_define([up_minor_version], [99])
@@ -19,7 +9,4 @@ index 547776a..3df3055 100644
 +m4_define([up_micro_version], [8])
  m4_define([up_version],
            [up_major_version.up_minor_version.up_micro_version])
- 
--- 
-2.15.0
 
