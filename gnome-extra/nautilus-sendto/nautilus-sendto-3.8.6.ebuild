@@ -17,6 +17,7 @@ RDEPEND="
 	>=x11-libs/gtk+-2.90.3:3
 "
 DEPEND="${RDEPEND}
+	dev-libs/appstream-glib
 	>=dev-util/gtk-doc-am-1.9
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
