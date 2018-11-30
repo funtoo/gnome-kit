@@ -1,5 +1,5 @@
 # circ. dep webp/tiff
-media-libs/webp -tiff
+media-libs/libwebp -tiff
 
 # https://bugs.funtoo.org/browse/FL-4564. enable egl USE for the media-plugins-bad:
 >=media-libs/gst-plugins-bad-1.12.3 egl
