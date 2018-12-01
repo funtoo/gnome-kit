@@ -22,7 +22,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.9.1-r4:2
 	>=dev-db/sqlite-3.8.2:3
 	>=net-libs/glib-networking-2.38.2[ssl?]
-	gssapi? ( virtual/krb5
+	gssapi? ( virtual/krb5 )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 	samba? ( net-fs/samba )
 "
