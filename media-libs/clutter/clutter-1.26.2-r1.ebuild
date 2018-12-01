@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -18,7 +17,7 @@ REQUIRED_USE="
 	wayland? ( egl )
 "
 
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sparc x86"
+KEYWORDS="*"
 
 # NOTE: glx flavour uses libdrm + >=mesa-7.3
 # >=libX11-1.3.1 needed for X Generic Event support
@@ -52,6 +51,7 @@ RDEPEND="
 		>=x11-libs/libXcomposite-0.4 )
 	wayland? (
 		dev-libs/wayland
+		media-libs/cogl[wayland]
 		x11-libs/gdk-pixbuf:2 )
 "
 DEPEND="${RDEPEND}
