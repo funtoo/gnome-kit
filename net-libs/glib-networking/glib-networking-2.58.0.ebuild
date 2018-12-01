@@ -20,7 +20,7 @@ RDEPEND="
 	libproxy? ( >=net-libs/libproxy-0.4.11-r1:= )
 	smartcard? (
 		>=app-crypt/p11-kit-0.18.4
-		>=net-libs/gnutls-3:=[pkcs11 )
+		>=net-libs/gnutls-3:=[pkcs11] )
 	ssl? (
 		app-misc/ca-certificates
 		>=net-libs/gnutls-3:= )
