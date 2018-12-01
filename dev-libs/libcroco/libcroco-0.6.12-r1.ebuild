@@ -19,6 +19,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.9.1-r4[${MULTILIB_USEDEP}]
 "
 DEPEND="${RDEPEND}
+	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
 "
