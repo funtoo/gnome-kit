@@ -26,7 +26,7 @@ RDEPEND="
 	>=dev-libs/glib-2.44.0:2
 	>=dev-libs/atk-2.5.3[introspection?]
 	>=dev-libs/json-glib-0.12[introspection?]
-	>=media-libs/cogl-1.21.2:1.0=[introspection?,pango,wayland?]
+	>=media-libs/cogl-1.21.2:1.0=[introspection?,pango]
 	>=x11-libs/cairo-1.14:=[aqua?,glib]
 	>=x11-libs/pango-1.30[introspection?]
 
@@ -35,7 +35,7 @@ RDEPEND="
 
 	egl? (
 		>=dev-libs/libinput-0.19.0
-		media-libs/cogl[gles2,wayland]
+		media-libs/cogl[gles2]
 		>=virtual/libgudev-136
 		x11-libs/libxkbcommon
 	)
