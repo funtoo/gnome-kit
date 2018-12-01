@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2 meson multilib-minimal virtualx
+inherit gnome2 meson virtualx
 
 DESCRIPTION="Network-related giomodules for glib"
 HOMEPAGE="https://git.gnome.org/browse/glib-networking/"
@@ -15,19 +15,19 @@ KEYWORDS="*"
 IUSE="+gnome +libproxy smartcard +ssl install_test test"
 
 RDEPEND="
-	>=dev-libs/glib-2.55.1:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.55.1:2
 	gnome? ( gnome-base/gsettings-desktop-schemas )
-	libproxy? ( >=net-libs/libproxy-0.4.11-r1:=[${MULTILIB_USEDEP}] )
+	libproxy? ( >=net-libs/libproxy-0.4.11-r1:= )
 	smartcard? (
-		>=app-crypt/p11-kit-0.18.4[${MULTILIB_USEDEP}]
-		>=net-libs/gnutls-3:=[pkcs11,${MULTILIB_USEDEP}] )
+		>=app-crypt/p11-kit-0.18.4
+		>=net-libs/gnutls-3:=[pkcs11 )
 	ssl? (
 		app-misc/ca-certificates
-		>=net-libs/gnutls-3:=[${MULTILIB_USEDEP}] )
+		>=net-libs/gnutls-3:= )
 "
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.19.4
-	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
+	>=virtual/pkgconfig-0-r1
 	test? ( sys-apps/dbus[X] )
 "
 
@@ -46,7 +46,7 @@ src_prepare() {
 	fi
 }
 
-multilib_src_configure() {
+src_configure() {
 	local emesonargs=(
 		-Doption=disable-static
 		-Dca_certificates_path="${EPREFIX}"/etc/ssl/certs/ca-certificates.crt
@@ -59,38 +59,28 @@ multilib_src_configure() {
 	meson_src_configure
 }
 
-multilib_src_test() {
+src_test() {
 	# XXX: non-native tests fail if glib-networking is already installed.
 	# have no idea what's wrong. would appreciate some help.
-	multilib_is_native_abi || return 0
-
 	virtx emake check
 }
 
-multilib_src_compile() {
+src_compile() {
 	meson_src_compile
 }
 
-multilib_src_install() {
+src_install() {
 	meson_src_install
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
 
-	multilib_pkg_postinst() {
-		gnome2_giomodule_cache_update \
-			|| die "Update GIO modules cache failed (for ${ABI})"
-	}
-	multilib_foreach_abi multilib_pkg_postinst
+	gnome2_giomodule_cache_update || die "Update GIO modules cache failed (for ${ABI})"
 }
 
 pkg_postrm() {
 	gnome2_pkg_postrm
 
-	multilib_pkg_postrm() {
-		gnome2_giomodule_cache_update \
-			|| die "Update GIO modules cache failed (for ${ABI})"
-	}
-	multilib_foreach_abi multilib_pkg_postrm
+	gnome2_giomodule_cache_update || die "Update GIO modules cache failed (for ${ABI})"
 }
