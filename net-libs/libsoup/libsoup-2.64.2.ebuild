@@ -70,9 +70,9 @@ src_configure() {
 		--without-gnome \
 		--without-apache-httpd \
 		$(usex debug --enable-debug=yes ' ') \
-		$(multilib_native_use_with gssapi) \
-		$(multilib_native_use_enable introspection) \
-		$(multilib_native_use_enable vala) \
+		$(use_with gssapi) \
+		$(use_enable introspection) \
+		$(use_enable vala) \
 		$(use_with samba ntlm-auth '${EPREFIX}'/usr/bin/ntlm_auth)
 
 		# fix gtk-doc
