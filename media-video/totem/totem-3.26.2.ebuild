@@ -102,6 +102,11 @@ src_configure() {
 		-Dwith-plugins=auto
 }
 
+src_compile() {
+	# needed parallel build fix
+	eninja -C "${BUILD_DIR}" -j1
+}
+
 src_install() {
 	gnome-meson_src_install
 	if use python ; then
