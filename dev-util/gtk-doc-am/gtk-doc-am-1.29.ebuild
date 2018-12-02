@@ -4,16 +4,18 @@
 EAPI=6
 GNOME_ORG_MODULE="gtk-doc"
 
-inherit gnome.org
+inherit gnome.org python-single-r1
 
 DESCRIPTION="Automake files from gtk-doc"
 HOMEPAGE="https://www.gtk.org/gtk-doc/"
 
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="*"
 
-RDEPEND=">=dev-lang/perl-5.18"
+RDEPEND="
+	${PYTHON_DEPS}
+	>=dev-lang/perl-5.18"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	!<dev-util/gtk-doc-${GNOME_ORG_PVP}
@@ -33,8 +35,8 @@ src_compile() {
 }
 
 src_install() {
+	python_fix_shebang "${ED}"/usr/bin/gtkdoc-rebase
 	dobin gtkdoc-rebase
-
 	insinto /usr/share/aclocal
 	doins ${FILESDIR}/gtk-doc.m4
 }
