@@ -16,7 +16,7 @@ REQUIRED_USE="
 	xinerama? ( X )
 "
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="*"
 
 # Upstream wants us to do their job:
 # https://bugzilla.gnome.org/show_bug.cgi?id=768662#c1
@@ -111,31 +111,23 @@ src_prepare() {
 }
 
 src_configure() {
-	# Not sure how to handle
-	#	$(use_enable X xcomposite) \
-	#	$(use_enable X xdamage) \
-	#	$(use_enable X xfixes) \
-	#	$(use_enable X xkb) \
-	#	$(use_enable X xrandr) \
-	#	--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-
 	local emesonargs=(
-		-Denable-quartz-backend=$(usex aqua true false)
-		-Denable-broadway-backend=$(usex broadway true false)
-		-Denable-cloudprint-print-backend=$(usex cloudprint yes no)
-		-Denable-colord=$(usex colord yes no)
-		-Denable-cups-print-backend=$(usex cups yes no)
-		-Denable-wayland-backend=$(usex wayland true false)
-		-Denable-x11-backend=$(usex X true false)
-		-Denable-vulkan=$(usex vulkan yes no)
-		-Denable-xinerama=$(usex xinerama yes no)
+		-Dquartz-backend=$(usex aqua true false)
+		-Dbroadway-backend=$(usex broadway true false)
+		-Dcloudprint-print-backend=$(usex cloudprint yes no)
+		-Dcolord=$(usex colord yes no)
+		-Dcups-print-backend=$(usex cups yes no)
+		-Dwayland-backend=$(usex wayland true false)
+		-Dx11-backend=$(usex X true false)
+		-Dvulkan=$(usex vulkan yes no)
+		-Dxinerama=$(usex xinerama yes no)
 		-Ddocumentation=$(usex docs true false)
-		-Denable-cloudproviders=false
-		-Denable-mir-backend=false
-		-Denable-win32-backend=false
-		-Ddisable-modules=false
-		-Denable-test-print-backend=no
-		-Denable-papi-print-backend=no
+		-Dcloudproviders=false
+		-Dmir-backend=false
+		-Dwin32-backend=false
+		-Dmodules=false
+		-Dtest-print-backend=no
+		-Dpapi-print-backend=no
 		-Dbuild-tests=$(usex test true false)
 		-Ddemos=$(usex examples true false)
 		-Dinstall-tests=false
