@@ -13,14 +13,19 @@ KEYWORDS="~*"
 
 IUSE="+spell +archive +sound"
 
-DEPEND="
-	>=dev-util/meson-0.36
+RDEPEND="
 	>=sys-devel/gettext-0.19.7
 	spell? ( app-text/gspell )
 	archive? ( app-arch/gnome-autoar )
 	sound? ( media-libs/libcanberra )
 	>=dev-libs/glib-2.42
 	>=x11-libs/gtk+-3.22
+	net-libs/gnome-online-accounts
+"
+
+RDEPEND="
+	>=dev-util/meson-0.36
+	$DEPEND
 "
 
 src_prepare() {
