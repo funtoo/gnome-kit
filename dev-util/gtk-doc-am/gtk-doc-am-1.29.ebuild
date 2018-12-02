@@ -36,7 +36,7 @@ src_compile() {
 }
 
 src_install() {
-	python_fix_shebang "${ED}"/usr/bin/gtkdoc-rebase
+	python_fix_shebang gtkdoc-rebase
 	dobin gtkdoc-rebase
 	insinto /usr/share/aclocal
 	doins ${FILESDIR}/gtk-doc.m4
