@@ -1,3 +1,6 @@
+# FL-5935: mesa need egl USE enabled with emerge gnome
+media-libs/mesa egl
+
 # circ. dep webp/tiff
 media-libs/libwebp -tiff
 
