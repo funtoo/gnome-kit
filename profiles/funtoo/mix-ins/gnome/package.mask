@@ -1,5 +1,3 @@
-# mask recent dev-perl/SGMLSpm. This breaks gnome's power manager. It's unknown whether it breaks anything else. Keep the mask in gnome profile for now.
->=dev-perl/SGMLSpm-1.03-r8
 =dev-util/itstool-2.0.4
 # for gst-plugins-libav:
 >=media-video/ffmpeg-4
