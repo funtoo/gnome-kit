@@ -1,3 +1,7 @@
+# enable more egl USE's
+>=media-plugins/gst-plugins-gtk-1.14.4 egl
+>=media-libs/gst-plugins-base-1.14.4-r1 egl
+
 # FL-5935: mesa need egl USE enabled with emerge gnome
 media-libs/mesa egl
 
