@@ -61,7 +61,7 @@ COMMON_DEPEND="
 	bluetooth? ( >=net-wireless/gnome-bluetooth-3.9[introspection] )
 	networkmanager? (
 		app-crypt/libsecret
-		>=gnome-extra/nm-applet-1.10.4
+		>=gnome-extra/nm-applet-1.8.14
 		>=net-misc/networkmanager-1.10.4:=[introspection] )
 	nsplugin? ( >=dev-libs/json-glib-0.13.2 )
 "
