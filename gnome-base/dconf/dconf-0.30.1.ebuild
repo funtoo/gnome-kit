@@ -23,7 +23,7 @@ DEPEND="${RDEPEND}
 	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1.15
 	sys-devel/gettext
-	dev-lang/vala
+	<dev-lang/vala-0.42
 	virtual/pkgconfig
 "
 
