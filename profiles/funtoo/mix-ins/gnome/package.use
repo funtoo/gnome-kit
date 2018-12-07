@@ -1,15 +1,5 @@
-# enable more egl USE's
->=media-plugins/gst-plugins-gtk-1.14.4 egl
->=media-libs/gst-plugins-base-1.14.4-r1 egl
-
-# FL-5935: mesa need egl USE enabled with emerge gnome
-media-libs/mesa egl
-
 # circ. dep webp/tiff
 media-libs/libwebp -tiff
-
-# https://bugs.funtoo.org/browse/FL-4564. enable egl USE for the media-plugins-bad:
->=media-libs/gst-plugins-bad-1.12.3 egl
 
 # enable threads USE for dev-libs/boehm-gc as wanted by gnome ebuilds
 dev-libs/boehm-gc threads
@@ -26,7 +16,6 @@ media-libs/gegl cairo raw
 x11-wm/mutter -kms -deprecated-background
 
 # for 3.16
->=media-libs/clutter-1.22.4 egl
 >=www-servers/apache-2.4.16 apache2_mpms_prefork apache2_modules_auth_digest
 >=gnome-base/gnome-control-center-3.16.3 networkmanager
 
