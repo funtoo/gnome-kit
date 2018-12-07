@@ -19,7 +19,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2+"
 SLOT="2"
-IUSE="dbus +doc fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
+IUSE="dbus fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
 REQUIRED_USE="
 	utils? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )
@@ -47,13 +47,12 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	>=dev-libs/libxslt-1.0
+	>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 	>=sys-devel/gettext-0.11
-	doc? ( >=dev-util/gtk-doc-1.20 )
 	systemtap? ( >=dev-util/systemtap-1.3 )
 	test? (
 		sys-devel/gdb
 		${PYTHON_DEPS}
-		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 		>=sys-apps/dbus-1.2.14 )
 	!<dev-util/gtk-doc-1.15-r2
 "
@@ -150,7 +149,7 @@ src_configure() {
 		-Dman=true
 		-Dinternal_pcre=false
 		-Dforce_posix_threads=false
-		-Dgtk_doc=$(usex doc true false)
+		-Dgtk_doc=false
 		$(meson_use xattr xattr)
 		$(meson_use fam fam)
 		$(meson_use kernel_linux libmount)
