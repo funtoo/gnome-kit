@@ -12,7 +12,7 @@ LICENSE="LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="afp archive bluray cdda elogind fuse google gnome-keyring gnome-online-accounts gphoto2 gtk +http ios mtp nfs policykit samba systemd test +udev udisks zeroconf"
+IUSE="afp archive bluray cdda dnssd elogind fuse google gnome-keyring gnome-online-accounts gphoto2 gtk +http ios mtp nfs policykit samba systemd test +udev udisks"
 REQUIRED_USE="
 	cdda? ( udev )
 	elogind? ( !systemd udisks )
@@ -34,6 +34,7 @@ RDEPEND="
 	afp? ( >=dev-libs/libgcrypt-1.2.2:0= )
 	archive? ( app-arch/libarchive:= )
 	bluray? ( media-libs/libbluray:= )
+	dnssd? ( >=net-dns/avahi-0.6 )
 	elogind? ( >=sys-auth/elogind-229:0= )
 	fuse? ( >=sys-fs/fuse-2.8.0:0 )
 	gnome-keyring? ( app-crypt/libsecret )
@@ -61,7 +62,6 @@ RDEPEND="
 		>=virtual/libgudev-147:=
 		virtual/libudev:= )
 	udisks? ( >=sys-fs/udisks-1.97:2 )
-	zeroconf? ( >=net-dns/avahi-0.6 )
 "
 DEPEND="${RDEPEND}
 	app-text/docbook-xsl-stylesheets
@@ -101,6 +101,7 @@ src_configure() {
 		$(meson_use afp afp) \
 		$(meson_use archive archive) \
 		$(meson_use cdda cdda)\
+		$(meson_use dnssd dnssd)\
 		$(meson_use gnome-online-accounts goa) \
 		$(meson_use google google) \
 		$(meson_use gphoto2 gphoto2) \
