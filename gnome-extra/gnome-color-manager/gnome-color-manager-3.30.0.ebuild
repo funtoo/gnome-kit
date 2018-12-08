@@ -11,7 +11,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="packagekit raw"
+IUSE="exiv packagekit"
 
 # Need gtk+-3.3.8 for https://bugzilla.gnome.org/show_bug.cgi?id=673331
 RDEPEND="
@@ -27,7 +27,7 @@ RDEPEND="
 	>=x11-libs/colord-gtk-0.1.20
 
 	packagekit? ( app-admin/packagekit-base )
-	raw? ( media-gfx/exiv2:0= )
+	exiv? ( media-gfx/exiv2:0= )
 "
 # docbook-sgml-{utils,dtd:4.1} needed to generate man pages
 DEPEND="${RDEPEND}
@@ -42,7 +42,7 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	gnome-meson_src_configure \
-		-Denable-tests=false \
-		-Denable-exiv=$(usex raw true false) \
-		-Denable-packagekit=$(usex packagekit true false)
+		-Dtests=false \
+		-Dexiv=$(usex exiv true false) \
+		-Dpackagekit=$(usex packagekit true false)
 }
