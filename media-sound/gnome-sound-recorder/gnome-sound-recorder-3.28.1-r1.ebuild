@@ -12,6 +12,10 @@ SLOT="0"
 KEYWORDS="amd64 ~x86"
 IUSE=""
 
+PATCHES=(
+	$FILESDIR/listview-fix.patch
+)
+
 COMMON_DEPEND="
 	dev-libs/gjs
 	>=dev-libs/glib-2.46:2

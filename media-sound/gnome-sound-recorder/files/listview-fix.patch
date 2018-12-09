@@ -1,0 +1,16 @@
+diff --git a/src/listview.js b/src/listview.js
+index 33cbec0dd94453f7bb5fec42c3896a3eaac53001..afe508ad5a46638f0b6c8b8dd4c37b014e1894b3 100644
+--- a/src/listview.js
++++ b/src/listview.js
+@@ -111,7 +111,10 @@ const Listview = new Lang.Class({
+                                     if (returnedNumber > trackNumber)
+                                         trackNumber = returnedNumber;
+ 
+-                                }  catch (e if e instanceof TypeError) {
++                                }  catch (e) {
++                                    if (!e instanceof TypeError)
++                                        throw e;
++
+                                     log("Tracknumber not returned");
+                                     // Don't handle the error
+                                 }
