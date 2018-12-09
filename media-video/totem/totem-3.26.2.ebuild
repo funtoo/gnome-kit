@@ -89,6 +89,15 @@ src_prepare() {
 }
 
 src_configure() {
+	# FL-5969. workaround sandbox violations:
+	for card in /dev/dri/card* ; do
+		addpredict "${card}"
+	done
+
+	for render in /dev/dri/render* ; do
+		addpredict "${render}"
+	done
+
 	# pylint is checked unconditionally, but is only used for make check
 	# appstream-util overriding necessary until upstream fixes their macro
 	# to respect configure switch
