@@ -1,3 +1,6 @@
+# FL_5977 librsvg need both introspection and vala
+gnome-base/librsvg introspection vala
+
 # Unbreak vala/librsvg/graphviz circular dep. FL-5963
 media-gfx/graphviz -svg
 gnome-base/librsvg -vala

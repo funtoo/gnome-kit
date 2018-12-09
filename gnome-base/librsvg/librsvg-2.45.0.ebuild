@@ -2,17 +2,17 @@
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
-
-inherit autotools eutils gnome2
+VALA_USE_DEPEND="vapigen"
+inherit autotools eutils gnome2 vala
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="*"
 
-IUSE="+introspection tools"
+IUSE="+introspection tools +vala"
 
 RDEPEND="
 	>=dev-libs/glib-2.34.3:2
@@ -26,9 +26,11 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
+	dev-libs/vala-common
 	>=dev-util/gtk-doc-am-1.13
-	>=virtual/pkgconfig-0-r1
 	virtual/cargo
+	vala? ( $(vala_depend) )
+	>=virtual/pkgconfig-0-r1
 "
 
 src_prepare() {
@@ -36,6 +38,7 @@ src_prepare() {
 
 	eautoreconf
 	gnome2_src_prepare
+	use vala && vala_src_prepare
 }
 
 src_configure() {
@@ -43,9 +46,9 @@ src_configure() {
 	ECONF_SOURCE=${S} \
 	gnome2_src_configure \
 		--disable-static \
-		--enable-vala=no \
 		$(use_enable introspection) \
 		$(use_enable tools) \
+		$(use_enable vala) \
 		--enable-pixbuf-loader
 	ln -s "${S}"/doc/html doc/html || die
 }
