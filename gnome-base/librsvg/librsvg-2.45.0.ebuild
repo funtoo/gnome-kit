@@ -1,11 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
-VALA_USE_DEPEND="vapigen"
 
-inherit autotools eutils gnome2 multilib-minimal vala
+inherit autotools eutils gnome2
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
@@ -14,8 +12,7 @@ LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
-IUSE="+introspection tools +vala"
-REQUIRED_USE="vala? ( introspection )"
+IUSE="+introspection tools"
 
 RDEPEND="
 	>=dev-libs/glib-2.34.3:2
@@ -26,23 +23,18 @@ RDEPEND="
 	>=x11-libs/gdk-pixbuf-2.30.7:2[introspection?]
 	|| ( >=dev-lang/rust-1.27.0 >=dev-lang/rust-bin-1.27.0 )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.8:= )
-	tools? ( >=x11-libs/gtk+-3.10.0:3 )
 "
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
-	dev-libs/vala-common
 	>=dev-util/gtk-doc-am-1.13
 	>=virtual/pkgconfig-0-r1
 	virtual/cargo
-	vala? ( $(vala_depend) )
 "
 
 src_prepare() {
 	local build_dir
 
 	eautoreconf
-
-	use vala && vala_src_prepare
 	gnome2_src_prepare
 }
 
@@ -51,9 +43,9 @@ src_configure() {
 	ECONF_SOURCE=${S} \
 	gnome2_src_configure \
 		--disable-static \
-		$(multilib_native_use_enable introspection) \
-		$(multilib_native_use_with tools gtk3) \
-		$(multilib_native_use_enable vala) \
+		--enable-vala=no \
+		$(use_enable introspection) \
+		$(use_enable tools) \
 		--enable-pixbuf-loader
 	ln -s "${S}"/doc/html doc/html || die
 }
