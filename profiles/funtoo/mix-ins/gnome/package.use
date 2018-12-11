@@ -1,3 +1,10 @@
+# Collecting filesystem and network fs stuff here:
+gnome-base/gvfs afp archive bluray cdda fuse google gphoto2 http ios mtp nfs samba udev udisks
+sys-fs/udev extras gudev
+virtual/udev extras gudev hwdb
+sys-block/parted device-mapper
+net-fs/samba client
+
 gnome-base/librsvg vala # required by gnome-chess
 
 # Unbreak vala/librsvg/graphviz circular dep. FL-5963
@@ -9,15 +16,9 @@ media-libs/libwebp -tiff
 # enable threads USE for dev-libs/boehm-gc as wanted by gnome ebuilds
 dev-libs/boehm-gc threads
 
-# enable client USE for samba
-net-fs/samba client
-
 # QA-459. gegl needs cairo and raw USE's
 media-libs/gegl cairo raw
 
-# for gnome-3.20
->=virtual/libintl-0-r2 abi_x86_32
->=dev-libs/libpcre-8.39 abi_x86_32
 x11-wm/mutter -kms -deprecated-background
 
 # for 3.16
@@ -48,7 +49,6 @@ net-im/empathy spell
 net-misc/networkmanager bluetooth connection-sharing wifi
 
 # Required by GNOME for a clean emerge.
-gnome-base/gvfs udisks
 media-libs/grilo playlist
 net-misc/networkmanager modemmanager ppp
 
@@ -60,12 +60,6 @@ net-im/pidgin -eds
 media-libs/gst-plugins-base theora
 dev-libs/folks vala -tracker
 gnome-extra/evolution-data-server vala
-
-# Required by gnome-base/gvfs and sys-fs/udisks
-sys-fs/udev extras gudev
-virtual/udev extras gudev hwdb
-gnome-base/gvfs gdu
-sys-block/parted device-mapper 
 
 # The following are required by ekiga-3
 net-libs/opal sip
@@ -86,9 +80,6 @@ sys-auth/pambase elogind
 
 # Required by media-libs/libcanberra[udev]
 media-libs/libcanberra alsa
-
-# Required by media-sound/sound-juicer
-gnome-base/gvfs cdda
 
 # Required by media-video/cheese
 x11-libs/gdk-pixbuf jpeg
