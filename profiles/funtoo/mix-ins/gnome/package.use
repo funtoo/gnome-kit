@@ -2,7 +2,6 @@ gnome-base/librsvg vala # required by gnome-chess
 
 # Unbreak vala/librsvg/graphviz circular dep. FL-5963
 media-gfx/graphviz -svg
-gnome-base/librsvg -vala
 
 # circ. dep webp/tiff
 media-libs/libwebp -tiff
