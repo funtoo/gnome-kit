@@ -28,6 +28,10 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	!<dev-cpp/gtkmm-2.13:2.4
 "
+pkg_setup() {
+	export CFLAGS="-std=c++17 $CFLAGS"
+	export CXXFLAGS="-std=c++17 $CXXFLAGS"
+}
 
 PATCHES=( "${FILESDIR}"/pangomm-2.41.5-glibmm-2.58.patch )
 

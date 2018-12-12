@@ -24,6 +24,10 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
+pkg_setup() {
+	export CFLAGS="-std=c++17 $CFLAGS"
+	export CXXFLAGS="-std=c++17 $CXXFLAGS"
+}
 
 PATCHES=( "${FILESDIR}"/atkmm-2.27.1-glibmm-2.58.patch )
 

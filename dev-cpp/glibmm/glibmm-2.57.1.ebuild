@@ -24,6 +24,11 @@ DEPEND="${RDEPEND}
 "
 # dev-cpp/mm-common needed for eautoreconf
 
+pkg_setup() {
+	export CFLAGS="-std=c++17 $CFLAGS"
+	export CXXFLAGS="-std=c++17 $CXXFLAGS"
+}
+
 src_prepare() {
 	if ! use test; then
 		# don't waste time building tests
