@@ -11,7 +11,7 @@ LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="doc ldap zeroconf"
+IUSE="doc zeroconf"
 
 COMMON_DEPEND="
 	>=app-crypt/gcr-3.11.91:=
@@ -23,8 +23,7 @@ COMMON_DEPEND="
 	net-misc/openssh
 	>=x11-libs/gtk+-3.4:3
 	x11-misc/shared-mime-info
-
-	ldap? ( net-nds/openldap:= )
+	net-nds/openldap:=
 	zeroconf? ( >=net-dns/avahi-0.6:= )
 "
 DEPEND="${COMMON_DEPEND}
@@ -52,9 +51,9 @@ src_configure() {
 		-Dpgp-support=true
 		-Dcheck-compatible-gpg=true
 		-Dpkcs11-support=true
-		-Dkeyservers-support=true
 		-Dhkp-support=true
-		-Dldap-support=$(usex ldap true false)
+		-Dkeyservers-support=true
+		-Dldap-support=true
 		-Dkey-sharing=$(usex zeroconf true false)
 	)
 	gnome-meson_src_configure

@@ -1,3 +1,6 @@
+# disable zeroconf USE for cups, this workarounds cir.dep between avahi, cups and gtk+
+net-print/cups -zeroconf
+
 # Collecting filesystem and network fs stuff here:
 gnome-base/gvfs afp archive bluray cdda fuse google gphoto2 http ios mtp nfs samba udev udisks
 sys-fs/udev extras gudev

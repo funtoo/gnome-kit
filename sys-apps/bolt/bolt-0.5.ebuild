@@ -14,8 +14,11 @@ KEYWORDS="*"
 
 IUSE="systemd"
 
-RDEPEND=""
-DEPEND=""
+RDEPEND="$DEPEND"
+DEPEND="app-text/asciidoc
+	dev-libs/glib
+	dev-util/umockdev
+	sys-auth/polkit[introspection]"
 
 src_configure() {
 	gnome-meson_src_configure \
