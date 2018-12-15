@@ -28,7 +28,7 @@ RDEPEND="
 
 	>=app-crypt/gcr-3.28.0
 	>=gnome-base/nautilus-3.30.0
-	>=gnome-base/gnome-keyring-3.28.2
+	>=gnome-base/gnome-keyring-3.20
 	>=gnome-extra/evolution-data-server-${PV}
 
 	>=app-crypt/seahorse-3.20.0
