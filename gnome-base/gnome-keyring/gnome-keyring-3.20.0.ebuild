@@ -13,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 IUSE="+caps pam selinux +ssh-agent test"
-KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 # Replace gkd gpg-agent with pinentry[gnome-keyring] one, bug #547456
 RDEPEND="
@@ -36,9 +36,7 @@ DEPEND="${RDEPEND}
 	test? ( ${PYTHON_DEPS} )
 "
 PDEPEND="app-crypt/pinentry[gnome-keyring]" #570512
-PATCHES=(
-	$FILESDIR/b22d058a055ec3e0f31ae16417f16b42baadb42f.diff
-)
+
 pkg_setup() {
 	use test && python-any-r1_pkg_setup
 }
