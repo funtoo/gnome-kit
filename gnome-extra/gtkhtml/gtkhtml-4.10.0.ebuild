@@ -4,7 +4,7 @@
 EAPI="5"
 GCONF_DEBUG="no"
 
-inherit gnome2
+inherit autotools gnome2
 
 DESCRIPTION="Lightweight HTML rendering/printing/editing engine"
 HOMEPAGE="https://git.gnome.org/browse/gtkhtml"
@@ -30,6 +30,11 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40.0
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-enchant2.patch
+	eautoreconf
+}
 
 src_configure() {
 	gnome2_src_configure --disable-static
