@@ -91,7 +91,6 @@ RDEPEND="${COMMON_DEPEND}
 # librsvg for svg icons (PDEPEND to avoid circular dep), bug #547710
 PDEPEND="
 	gnome-base/librsvg
-	>=x11-themes/adwaita-icon-theme-3.14
 	vim-syntax? ( app-vim/gtk-syntax )
 "
 
