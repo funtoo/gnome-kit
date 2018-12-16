@@ -131,7 +131,7 @@ src_prepare() {
 	eapply "${FILESDIR}/${PN}-3.8.4-fingerprint-auth.patch"
 
 	# Show logo when branding is enabled
-	use branding && eapply "${FILESDIR}/${PN}-3.30.1-logo.patch"
+	use branding && eapply "${FILESDIR}/${PN}-3.30.2-logo.patch"
 
 	eapply "${FILESDIR}"/${PN}-3.24.2-support-elogind.patch
 

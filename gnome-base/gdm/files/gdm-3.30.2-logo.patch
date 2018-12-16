@@ -1,0 +1,12 @@
+diff -Nuar gdm-3.30.2/data/org.gnome.login-screen.gschema.xml gdm-3.30.2-fixed/data/org.gnome.login-screen.gschema.xml
+--- gdm-3.30.2/data/org.gnome.login-screen.gschema.xml	2018-11-06 21:26:11.000000000 +0000
++++ gdm-3.30.2-fixed/data/org.gnome.login-screen.gschema.xml	2018-12-16 10:42:43.250620056 +0000
+@@ -32,7 +32,7 @@
+       </description>
+     </key>
+     <key name="logo" type="s">
+-      <default>''</default>
++      <default>'/usr/share/pixmaps/gentoo-gdm.svg'</default>
+       <summary>
+         Path to small image at top of user list
+       </summary>
