@@ -53,6 +53,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
+	app-text/gspell
 	app-text/yelp-tools
 	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1.13
