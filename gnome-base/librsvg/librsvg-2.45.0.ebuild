@@ -12,7 +12,7 @@ LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="*"
 
-IUSE="+introspection tools +vala"
+IUSE="+introspection tools vala"
 
 RDEPEND="
 	>=dev-libs/glib-2.34.3:2
