@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-VALA_MAX_API_VERSION="0.34"
+VALA_MIN_API_VERSION="0.26"
 
 # Keep cmake-utils at the end
 inherit gnome2 vala cmake-utils
@@ -42,8 +42,12 @@ DEPEND="${DEPEND}
 "
 
 src_prepare() {
+
+	# https://gitlab.gnome.org/GNOME/geary/issues/37
+	eapply "${FILESDIR}"/${P}-webkit-2.22.patch
+
 	# https://bugzilla.gnome.org/show_bug.cgi?id=751557
-	eapply "${FILESDIR}"/${PN}-0.12.0-vapigen.patch
+	#eapply "${FILESDIR}"/${PN}-0.12.0-vapigen.patch
 
 	local i
 	if use nls ; then
