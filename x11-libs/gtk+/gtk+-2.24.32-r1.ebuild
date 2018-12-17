@@ -78,12 +78,12 @@ RDEPEND="${COMMON_DEPEND}
 	!<gnome-base/gail-1000
 	!<dev-util/gtk-builder-convert-${PV}
 	!<x11-libs/vte-0.28.2-r201:0
-	>=x11-themes/adwaita-icon-theme-3.14
 	x11-themes/gnome-themes-standard
 "
 # librsvg for svg icons (PDEPEND to avoid circular dep), bug #547710
 PDEPEND="
 	x11-themes/gtk-engines-adwaita
+	>=x11-themes/adwaita-icon-theme-3.14
 	gnome-base/librsvg[${MULTILIB_USEDEP}]
 	vim-syntax? ( app-vim/gtk-syntax )
 "
