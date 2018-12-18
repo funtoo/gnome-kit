@@ -13,7 +13,7 @@ DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="https://poppler.freedesktop.org/"
 
 LICENSE="GPL-2"
-IUSE="cairo cjk curl cxx debug doc +introspection +jpeg +jpeg2k +lcms nss png qt4 qt5 tiff +utils"
+IUSE="cairo cjk curl cxx debug doc +introspection +jpeg +jpeg2k +lcms nss png qt5 tiff +utils"
 
 # No test data provided
 RESTRICT="test"
@@ -33,10 +33,6 @@ COMMON_DEPEND="
 	lcms? ( media-libs/lcms:2 )
 	nss? ( >=dev-libs/nss-3.19:0 )
 	png? ( media-libs/libpng:0= )
-	qt4? (
-		dev-qt/qtcore:4
-		dev-qt/qtgui:4
-	)
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
@@ -58,7 +54,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0.28.1-fix-multilib-configuration.patch"
 	"${FILESDIR}/${PN}-0.53.0-respect-cflags.patch"
 	"${FILESDIR}/${PN}-0.33.0-openjpeg2.patch"
-	"${FILESDIR}/${PN}-0.40-FindQt4.patch"
 	"${FILESDIR}/${P}-disable-internal-jpx.patch"
 	# Fedora backports from upstream
 	"${FILESDIR}/${P}-CVE-2017-14517.patch"
@@ -117,7 +112,7 @@ src_configure() {
 		-DWITH_JPEG="$(usex jpeg)"
 		-DWITH_NSS3="$(usex nss)"
 		-DWITH_PNG="$(usex png)"
-		-DWITH_Qt4="$(usex qt4)"
+		-DWITH_Qt4="no"
 		$(cmake-utils_use_find_package qt5 Qt5Core)
 		-DWITH_TIFF="$(usex tiff)"
 	)
