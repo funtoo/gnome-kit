@@ -1,5 +1,4 @@
 # Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
@@ -13,16 +12,16 @@ HOMEPAGE="https://github.com/GNOME/libmediaart"
 
 LICENSE="LGPL-2.1+"
 SLOT="2.0"
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86"
-IUSE="gtk +introspection qt5 vala"
+KEYWORDS="*"
+# gtk/qt5 is only used for mp3 album art -- you have a choice of implementations. We default to gtk+
+IUSE="+introspection -qt5 vala"
 REQUIRED_USE="
-	?? ( gtk qt5 )
 	vala? ( introspection )
 "
 
 RDEPEND="
 	>=dev-libs/glib-2.38.0:2
-	gtk? ( >=x11-libs/gdk-pixbuf-2.12:2 )
+	!qt5? ( >=x11-libs/gdk-pixbuf-2.12:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
 	qt5? ( dev-qt/qtgui:5 )
 "
@@ -61,9 +60,9 @@ src_configure() {
 
 	gnome2_src_configure \
 		--enable-unit-tests \
-		$(use_enable gtk gdkpixbuf) \
 		$(use_enable introspection) \
 		$(use_enable qt5 qt) \
+		$(use_enable !qt5 gdkpixbuf) \
 		$(use_enable vala) \
 		${myconf}
 }
