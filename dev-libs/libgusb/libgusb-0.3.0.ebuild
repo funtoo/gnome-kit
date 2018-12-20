@@ -13,7 +13,7 @@ LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="~*"
 
-IUSE="+introspection static-libs +vala"
+IUSE="+introspection static-libs vala"
 REQUIRED_USE="vala? ( introspection )"
 
 # Tests try to access usb devices in /dev
