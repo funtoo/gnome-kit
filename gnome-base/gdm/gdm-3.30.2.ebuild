@@ -139,9 +139,7 @@ src_prepare() {
 		eapply "${FILESDIR}"/${PN}-3.24.2-enable-elogind.patch
 	fi
 
-	if ! use wayland; then
-		eapply "${FILESDIR}"/${P}-prioritize-xorg.patch
-	fi
+	eapply "${FILESDIR}"/${P}-prioritize-xorg.patch
 
 	eautoreconf
 	gnome2_src_prepare
