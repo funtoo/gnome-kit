@@ -12,5 +12,4 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND=""
-RDEPEND="~dev-util/gtk-doc-${PV}"
-BDEPEND=""
+PDEPEND="~dev-util/gtk-doc-${PV}"
