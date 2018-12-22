@@ -17,6 +17,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 	${PYTHON_DEPS}
+	!<dev-util/gtk-doc-am-1.29-r2
 	>=dev-libs/glib-2.6:2
 	>=dev-lang/perl-5.18
 	dev-libs/libxslt
@@ -35,8 +36,6 @@ DEPEND="${RDEPEND}
 	app-text/yelp-tools
 	virtual/pkgconfig
 "
-PDEPEND="!<dev-util/gtk-doc-am-1.29-r2"
-
 pkg_setup() {
 	DOC_CONTENTS="gtk-doc does no longer define global key bindings for Emacs.
 		You may set your own key bindings for \"gtk-doc-insert\" and
