@@ -1,0 +1,175 @@
+From 174481a8e5aac93fee090ab800dc5398e1492948 Mon Sep 17 00:00:00 2001
+From: Murray Cumming <murrayc@murrayc.com>
+Date: Tue, 20 Jun 2017 21:52:56 +0200
+Subject: [PATCH] C++11: Use of override keyword.
+
+To fix the build with --enable-warnings=fatal.
+---
+ examples/sax_parser_build_dom/svgparser.h | 20 ++++++++++----------
+ examples/sax_parser_entities/myparser.h   |  2 +-
+ libxml++/validators/relaxngvalidator.h    | 12 ++++++------
+ libxml++/validators/xsdvalidator.h        | 12 ++++++------
+ 4 files changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/examples/sax_parser_build_dom/svgparser.h b/examples/sax_parser_build_dom/svgparser.h
+index b7d99fc..b14a2a6 100644
+--- a/examples/sax_parser_build_dom/svgparser.h
++++ b/examples/sax_parser_build_dom/svgparser.h
+@@ -38,17 +38,17 @@ public:
+ 
+ protected:
+   // SAX parser callbacks
+-  void on_start_document() {};
+-  void on_end_document() {};
++  void on_start_document() override {};
++  void on_end_document() override {};
+   void on_start_element(const Glib::ustring& name,
+-                                const AttributeList& properties);
+-  void on_end_element(const Glib::ustring& name);
+-  void on_characters(const Glib::ustring& characters);
+-  void on_comment(const Glib::ustring& text);
+-  void on_warning(const Glib::ustring& text);
+-  void on_error(const Glib::ustring& text);
+-  void on_fatal_error(const Glib::ustring& text);
+-  void on_cdata_block(const Glib::ustring& text);
++                                const AttributeList& properties) override;
++  void on_end_element(const Glib::ustring& name) override;
++  void on_characters(const Glib::ustring& characters) override;
++  void on_comment(const Glib::ustring& text) override;
++  void on_warning(const Glib::ustring& text) override;
++  void on_error(const Glib::ustring& text) override;
++  void on_fatal_error(const Glib::ustring& text) override;
++  void on_cdata_block(const Glib::ustring& text) override;
+ 
+ private:
+   // context is a stack to keep track of parent node while the SAX parser
+diff --git a/examples/sax_parser_entities/myparser.h b/examples/sax_parser_entities/myparser.h
+index 91476ff..dbec8b3 100644
+--- a/examples/sax_parser_entities/myparser.h
++++ b/examples/sax_parser_entities/myparser.h
+@@ -35,7 +35,7 @@ protected:
+   void on_start_document() override;
+   void on_end_document() override;
+   virtual void on_start_element(const Glib::ustring& name,
+-                                const AttributeList& properties);
++                                const AttributeList& properties) override;
+   void on_end_element(const Glib::ustring& name) override;
+   void on_characters(const Glib::ustring& characters) override;
+   void on_comment(const Glib::ustring& text) override;
+diff --git a/libxml++/validators/relaxngvalidator.h b/libxml++/validators/relaxngvalidator.h
+index 5cd5ad7..7337745 100644
+--- a/libxml++/validators/relaxngvalidator.h
++++ b/libxml++/validators/relaxngvalidator.h
+@@ -83,7 +83,7 @@ public:
+    * @param filename The URL of the schema.
+    * @throws xmlpp::parse_error
+    */
+-  virtual void parse_file(const Glib::ustring& filename);
++  void parse_file(const Glib::ustring& filename) override;
+ 
+   /** Parse a schema definition from a string.
+    * The schema must be defined with XML syntax. The compact syntax is not supported.
+@@ -93,7 +93,7 @@ public:
+    * @param contents The schema definition as a string.
+    * @throws xmlpp::parse_error
+    */
+-  virtual void parse_memory(const Glib::ustring& contents);
++  void parse_memory(const Glib::ustring& contents) override;
+ 
+   /** Parse a schema definition from a document.
+    * If the validator already contains a schema, that schema is released
+@@ -101,7 +101,7 @@ public:
+    * @param document A preparsed document tree, containing the schema definition.
+    * @throws xmlpp::parse_error
+    */
+-  virtual void parse_document(const Document* document);
++  void parse_document(const Document* document) override;
+ 
+   /** Set a schema.
+    * If the validator already contains a schema, that schema is released
+@@ -123,7 +123,7 @@ public:
+    *   do_something();
+    * @endcode
+    */
+-  virtual operator BoolExpr() const;
++  operator BoolExpr() const override;
+ 
+   /** Get the schema.
+    * @returns A pointer to the schema, or <tt>nullptr</tt>.
+@@ -140,7 +140,7 @@ public:
+    * @throws xmlpp::internal_error
+    * @throws xmlpp::validity_error
+    */
+-  virtual void validate(const Document* document);
++  void validate(const Document* document) override;
+ 
+   /** Validate an XML file, using a previously parsed schema.
+    * @param filename The URL of the XML file.
+@@ -148,7 +148,7 @@ public:
+    * @throws xmlpp::parse_error
+    * @throws xmlpp::validity_error
+    */
+-  virtual void validate(const Glib::ustring& filename);
++  void validate(const Glib::ustring& filename) override;
+ 
+ protected:
+   void initialize_valid() override;
+diff --git a/libxml++/validators/xsdvalidator.h b/libxml++/validators/xsdvalidator.h
+index 941d7f1..dd90d78 100644
+--- a/libxml++/validators/xsdvalidator.h
++++ b/libxml++/validators/xsdvalidator.h
+@@ -76,7 +76,7 @@ public:
+    * @param filename The URL of the schema.
+    * @throws xmlpp::parse_error
+    */
+-  virtual void parse_file(const Glib::ustring& filename);
++  void parse_file(const Glib::ustring& filename) override;
+ 
+   /** Parse a schema definition from a string.
+    * If the validator already contains a schema, that schema is released
+@@ -84,7 +84,7 @@ public:
+    * @param contents The schema definition as a string.
+    * @throws xmlpp::parse_error
+    */
+-  virtual void parse_memory(const Glib::ustring& contents);
++  void parse_memory(const Glib::ustring& contents) override;
+ 
+   /** Parse a schema definition from a document.
+    * If the validator already contains a schema, that schema is released
+@@ -92,7 +92,7 @@ public:
+    * @param document A preparsed document tree, containing the schema definition.
+    * @throws xmlpp::parse_error
+    */
+-  virtual void parse_document(const Document* document);
++  void parse_document(const Document* document) override;
+ 
+   /** Set a schema.
+    * If the validator already contains a schema, that schema is released
+@@ -114,7 +114,7 @@ public:
+    *   do_something();
+    * @endcode
+    */
+-  virtual operator BoolExpr() const;
++  operator BoolExpr() const override;
+ 
+   /** Get the schema.
+    * @returns A pointer to the schema, or <tt>nullptr</tt>.
+@@ -131,14 +131,14 @@ public:
+    * @throws xmlpp::internal_error
+    * @throws xmlpp::validity_error
+    */
+-  virtual void validate(const Document* document);
++  void validate(const Document* document) override;
+ 
+   /** Validate an XML file, using a previously parsed schema.
+    * @param filename The URL of the XML file.
+    * @throws xmlpp::internal_error
+    * @throws xmlpp::validity_error
+    */
+-  virtual void validate(const Glib::ustring& filename);
++  void validate(const Glib::ustring& filename) override;
+ 
+ protected:
+   void initialize_valid() override;
+-- 
+2.18.1

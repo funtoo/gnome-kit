@@ -1,0 +1,21 @@
+diff -Nuar libxml++-3.0.1/configure.ac libxml++-3.0.1-fixed/configure.ac
+--- libxml++-3.0.1/configure.ac	2016-11-14 09:53:09.000000000 +0000
++++ libxml++-3.0.1-fixed/configure.ac	2019-01-19 06:35:14.587398524 +0000
+@@ -35,7 +35,7 @@
+ LT_PREREQ([2.2.6])
+ LT_INIT([dlopen win32-dll disable-static])
+ 
+-AC_SUBST([LIBXMLXX_MODULES], ['libxml-2.0 >= 2.7.7 glibmm-2.4 >= 2.32.0'])
++AC_SUBST([LIBXMLXX_MODULES], ['libxml-2.0 >= 2.7.7 glibmm-2.58 >= 2.32.0'])
+ PKG_CHECK_MODULES([LIBXMLXX], [$LIBXMLXX_MODULES])
+ 
+ AC_LANG([C++])
+@@ -45,7 +45,7 @@
+ MM_ARG_ENABLE_DOCUMENTATION
+ MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
+ MM_ARG_WITH_TAGFILE_DOC([libsigc++-2.0.tag], [sigc++-2.0])
+-MM_ARG_WITH_TAGFILE_DOC([glibmm-2.4.tag], [glibmm-2.4])
++MM_ARG_WITH_TAGFILE_DOC([glibmm-2.58.tag], [glibmm-2.58])
+ 
+ # Evaluate the --enable-warnings=level option.
+ MM_ARG_ENABLE_WARNINGS([LIBXMLXX_WXXFLAGS],
