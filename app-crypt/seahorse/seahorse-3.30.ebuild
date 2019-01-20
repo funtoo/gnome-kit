@@ -18,6 +18,7 @@ COMMON_DEPEND="
 	>=app-crypt/gnupg-2.0.12
 	>=app-crypt/gpgme-1
 	>=app-crypt/libsecret-0.16
+	app-crypt/p11-kit
 	>=dev-libs/glib-2.10:2
 	>=net-libs/libsoup-2.33.92:2.4
 	net-misc/openssh
