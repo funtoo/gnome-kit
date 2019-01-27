@@ -11,7 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Tracker"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="0/100"
-KEYWORDS=""
+KEYWORDS="*"
 
 IUSE="cue elibc_glibc exif ffmpeg flac gif gsf
 gstreamer gtk iptc +iso +jpeg libav +miner-fs mp3 networkmanager
