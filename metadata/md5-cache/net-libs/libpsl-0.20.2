@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install prepare setup
+DEPEND=sys-devel/gettext virtual/pkgconfig sys-devel/libtool doc? ( dev-util/gtk-doc ) man? ( dev-libs/libxslt ) idn2? ( net-dns/libidn2[static-libs?] ) idn? ( net-dns/libidn[static-libs?] ) icu? ( dev-libs/icu[static-libs?] ) >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+EAPI=6
+IUSE=doc man nls static-libs rpath +icu -idn -idn2 python_targets_python3_7 python_targets_python3_4 python_targets_python3_5 python_targets_python3_6 python_single_target_python3_7 python_single_target_python3_4 python_single_target_python3_5 python_single_target_python3_6
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=sys-devel/gettext virtual/pkgconfig sys-devel/libtool doc? ( dev-util/gtk-doc ) man? ( dev-libs/libxslt ) idn2? ( net-dns/libidn2[static-libs?] ) idn? ( net-dns/libidn[static-libs?] ) icu? ( dev-libs/icu[static-libs?] )
+REQUIRED_USE=^^ ( idn2 icu idn )
+SLOT=0
+SRC_URI=https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.20.2/libpsl-0.20.2.tar.gz
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	libtool	e32ea84bf82cf8987965b574672dba93	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	python-single-r1	2ebea8fbab356d63110245129a67a6dd	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_md5_=421c625bb0789fd0347c9024f8343652

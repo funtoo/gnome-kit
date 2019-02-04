@@ -1,0 +1,7 @@
+DEFINED_PHASES=-
+DESCRIPTION=Meta ebuild for gtk-doc-am
+EAPI=7
+KEYWORDS=*
+PDEPEND=~dev-util/gtk-doc-1.29
+SLOT=0
+_md5_=ce622c285454224a3dcc13c3497bdac9

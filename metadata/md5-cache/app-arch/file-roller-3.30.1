@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
+DEPEND=>=app-arch/libarchive-3:= >=dev-libs/glib-2.36:2 >=dev-libs/json-glib-0.14 >=x11-libs/gtk+-3.13.2:3 sys-apps/file x11-libs/cairo x11-libs/gdk-pixbuf:2 x11-libs/pango libnotify? ( >=x11-libs/libnotify-0.4.3:= ) nautilus? ( >=gnome-base/nautilus-3 ) packagekit? ( app-admin/packagekit-base ) dev-libs/libxml2 >=dev-util/intltool-0.50.1 dev-util/itstool sys-devel/gettext virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4 >=dev-util/meson-0.40.0 >=dev-util/ninja-1.7.2 dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=Archive manager for GNOME
+EAPI=6
+HOMEPAGE=https://wiki.gnome.org/Apps/FileRoller
+IUSE=libnotify nautilus packagekit
+KEYWORDS=*
+LICENSE=GPL-2+ CC-BY-SA-3.0
+RDEPEND=>=app-arch/libarchive-3:= >=dev-libs/glib-2.36:2 >=dev-libs/json-glib-0.14 >=x11-libs/gtk+-3.13.2:3 sys-apps/file x11-libs/cairo x11-libs/gdk-pixbuf:2 x11-libs/pango libnotify? ( >=x11-libs/libnotify-0.4.3:= ) nautilus? ( >=gnome-base/nautilus-3 ) packagekit? ( app-admin/packagekit-base )
+SLOT=0
+SRC_URI=mirror://gnome/sources/file-roller/3.30/file-roller-3.30.1.tar.xz
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	gnome-meson	f6c96675e0137f5716823a69ca29ef2b	gnome.org	ad34f378a3d57a6f2f2b8b4aaca4543e	gnome2-utils	22ebae0b986793be079d9d93fa16a8ea	meson	eb124b9e9d7a5f1ebc89589fe73c816f	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	ninja-utils	ebb2eaddc6331c4fa000b8eb8f6fe074	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	readme.gentoo-r1	03878c06495db70bc36bd717383c09f7	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	xdg	a5c4c5ce4f5ce9a2e777f5d9a40a8723	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_md5_=7fa6874f6c0cc14f1ef9e1f2e1b9ec0e

@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst prepare setup test
+DEPEND=sys-apps/util-linux sys-libs/libcap virtual/libudev:= acl? ( sys-apps/acl ) pam? ( virtual/pam ) selinux? ( sys-libs/libselinux ) app-text/docbook-xml-dtd:4.2 app-text/docbook-xml-dtd:4.5 app-text/docbook-xsl-stylesheets dev-util/gperf dev-util/intltool sys-devel/libtool virtual/pkgconfig >=dev-util/meson-0.40.0 >=dev-util/ninja-1.7.2 virtual/pkgconfig
+DESCRIPTION=The systemd project's logind, extracted to a standalone package
+EAPI=6
+HOMEPAGE=https://github.com/elogind/elogind
+IUSE=+acl debug doc +pam +policykit selinux
+KEYWORDS=~amd64 ~arm ~x86
+LICENSE=CC0-1.0 LGPL-2.1+ public-domain
+PDEPEND=sys-apps/dbus policykit? ( sys-auth/polkit )
+RDEPEND=sys-apps/util-linux sys-libs/libcap virtual/libudev:= acl? ( sys-apps/acl ) pam? ( virtual/pam ) selinux? ( sys-libs/libselinux ) !sys-apps/systemd
+SLOT=0
+SRC_URI=https://github.com/elogind/elogind/archive/v239.3.tar.gz -> elogind-239.3.tar.gz
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	linux-info	fd1e29abbb02cbc49f1a14299846e9c4	meson	eb124b9e9d7a5f1ebc89589fe73c816f	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	ninja-utils	ebb2eaddc6331c4fa000b8eb8f6fe074	pam	3ecd5b75e39b0bb05a3183c08fcdfdb4	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	udev	73058269b3e70e34e084fa3981282338	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_md5_=342703f9d18284e0b9dafa9b441f462c

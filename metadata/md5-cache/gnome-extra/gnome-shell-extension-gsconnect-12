@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm test
+DEPEND=dev-libs/glib:2 virtual/pkgconfig >=sys-apps/sed-4 >=dev-util/meson-0.40.0 >=dev-util/ninja-1.7.2
+DESCRIPTION=KDE Connect implementation for Gnome Shell
+EAPI=6
+HOMEPAGE=https://github.com/andyholmes/gnome-shell-extension-gsconnect
+KEYWORDS=~amd64
+LICENSE=GPL-2+
+RDEPEND=dev-libs/glib:2 app-eselect/eselect-gnome-shell-extensions >=dev-libs/gjs-1.48 >=gnome-base/gnome-shell-3.24 gnome-base/nautilus[introspection] net-fs/sshfs || ( ( net-libs/gnome-online-accounts dev-libs/libgdata ) dev-libs/folks ) || ( media-libs/libcanberra media-libs/gsound )
+SLOT=0
+SRC_URI=https://github.com/andyholmes/gnome-shell-extension-gsconnect/archive/v12.tar.gz -> gnome-shell-extension-gsconnect-12.tar.gz
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	gnome2-utils	22ebae0b986793be079d9d93fa16a8ea	meson	eb124b9e9d7a5f1ebc89589fe73c816f	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	ninja-utils	ebb2eaddc6331c4fa000b8eb8f6fe074	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	readme.gentoo-r1	03878c06495db70bc36bd717383c09f7	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_md5_=9737d14601c929aca834c5e80602a11f

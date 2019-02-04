@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install test
+DEPEND=>=app-arch/libarchive-2.8 >=dev-libs/glib-2.36:2 media-libs/freetype:2 media-libs/libpng:0 >=x11-libs/cairo-1.10[svg] introspection? ( >=dev-libs/gobject-introspection-0.10.1:= ) jpeg? ( virtual/jpeg:0 ) lcms? ( media-libs/lcms:2 ) tiff? ( media-libs/tiff:0[zlib] ) app-text/docbook-xsl-stylesheets dev-libs/libxslt dev-util/gtk-doc-am virtual/pkgconfig app-arch/xz-utils >=dev-util/meson-0.40.0 >=dev-util/ninja-1.7.2
+DESCRIPTION=Library for handling and rendering XPS documents
+EAPI=6
+HOMEPAGE=https://wiki.gnome.org/Projects/libgxps
+IUSE=+introspection jpeg lcms tiff
+KEYWORDS=alpha amd64 ~arm ~arm64 ia64 ppc ppc64 sparc x86
+LICENSE=LGPL-2.1
+RDEPEND=>=app-arch/libarchive-2.8 >=dev-libs/glib-2.36:2 media-libs/freetype:2 media-libs/libpng:0 >=x11-libs/cairo-1.10[svg] introspection? ( >=dev-libs/gobject-introspection-0.10.1:= ) jpeg? ( virtual/jpeg:0 ) lcms? ( media-libs/lcms:2 ) tiff? ( media-libs/tiff:0[zlib] )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://gnome/sources/libgxps/0.3/libgxps-0.3.0.tar.xz
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	gnome.org	ad34f378a3d57a6f2f2b8b4aaca4543e	meson	eb124b9e9d7a5f1ebc89589fe73c816f	multilib	97f470f374f2e94ccab04a2fb21d811e	multiprocessing	e32940a7b2a9992ad217eccddb84d548	ninja-utils	ebb2eaddc6331c4fa000b8eb8f6fe074	python-utils-r1	b5fdfa15cbe2f6299a482bf5d0c5925d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	xdg-utils	e2b2bd56125ce8cf59ce30c642b59d48
+_md5_=08c4dc57869f4404d4a9d90543da81b8
