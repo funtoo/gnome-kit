@@ -5,6 +5,7 @@ app-cdr
 app-crypt
 app-dicts
 app-editors
+app-emulation
 app-i18n
 app-misc
 app-text
@@ -20,6 +21,7 @@ games-puzzle
 gnome-base
 gnome-extra
 mail-client
+media-fonts
 media-gfx
 media-libs
 media-plugins
@@ -33,7 +35,10 @@ net-misc
 net-voip
 net-wireless
 sci-geosciences
+sys-auth
 sys-apps
+sys-fs
+sys-libs
 sys-power
 virtual
 www-client
