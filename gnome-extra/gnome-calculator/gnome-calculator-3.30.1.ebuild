@@ -20,7 +20,7 @@ COMMON_DEPEND="
 	dev-libs/mpc
 	>=net-libs/libsoup-2.42:2.4
 	>=x11-libs/gtk+-3.19.3:3
-	>=x11-libs/gtksourceview-3.15.1:3.0
+	>=x11-libs/gtksourceview-3.15.1:3.0[vala]
 "
 RDEPEND="${COMMON_DEPEND}
 	!<gnome-extra/gnome-utils-2.3
