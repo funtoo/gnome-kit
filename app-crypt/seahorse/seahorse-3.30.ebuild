@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="doc zeroconf"
 
 COMMON_DEPEND="
-	>=app-crypt/gcr-3.11.91:=
+	>=app-crypt/gcr-3.11.91:=[vala]
 	>=app-crypt/gnupg-2.0.12
 	>=app-crypt/gpgme-1
 	>=app-crypt/libsecret-0.16
