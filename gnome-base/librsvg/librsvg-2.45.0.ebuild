@@ -21,7 +21,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.9.1-r4:2
 	>=dev-libs/libcroco-0.6.8-r1
 	>=x11-libs/gdk-pixbuf-2.30.7:2[introspection?]
-	|| ( >=virtual/rust-1.27 )
+	>=virtual/rust-1.27
 	introspection? ( >=dev-libs/gobject-introspection-0.10.8:= )
 "
 DEPEND="${RDEPEND}
