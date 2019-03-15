@@ -1,7 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
+EAPI=6
 inherit gnome2 multilib-minimal
 
 DESCRIPTION="C++ interface for glib2"
@@ -10,13 +9,11 @@ HOMEPAGE="https://www.gtkmm.org"
 LICENSE="LGPL-2.1+ GPL-2+" # GPL-2+ applies only to the build system
 SLOT="2"
 KEYWORDS="*"
-
 IUSE="doc debug test"
 
 RDEPEND="
-	dev-libs/libsigc++:3=[${MULTILIB_USEDEP}]
-	>=dev-libs/libsigc++-2.99.0:3[${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.50.0:2[${MULTILIB_USEDEP}]
+	>=dev-libs/libsigc++-2.9.1:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.55.1:2[${MULTILIB_USEDEP}]
 "
 DEPEND="${RDEPEND}
 	virtual/pkgconfig

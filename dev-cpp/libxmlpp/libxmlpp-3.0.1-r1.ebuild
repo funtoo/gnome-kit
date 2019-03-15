@@ -10,12 +10,12 @@ HOMEPAGE="http://libxmlplusplus.sourceforge.net/"
 
 LICENSE="LGPL-2.1"
 SLOT="3.0"
-KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~ppc ~ppc64 sparc x86 ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="*"
 IUSE="doc"
 
 RDEPEND="
 	>=dev-libs/libxml2-2.7.7
-	>=dev-cpp/glibmm-2.32
+	>=dev-cpp/glibmm-2.58
 "
 DEPEND="${RDEPEND}
 	>=dev-cpp/mm-common-0.9
@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	default
-	eapply "${FILESDIR}"/glibmm.patch
+#	eapply "${FILESDIR}"/${P}-glibmm.patch
 	./autogen.sh || die "autogen failed"
 	eautoreconf
 	gnome2_src_prepare
