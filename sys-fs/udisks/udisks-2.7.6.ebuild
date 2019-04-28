@@ -40,6 +40,8 @@ RDEPEND="${COMMON_DEPEND}
 	)
 	gptfdisk? ( >=sys-apps/gptfdisk-0.8 )
 	selinux? ( sec-policy/selinux-devicekit )
+	sys-fs/fuse-exfat
+	sys-fs/exfat-utils
 "
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xsl-stylesheets
