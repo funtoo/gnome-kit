@@ -1,0 +1,42 @@
+diff -urN pan-0.145/configure.ac pan-0.145-fixed/configure.ac
+--- pan-0.145/configure.ac	2018-02-10 14:50:26.000000000 -0700
++++ pan-0.145-fixed/configure.ac	2019-05-04 15:58:27.732287595 -0600
+@@ -58,7 +58,7 @@
+ GTK3_REQUIRED=3.0.0
+ GTKSPELL_REQUIRED=2.0.7
+ GTKSPELL3_REQUIRED=2.0.16
+-ENCHANT_REQUIRED=1.6.0
++ENCHANT_REQUIRED=2.2.0
+ GNUTLS_REQUIRED=3.0.0
+ LIBNOTIFY_REQUIRED=0.4.1
+ LIBGKR_REQUIRED=3.2.0
+@@ -149,7 +149,7 @@
+                     AC_DEFINE(HAVE_GTK,[1],[GTK+ 3 support])]
+                     )
+   if test "x$want_gtkspell" = "xyes" ; then
+-    PKG_CHECK_MODULES([GTKSPELL], [gtkspell3-3.0 >= $GTKSPELL3_REQUIRED enchant >= $ENCHANT_REQUIRED],
++    PKG_CHECK_MODULES([GTKSPELL], [gtkspell3-3.0 >= $GTKSPELL3_REQUIRED enchant-2 >= $ENCHANT_REQUIRED],
+                       [
+                       gtkspell_msg=yes
+                       AC_DEFINE(HAVE_GTKSPELL,[1],[GtkSpell support for spellchecking])
+@@ -162,7 +162,7 @@
+   fi
+ else
+    if test "x$want_gtkspell" = "xyes" ; then
+-   PKG_CHECK_MODULES([GTKSPELL], [gtkspell-2.0 >= $GTKSPELL_REQUIRED enchant >= $ENCHANT_REQUIRED],
++   PKG_CHECK_MODULES([GTKSPELL], [gtkspell-2.0 >= $GTKSPELL_REQUIRED enchant-2 >= $ENCHANT_REQUIRED],
+                       [
+                       gtkspell_msg=yes
+                       AC_DEFINE(HAVE_GTKSPELL,[1],[GtkSpell support for spellchecking])
+diff -urN pan-0.145/pan/gui/group-prefs-dialog.cc pan-0.145-fixed/pan/gui/group-prefs-dialog.cc
+--- pan-0.145/pan/gui/group-prefs-dialog.cc	2017-12-29 10:15:47.000000000 -0700
++++ pan-0.145-fixed/pan/gui/group-prefs-dialog.cc	2019-05-04 15:58:57.484287626 -0600
+@@ -23,7 +23,7 @@
+   #include <glib.h>
+   #include "gtk-compat.h"
+ #ifdef HAVE_GTKSPELL
+-  #include <enchant/enchant.h>
++  #include <enchant-2/enchant.h>
+ #endif
+ }
+ #include <pan/general/debug.h>
