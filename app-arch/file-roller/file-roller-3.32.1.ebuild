@@ -1,10 +1,10 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit gnome-meson readme.gentoo-r1
+inherit gnome2 readme.gentoo-r1 meson
 
 DESCRIPTION="Archive manager for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/FileRoller"
@@ -17,7 +17,9 @@ KEYWORDS="*"
 # gdk-pixbuf used extensively in the source
 # cairo used in eggtreemultidnd.c
 # pango used in fr-window
+# meson 0.48.0 is broken https://github.com/mesonbuild/meson/issues/4257
 RDEPEND="
+	|| ( >=dev-util/meson-0.48.1 <dev-util/meson-0.48.0 )
 	>=app-arch/libarchive-3:=
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/json-glib-0.14
@@ -30,16 +32,12 @@ RDEPEND="
 	nautilus? ( >=gnome-base/nautilus-3 )
 	packagekit? ( app-admin/packagekit-base )
 "
-# libxml2+gdk-pixbuf required for glib-compile-resources
 DEPEND="${RDEPEND}
-	dev-libs/libxml2
 	>=dev-util/intltool-0.50.1
 	dev-util/itstool
 	sys-devel/gettext
 	virtual/pkgconfig
 "
-# eautoreconf needs:
-#	gnome-base/gnome-common
 
 DISABLE_AUTOFORMATTING="yes"
 DOC_CONTENTS="
@@ -55,7 +53,6 @@ iso     - app-cdr/cdrtools
 jar,zip - app-arch/zip and app-arch/unzip
 lha     - app-arch/lha
 lzop    - app-arch/lzop
-lz4     - app-arch/lz4
 rar     - app-arch/unrar or app-arch/unar
 rpm     - app-arch/rpm
 unstuff - app-arch/stuffit
@@ -64,25 +61,15 @@ zoo     - app-arch/zoo"
 src_prepare() {
 	# File providing Gentoo package names for various archivers
 	cp -f "${FILESDIR}"/3.22-packages.match data/packages.match || die
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }
 
 src_configure() {
-	gnome-meson_src_configure \
-		-Dlibarchive=true \
-		-Dmagic=true \
-		-Drun-in-place=false \
-		$(meson_use nautilus nautilus-actions) \
-		$(meson_use libnotify notification) \
-		$(meson_use packagekit packagekit)
-}
+	local emesonargs=(
+		$(meson_use nautilus nautilus-action)
+		$(meson_use libnotify notification)
+		$(meson_use packagekit)
+	)
 
-src_install() {
-	gnome-meson_src_install
-	readme.gentoo_create_doc
-}
-
-pkg_postinst() {
-	gnome-meson_pkg_postinst
-	readme.gentoo_print_elog
+	meson_src_configure
 }
