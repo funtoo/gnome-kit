@@ -5,14 +5,14 @@ EAPI=6
 GCONF_DEBUG="no"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome-meson vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Library and tool for working with Microsoft Cabinet (CAB) files"
 HOMEPAGE="https://wiki.gnome.org/msitools"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="doc +introspection test +vala"
 REQUIRED_USE="vala? ( introspection )"
@@ -31,13 +31,16 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 	use vala && vala_src_prepare
 }
 
 src_configure() {
-	gnome-meson_src_configure \
-		$(meson_use introspection introspection) \
-		$(meson_use doc docs) \
+	local emesonargs=(
+		$(meson_use introspection)
+		$(meson_use doc docs)
 		$(meson_use test tests)
+	)
+
+	meson_src_configure
 }
