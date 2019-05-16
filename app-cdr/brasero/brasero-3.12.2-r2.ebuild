@@ -32,7 +32,7 @@ COMMON_DEPEND="
 		>=dev-libs/libisofs-0.6.4:= )
 	nautilus? ( >=gnome-base/nautilus-2.91.90 )
 	playlist? ( >=dev-libs/totem-pl-parser-2.29.1:= )
-	tracker? ( >=app-misc/tracker-1:0= )
+	tracker? ( >=app-misc/tracker-2:0= )
 "
 RDEPEND="${COMMON_DEPEND}
 	media-libs/gst-plugins-good:1.0
