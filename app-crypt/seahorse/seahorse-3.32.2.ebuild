@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 gnome-meson vala
+inherit gnome2 meson vala
 
 DESCRIPTION="A GNOME application for managing encryption keys"
 HOMEPAGE="https://wiki.gnome.org/Apps/Seahorse"
@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="doc zeroconf"
 
 COMMON_DEPEND="
-	>=app-crypt/gcr-3.11.91:=[vala]
+	>=app-crypt/gcr-3.11.91:=
 	>=app-crypt/gnupg-2.0.12
 	>=app-crypt/gpgme-1
 	>=app-crypt/libsecret-0.16
@@ -57,5 +57,6 @@ src_configure() {
 		-Dldap-support=true
 		-Dkey-sharing=$(usex zeroconf true false)
 	)
-	gnome-meson_src_configure
+
+	meson_src_configure
 }
