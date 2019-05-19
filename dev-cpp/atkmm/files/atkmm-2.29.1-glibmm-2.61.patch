@@ -1,0 +1,108 @@
+--- a/configure	2018-11-04 04:48:45.780919158 -0600
++++ b/configure	2019-04-12 14:56:13.573908597 -0500
+@@ -18010,7 +18010,7 @@
+ 
+ 
+ 
+-ATKMM_MODULES='atk >= 1.18 glibmm-2.60 >= 2.59.1'
++ATKMM_MODULES='atk >= 1.18 glibmm-2.62 >= 2.59.1'
+ 
+ 
+ 
+@@ -18238,7 +18238,7 @@
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for GMMPROC_DIR" >&5
+ $as_echo_n "checking for GMMPROC_DIR... " >&6; }
+ if test -z "${GMMPROC_DIR+set}"; then :
+-  GMMPROC_DIR=`$PKG_CONFIG --variable=gmmprocdir glibmm-2.60 2>&5`
++  GMMPROC_DIR=`$PKG_CONFIG --variable=gmmprocdir glibmm-2.62 2>&5`
+        if test "$?" -eq 0; then :
+ 
+ fi
+@@ -18676,12 +18676,12 @@
+     mm_htmlrefdir=`expr "X@$withval" : '.*@\(.*\)' 2>&5`
+     mm_tagname=`expr "X/$withval" : '[^@]*[\\/]\([^\\/@]*\)@' 2>&5`
+     mm_tagpath=`expr "X$withval" : 'X\([^@]*\)@' 2>&5`
+-    test "x$mm_tagname" != x || mm_tagname="glibmm-2.60.tag"
++    test "x$mm_tagname" != x || mm_tagname="glibmm-2.62.tag"
+     test "x$mm_tagpath" != x || mm_tagpath=$mm_tagname
+ else
+ 
+     mm_htmlrefdir=
+-    mm_tagname="glibmm-2.60.tag"
++    mm_tagname="glibmm-2.62.tag"
+     mm_tagpath=$mm_tagname
+ fi
+ 
+@@ -18696,7 +18696,7 @@
+   # If no local directory was specified, get the default from the .pc file
+   if test "x$mm_htmlrefdir" = x; then :
+ 
+-    mm_htmlrefdir=`$PKG_CONFIG --variable=htmlrefdir "glibmm-2.60" 2>&5`
++    mm_htmlrefdir=`$PKG_CONFIG --variable=htmlrefdir "glibmm-2.62" 2>&5`
+ fi
+   # If the user specified a Web URL, allow it to override the public location
+   case $mm_htmlrefdir in #(
+@@ -18704,7 +18704,7 @@
+     mm_htmlrefpub=$mm_htmlrefdir ;; #(
+   *) :
+ 
+-    mm_htmlrefpub=`$PKG_CONFIG --variable=htmlrefpub "glibmm-2.60" 2>&5`
++    mm_htmlrefpub=`$PKG_CONFIG --variable=htmlrefpub "glibmm-2.62" 2>&5`
+     test "x$mm_htmlrefpub" != x || mm_htmlrefpub=$mm_htmlrefdir
+     test "x$mm_htmlrefdir" != x || mm_htmlrefdir=$mm_htmlrefpub
+    ;;
+@@ -18715,7 +18715,7 @@
+      ;; #(
+   *) :
+ 
+-    mm_doxytagfile=`$PKG_CONFIG --variable=doxytagfile "glibmm-2.60" 2>&5`
++    mm_doxytagfile=`$PKG_CONFIG --variable=doxytagfile "glibmm-2.62" 2>&5`
+     test "x$mm_doxytagfile" = x || mm_tagpath=$mm_doxytagfile
+    ;;
+ esac
+@@ -18727,8 +18727,8 @@
+ $as_echo "$mm_tagpath@$mm_htmlrefdir" >&6; }
+ 
+   if test "x$USE_MAINTAINER_MODE" != xno && test ! -f "$mm_tagpath"; then :
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Doxygen tag file glibmm-2.60.tag not found" >&5
+-$as_echo "$as_me: WARNING: Doxygen tag file glibmm-2.60.tag not found" >&2;}
++  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Doxygen tag file glibmm-2.62.tag not found" >&5
++$as_echo "$as_me: WARNING: Doxygen tag file glibmm-2.62.tag not found" >&2;}
+ fi
+   if test "x$mm_htmlrefdir" = x; then :
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Location of external glibmm documentation not set" >&5
+--- a/configure.ac	2018-11-01 10:56:56.177360503 -0500
++++ b/configure.ac	2019-04-12 14:56:30.151932725 -0500
+@@ -51,18 +51,18 @@
+ AC_DISABLE_STATIC
+ LT_INIT([win32-dll])
+ 
+-AC_SUBST([ATKMM_MODULES], ['atk >= 1.18 glibmm-2.60 >= 2.59.1'])
++AC_SUBST([ATKMM_MODULES], ['atk >= 1.18 glibmm-2.62 >= 2.59.1'])
+ PKG_CHECK_MODULES([ATKMM], [$ATKMM_MODULES])
+ 
+ MM_PKG_CONFIG_SUBST([GTHREAD_CFLAGS], [--cflags-only-other gthread-2.0])
+-MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.60])
++MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.62])
+ 
+ MM_ARG_DISABLE_DEPRECATED_API
+ 
+ MM_ARG_ENABLE_DOCUMENTATION
+ MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
+ MM_ARG_WITH_TAGFILE_DOC([libsigc++-3.0.tag], [sigc++-3.0])
+-MM_ARG_WITH_TAGFILE_DOC([glibmm-2.60.tag], [glibmm-2.60])
++MM_ARG_WITH_TAGFILE_DOC([glibmm-2.62.tag], [glibmm-2.62])
+ 
+ AC_LANG([C++])
+ MM_ARG_ENABLE_WARNINGS([ATKMM_WXXFLAGS],
+--- a/codegen/Makefile.in	2018-11-04 04:48:47.944919606 -0600
++++ b/codegen/Makefile.in	2019-04-12 15:27:37.152661907 -0500
+@@ -376,7 +376,7 @@
+ dist_gmmproc_m4_DATA = $(files_codegen_m4:%=m4/%)
+ dist_noinst_SCRIPTS = generate_defs_and_docs.sh
+ extradefs_generate_extra_defs_SOURCES = extradefs/generate_extra_defs_atk.cc
+-extradefs_generate_extra_defs_LDADD = $(ATKMM_LIBS) -lglibmm_generate_extra_defs-2.60
++extradefs_generate_extra_defs_LDADD = $(ATKMM_LIBS) -lglibmm_generate_extra_defs-2.62
+ extradefs_generate_extra_defs_LDFLAGS = -no-undefined -avoid-version
+ AM_CPPFLAGS = -I$(top_builddir) $(GTHREAD_CFLAGS) $(ATKMM_CFLAGS)
+ AM_CXXFLAGS = $(ATKMM_WXXFLAGS)
