@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome2 multilib-minimal
+inherit gnome2
 
 DESCRIPTION="C++ interface for the ATK library"
 HOMEPAGE="https://www.gtkmm.org"
@@ -14,9 +14,9 @@ KEYWORDS="*"
 IUSE="doc"
 
 COMMON_DEPEND="
-	>=dev-cpp/glibmm-2.58.0:2[doc?,${MULTILIB_USEDEP}]
-	>=dev-libs/atk-2.18.0[${MULTILIB_USEDEP}]
-	>=dev-libs/libsigc++-2.3.2:2[${MULTILIB_USEDEP}]
+	>=dev-cpp/glibmm-2.58.0:2[doc?]
+	>=dev-libs/atk-2.18.0
+	>=dev-libs/libsigc++-2.3.2:2
 "
 RDEPEND="${COMMON_DEPEND}
 	!<dev-cpp/gtkmm-2.22.0
@@ -30,11 +30,11 @@ pkg_setup() {
 	export CXXFLAGS="-std=c++17 $CXXFLAGS"
 }
 
-multilib_src_configure() {
+src_configure() {
 	ECONF_SOURCE="${S}" gnome2_src_configure \
-		$(multilib_native_use_enable doc documentation)
+		$(use_enable doc documentation)
 }
 
-multilib_src_install() {
+src_install() {
 	gnome2_src_install
 }
