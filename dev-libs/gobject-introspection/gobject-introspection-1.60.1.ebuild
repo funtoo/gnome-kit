@@ -1,7 +1,8 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python{3_5,3_6,3_7} )
 PYTHON_REQ_USE="xml"
 
 inherit gnome2 python-single-r1 toolchain-funcs versionator
@@ -26,7 +27,6 @@ RDEPEND="
 	>=dev-libs/glib-2.$(get_version_component_range 2):2
 	doctool? ( dev-python/mako[${PYTHON_USEDEP}] )
 	virtual/libffi:=
-	virtual/pkgconfig
 	!<dev-lang/vala-0.20.0
 	${PYTHON_DEPS}
 "
@@ -35,6 +35,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.19
 	sys-devel/bison
 	sys-devel/flex
+	virtual/pkgconfig
 "
 # PDEPEND to avoid circular dependencies, bug #391213
 PDEPEND="cairo? ( x11-libs/cairo[glib] )"
