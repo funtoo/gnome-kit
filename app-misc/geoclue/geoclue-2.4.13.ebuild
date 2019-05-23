@@ -3,12 +3,12 @@
 
 EAPI="6"
 
-inherit gnome2 systemd user versionator
+inherit autotools gnome2 systemd user
 
-MY_PV=$(get_version_component_range 1-2)
 DESCRIPTION="A geoinformation D-Bus service"
 HOMEPAGE="https://freedesktop.org/wiki/Software/GeoClue"
-SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${MY_PV}/${P}.tar.xz"
+SRC_URI="https://gitlab.freedesktop.org/geoclue/${PN}/-/archive/${PV}/${P}.tar.bz2"
+
 
 LICENSE="LGPL-2"
 SLOT="2.0"
@@ -37,6 +37,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.4.1-fix-GLIBC-features.patch
 
+	eautoreconf
 	gnome2_src_prepare
 }
 
