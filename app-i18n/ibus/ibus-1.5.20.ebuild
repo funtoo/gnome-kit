@@ -13,7 +13,7 @@ SRC_URI="https://github.com/${PN}/${PN}/releases/download/${PV}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="*"
 IUSE="+X +emoji gconf +gtk +gtk2 +introspection kde +libnotify nls +python test +unicode vala wayland"
 REQUIRED_USE="emoji? ( gtk )
 	gtk2? ( gtk )
@@ -72,8 +72,7 @@ DEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )
 	unicode? ( app-i18n/unicode-data )"
 
-PATCHES=( "${FILESDIR}/${P}-gdk-wayland.patch"
-          "${FILESDIR}/${P}-conditional.patch" )
+PATCHES=( "${FILESDIR}/${PN}-1.5.19-conditional.patch" )
 
 src_prepare() {
 	vala_src_prepare --ignore-use

@@ -19,7 +19,7 @@ IUSE="djvu dvi gstreamer gnome gnome-keyring +introspection nautilus nsplugin +p
 # gdk-pixbuf used all over the place
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.36:2[dbus]
+	>=dev-libs/glib-2.53.4:2[dbus]
 	>=dev-libs/libxml2-2.5:2
 	sys-libs/zlib:=
 	x11-libs/gdk-pixbuf:2
@@ -43,6 +43,7 @@ COMMON_DEPEND="
 	postscript? ( >=app-text/libspectre-0.2:= )
 	tiff? ( >=media-libs/tiff-3.6:0= )
 	xps? ( >=app-text/libgxps-0.2.1:= )
+	>=app-text/gspell-1.8.1
 "
 RDEPEND="${COMMON_DEPEND}
 	gnome-base/gvfs
@@ -53,9 +54,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
-	app-text/gspell
 	app-text/yelp-tools
-	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1.13
 	>=dev-util/intltool-0.35
 	dev-util/itstool
