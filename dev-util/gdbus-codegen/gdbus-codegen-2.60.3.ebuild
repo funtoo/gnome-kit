@@ -29,7 +29,7 @@ S="${WORKDIR}/glib-${PV}/gio/gdbus-2.0/codegen"
 
 python_prepare_all() {
 	PATCHES=(
-		"${FILESDIR}/${PN}-2.56.1-sitedir.patch"
+		"${FILESDIR}/${P}-sitedir.patch"
 	)
 	distutils-r1_python_prepare_all
 
