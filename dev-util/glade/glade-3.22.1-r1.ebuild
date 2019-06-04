@@ -3,7 +3,7 @@
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_{5,6,7} )
 
 inherit gnome2 python-single-r1 versionator virtualx
 
@@ -12,7 +12,7 @@ HOMEPAGE="https://glade.gnome.org/"
 
 LICENSE="GPL-2+ FDL-1.1+"
 SLOT="3.10/6" # subslot = suffix of libgladeui-2.so
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sh sparc ~x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="*"
 
 IUSE="debug +introspection python"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
@@ -28,7 +28,7 @@ RDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-1.32:= )
 	python? (
 		${PYTHON_DEPS}
-		>=dev-python/pygobject-3.8:3[${PYTHON_USEDEP}] )
+		>=dev-python/pygobject-3.31.2:3[${PYTHON_USEDEP}] )
 "
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.1.2
