@@ -2,14 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="Beat the odds in a poker-style dice game"
 HOMEPAGE="https://wiki.gnome.org/Apps/Tali"
 
 LICENSE="GPL-2+ FDL-1.1+"
 SLOT="0"
-KEYWORDS="amd64 ~arm x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
