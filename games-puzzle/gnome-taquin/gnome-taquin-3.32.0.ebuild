@@ -1,9 +1,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-VALA_MIN_API_VERSION="0.28"
+VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Move tiles so that they reach their places"
 HOMEPAGE="https://wiki.gnome.org/Apps/Taquin"
