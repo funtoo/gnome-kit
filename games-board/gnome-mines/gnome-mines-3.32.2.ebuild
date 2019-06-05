@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome-meson vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Clear hidden mines from a minefield"
 HOMEPAGE="https://wiki.gnome.org/Apps/Mines"
@@ -32,6 +32,6 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 	vala_src_prepare
 }
