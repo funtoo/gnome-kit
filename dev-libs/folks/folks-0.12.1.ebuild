@@ -5,18 +5,18 @@ EAPI=6
 GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala virtualx
+inherit gnome2 vala virtualx meson
 
 DESCRIPTION="Library for aggregating people from multiple sources"
 HOMEPAGE="https://wiki.gnome.org/Projects/Folks"
 
 LICENSE="LGPL-2.1+"
 SLOT="0/25" # subslot = libfolks soname version
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-linux"
+KEYWORDS="*"
 
 # TODO: --enable-profiling
 # Vala isn't really optional, https://bugzilla.gnome.org/show_bug.cgi?id=701099
-IUSE="bluetooth debug eds +telepathy test tracker utils zeitgeist"
+IUSE="bluetooth eds +telepathy test tracker utils zeitgeist"
 REQUIRED_USE="bluetooth? ( eds )"
 
 COMMON_DEPEND="
@@ -64,21 +64,21 @@ src_prepare() {
 
 src_configure() {
 	# Rebuilding docs needs valadoc, which has no release
-	gnome2_src_configure \
-		$(use_enable bluetooth bluez-backend) \
-		$(use_enable debug) \
-		$(use_enable eds eds-backend) \
-		$(use_enable eds ofono-backend) \
-		$(use_enable telepathy telepathy-backend) \
-		$(use_enable tracker tracker-backend) \
-		$(use_enable utils inspect-tool) \
-		$(use_enable test modular-tests) \
-		$(use_enable zeitgeist) \
-		--enable-vala \
-		--enable-import-tool \
-		--disable-docs \
-		--disable-fatal-warnings \
-		--disable-libsocialweb-backend
+	local emesonargs=(
+		$(meson_use bluetooth bluez_backend)
+		$(meson_use eds eds_backend)
+		$(meson_use eds ofono_backend)
+		$(meson_use telepathy telepathy_backend)
+		$(meson_use tracker tracker_backend)
+		$(meson_use utils inspect_tool)
+		$(meson_use test installed_tests)
+		$(meson_use zeitgeist)
+		-Dimport_tool=true
+		-Ddocs=false
+		-Dlibsocialweb_backend=false
+	)
+
+	meson_src_configure
 }
 
 src_test() {
