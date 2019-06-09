@@ -11,7 +11,7 @@ inherit autotools gnome2 python-r1 systemd versionator
 
 DESCRIPTION="GNOME frontend for a Red Hat's printer administration tool"
 HOMEPAGE="https://github.com/zdohnal/system-config-printer"
-SRC_URI="https://github.com/zdohnal/system-config-printer/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/zdohnal/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 KEYWORDS="~alpha amd64 ~arm ~ia64 ppc ppc64 ~sh ~sparc x86"
