@@ -2,19 +2,19 @@
 
 EAPI="6"
 
-inherit gnome-meson multilib-minimal
+inherit gnome2 meson
 
 DESCRIPTION="Library providing GLib serialization and deserialization for the JSON format"
 HOMEPAGE="https://wiki.gnome.org/Projects/JsonGlib"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="+doc debug +introspection"
 
 RDEPEND="
-	>=dev-libs/glib-2.37.6:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.37.6:2
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 "
 DEPEND="${RDEPEND}
@@ -23,25 +23,28 @@ DEPEND="${RDEPEND}
 	dev-libs/libxslt
 	>=dev-util/gtk-doc-am-1.20
 	>=sys-devel/gettext-0.18
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 "
 
 src_prepare() {
 	# Do not touch CFLAGS with --enable-debug=yes
 	sed -e 's/CFLAGS -g/CFLAGS/' -i "${S}"/configure || die
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }
 
-multilib_src_configure() {
-	gnome-meson_src_configure \
-		-Ddocs=$(multilib_native_usex doc true false) \
-		-Dintrospection=$(multilib_native_usex introspection true false)
+src_configure() {
+	local emesonargs=(
+		$(meson_use doc)
+		$(meson_use introspection)
+	)
+
+	meson_src_configure
 }
 
-multilib_src_compile() {
-	gnome-meson_src_compile
+src_compile() {
+	meson_src_compile
 }
 
-multilib_src_install() {
-	gnome-meson_src_install
+src_install() {
+	meson_src_install
 }
