@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 multilib-minimal vala meson
+inherit gnome2 vala meson
 
 DESCRIPTION="JSON RPC GLIB"
 HOMEPAGE="https://wiki.gnome.org/Projects/JsonGlib"
@@ -15,9 +15,8 @@ KEYWORDS="*"
 IUSE="debug +introspection +vala"
 
 RDEPEND="
-	>=dev-libs/glib-2.53.4:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.58.0:2
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
-	vala? ( $(vala_depend) )
 "
 DEPEND="${RDEPEND}
 	~app-text/docbook-xml-dtd-4.1.2
@@ -25,7 +24,7 @@ DEPEND="${RDEPEND}
 	dev-libs/libxslt
 	>=dev-util/gtk-doc-am-1.20
 	>=sys-devel/gettext-0.18
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 "
 
 src_prepare() {
