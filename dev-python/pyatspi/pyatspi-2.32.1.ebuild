@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python{3_5,3_6,3_7} )
 
 inherit gnome2 python-r1
 
@@ -17,14 +17,13 @@ IUSE="" # test
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="${PYTHON_DEPS}
-	>=dev-libs/atk-2.11.2
+	>=dev-libs/atk-2.31.90
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	>=dev-python/pygobject-2.90.1:3[${PYTHON_USEDEP}]
 "
 RDEPEND="${COMMON_DEPEND}
 	>=sys-apps/dbus-1
-	>=app-accessibility/at-spi2-core-2.20.2[introspection]
-	!<gnome-extra/at-spi-1.32.0-r1
+	>=app-accessibility/at-spi2-core-2.31.2[introspection]
 "
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
