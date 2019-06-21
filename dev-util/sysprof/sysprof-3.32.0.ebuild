@@ -3,34 +3,38 @@
 
 EAPI=6
 
-inherit gnome-meson linux-info systemd
+inherit gnome2 linux-info systemd gnome2-utils xdg meson
 
 DESCRIPTION="System-wide Linux Profiler"
 HOMEPAGE="http://sysprof.com/"
 
-LICENSE="GPL-2+"
+LICENSE="GPL-3+ GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug gtk systemd"
+KEYWORDS="*"
+IUSE="elogind gtk systemd"
+REQUIRED_USE="
+	?? ( elogind systemd )
+"
 
 RDEPEND="
 	>=dev-libs/glib-2.44:2
-	gtk? (
-		sys-auth/polkit
-		>=x11-libs/gtk+-3.22.0:3 )
-	systemd? (
-		sys-auth/polkit
-		>=sys-apps/systemd-222 )
+	sys-auth/polkit
+	gtk? ( >=x11-libs/gtk+-3.22.0:3 )
+	systemd? ( >=sys-apps/systemd-222 )
 "
 DEPEND="${RDEPEND}
-	app-text/yelp-tools
-	>=sys-devel/gettext-0.19.6
+	dev-libs/libxml2:2
+	dev-util/itstool
+	>=sys-devel/gettext-0.19.8
 	>=sys-kernel/linux-headers-2.6.32
 	dev-libs/appstream-glib
 	virtual/pkgconfig
 "
 
-PATCHES=( "${FILESDIR}"/sysprof-3.28.1-polkit.patch )
+PATCHES=(
+	"${FILESDIR}"/sysprof-3.28.1-polkit.patch
+	"${FILESDIR}"/sysprof-3.30.2-support-elogind.patch
+)
 
 pkg_pretend() {
 	kernel_is -ge 2 6 31 && return
@@ -40,14 +44,23 @@ pkg_pretend() {
 src_configure() {
 	# introspection & vala not use in build system
 	# --with-sysprofd=host currently unavailable from ebuild
-	gnome-meson_src_configure \
-		-Dwith-systemdsystemunitdir=$(systemd_get_systemunitdir) \
-		-Dwith_sysprofd=$(usex systemd bundled none) \
+	if use elogind || use systemd; then
+		sysprof_opt=bundled
+	else
+		sysprof_opt=none
+	fi
+
+	local emesonargs=(
+		-Dsystemdunitdir=$(systemd_get_systemunitdir)
+		-Dwith_sysprofd=${sysprof_opt}
 		$(meson_use gtk enable_gtk)
+	)
+
+	meson_src_configure
 }
 
 pkg_postinst() {
-	gnome-meson_pkg_postinst
+	gnome2_pkg_postinst
 
 	elog "On many systems, especially amd64, it is typical that with a modern"
 	elog "toolchain -fomit-frame-pointer for gcc is the default, because"
@@ -58,4 +71,8 @@ pkg_postinst() {
 	elog "means a CPU register is used for the frame pointer instead of other"
 	elog "purposes, which means a very minimal performance loss when there is"
 	elog "register pressure."
+}
+
+pkg_postrm() {
+	gnome2_pkg_postrm
 }

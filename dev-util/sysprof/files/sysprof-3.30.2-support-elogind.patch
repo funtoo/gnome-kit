@@ -1,0 +1,36 @@
+diff --git a/daemon/meson.build b/daemon/meson.build
+index d0cf87c..c7f85d7 100644
+--- a/daemon/meson.build
++++ b/daemon/meson.build
+@@ -11,8 +11,17 @@ sysprofd_sources = [
+ # NOTE: This is used in data/meson.build
+ pkglibexecdir = join_paths(get_option('prefix'), get_option('libexecdir'), 'sysprof')
+ 
++# Check for sd-bus support either by systemd or elogind
++sdbus_dep = dependency('libsystemd', version: '>=222', required: false)
++if not sdbus_dep.found()
++  sdbus_dep = dependency('libelogind', version: '>=239.3', required: false)
++  if not sdbus_dep.found()
++    error('sysprofd requires sd-bus but neither systemd nor elogind were found')
++  endif
++endif
++
+ sysprofd_deps = [
+-  dependency('libsystemd', version: '>=222'),
++  sdbus_dep,
+   dependency('glib-2.0'),
+ ]
+ 
+diff --git a/data/meson.build b/data/meson.build
+index 563dc20..e84f446 100644
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -87,7 +87,7 @@ if get_option('with_sysprofd') == 'bundled'
+ 
+   systemdunitdir = get_option('systemdunitdir')
+   if systemdunitdir == ''
+-    systemdunitdir = dependency('systemd').get_pkgconfig_variable('systemdsystemunitdir')
++    systemdunitdir = dependency('systemd', required: false).get_pkgconfig_variable('systemdsystemunitdir')
+   endif
+   configure_file(
+     input: 'sysprof2.service.in',
