@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_MIN_API_VERSION="0.36"
 
-inherit gnome-meson vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Play the classic two-player boardgame of chess"
 HOMEPAGE="https://wiki.gnome.org/Apps/Chess"
@@ -35,5 +35,5 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	vala_src_prepare
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }
