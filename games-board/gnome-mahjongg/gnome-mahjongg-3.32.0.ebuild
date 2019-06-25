@@ -4,14 +4,14 @@
 EAPI=6
 VALA_MIN_API_VERSION="0.24"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Disassemble a pile of tiles by removing matching pairs"
 HOMEPAGE="https://wiki.gnome.org/Apps/Mahjongg"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~arm64 x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
