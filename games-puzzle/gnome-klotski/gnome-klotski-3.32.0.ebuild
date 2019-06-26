@@ -4,14 +4,14 @@
 EAPI=6
 VALA_MIN_API_VERSION="0.28"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Slide blocks to solve the puzzle"
 HOMEPAGE="https://wiki.gnome.org/Apps/Klotski"
 
 LICENSE="GPL-3+ FDL-1.1+"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
