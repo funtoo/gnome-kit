@@ -1,0 +1,29 @@
+--- a/src/game.vala	2019-02-18 13:47:45.000000000 -0600
++++ b/src/game.vala	2019-02-20 22:30:35.469181432 -0600
+@@ -127,7 +127,7 @@
+         this.score = 0;
+         this.score_current_category = scorecats[size - 1].key;
+ 
+-        this.status_message = DESCRIPTION;
++        this.status_message = StatusMessage.DESCRIPTION;
+ 
+         next_pieces_generator = new NextPiecesGenerator (game_difficulty[size].n_next_pieces,
+                                                          game_difficulty[size].n_types);
+@@ -180,7 +180,7 @@
+ 
+             if (check_game_over ())
+             {
+-                status_message = GAME_OVER;
++                status_message = StatusMessage.GAME_OVER;
+                 board.grid_changed ();
+                 return;
+             }
+@@ -218,7 +218,7 @@
+ 
+         if (current_path == null || current_path.size == 0)
+         {
+-            status_message = NO_PATH;
++            status_message = StatusMessage.NO_PATH;
+             return false;
+         }
+ 
