@@ -3,7 +3,7 @@
 EAPI="6"
 GNOME_ORG_MODULE="gnome-2048"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Move the tiles until you obtain the 2048 tile"
 HOMEPAGE="https://wiki.gnome.org/Apps/2048"
