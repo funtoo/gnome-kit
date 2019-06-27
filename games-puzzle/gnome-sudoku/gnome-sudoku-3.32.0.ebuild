@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_MIN_API_VERSION="0.36"
 
-inherit gnome-meson vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Test your logic skills in this number grid puzzle"
 HOMEPAGE="https://wiki.gnome.org/Apps/Sudoku"
@@ -32,6 +32,6 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 	vala_src_prepare
 }
