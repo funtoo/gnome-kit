@@ -11,7 +11,7 @@ HOMEPAGE="https://git.gnome.org/browse/libgames-support/"
 
 LICENSE="LGPL-3+"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="

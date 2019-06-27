@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome-meson multilib-minimal vala
+inherit gnome2 vala meson
 
 DESCRIPTION="GObject wrapper for libusb"
 HOMEPAGE="https://github.com/hughsie/libgusb"
@@ -11,7 +11,7 @@ SRC_URI="https://people.freedesktop.org/~hughsient/releases/${P}.tar.xz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="+introspection static-libs vala"
 REQUIRED_USE="vala? ( introspection )"
@@ -20,30 +20,33 @@ REQUIRED_USE="vala? ( introspection )"
 RESTRICT="test"
 
 RDEPEND="
-	>=dev-libs/glib-2.44:2[${MULTILIB_USEDEP}]
-	virtual/libusb:1[udev,${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.44:2
+	virtual/libusb:1[udev]
 	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxslt
 	dev-util/gtk-doc-am
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	vala? ( $(vala_depend) )
 "
 
 PATCHES=("${FILESDIR}/${P}-introspection.patch")
 
 src_prepare() {
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 	use vala && vala_src_prepare
 }
 
-multilib_src_configure() {
-	gnome-meson_src_configure \
-		-Dintrospection=$(multilib_native_usex introspection true false) \
+src_configure() {
+	local emesonargs=(
+		$(meson_use introspection)
 		$(meson_use vala vapi)
+	)
+
+	meson_src_configure
 }
 
-multilib_src_install() {
-	gnome-meson_src_install
+src_install() {
+	meson_src_install
 }
