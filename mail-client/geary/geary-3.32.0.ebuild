@@ -2,17 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-VALA_MIN_API_VERSION="0.26"
 
 # Keep cmake-utils at the end
-inherit gnome2 vala cmake-utils
+inherit gnome2 vala meson
 
 DESCRIPTION="A lightweight, easy-to-use, feature-rich email client"
 HOMEPAGE="https://wiki.gnome.org/Apps/Geary"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="*"
 IUSE="nls"
 
 DEPEND="
@@ -28,6 +27,7 @@ DEPEND="
 	>=net-libs/webkit-gtk-2.10.0:4=[introspection]
 	>=x11-libs/gtk+-3.14.0:3[introspection]
 	x11-libs/libnotify
+	sys-libs/libunwind
 "
 RDEPEND="${DEPEND}
 	gnome-base/gsettings-desktop-schemas
@@ -42,13 +42,6 @@ DEPEND="${DEPEND}
 "
 
 src_prepare() {
-
-	# https://gitlab.gnome.org/GNOME/geary/issues/37
-	eapply "${FILESDIR}"/${P}-webkit-2.22.patch
-
-	# https://bugzilla.gnome.org/show_bug.cgi?id=751557
-	#eapply "${FILESDIR}"/${PN}-0.12.0-vapigen.patch
-
 	local i
 	if use nls ; then
 		if [[ -n "${LINGUAS+x}" ]] ; then
@@ -62,22 +55,6 @@ src_prepare() {
 		sed -i -e 's#add_subdirectory(po)##' CMakeLists.txt || die
 	fi
 
-	cmake-utils_src_prepare
 	gnome2_src_prepare
 	vala_src_prepare
-}
-
-src_configure() {
-	local mycmakeargs=(
-		-DDESKTOP_UPDATE=OFF
-		-DNO_FATAL_WARNINGS=ON
-		-DGSETTINGS_COMPILE=OFF
-		-DICON_UPDATE=OFF
-		-DVALA_EXECUTABLE="${VALAC}"
-		-DVAPIGEN="${VAPIGEN}"
-		-DWITH_UNITY=OFF
-		-DDESKTOP_VALIDATE=OFF
-	)
-
-	cmake-utils_src_configure
 }

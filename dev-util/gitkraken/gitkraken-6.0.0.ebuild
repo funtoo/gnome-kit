@@ -8,7 +8,7 @@ inherit eutils pax-utils xdg-utils gnome2-utils
 DESCRIPTION="Git GUI client"
 SRC_URI="http://release.gitkraken.com/linux/gitkraken-amd64.tar.gz -> ${PN}-amd64-${PV}.tar.gz"
 HOMEPAGE="https://www.gitkraken.com/"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="*"
 SLOT="0"
 LICENSE="Axosoft, LLC"
 IUSE=""

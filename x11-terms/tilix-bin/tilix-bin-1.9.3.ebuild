@@ -12,7 +12,7 @@ SRC_URI="https://github.com/gnunn1/tilix/releases/download/$PV/tilix.zip -> tili
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="*"
 RESTRICT="mirror"
 
 IUSE="gnome-keyring"

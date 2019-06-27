@@ -1,9 +1,8 @@
-# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
-inherit gnome2 udev user meson
+inherit gnome-meson udev user
 
 DESCRIPTION="Bluetooth graphical utilities integrated with GNOME"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeBluetooth"
@@ -23,20 +22,20 @@ COMMON_DEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 "
 RDEPEND="${COMMON_DEPEND}
-	>=net-wireless/bluez-5.50
+	>=net-wireless/bluez-5
 "
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/meson-0.49.2
 	!net-wireless/bluez-gnome
 	app-text/docbook-xml-dtd:4.1.2
 	dev-libs/libxml2:2
 	dev-util/gdbus-codegen
+	dev-util/gtk-doc
 	>=dev-util/gtk-doc-am-1.9
 	>=dev-util/intltool-0.40.0
 	dev-util/itstool
 	virtual/libudev
 	virtual/pkgconfig
-	x11-base/xorg-proto
+	x11-proto/xproto
 "
 
 pkg_setup() {
@@ -44,22 +43,19 @@ pkg_setup() {
 }
 
 src_configure() {
-	local emesonargs=(
-		-Denable-icon-update=false
+	gnome-meson_src_configure \
+		-Denable-gtk-doc=true \
+		-Denable-icon-update=false \
 		$(meson_use introspection enable-introspection)
-		-Denable-gtk-doc=true
-	)
-
-	meson_src_configure
 }
 
 src_install() {
-	meson_src_install
+	gnome-meson_src_install
 	udev_dorules "${FILESDIR}"/61-${PN}.rules
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 	if ! has_version sys-auth/consolekit[acl] && ! has_version sys-apps/systemd[acl] ; then
 		elog "Don't forget to add yourself to the plugdev group "
 		elog "if you want to be able to control bluetooth transmitter."

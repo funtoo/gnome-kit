@@ -2,27 +2,31 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
 inherit gnome2
 
-DESCRIPTION="C++ interface for the ATK library"
+DESCRIPTION="C++ interface for pango"
 HOMEPAGE="https://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+"
-SLOT="0"
+SLOT="2.4"
 KEYWORDS="*"
 IUSE="doc"
 
 COMMON_DEPEND="
-	>=dev-cpp/glibmm-2.58.0:2[doc?]
-	>=dev-libs/atk-2.18.0
+	>=x11-libs/pango-1.38.0
+	>=dev-cpp/glibmm-2.57.1:2
+	>=dev-cpp/cairomm-1.15.5:1
 	>=dev-libs/libsigc++-2.3.2:2
-"
-RDEPEND="${COMMON_DEPEND}
-	!<dev-cpp/gtkmm-2.22.0
 "
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
+	doc? (
+		media-gfx/graphviz
+		dev-libs/libxslt
+		app-doc/doxygen )
+"
+RDEPEND="${COMMON_DEPEND}
+	!<dev-cpp/gtkmm-2.13:2.4
 "
 
 pkg_setup() {

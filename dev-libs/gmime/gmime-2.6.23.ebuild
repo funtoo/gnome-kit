@@ -1,24 +1,26 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 VALA_USE_DEPEND="vapigen"
 
-inherit flag-o-matic gnome2 vala
+inherit mono-env gnome2 vala flag-o-matic
 
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
 HOMEPAGE="http://spruce.sourceforge.net/gmime/ https://developer.gnome.org/gmime/stable/"
 
-SLOT="3.0"
+SLOT="2.6"
 LICENSE="LGPL-2.1"
 KEYWORDS="*"
-IUSE="crypt doc idn static-libs test vala"
+IUSE="doc mono smime static-libs test vala"
 
 RDEPEND="
 	>=dev-libs/glib-2.32.0:2
 	sys-libs/zlib
-	crypt? ( >=app-crypt/gpgme-1.8.0:1= )
-	idn? ( net-dns/libidn )
+	mono? (
+		dev-lang/mono
+		>=dev-dotnet/gtk-sharp-2.12.21:2 )
+	smime? ( >=app-crypt/gpgme-1.1.6:1= )
 	vala? (
 		$(vala_depend)
 		>=dev-libs/gobject-introspection-1.30.0:= )
@@ -32,34 +34,36 @@ DEPEND="${RDEPEND}
 "
 # gnupg is needed for tests if --enable-cryptography is enabled, which we do unconditionally
 
+pkg_setup() {
+	use mono && mono-env_pkg_setup
+}
+
 src_prepare() {
 	gnome2_src_prepare
 	use vala && vala_src_prepare
 }
 
 src_configure() {
-	if [[ ${CHOST} == *-solaris* ]]; then
-		# bug #???, why not use --with-libiconv
-		append-libs iconv
-	fi
-
+	[[ ${CHOST} == *-solaris* ]] && append-libs iconv
 	gnome2_src_configure \
-		$(use_enable crypt crypto) \
+		--enable-cryptography \
+		--disable-strict-parser \
+		$(use_enable mono) \
+		$(use_enable smime) \
 		$(use_enable static-libs static) \
-		$(use_enable vala) \
-		$(use_with idn libidn) \
-		$(usex doc "" DB2HTML=)
+		$(use_enable vala)
 }
 
 src_compile() {
-	gnome2_src_compile
+	MONO_PATH="${S}" gnome2_src_compile
 	if use doc; then
 		emake -C docs/tutorial html
 	fi
 }
 
 src_install() {
-	gnome2_src_install
+	GACUTIL_FLAGS="/root '${ED}/usr/$(get_libdir)' /gacdir '${EPREFIX}/usr/$(get_libdir)' /package ${PN}" \
+		gnome2_src_install
 
 	if use doc ; then
 		docinto tutorial

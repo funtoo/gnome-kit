@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome2 linux-info systemd gnome2-utils xdg meson
+inherit gnome-meson linux-info systemd gnome2-utils xdg
 
 DESCRIPTION="System-wide Linux Profiler"
 HOMEPAGE="http://sysprof.com/"
@@ -50,17 +50,14 @@ src_configure() {
 		sysprof_opt=none
 	fi
 
-	local emesonargs=(
-		-Dsystemdunitdir=$(systemd_get_systemunitdir)
-		-Dwith_sysprofd=${sysprof_opt}
+	gnome-meson_src_configure \
+		-Dsystemdunitdir=$(systemd_get_systemunitdir) \
+		-Dwith_sysprofd=${sysprof_opt} \
 		$(meson_use gtk enable_gtk)
-	)
-
-	meson_src_configure
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome-meson_pkg_postinst
 
 	elog "On many systems, especially amd64, it is typical that with a modern"
 	elog "toolchain -fomit-frame-pointer for gcc is the default, because"
@@ -74,5 +71,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome2_pkg_postrm
+	gnome-meson_pkg_postrm
 }

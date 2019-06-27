@@ -3,8 +3,8 @@
 
 EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
-PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
-USE_RUBY="ruby24 ruby25 ruby26"
+PYTHON_COMPAT=( python3_{6,7} )
+USE_RUBY="ruby23 ruby24 ruby25 ruby26"
 
 inherit check-reqs cmake-utils flag-o-matic gnome2 pax-utils python-any-r1 ruby-single toolchain-funcs virtualx
 
@@ -15,9 +15,9 @@ SRC_URI="https://www.webkitgtk.org/releases/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="*"
 
-IUSE="aqua coverage doc +egl +geolocation gles2 gnome-keyring +gstreamer +introspection jpeg2k libnotify nsplugin +opengl spell wayland +webgl +X"
+IUSE="aqua coverage doc +egl +geolocation gles2 gnome-keyring +gstreamer +introspection +jit jpeg2k libnotify nsplugin +opengl spell wayland +webgl +X"
 
 # webgl needs gstreamer, bug #560612
 # gstreamer with opengl/gles2 needs egl
@@ -40,7 +40,6 @@ RESTRICT="test"
 # Dependencies found at Source/cmake/OptionsGTK.cmake
 # Various compile-time optionals for gtk+-3.22.0 - ensure it
 # Missing OpenWebRTC checks and conditionals, but ENABLE_MEDIA_STREAM/ENABLE_WEB_RTC is experimental upstream (PRIVATE OFF)
-# >=gst-plugins-opus-1.14.4-r1 for opusparse (required by MSE)
 RDEPEND="
 	>=x11-libs/cairo-1.16.0:=[X?]
 	>=media-libs/fontconfig-2.13.0:1.0
@@ -68,8 +67,8 @@ RDEPEND="
 	nsplugin? ( >=x11-libs/gtk+-2.24.10:2 )
 	spell? ( >=app-text/enchant-0.22:= )
 	gstreamer? (
-		>=media-libs/gstreamer-1.14:1.0
-		>=media-libs/gst-plugins-base-1.14:1.0[egl?,gles2?,opengl?]
+		>=media-libs/gstreamer-1.14.1:1.0
+		>=media-libs/gst-plugins-base-1.14.1:1.0[egl?,gles2?,opengl?]
 		>=media-plugins/gst-plugins-opus-1.14.4-r1:1.0
 		>=media-libs/gst-plugins-bad-1.14:1.0 )
 
@@ -98,7 +97,6 @@ DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
 	${RUBY_DEPS}
 	>=app-accessibility/at-spi2-core-2.5.3
-	dev-util/glib-utils
 	>=dev-util/gtk-doc-am-1.10
 	>=dev-util/gperf-3.0.1
 	>=sys-devel/bison-2.4.3
@@ -113,6 +111,7 @@ DEPEND="${RDEPEND}
 
 	doc? ( >=dev-util/gtk-doc-1.10 )
 	geolocation? ( dev-util/gdbus-codegen )
+	introspection? ( jit? ( sys-apps/paxctl ) )
 "
 #	test? (
 #		dev-python/pygobject:3[python_targets_python2_7]
@@ -166,6 +165,9 @@ src_prepare() {
 src_configure() {
 	# Respect CC, otherwise fails on prefix #395875
 	tc-export CC
+
+	# Arches without JIT support also need this to really disable it in all places
+	use jit || append-cppflags -DENABLE_JIT=0 -DENABLE_YARR_JIT=0 -DENABLE_ASSEMBLER=0
 
 	# It does not compile on alpha without this in LDFLAGS
 	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=648761
@@ -221,7 +223,7 @@ src_configure() {
 	fi
 
 	local mycmakeargs=(
-		#-DENABLE_UNIFIED_BUILDS=$(usex jumbo-build) # broken in 2.24.1
+		#-DENABLE_UNIFIED_BUILDS=$(usex jumbo-build) # broken in 2.24.0
 		-DENABLE_QUARTZ_TARGET=$(usex aqua)
 		-DENABLE_API_TESTS=$(usex test)
 		-DENABLE_GTKDOC=$(usex doc)
@@ -231,6 +233,7 @@ src_configure() {
 		-DENABLE_VIDEO=$(usex gstreamer)
 		-DENABLE_WEB_AUDIO=$(usex gstreamer)
 		-DENABLE_INTROSPECTION=$(usex introspection)
+		-DENABLE_JIT=$(usex jit)
 		-DUSE_LIBNOTIFY=$(usex libnotify)
 		-DUSE_LIBSECRET=$(usex gnome-keyring)
 		-DUSE_OPENJPEG=$(usex jpeg2k)
@@ -266,7 +269,7 @@ src_compile() {
 
 src_test() {
 	# Prevents test failures on PaX systems
-	pax-mark m $(list-paxables Programs/*[Tt]ests/*) # Programs/unittests/.libs/test*
+	use jit && pax-mark m $(list-paxables Programs/*[Tt]ests/*) # Programs/unittests/.libs/test*
 
 	cmake-utils_src_test
 }
@@ -275,7 +278,7 @@ src_install() {
 	cmake-utils_src_install
 
 	# Prevents crashes on PaX systems, bug #522808
-	pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/jsc" "${ED}usr/libexec/webkit2gtk-4.0/WebKitWebProcess"
+	use jit && pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/jsc" "${ED}usr/libexec/webkit2gtk-4.0/WebKitWebProcess"
 	pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/WebKitPluginProcess"
 	use nsplugin && pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/WebKitPluginProcess"2
 }
