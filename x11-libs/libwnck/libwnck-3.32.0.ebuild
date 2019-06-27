@@ -4,7 +4,7 @@
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit flag-o-matic gnome2
+inherit flag-o-matic gnome2 meson
 
 DESCRIPTION="A window navigation construction kit"
 HOMEPAGE="https://developer.gnome.org/libwnck/stable/"
@@ -13,7 +13,7 @@ LICENSE="LGPL-2+"
 SLOT="3"
 KEYWORDS="*"
 
-IUSE="+introspection startup-notification tools"
+IUSE="doc +introspection startup-notification tools"
 
 RDEPEND="
 	x11-libs/cairo[X]
@@ -28,6 +28,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.9
 	>=sys-devel/gettext-0.19.4
+	>=dev-util/meson-0.50.0
 	virtual/pkgconfig
 "
 # eautoreconf needs
@@ -35,10 +36,12 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	# Don't collide with SLOT=1
-	gnome2_src_configure \
-		--disable-static \
-		$(use_enable introspection) \
-		$(use_enable startup-notification) \
-		$(use_enable tools) \
-		--program-suffix=-${SLOT}
+	local emesonargs=(
+		-Dintrospection=$(usex introspection enabled disabled)
+		-Dstartup_notification=auto
+		$(meson_use tools install_tools)
+		$(meson_use doc gtk_doc)
+	)
+
+	meson_src_configure
 }
