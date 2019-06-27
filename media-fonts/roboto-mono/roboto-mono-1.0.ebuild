@@ -11,7 +11,7 @@ FILENAME="/var/cache/portage/distfiles/${PN}.zip"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~arm64 x86 ~amd64-linux ~x86-linux ~x64-macos"
+KEYWORDS="*"
 
 DEPEND="app-arch/unzip"
 

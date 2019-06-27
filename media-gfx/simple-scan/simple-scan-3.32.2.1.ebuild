@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome-meson vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Simple document scanning utility"
 HOMEPAGE="https://launchpad.net/simple-scan"
@@ -38,5 +38,5 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	vala_src_prepare
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }

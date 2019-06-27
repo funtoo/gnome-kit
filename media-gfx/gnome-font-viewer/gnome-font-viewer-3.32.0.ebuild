@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome-meson
+inherit gnome2 meson
 
 DESCRIPTION="Font viewer for GNOME"
 HOMEPAGE="https://git.gnome.org/browse/gnome-font-viewer"

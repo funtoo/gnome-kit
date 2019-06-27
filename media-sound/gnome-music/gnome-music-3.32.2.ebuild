@@ -3,7 +3,7 @@
 EAPI="6"
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 
-inherit gnome-meson python-single-r1
+inherit gnome2 python-single-r1 meson
 
 DESCRIPTION="Music management for Gnome"
 HOMEPAGE="https://wiki.gnome.org/Apps/Music"
@@ -17,7 +17,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="
 	${PYTHON_DEPS}
-	>=app-misc/tracker-1.11.1[introspection(+)]
+	>=app-misc/tracker-2:=
 	>=dev-python/pygobject-3.21.1:3[cairo,${PYTHON_USEDEP}]
 	>=dev-libs/glib-2.28:2
 	>=dev-libs/gobject-introspection-1.35.9:=
@@ -29,10 +29,6 @@ COMMON_DEPEND="
 # xdg-user-dirs-update needs to be there to create needed dirs
 # https://bugzilla.gnome.org/show_bug.cgi?id=731613
 RDEPEND="${COMMON_DEPEND}
-	|| (
-		app-misc/tracker[gstreamer]
-		app-misc/tracker[ffmpeg]
-	)
 	x11-libs/libnotify[introspection]
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
@@ -54,10 +50,10 @@ pkg_setup() {
 
 src_prepare() {
 	sed -e '/sys.path.insert/d' -i "${S}"/gnome-music.in || die "python fixup sed failed"
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }
 
 src_install() {
-	gnome-meson_src_install
+	meson_src_install
 	python_fix_shebang "${D}"usr/bin/gnome-music
 }

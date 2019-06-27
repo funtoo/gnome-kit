@@ -11,7 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GSound"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE="+introspection vala"
 REQUIRED_USE="vala? ( introspection )"
 

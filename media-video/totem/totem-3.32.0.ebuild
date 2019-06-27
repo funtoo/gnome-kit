@@ -5,7 +5,7 @@ EAPI=6
 PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} )
 PYTHON_REQ_USE="threads"
 
-inherit gnome-meson python-single-r1 vala
+inherit gnome2 python-single-r1 meson vala
 
 DESCRIPTION="Media player for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Videos"
@@ -18,7 +18,7 @@ REQUIRED_USE="
 	python? ( introspection ${PYTHON_REQUIRED_USE} )
 "
 
-KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~x86 ~x86-fbsd"
+KEYWORDS="*"
 
 # FIXME:
 # Runtime dependency on gnome-session-2.91
@@ -85,7 +85,7 @@ pkg_setup() {
 
 src_prepare() {
 	vala_src_prepare
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }
 
 src_configure() {
@@ -101,14 +101,16 @@ src_configure() {
 	# pylint is checked unconditionally, but is only used for make check
 	# appstream-util overriding necessary until upstream fixes their macro
 	# to respect configure switch
-	gnome-meson_src_configure \
-		-Denable-easy-codec-installation=yes \
-		-Denable-gtk-doc=false \
-		-Denable-introspection=$(usex introspection yes no) \
-		-Denable-nautilus=$(usex nautilus yes no) \
-		-Denable-python=$(usex python yes no) \
-		-Denable-vala=$(usex vala yes no) \
+	local emesonargs=(
+		-Denable-easy-codec-installation=yes
+		-Denable-gtk-doc=false
+		-Denable-introspection=$(usex introspection yes no)
+		-Denable-nautilus=$(usex nautilus yes no)
+		-Denable-python=$(usex python yes no)
+		-Denable-vala=$(usex vala yes no)
 		-Dwith-plugins=auto
+	)
+	meson_src_configure
 }
 
 src_compile() {
@@ -117,7 +119,7 @@ src_compile() {
 }
 
 src_install() {
-	gnome-meson_src_install
+	meson_src_install
 	if use python ; then
 		local plugin
 		for plugin in dbusservice pythonconsole opensubtitles ; do

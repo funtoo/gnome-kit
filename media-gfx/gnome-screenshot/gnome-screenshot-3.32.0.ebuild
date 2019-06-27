@@ -1,3 +1,4 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -13,9 +14,8 @@ KEYWORDS="*"
 
 IUSE=""
 
-# libcanberra 0.26-r2 is needed for gtk+:3 fixes
 COMMON_DEPEND="
-	>=dev-libs/glib-2.35.1:2[dbus]
+	>=dev-libs/glib-2.58.0:2[dbus]
 	>=media-libs/libcanberra-0.26-r2[gtk3]
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
@@ -27,9 +27,8 @@ RDEPEND="${COMMON_DEPEND}
 	>=gnome-base/gsettings-desktop-schemas-0.1.0
 	!<gnome-extra/gnome-utils-3.4
 "
-# ${PN} was part of gnome-utils before 3.4
 DEPEND="${COMMON_DEPEND}
-	x11-proto/xextproto
+	x11-base/xorg-proto
 	>=dev-util/intltool-0.50.2
 	virtual/pkgconfig
 "

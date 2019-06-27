@@ -1,11 +1,10 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit gnome-meson
+inherit gnome2 meson
 
 DESCRIPTION="The Eye of GNOME image viewer"
 HOMEPAGE="https://wiki.gnome.org/Apps/EyeOfGnome"
@@ -13,10 +12,10 @@ HOMEPAGE="https://wiki.gnome.org/Apps/EyeOfGnome"
 LICENSE="GPL-2+"
 SLOT="1"
 
-IUSE="doc +exif +introspection +jpeg lcms +svg tiff xmp tests"
+IUSE="doc +exif +introspection +jpeg lcms +svg tiff xmp"
 REQUIRED_USE="exif? ( jpeg )"
 
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="*"
 
 RDEPEND="
 	>=dev-libs/glib-2.42.0:2[dbus]
@@ -37,6 +36,7 @@ RDEPEND="
 	xmp? ( media-libs/exempi:2 )
 "
 DEPEND="${RDEPEND}
+	media-libs/exempi:2
 	>=dev-util/gtk-doc-am-1.16
 	>=dev-util/intltool-0.50.1
 	dev-util/itstool
@@ -45,13 +45,15 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	gnome-meson_src_configure \
-		$(meson_use introspection introspection) \
-		$(meson_use jpeg libjpeg) \
-		$(meson_use exif libexif) \
-		$(meson_use lcms cms) \
-		$(meson_use xmp xmp) \
-		$(meson_use svg librsvg) \
-		$(meson_use doc gtk_doc) \
-		$(meson_use tests installed_tests)
+	local emesonargs=(
+		$(meson_use introspection)
+		$(meson_use jpeg libjpeg)
+		$(meson_use exif libexif)
+		$(meson_use lcms cms)
+		$(meson_use xmp)
+		$(meson_use svg librsvg)
+		$(meson_use doc gtk_doc)
+	)
+
+	meson_src_configure
 }

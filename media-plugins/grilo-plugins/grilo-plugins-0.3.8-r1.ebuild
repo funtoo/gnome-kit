@@ -5,14 +5,14 @@ EAPI=6
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
 
-inherit gnome-meson python-any-r1
+inherit gnome2 python-any-r1 meson
 
 DESCRIPTION="A framework for easy media discovery and browsing"
 HOMEPAGE="https://wiki.gnome.org/Projects/Grilo"
 
 LICENSE="LGPL-2.1+"
 SLOT="0.3"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 IUSE="daap dvd examples chromaprint flickr freebox lua subtitles test thetvdb tracker upnp-av vimeo +youtube"
 
 # Bump gom requirement to avoid segfaults
@@ -74,7 +74,7 @@ pkg_setup() {
 }
 
 src_prepare () {
-	gnome-meson_src_prepare
+	gnome2_src_prepare
 }
 
 # FIXME: some unittests required python-dbusmock
@@ -82,30 +82,33 @@ src_configure() {
 	# --enable-debug only changes CFLAGS, useless for us
 	# Plugins
 	# shoutcast seems to be broken
-	gnome-meson_src_configure \
-		-Denable-bookmarks=yes \
-		-Denable-filesystem=yes \
-		-Denable-gravatar=yes \
-		-Denable-jamendo=yes \
-		-Denable-local-metadata=yes \
-		-Denable-magnatune=yes \
-		-Denable-metadata-store=yes \
-		-Denable-podcasts=yes \
-		-Denable-raitv=yes \
-		-Denable-shoutcast=no \
-		-Denable-tmdb=yes \
-		-Denable-chromaprint=$(usex chromaprint yes no) \
-		-Denable-dmap=$(usex daap yes no) \
-		-Denable-optical-media=$(usex dvd yes no) \
-		-Denable-flickr=$(usex flickr yes no) \
-		-Denable-freebox=$(usex freebox yes no) \
-		-Denable-lua-factory=$(usex lua yes no) \
-		-Denable-opensubtitles=$(usex subtitles yes no) \
-		-Denable-thetvdb=$(usex thetvdb yes no) \
-		-Denable-tracker=$(usex tracker yes no) \
-		-Denable-dleyna=$(usex upnp-av yes no) \
-		-Denable-vimeo=$(usex vimeo yes no) \
+	local emesonargs=(
+		-Denable-bookmarks=yes
+		-Denable-filesystem=yes
+		-Denable-gravatar=yes
+		-Denable-jamendo=yes
+		-Denable-local-metadata=yes
+		-Denable-magnatune=yes
+		-Denable-metadata-store=yes
+		-Denable-podcasts=yes
+		-Denable-raitv=yes
+		-Denable-shoutcast=no
+		-Denable-tmdb=yes
+		-Denable-chromaprint=$(usex chromaprint yes no)
+		-Denable-dmap=$(usex daap yes no)
+		-Denable-optical-media=$(usex dvd yes no)
+		-Denable-flickr=$(usex flickr yes no)
+		-Denable-freebox=$(usex freebox yes no)
+		-Denable-lua-factory=$(usex lua yes no)
+		-Denable-opensubtitles=$(usex subtitles yes no)
+		-Denable-thetvdb=$(usex thetvdb yes no)
+		-Denable-tracker=$(usex tracker yes no)
+		-Denable-dleyna=$(usex upnp-av yes no)
+		-Denable-vimeo=$(usex vimeo yes no)
 		-Denable-youtube=$(usex youtube yes no)
+	)
+
+	meson_src_configure
 }
 
 src_install() {
@@ -114,7 +117,7 @@ src_install() {
 		doins help/examples/*.c
 	fi
 
-	gnome-meson_src_install \
+	meson_src_install \
 		DOC_MODULE_VERSION=${SLOT%/*} \
 		HELP_ID="grilo-plugins-${SLOT%/*}" \
 		HELP_MEDIA=""

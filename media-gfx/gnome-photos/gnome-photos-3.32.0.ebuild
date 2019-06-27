@@ -3,7 +3,7 @@
 EAPI="6"
 PYTHON_COMPAT=( python2_7 )
 
-inherit gnome2 python-any-r1 virtualx
+inherit gnome2 python-any-r1 virtualx meson
 
 DESCRIPTION="Access, organize and share your photos on GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Photos"
@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="flickr test upnp-av"
 
 COMMON_DEPEND="
-	>=app-misc/tracker-2:=[miner-fs]
+	>=app-misc/tracker-2:=[miners]
 	>=dev-libs/glib-2.44:2
 	gnome-base/gsettings-desktop-schemas
 	>=dev-libs/libgdata-0.15.2:0=[gnome-online-accounts]
@@ -57,8 +57,11 @@ pkg_setup() {
 
 src_configure() {
 	# XXX: how to deal with rdtscp support, x86intrin
-	gnome2_src_configure \
-		$(use_enable test dogtail)
+	local emesonargs=(
+		$(meson_use test dogtail)
+	)
+
+	meson_src_configure
 }
 
 src_test() {
