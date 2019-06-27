@@ -3,7 +3,7 @@
 EAPI=6
 GNOME2_EAUTORECONF="yes"
 
-inherit gnome-meson systemd
+inherit systemd meson
 
 DESCRIPTION="D-Bus interfaces for querying and manipulating user account information"
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/AccountsService/"
@@ -44,11 +44,14 @@ PATCHES=(
 )
 
 src_configure() {
-	gnome-meson_src_configure \
-		-Dsystemd=$(usex systemd true false) \
-		-Delogind=$(usex elogind true false) \
-		-Dadmin_group="wheel" \
-		-Dsystemdsystemunitdir="$(systemd_get_systemunitdir)" \
-		-Ddocbook=$(usex doc true false) \
-		-Dintrospection=$(usex introspection true false)
+	local emesonargs=(
+		$(meson_use systemd)
+		$(meson_use elogind)
+		-Dadmin_group="wheel"
+		-Dsystemdsystemunitdir="$(systemd_get_systemunitdir)"
+		$(meson_use doc docbook)
+		$(meson_use introspection)
+	)
+
+	meson_src_configure
 }

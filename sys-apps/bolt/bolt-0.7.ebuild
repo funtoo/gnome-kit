@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome-meson
+inherit gnome2 meson
 
 DESCRIPTION="Userspace system daemon to enable security levels for Thunderbolt 3 on Linux."
 HOMEPAGE="https://gitlab.freedesktop.org/bolt/bolt"
@@ -21,16 +21,19 @@ DEPEND="app-text/asciidoc
 	sys-auth/polkit[introspection]"
 
 src_configure() {
-	gnome-meson_src_configure \
-		$(meson_use systemd systemd) \
+	local emesonargs=(
+		$(meson_use systemd systemd)
 		-Dman=true
+	)
+
+	meson_src_configure
 }
 
 src_compile() {
-	gnome-meson_src_compile
+	meson_src_compile
 }
 
 src_install() {
 	newinitd "${FILESDIR}/init.d.boltd" boltd
-	gnome-meson_src_install
+	meson_src_install
 }

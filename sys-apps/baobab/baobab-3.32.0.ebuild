@@ -1,8 +1,9 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
 
-inherit gnome-meson vala
+inherit gnome2 meson vala
 
 DESCRIPTION="Disk usage browser for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Baobab"
@@ -30,12 +31,7 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 "
-
 src_prepare() {
 	default
 	vala_src_prepare
-}
-
-src_configure() {
-	gnome-meson_src_configure
 }

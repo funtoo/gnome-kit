@@ -11,7 +11,7 @@ SRC_URI="https://${PN}.freedesktop.org/releases/${PN}-0.99.3.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/3" # based on SONAME of libupower-glib.so
-KEYWORDS="~*"
+KEYWORDS="*"
 
 IUSE="ck doc integration-test +introspection ios kernel_FreeBSD kernel_linux selinux"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -335,6 +335,10 @@ src_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-0.99.9-0016-ci-run-distcheck-as-a-test.patch
 	eapply "${FILESDIR}"/${PN}-0.99.9-0017-0-99-9.patch
+	eapply "${FILESDIR}"/${PN}-0.99.10-0001-daemon-make-comment-more-succinct.patch
+	eapply "${FILESDIR}"/${PN}-0.99.10-0002-daemon-consider-pending-charge-when-calculating-the.patch
+	eapply "${FILESDIR}"/${PN}-0.99.10-0003-integration-test-define-pending-charge-and-pending-d.patch
+	eapply "${FILESDIR}"/${PN}-0.99.10-0004-integration-test-test-displaydevice-pending-charge.patch
 
 	if use ck; then
 		# From Funtoo:

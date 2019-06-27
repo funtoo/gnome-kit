@@ -14,7 +14,7 @@ HOMEPAGE="https://github.com/zdohnal/system-config-printer"
 SRC_URI="https://github.com/zdohnal/${PN}/releases/download/${PV}/${P}.tar.xz"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ppc ppc64 ~sh ~sparc x86"
+KEYWORDS="*"
 SLOT="0"
 
 IUSE="doc gnome-keyring policykit"

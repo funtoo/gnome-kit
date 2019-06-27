@@ -10,7 +10,7 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="*"
 IUSE="elogind examples gtk +introspection jit kde nls pam selinux test"
 
 CDEPEND="
@@ -83,6 +83,8 @@ src_prepare() {
 	# From Gentoo:
 	# 	https://bugs.gentoo.org/598615
 	eapply "${FILESDIR}"/${PN}-0.115-elogind.patch
+
+	eapply "${FILESDIR}"/CVE-2018-19788.patch
 
 	# Fix cross-building, bug #590764, elogind patch, bug #598615
 	eautoreconf
