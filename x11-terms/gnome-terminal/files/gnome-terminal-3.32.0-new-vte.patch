@@ -1,0 +1,10 @@
+--- a/src/terminal-screen.c	2018-08-21 14:58:40.686424401 -0500
++++ b/src/terminal-screen.c	2018-08-21 14:59:01.074400617 -0500
+@@ -500,7 +500,6 @@
+   widget_class->hierarchy_changed = terminal_screen_hierarchy_changed;
+ 
+   terminal_class->child_exited = terminal_screen_child_exited;
+-  terminal_class->notification_received = terminal_screen_notification_received;
+ 
+   signals[PROFILE_SET] =
+     g_signal_new (I_("profile-set"),
