@@ -3,6 +3,7 @@
 EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_REQ_USE="threads(+)"
 
 inherit gnome2 python-single-r1
 
