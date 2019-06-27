@@ -4,14 +4,14 @@
 EAPI=6
 VALA_MIN_API_VERSION="0.24"
 
-inherit gnome2 vala
+inherit gnome2 vala meson
 
 DESCRIPTION="Complete the puzzle by matching numbered tiles"
 HOMEPAGE="https://wiki.gnome.org/Apps/Tetravex"
 
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="amd64 ~arm x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
