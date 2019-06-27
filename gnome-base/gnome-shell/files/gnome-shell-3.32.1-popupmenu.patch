@@ -1,0 +1,33 @@
+diff --git a/js/ui/popupMenu.js b/js/ui/popupMenu.js
+index b0a919d1bc031ba72f476682dde8fead241245ba..992084df7d98f87c1fa784acce43979750dad419 100644
+--- a/js/ui/popupMenu.js
++++ b/js/ui/popupMenu.js
+@@ -123,12 +123,18 @@ var PopupBaseMenuItem = new Lang.Class({
+     },
+ 
+     _onButtonReleaseEvent(actor, event) {
++        if (this._parent && !this._parent.isOpen)
++            return Clutter.EVENT_STOP;
++
+         this.actor.remove_style_pseudo_class ('active');
+         this.activate(event);
+         return Clutter.EVENT_STOP;
+     },
+ 
+     _onTouchEvent(actor, event) {
++        if (this._parent && !this._parent.isOpen)
++            return Clutter.EVENT_STOP;
++
+         if (event.type() == Clutter.EventType.TOUCH_END) {
+             this.actor.remove_style_pseudo_class ('active');
+             this.activate(event);
+@@ -141,6 +147,9 @@ var PopupBaseMenuItem = new Lang.Class({
+     },
+ 
+     _onKeyPressEvent(actor, event) {
++        if (this._parent && !this._parent.isOpen)
++            return Clutter.EVENT_STOP;
++
+         let state = event.get_state();
+ 
+         // if user has a modifier down (except capslock and numlock)

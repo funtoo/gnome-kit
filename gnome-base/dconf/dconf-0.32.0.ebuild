@@ -1,7 +1,12 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit gnome-meson bash-completion-r1 virtualx vala
+
+VALA_USE_DEPEND="vapigen"
+VALA_MIN_API_VERSION="0.39"
+
+inherit gnome2 bash-completion-r1 virtualx meson vala
 
 DESCRIPTION="Simple low-level configuration system"
 HOMEPAGE="https://wiki.gnome.org/action/show/Projects/dconf"
@@ -12,8 +17,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	app-shells/bash-completion
-	>=dev-libs/glib-2.44.0:2
+	>=dev-libs/glib-2.53.4:2
 	sys-apps/dbus
 "
 DEPEND="${RDEPEND}
@@ -23,18 +27,22 @@ DEPEND="${RDEPEND}
 	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1.15
 	sys-devel/gettext
-	<dev-lang/vala-0.42
+	app-shells/bash-completion
 	virtual/pkgconfig
+	$(vala_depend)
 "
 
 src_prepare() {
-	default
 	vala_src_prepare
+	default
 }
 
 src_configure() {
-	gnome-meson_src_configure \
-	-Denable-man=true
+	local emesonargs=(
+		-Denable-man=true
+	)
+
+	meson_src_configure
 }
 
 src_test() {
@@ -42,7 +50,7 @@ src_test() {
 }
 
 src_install() {
-	gnome-meson_src_install
+	meson_src_install
 
 	# GSettings backend may be one of: memory, gconf, dconf
 	# Only dconf is really considered functional by upstream
@@ -53,7 +61,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome-meson_pkg_postinst
+	gnome2_pkg_postinst
 	# Kill existing dconf-service processes as recommended by upstream due to
 	# possible changes in the dconf private dbus API.
 	# dconf-service will be dbus-activated on next use.

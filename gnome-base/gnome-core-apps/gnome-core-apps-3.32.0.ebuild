@@ -21,31 +21,31 @@ IUSE="+bluetooth +cdr cups"
 RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}[cups?]
 
-	>=gnome-base/gnome-session-3.28.1
-	>=gnome-base/gnome-menus-3.10.1:3
+	>=gnome-base/gnome-session-${PV}
+	>=gnome-base/gnome-menus-${PV}:3
 	>=gnome-base/gnome-settings-daemon-${PV}[cups?]
 	>=gnome-base/gnome-control-center-${PV}
 
 	>=app-crypt/gcr-3.28.0
-	>=gnome-base/nautilus-3.30.0
-	>=gnome-base/gnome-keyring-3.20
+	>=gnome-base/nautilus-${PV}
+	>=gnome-base/gnome-keyring-3.28
 	>=gnome-extra/evolution-data-server-${PV}
 
-	>=app-crypt/seahorse-3.20.0
-	>=app-editors/gedit-3.28.1
+	>=app-crypt/seahorse-${PV}
+	>=app-editors/gedit-${PV}
 	>=app-text/evince-${PV}
 	>=gnome-extra/gnome-contacts-$(get_version_component_range 1-2)
-	>=media-gfx/eog-3.28.3
-	>=media-video/totem-3.26.0
-	>=x11-terms/gnome-terminal-3.28.2
+	>=media-gfx/eog-${PV}
+	>=media-video/totem-${PV}
+	>=x11-terms/gnome-terminal-${PV}
 
-	>=gnome-extra/gnome-user-docs-3.28.2
-	>=gnome-extra/yelp-3.28.1
+	>=gnome-extra/gnome-user-docs-${PV}
+	>=gnome-extra/yelp-${PV}
 
-	>=x11-themes/adwaita-icon-theme-$(get_version_component_range 1-2)
+	>=x11-themes/adwaita-icon-theme-${PV}
 	>=x11-themes/gnome-themes-standard-3.22
 
-	bluetooth? ( >=net-wireless/gnome-bluetooth-3.28.2 )
+	bluetooth? ( >=net-wireless/gnome-bluetooth-${PV} )
 	cdr? ( >=app-cdr/brasero-3.12.2 )
 
 	!gnome-base/gnome-applets

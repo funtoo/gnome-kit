@@ -22,28 +22,28 @@ RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}[cups?]
 	>=gnome-base/gnome-core-apps-${PV}[cups?,bluetooth?,cdr?]
 
-	>=gnome-base/gdm-3.8.0
+	>=gnome-base/gdm-${PV}
 
-	>=x11-wm/mutter-3.30.0
-	>=gnome-base/gnome-shell-3.30.0[bluetooth?]
+	>=x11-wm/mutter-3.32.0
+	>=gnome-base/gnome-shell-3.32.0[bluetooth?]
 	gnome-base/gnome-shell-common
 
-	>=x11-themes/gnome-backgrounds-$(get_version_component_range 1-2)
+	>=x11-themes/gnome-backgrounds-3.32
 	x11-themes/sound-theme-freedesktop
 
 	accessibility? (
-		>=app-accessibility/at-spi2-atk-2.26
-		>=app-accessibility/at-spi2-core-2.26
+		>=app-accessibility/at-spi2-atk-2.32
+		>=app-accessibility/at-spi2-core-2.32
 		>=app-accessibility/caribou-0.4.21
-		>=app-accessibility/orca-3.29.4
-		>=gnome-extra/mousetweaks-3.12.0 )
-	classic? ( >=gnome-extra/gnome-shell-extensions-3.30.0 )
+		>=app-accessibility/orca-3.32.0
+		>=gnome-extra/mousetweaks-3.32.0 )
+	classic? ( >=gnome-extra/gnome-shell-extensions-3.32.0 )
 	extras? ( >=gnome-base/gnome-extra-apps-${PV} )
 "
 
 DEPEND=""
 
-PDEPEND=">=gnome-base/gvfs-1.34[udisks]"
+PDEPEND=">=gnome-base/gvfs-1.40.0[udisks]"
 
 pkg_postinst() {
 	# Remember people where to find our project information

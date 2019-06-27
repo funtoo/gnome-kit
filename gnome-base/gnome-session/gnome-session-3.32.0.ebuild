@@ -1,8 +1,8 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-
-inherit gnome-meson
+EAPI=6
+inherit gnome2 meson
 
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="https://git.gnome.org/browse/gnome-session"
@@ -11,7 +11,7 @@ LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="consolekit doc elibc_FreeBSD elogind gconf systemd wayland"
+IUSE="consolekit doc elogind man systemd wayland"
 REQUIRED_USE="
 	?? ( consolekit elogind systemd )
 	wayland? ( || ( elogind systemd ) )
@@ -22,12 +22,11 @@ REQUIRED_USE="
 # xdg-user-dirs-update is run during login (see 10-user-dirs-update-gnome below).
 # gdk-pixbuf used in the inhibit dialog
 COMMON_DEPEND="
-	>=dev-libs/glib-2.46.0:2[dbus]
+	>=dev-libs/glib-2.58.0:2[dbus]
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.18.0:3
 	>=dev-libs/json-glib-0.10
-	>=gnome-base/gnome-desktop-3.18:3=
-	elibc_FreeBSD? ( dev-libs/libexecinfo )
+	>=gnome-base/gnome-desktop-3.27.90:3
 	wayland? ( media-libs/mesa[egl,gles2] )
 	!wayland? ( media-libs/mesa[gles2] )
 
@@ -44,21 +43,25 @@ COMMON_DEPEND="
 	x11-misc/xdg-user-dirs-gtk
 	x11-apps/xdpyinfo
 
-	consolekit? ( sys-auth/consolekit )
+	systemd? ( >=sys-apps/systemd-183:0= )
 	elogind? ( sys-auth/elogind )
-	gconf? ( >=gnome-base/gconf-2:2 )
-	systemd? ( >=sys-apps/systemd-186:0= )
+	consolekit? (
+		sys-auth/consolekit
+		>=dev-libs/dbus-glib-0.76
+	)
 "
+
 # Pure-runtime deps from the session files should *NOT* be added here
 # Otherwise, things like gdm pull in gnome-shell
 # gnome-themes-standard is needed for the failwhale dialog themeing
 # sys-apps/dbus[X] is needed for session management
 RDEPEND="${COMMON_DEPEND}
-	>=gnome-base/gnome-settings-daemon-3.23.2
-	>=gnome-base/gsettings-desktop-schemas-0.1.7
+	>=gnome-base/gnome-settings-daemon-3.30.0
+	>=gnome-base/gsettings-desktop-schemas-3.28.1
 	x11-themes/adwaita-icon-theme
 	sys-apps/dbus[X]
 "
+
 DEPEND="${COMMON_DEPEND}
 	dev-libs/libxslt
 	>=dev-util/intltool-0.40.6
@@ -69,26 +72,26 @@ DEPEND="${COMMON_DEPEND}
 		app-text/xmlto
 		dev-libs/libxslt )
 "
-# gnome-common needed for eautoreconf
-# gnome-base/gdm does not provide gnome.desktop anymore
 
 src_prepare() {
-	eapply "${FILESDIR}"/${PN}-3.28.0-support-elogind.patch
-
-	gnome-meson_src_prepare
+	eapply "${FILESDIR}"/${PN}-3.32.0-support-elogind.patch
+	gnome2_src_prepare
 }
 
 src_configure() {
-	gnome-meson_src_configure \
-		-Dsession_selector=true \
-		$(meson_use systemd systemd) \
-		$(meson_use elogind elogind) \
-		$(meson_use consolekit consolekit) \
+	local emesonargs=(
+		$(meson_use systemd)
+		$(meson_use consolekit)
+		$(meson_use elogind)
 		$(meson_use doc docbook)
+		$(meson_use man)
+	)
+
+	meson_src_configure
 }
 
 src_install() {
-	gnome-meson_src_install
+	meson_src_install
 
 	dodir /etc/X11/Sessions
 	exeinto /etc/X11/Sessions
@@ -111,7 +114,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome-meson_pkg_postinst
+	gnome2_pkg_postinst
 
 	if ! has_version gnome-base/gdm && ! has_version x11-misc/sddm; then
 		ewarn "If you use a custom .xinitrc for your X session,"

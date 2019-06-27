@@ -1,0 +1,138 @@
+--- a/common/gdm-common.c	2019-02-21 13:44:14.000000000 -0600
++++ b/common/gdm-common.c	2019-02-28 15:11:56.380953115 -0600
+@@ -36,7 +36,13 @@
+ 
+ #include "gdm-common.h"
+ 
++#ifdef WITH_ELOGIND
++#include <elogind/sd-login.h>
++#endif
++
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-login.h>
++#endif
+ 
+ #define GDM_DBUS_NAME                            "org.gnome.DisplayManager"
+ #define GDM_DBUS_LOCAL_DISPLAY_FACTORY_PATH      "/org/gnome/DisplayManager/LocalDisplayFactory"
+--- a/common/gdm-log.c	2019-02-21 13:44:14.000000000 -0600
++++ b/common/gdm-log.c	2019-02-28 15:13:27.457944885 -0600
+@@ -30,7 +30,9 @@
+ #include <unistd.h>
+ 
+ #include <syslog.h>
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-daemon.h>
++#endif
+ 
+ #include <glib.h>
+ #include <glib/gstdio.h>
+--- a/configure.ac	2019-02-26 14:11:12.000000000 -0600
++++ b/configure.ac	2019-02-28 15:16:03.216318299 -0600
+@@ -828,15 +828,38 @@
+ CPPFLAGS="$xinerama_save_cppflags"
+ 
+ dnl ---------------------------------------------------------------------------
++dnl - Check for elogind support
++dnl ---------------------------------------------------------------------------
++
++PKG_CHECK_MODULES(ELOGIND,
++                  [libelogind],
++                  [have_elogind=yes], [have_elogind=no])
++
++AC_SUBST(ELOGIND_CFLAGS)
++AC_SUBST(ELOGIND_LIBS)
++
++if test "x$have_elogind" != "xno" ; then
++        AC_DEFINE(WITH_ELOGIND, 1, [Define to enable elogind support])
++fi
++
++dnl ---------------------------------------------------------------------------
+ dnl - Check for systemd support
+ dnl ---------------------------------------------------------------------------
+ 
+ PKG_CHECK_MODULES(SYSTEMD,
+-                  [libsystemd])
++                  [libsystemd],
++                  [have_systemd=yes], [have_systemd=no])
+ 
+ AC_SUBST(SYSTEMD_CFLAGS)
+ AC_SUBST(SYSTEMD_LIBS)
+ 
++SYSTEMD_CFLAGS="$SYSTEMD_CFLAGS $ELOGIND_CFLAGS"
++SYSTEMD_LIBS="$SYSTEMD_LIBS $ELOGIND_LIBS"
++
++if test "x$have_systemd" != "xno" ; then
++        AC_DEFINE(WITH_SYSTEMD, 1, [Define to enable systemd support])
++fi
++
+ PKG_CHECK_MODULES(JOURNALD,
+                   [libsystemd],
+                   [have_journald=yes], [have_journald=no])
+--- a/daemon/gdm-manager.c	2019-02-26 13:56:53.000000000 -0600
++++ b/daemon/gdm-manager.c	2019-02-28 15:17:16.027615974 -0600
+@@ -36,7 +36,13 @@
+ 
+ #include <act/act-user-manager.h>
+ 
++#ifdef WITH_ELOGIND
++#include <elogind/sd-login.h>
++#endif
++
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-login.h>
++#endif
+ 
+ #include "gdm-common.h"
+ 
+--- a/daemon/gdm-server.c	2019-02-21 13:44:14.000000000 -0600
++++ b/daemon/gdm-server.c	2019-02-28 15:18:07.425589845 -0600
+@@ -43,7 +43,9 @@
+ #include <linux/vt.h>
+ #endif
+ 
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-daemon.h>
++#endif
+ 
+ #ifdef ENABLE_SYSTEMD_JOURNAL
+ #include <systemd/sd-journal.h>
+--- a/daemon/gdm-session-worker-job.c	2019-02-21 13:44:14.000000000 -0600
++++ b/daemon/gdm-session-worker-job.c	2019-02-28 15:18:57.438031601 -0600
+@@ -36,7 +36,9 @@
+ #include <sys/prctl.h>
+ #endif
+ 
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-daemon.h>
++#endif
+ 
+ #ifdef ENABLE_SYSTEMD_JOURNAL
+ #include <systemd/sd-journal.h>
+--- a/daemon/gdm-session-worker.c	2019-02-21 13:44:14.000000000 -0600
++++ b/daemon/gdm-session-worker.c	2019-02-28 15:19:55.010659723 -0600
+@@ -49,7 +49,9 @@
+ 
+ #include <X11/Xauth.h>
+ 
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-daemon.h>
++#endif
+ 
+ #ifdef ENABLE_SYSTEMD_JOURNAL
+ #include <systemd/sd-journal.h>
+--- a/libgdm/gdm-user-switching.c	2019-02-21 13:44:14.000000000 -0600
++++ b/libgdm/gdm-user-switching.c	2019-02-28 15:20:46.283204914 -0600
+@@ -31,7 +31,13 @@
+ #include <glib-object.h>
+ #include <gio/gio.h>
+ 
++#ifdef WITH_ELOGIND
++#include <elogind/sd-login.h>
++#endif
++
++#ifdef WITH_SYSTEMD
+ #include <systemd/sd-login.h>
++#endif
+ 
+ #include "common/gdm-common.h"
+ #include "gdm-user-switching.h"

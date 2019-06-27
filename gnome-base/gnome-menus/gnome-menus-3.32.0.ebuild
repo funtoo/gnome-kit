@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
-GCONF_DEBUG="yes"
+EAPI=6
 
 inherit eutils gnome2
 
@@ -32,11 +31,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	# Don't show KDE standalone settings desktop files in GNOME others menu
-	epatch "${FILESDIR}/${PN}-3.8.0-ignore_kde_standalone.patch"
-
-	# desktop-entries: support multiple desktops in XDG_CURRENT_DESKTOP
-	# (from 'master')
-	epatch "${FILESDIR}"/${P}-multiple-desktop{,2}.patch
+	epatch "${FILESDIR}/${PN}-3.32.0-ignore_kde_standalone.patch"
 
 	gnome2_src_prepare
 }

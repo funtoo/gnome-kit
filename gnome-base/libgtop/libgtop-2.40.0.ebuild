@@ -2,14 +2,14 @@
 
 EAPI="6"
 
-inherit flag-o-matic gnome2
+inherit gnome2 eutils
 
 DESCRIPTION="A library that provides top functionality to applications"
 HOMEPAGE="https://git.gnome.org/browse/libgtop"
 
 LICENSE="GPL-2"
-SLOT="2/10" # libgtop soname version
-KEYWORDS="~*"
+SLOT="2/11" # libgtop soname version
+KEYWORDS="*"
 
 IUSE="+introspection"
 
@@ -24,10 +24,12 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	# Add explicit stdc, bug #628256
-	append-cflags "-std=c99"
-
 	gnome2_src_configure \
 		--disable-static \
 		$(use_enable introspection)
+}
+
+src_install() {
+	addwrite "/usr/bin/libgtop_server2"
+	gnome2_src_install
 }

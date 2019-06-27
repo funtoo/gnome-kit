@@ -1,0 +1,924 @@
+diff --git a/js/ui/background.js b/js/ui/background.js
+index 06e0388167ad02a75e5e40d02c559221248a37d6..692a8fde34df5d8ef5444d6ac7882c11e9c79d80 100644
+--- a/js/ui/background.js
++++ b/js/ui/background.js
+@@ -668,6 +668,7 @@ var BackgroundManager = class BackgroundManager {
+         this._monitorIndex = params.monitorIndex;
+         this._controlPosition = params.controlPosition;
+ 
++        this.isLoaded = false;
+         this.backgroundActor = this._createBackgroundActor();
+         this._newBackgroundActor = null;
+     }
+@@ -766,6 +767,21 @@ var BackgroundManager = class BackgroundManager {
+                 background.disconnect(backgroundActor.loadedSignalId);
+         });
+ 
++        if (!this.backgroundActor) {
++            if (background.isLoaded) {
++                this.isLoaded = true;
++            } else {
++                let id = background.connect('loaded', () => {
++                    if (background) {
++                        background.disconnect(id);
++
++                        this.isLoaded = true;
++                        this.emit('changed');
++                    }
++                });
++            }
++        }
++
+         return backgroundActor;
+     }
+ };
+
+diff --git a/js/ui/background.js b/js/ui/background.js
+index 692a8fde34df5d8ef5444d6ac7882c11e9c79d80..7d2cd9254cbba79f9a2ac94fce5690d5d6ce4c78 100644
+--- a/js/ui/background.js
++++ b/js/ui/background.js
+@@ -111,6 +111,12 @@ const BACKGROUND_STYLE_KEY = 'picture-options';
+ const PICTURE_OPACITY_KEY = 'picture-opacity';
+ const PICTURE_URI_KEY = 'picture-uri';
+ 
++const LUMINANCE_DARK_THRESHOLD = 60;
++const LUMINANCE_BRIGHT_THRESHOLD = 140;
++const LUMINANCE_STD_NOISY_THRESHOLD = 28;
++const ACUTANCE_NOISY_THRESHOLD = 8;
++const ACUTANCE_STD_NOISY_THRESHOLD = 6;
++
+ var FADE_ANIMATION_TIME = 1.0;
+ 
+ // These parameters affect how often we redraw.
+@@ -290,6 +296,10 @@ var Background = class Background {
+         this._settingsChangedSignalId = 0;
+     }
+ 
++    isAnimated() {
++        return this._animation != null;
++    }
++
+     updateResolution() {
+         if (this._animation)
+             this._refreshAnimation();
+@@ -689,6 +699,48 @@ var BackgroundManager = class BackgroundManager {
+         }
+     }
+ 
++    getCharacteristicsForArea(x, y, width, height, returnRawValues) {
++        let background = this._backgroundSource.getBackground(this._monitorIndex);
++        let metaBackground = background.background;
++
++        let areaIsNoisy, areaIsDark, areaIsBright;
++        areaIsNoisy = areaIsDark = areaIsBright = false;
++
++        // Always return false for animated backgrounds, we don't want to
++        // do those calculations on every animation frame.
++        if (background.isAnimated())
++            return [false];
++
++        let [retval, meanLuminance, luminanceVariance, meanAcutance, acutanceVariance] =
++            metaBackground.get_color_info(this._monitorIndex, x, y, width, height);
++
++        if (!retval)
++            return [false];
++
++        let luminanceStd = Math.sqrt(luminanceVariance);
++        let acutanceStd = Math.sqrt(acutanceVariance);
++
++        if (meanLuminance < LUMINANCE_DARK_THRESHOLD)
++            areaIsDark = true;
++        else if (meanLuminance > LUMINANCE_BRIGHT_THRESHOLD)
++            areaIsBright = true;
++
++        if (meanAcutance > ACUTANCE_NOISY_THRESHOLD ||
++            (meanAcutance * 4 > ACUTANCE_NOISY_THRESHOLD &&
++             acutanceStd > ACUTANCE_STD_NOISY_THRESHOLD) ||
++            luminanceStd > LUMINANCE_STD_NOISY_THRESHOLD ||
++            (areaIsDark &&
++             meanLuminance + luminanceStd > LUMINANCE_BRIGHT_THRESHOLD) ||
++            (areaIsBright &&
++             meanLuminance - luminanceStd < LUMINANCE_DARK_THRESHOLD))
++            areaIsNoisy = true;
++
++        if (returnRawValues)
++            return [true, areaIsNoisy, areaIsDark, areaIsBright, meanLuminance, luminanceStd, meanAcutance, acutanceStd];
++        else
++            return [true, areaIsNoisy, areaIsDark, areaIsBright];
++    }
++
+     _swapBackgroundActor() {
+         let oldBackgroundActor = this.backgroundActor;
+         this.backgroundActor = this._newBackgroundActor;
+
+diff --git a/js/ui/screenShield.js b/js/ui/screenShield.js
+index 3f45b8acf54f4452d4e38762293763f18fa77fa9..6bed64dd75e3b5738a7fbaa40a2213c5ee32a777 100644
+--- a/js/ui/screenShield.js
++++ b/js/ui/screenShield.js
+@@ -615,6 +615,10 @@ var ScreenShield = class {
+             this._createBackground(i);
+     }
+ 
++    getBgManagerForMonitor(monitor) {
++        return this._bgManagers[monitor.index];
++   }
++
+     _liftShield(onPrimary, velocity) {
+         if (this._isLocked) {
+             if (this._ensureUnlockDialog(onPrimary, true /* allowCancel */))
+
+diff --git a/js/ui/screenShield.js b/js/ui/screenShield.js
+index 6bed64dd75e3b5738a7fbaa40a2213c5ee32a777..570624e473603ee626ce1ddcf3ab01181d48d498 100644
+--- a/js/ui/screenShield.js
++++ b/js/ui/screenShield.js
+@@ -923,6 +923,8 @@ var ScreenShield = class {
+         if (Main.sessionMode.currentMode == 'lock-screen')
+             Main.sessionMode.popMode('lock-screen');
+ 
++        this.emit('shield-hidden');
++
+         this._lockScreenState = MessageTray.State.HIDDEN;
+         this._lockScreenGroup.hide();
+ 
+@@ -1036,6 +1038,8 @@ var ScreenShield = class {
+ 
+         this._lockScreenGroup.grab_key_focus();
+ 
++        this.emit('shield-visible');
++
+         if (Main.sessionMode.currentMode != 'lock-screen')
+             Main.sessionMode.pushMode('lock-screen');
+     }
+
+diff --git a/js/ui/panel.js b/js/ui/panel.js
+index 1d9621ae388669146cfe5fc374a5c3253a2d734e..ef22f70127bb8fb9be32f24b820fb739fd4c228a 100644
+--- a/js/ui/panel.js
++++ b/js/ui/panel.js
+@@ -643,10 +643,6 @@ var PanelCorner = class {
+                     let pseudoClass = button.get_style_pseudo_class();
+                     this.actor.set_style_pseudo_class(pseudoClass);
+                 });
+-
+-            // The corner doesn't support theme transitions, so override
+-            // the .panel-button default
+-            button.style = 'transition-duration: 0ms';
+         }
+     }
+ 
+@@ -701,11 +697,22 @@ var PanelCorner = class {
+     _styleChanged() {
+         let node = this.actor.get_theme_node();
+ 
++        let transitionDuration = node.get_transition_duration();
++        let opacity = node.get_double("opacity");
++
+         let cornerRadius = node.get_length("-panel-corner-radius");
+         let borderWidth = node.get_length('-panel-corner-border-width');
+ 
+         this.actor.set_size(cornerRadius, borderWidth + cornerRadius);
+         this.actor.set_anchor_point(0, borderWidth);
++
++        Tweener.removeTweens(this.actor);
++
++        if (transitionDuration > 0)
++            Tweener.addTween(this.actor,
++                             { opacity,
++                               time: (transitionDuration / 1000),
++                               transition: 'easeInOutQuint' });
+     }
+ };
+ 
+
+diff --git a/js/ui/dateMenu.js b/js/ui/dateMenu.js
+index 697d6fbc8dc8053d31aa25dd6eab1ca4e29636b9..c95f3fbe8ba944c8f2a82a4d893c726a95912b7b 100644
+--- a/js/ui/dateMenu.js
++++ b/js/ui/dateMenu.js
+@@ -342,7 +342,8 @@ var MessagesIndicator = class MessagesIndicator {
+         this.actor = new St.Icon({ icon_name: 'message-indicator-symbolic',
+                                    icon_size: 16,
+                                    visible: false, y_expand: true,
+-                                   y_align: Clutter.ActorAlign.CENTER });
++                                   y_align: Clutter.ActorAlign.CENTER,
++                                   style_class: 'messages-indicator-icon' });
+ 
+         this._sources = [];
+ 
+
+diff --git a/js/ui/animation.js b/js/ui/animation.js
+index c21b225650d83cc565b5e704a277c7b3cf142cb4..ad6fc9c6d007b8f0c72f100e4348b9ba93c09b89 100644
+--- a/js/ui/animation.js
++++ b/js/ui/animation.js
+@@ -1,6 +1,6 @@
+ // -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*-
+ 
+-const { GLib, Gio, St } = imports.gi;
++const { GLib, GObject, Gio, St } = imports.gi;
+ const Mainloop = imports.mainloop;
+ 
+ const Tweener = imports.ui.tweener;
+@@ -9,13 +9,15 @@ var ANIMATED_ICON_UPDATE_TIMEOUT = 16;
+ var SPINNER_ANIMATION_TIME = 0.3;
+ var SPINNER_ANIMATION_DELAY = 1.0;
+ 
+-var Animation = class {
+-    constructor(file, width, height, speed) {
+-        this.actor = new St.Bin();
+-        this.actor.set_size(width, height);
+-        this.actor.connect('destroy', this._onDestroy.bind(this));
+-        this.actor.connect('notify::size', this._syncAnimationSize.bind(this));
+-        this.actor.connect('resource-scale-changed',
++var Animation = GObject.registerClass(
++class Animation extends St.Bin {
++    _init(file, width, height, speed) {
++        super._init({});
++        this.set_size(width, height);
++        this.actor = this;
++        this.connect('destroy', this._onDestroy.bind(this));
++        this.connect('notify::size', this._syncAnimationSize.bind(this));
++        this.connect('resource-scale-changed',
+             this._loadFile.bind(this, file, width, height));
+ 
+         let themeContext = St.ThemeContext.get_for_stage(global.stage);
+@@ -54,10 +56,10 @@ var Animation = class {
+     }
+ 
+     _loadFile(file, width, height) {
+-        let [validResourceScale, resourceScale] = this.actor.get_resource_scale();
++        let [validResourceScale, resourceScale] = this.get_resource_scale();
+ 
+         this._isLoaded = false;
+-        this.actor.destroy_all_children();
++        this.destroy_all_children();
+ 
+         if (!validResourceScale)
+             return;
+@@ -67,7 +69,7 @@ var Animation = class {
+         this._animations = texture_cache.load_sliced_image(file, width, height,
+                                                            scaleFactor, resourceScale,
+                                                            this._animationsLoaded.bind(this));
+-        this.actor.set_child(this._animations);
++        this.set_child(this._animations);
+     }
+ 
+     _showFrame(frame) {
+@@ -91,7 +93,7 @@ var Animation = class {
+         if (!this._isLoaded)
+             return;
+ 
+-        let [width, height] = this.actor.get_size();
++        let [width, height] = this.get_size();
+ 
+         for (let i = 0; i < this._animations.get_n_children(); ++i)
+             this._animations.get_child_at_index(i).set_size(width, height);
+@@ -114,7 +116,7 @@ var Animation = class {
+             themeContext.disconnect(this._scaleChangedId);
+         this._scaleChangedId = 0;
+     }
+-};
++});
+ 
+ var AnimatedIcon = class extends Animation {
+     constructor(file, size) {
+@@ -127,7 +129,7 @@ var Spinner = class extends AnimatedIcon {
+         let file = Gio.File.new_for_uri('resource:///org/gnome/shell/theme/process-working.svg');
+         super(file, size);
+ 
+-        this.actor.opacity = 0;
++        this.opacity = 0;
+         this._animate = animate;
+     }
+ 
+@@ -137,27 +139,27 @@ var Spinner = class extends AnimatedIcon {
+     }
+ 
+     play() {
+-        Tweener.removeTweens(this.actor);
++        Tweener.removeTweens(this);
+ 
+         if (this._animate) {
+             super.play();
+-            Tweener.addTween(this.actor, {
++            Tweener.addTween(this, {
+                 opacity: 255,
+                 delay: SPINNER_ANIMATION_DELAY,
+                 time: SPINNER_ANIMATION_TIME,
+                 transition: 'linear'
+             });
+         } else {
+-            this.actor.opacity = 255;
++            this.opacity = 255;
+             super.play();
+         }
+     }
+ 
+     stop() {
+-        Tweener.removeTweens(this.actor);
++        Tweener.removeTweens(this);
+ 
+         if (this._animate) {
+-            Tweener.addTween(this.actor, {
++            Tweener.addTween(this, {
+                 opacity: 0,
+                 time: SPINNER_ANIMATION_TIME,
+                 transition: 'linear',
+@@ -166,7 +168,7 @@ var Spinner = class extends AnimatedIcon {
+                 }
+             });
+         } else {
+-            this.actor.opacity = 0;
++            this.opacity = 0;
+             super.stop();
+         }
+     }
+
+diff --git a/data/theme/gnome-shell-sass/_common.scss b/data/theme/gnome-shell-sass/_common.scss
+index c7485aefd8c1811f743096e82af9771bf6974561..9ec03c9afd7dbe4a3a5483b892e13c364f0c62c9 100644
+--- a/data/theme/gnome-shell-sass/_common.scss
++++ b/data/theme/gnome-shell-sass/_common.scss
+@@ -2045,3 +2045,8 @@ StScrollBar {
+     border-radius: 4px;
+     padding: 6px;
+   }
++
++.spinner {
++  color: white;
++  icon-shadow: none;
++}
+diff --git a/js/ui/animation.js b/js/ui/animation.js
+index ad6fc9c6d007b8f0c72f100e4348b9ba93c09b89..bb8054b23dcf7766127c4695e5cf19949e348c99 100644
+--- a/js/ui/animation.js
++++ b/js/ui/animation.js
+@@ -1,6 +1,6 @@
+ // -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*-
+ 
+-const { GLib, GObject, Gio, St } = imports.gi;
++const { Clutter, Cogl, GLib, GObject, Gio, St } = imports.gi;
+ const Mainloop = imports.mainloop;
+ 
+ const Tweener = imports.ui.tweener;
+@@ -69,7 +69,64 @@ class Animation extends St.Bin {
+         this._animations = texture_cache.load_sliced_image(file, width, height,
+                                                            scaleFactor, resourceScale,
+                                                            this._animationsLoaded.bind(this));
++
++        this._colorEffect = new Clutter.ColorizeEffect();
++        this._animations.add_effect(this._colorEffect);
++
+         this.set_child(this._animations);
++
++        this._shadowHelper = null;
++        this._shadowWidth = this._shadowHeight = 0;
++    }
++
++    vfunc_get_paint_volume(volume) {
++        if (!super.vfunc_get_paint_volume(volume))
++            return false;
++
++        if (!this._shadow)
++            return true;
++
++        let shadow_box = new Clutter.ActorBox();
++        this._shadow.get_box(this.get_allocation_box(), shadow_box);
++
++        volume.set_width(Math.max(shadow_box.x2 - shadow_box.x1, volume.get_width()));
++        volume.set_height(Math.max(shadow_box.y2 - shadow_box.y1, volume.get_height()));
++
++        return true;
++    }
++
++    vfunc_style_changed() {
++        let node = this.get_theme_node();
++        this._shadow = node.get_shadow('icon-shadow');
++        if (this._shadow)
++            this._shadowHelper = St.ShadowHelper.new(this._shadow);
++        else
++            this._shadowHelper = null;
++
++        super.vfunc_style_changed();
++
++        if (this._animations) {
++            let color = node.get_color('color');
++
++            this._colorEffect.set_tint(color);
++
++            // Clutter.ColorizeEffect does not affect opacity, so set it separately
++            this._animations.opacity = color.alpha;
++        }
++    }
++
++    vfunc_paint() {
++        if (this._shadowHelper) {
++            this._shadowHelper.update(this._animations);
++
++            let allocation = this._animations.get_allocation_box();
++            let paintOpacity = this._animations.get_paint_opacity();
++            let framebuffer = Cogl.get_draw_framebuffer();
++
++            this._shadowHelper.paint(framebuffer, allocation, paintOpacity);
++        }
++
++        this._animations.paint();
+     }
+ 
+     _showFrame(frame) {
+@@ -82,6 +139,8 @@ class Animation extends St.Bin {
+         let newFrameActor = this._animations.get_child_at_index(this._frame);
+         if (newFrameActor)
+             newFrameActor.show();
++
++        this.vfunc_style_changed();
+     }
+ 
+     _update() {
+@@ -97,6 +156,8 @@ class Animation extends St.Bin {
+ 
+         for (let i = 0; i < this._animations.get_n_children(); ++i)
+             this._animations.get_child_at_index(i).set_size(width, height);
++
++        this.vfunc_style_changed();
+     }
+ 
+     _animationsLoaded() {
+@@ -131,6 +192,7 @@ var Spinner = class extends AnimatedIcon {
+ 
+         this.opacity = 0;
+         this._animate = animate;
++        this.add_style_class_name('spinner');
+     }
+ 
+     _onDestroy() {
+diff --git a/js/ui/panel.js b/js/ui/panel.js
+index ef22f70127bb8fb9be32f24b820fb739fd4c228a..fee6ab8fbf55630d714f8fa93ec47669b8ce8284 100644
+--- a/js/ui/panel.js
++++ b/js/ui/panel.js
+@@ -299,6 +299,8 @@ var AppMenuButton = GObject.registerClass({
+             return;
+         this._spinnerIcon = icon;
+         this._spinner = new Animation.AnimatedIcon(this._spinnerIcon, PANEL_ICON_SIZE);
++        this._spinner.actor.set_style_class_name('app-menu-spinner');
++
+         this._container.add_actor(this._spinner.actor);
+         this._spinner.actor.hide();
+     }
+
+diff --git a/data/theme/gnome-shell-high-contrast.scss b/data/theme/gnome-shell-high-contrast.scss
+index 23279caf3aaa3e5d05391ae72d88630bc43b4bd3..561d81c412b83976b6a20ca6e559238497eaf6cc 100644
+--- a/data/theme/gnome-shell-high-contrast.scss
++++ b/data/theme/gnome-shell-high-contrast.scss
+@@ -12,3 +12,24 @@ stage {
+   background-image: url("resource:///org/gnome/shell/theme/toggle-off-hc.svg");
+   &:checked { background-image: url("resource:///org/gnome/shell/theme/toggle-on-hc.svg"); }
+ }
++
++//force opaque panel
++#panel {
++  &, &.background-bright, &.background-dark, &.background-noisy {
++    @include panel(high-contrast);
++  }
++
++  &:overview, &:overview.background-noisy {
++    @include panel(high-contrast);
++  }
++
++  &.lock-screen, &.login-screen, &.unlock-screen {
++    @include panel(login-screen);
++
++    &.screen-shield {
++      &, &.background-bright, &.background-dark, &.background-noisy {
++        @include panel(high-contrast);
++      }
++    }
++  }
++}
+diff --git a/data/theme/gnome-shell-sass/_common.scss b/data/theme/gnome-shell-sass/_common.scss
+index 9ec03c9afd7dbe4a3a5483b892e13c364f0c62c9..504587db47890805cce9a17e9f005f6e42e9d415 100644
+--- a/data/theme/gnome-shell-sass/_common.scss
++++ b/data/theme/gnome-shell-sass/_common.scss
+@@ -729,43 +729,34 @@ StScrollBar {
+ /* TOP BAR */
+ 
+ #panel {
+-  background-color: black;
++  @include panel();
++  transition-duration: 300ms;
+   font-weight: bold;
+   height: 1.86em;
+   font-feature-settings: "tnum";
+ 
+-  &.unlock-screen,
+-  &.login-screen,
+-  &.lock-screen {
+-    background-color: transparent;
+-  }
+-
+   #panelLeft, #panelCenter { // spacing between activities<>app menu and such
+     spacing: 4px;
+   }
+ 
+   .panel-corner {
++    transition-duration: 300ms;
+     -panel-corner-radius: $panel-corner-radius;
+     -panel-corner-background-color: black;
+     -panel-corner-border-width: 2px;
+     -panel-corner-border-color: transparent;
+ 
+-    &:active, &:overview, &:focus {
++    &:active, &:focus {
+       -panel-corner-border-color: lighten($selected_bg_color,5%);
+     }
+-
+-    &.lock-screen, &.login-screen, &.unlock-screen {
+-      -panel-corner-radius: 0;
+-      -panel-corner-background-color: transparent;
+-      -panel-corner-border-color: transparent;
+-    }
+   }
+ 
+   .panel-button {
++    // Trick due to St limitations. It needs a background to draw a box-shadow
++    background-color: rgba(0, 0, 0, 0.01);
+     -natural-hpadding: 12px;
+     -minimum-hpadding: 6px;
+     font-weight: bold;
+-    color: #ccc;
+ 
+     .app-menu-icon {
+       -st-icon-style: symbolic;
+@@ -774,25 +765,7 @@ StScrollBar {
+       //dimensions of the icon are hardcoded
+     }
+ 
+-    &:hover {
+-      color: lighten($fg_color, 10%);
+-    }
+-
+-    &:active, &:overview, &:focus, &:checked {
+-      // Trick due to St limitations. It needs a background to draw
+-      // a box-shadow
+-      background-color: rgba(0, 0, 0, 0.01);
+-      box-shadow: inset 0 -2px 0px lighten($selected_bg_color,5%);
+-      color: lighten($fg_color,10%);
+-    }
+-
+     .system-status-icon { icon-size: 1.09em; padding: 0 5px; }
+-    .unlock-screen &,
+-    .login-screen &,
+-    .lock-screen & {
+-      color: lighten($fg_color, 10%);
+-      &:focus, &:hover, &:active { color: lighten($fg_color, 10%); }
+-    }
+   }
+ 
+   .panel-status-indicators-box,
+@@ -808,6 +781,31 @@ StScrollBar {
+   .screencast-indicator { color: $warning_color; }
+ 
+   .remote-access-indicator { color: $warning_color; }
++
++  &.background-dark { @include panel(dark); }
++  &.background-bright { @include panel(bright); }
++  &.background-noisy { @include panel(noisy); }
++  &.window-near { @include panel(window-near); }
++
++  &:overview {
++    @include panel(overview);
++
++    &.background-noisy {
++      @include panel(overview-noisy);
++    }
++  }
++
++  &.lock-screen, &.login-screen, &.unlock-screen {
++    @include panel(login-screen);
++
++    &.screen-shield {
++      @include panel(normal);
++
++      &.background-dark { @include panel(dark); }
++      &.background-bright { @include panel(bright); }
++      &.background-noisy { @include panel(noisy); }
++    }
++  }
+ }
+ 
+   // calendar popover
+@@ -1935,8 +1933,6 @@ StScrollBar {
+ 
+ .screen-shield-notification-count-text { padding: 0px 0px 0px 12px; }
+ 
+-#panel.lock-screen { background-color: transparentize($_bubble_bg_color, 0.5); }
+-
+ .screen-shield-background { //just the shadow, really
+   background: black;
+   box-shadow: 0px 2px 4px transparentize(black,0.6);
+diff --git a/data/theme/gnome-shell-sass/_drawing.scss b/data/theme/gnome-shell-sass/_drawing.scss
+index 7ac18b1bbd01bfc07f993988cda03acc2446cdc6..64acba2a73712804e2f408e6a7692549356a3a37 100644
+--- a/data/theme/gnome-shell-sass/_drawing.scss
++++ b/data/theme/gnome-shell-sass/_drawing.scss
+@@ -219,3 +219,83 @@
+   }
+ }
+ 
++@mixin panel($t:normal) {
++//
++// Top panel drawing function
++//
++// $t: panel type,
++//
++// possible $t values:
++// normal, noisy, dark, bright, window-near, overview, overview-noisy, login-screen, high-contrast
++//
++
++  $_opacity: 1;
++  $_color: #ccc;
++  $_highlight_color: white;
++  $_shadow: none;
++
++  @if $t==noisy or $t==overview-noisy or $t==window-near or $t==high-contrast {
++    .panel-button {
++      &:active, &:focus {
++        box-shadow: inset 0 -2px 0px lighten($selected_bg_color,5%);
++      }
++    }
++  }
++  @else if $t==normal or $t==dark or $t==overview or $t==login-screen {
++    $_opacity: 0;
++    $_color: #eee;
++    $_shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
++
++    .panel-button {
++      &:active, &:focus {
++        box-shadow: inset 0 -1px 0px white;
++      }
++    }
++  }
++  @else if $t==bright {
++    $_opacity: 0;
++    $_color: rgba(0, 0, 0, 0.75);
++    $_highlight_color: black;
++    $_shadow: 0px 1px 0px rgba(255, 255, 255, 0.15);
++
++    .panel-button {
++      &:active, &:focus {
++        box-shadow: inset 0 -1px 0px darken($osd_bg_color, 10%);
++      }
++    }
++  }
++
++  background-color: rgba(0, 0, 0, $_opacity);
++
++  .panel-button {
++    color: $_color;
++    text-shadow: $_shadow;
++
++    .system-status-icon,
++    .app-menu-icon > StIcon,
++    .messages-indicator-icon,
++    .popup-menu-arrow,
++    .app-menu-spinner {
++      color: $_color;
++      icon-shadow: $_shadow;
++    }
++
++    &:hover, &:active, &:overview, &:focus, &:checked {
++      color: $_highlight_color;
++
++      .system-status-icon,
++      .app-menu-icon > StIcon,
++      .messages-indicator-icon,
++      .popup-menu-arrow,
++      .app-menu-spinner {
++        color: $_highlight_color;
++      }
++    }
++  }
++
++  // We have to use opacity instead of background-color for the corner because
++  // the corner uses custom drawing code that we animate manually.
++  .panel-corner {
++    opacity: 255 * $_opacity;
++  }
++}
+diff --git a/js/ui/panel.js b/js/ui/panel.js
+index fee6ab8fbf55630d714f8fa93ec47669b8ce8284..fd3c33465505ee508433f4bc10810be4ea5cfd98 100644
+--- a/js/ui/panel.js
++++ b/js/ui/panel.js
+@@ -21,6 +21,8 @@ var BUTTON_DND_ACTIVATION_TIMEOUT = 250;
+ 
+ var SPINNER_ANIMATION_TIME = 1.0;
+ 
++var BACKGROUND_CHECK_AREA_WIDTH = 300;
++
+ // To make sure the panel corners blend nicely with the panel,
+ // we draw background and borders the same way, e.g. drawing
+ // them as filled shapes from the outside inwards instead of
+@@ -866,9 +868,46 @@ class Panel extends St.Widget {
+ 
+         Main.overview.connect('showing', () => {
+             this.add_style_pseudo_class('overview');
++            this._updateWindowNearState();
+         });
+         Main.overview.connect('hiding', () => {
+             this.remove_style_pseudo_class('overview');
++            this._updateWindowNearState();
++        });
++
++        if (Main.screenShield) {
++            Main.screenShield.connect('shield-visible', () => {
++                this._addStyleClassName('screen-shield');
++                if (Main.layoutManager.primaryMonitor) {
++                    let bgManager = Main.screenShield.getBgManagerForMonitor(Main.layoutManager.primaryMonitor);
++                    this._onBackgroundChanged(bgManager);
++                }
++            });
++            Main.screenShield.connect('shield-hidden', () => {
++                this._removeStyleClassName('screen-shield');
++                if (Main.layoutManager.primaryMonitor) {
++                    let bgManager = Main.layoutManager._bgManagers[Main.layoutManager.primaryIndex];
++                    this._onBackgroundChanged(bgManager);
++                }
++            });
++        }
++
++        Main.layoutManager.connect('monitors-changed', () => {
++            if (Main.layoutManager.primaryMonitor) {
++                let bgManager = Main.layoutManager._bgManagers[Main.layoutManager.primaryIndex];
++                bgManager.connect('changed', () => this._onBackgroundChanged(bgManager));
++                if (bgManager.isLoaded)
++                    this._onBackgroundChanged(bgManager);
++            }
++        });
++
++        Main.layoutManager.connect('startup-complete', () => {
++            if (Main.layoutManager.primaryMonitor) {
++                let bgManager = Main.layoutManager._bgManagers[Main.layoutManager.primaryIndex];
++                bgManager.connect('changed', () => this._onBackgroundChanged(bgManager));
++                if (bgManager.isLoaded)
++                    this._onBackgroundChanged(bgManager);
++            }
+         });
+ 
+         Main.layoutManager.panelBox.add(this);
+@@ -877,10 +916,45 @@ class Panel extends St.Widget {
+ 
+         Main.sessionMode.connect('updated', this._updatePanel.bind(this));
+ 
++        this._trackedWindows = new Map();
++        global.display.connect('window-created', this._onWindowAdded.bind(this));
++        global.window_manager.connect('switch-workspace', this._updateWindowNearState.bind(this));
++
+         global.display.connect('workareas-changed', () => { this.queue_relayout(); });
+         this._updatePanel();
+     }
+ 
++    _onWindowAdded(metaDisplay, metaWindow) {
++        let signalIds = [];
++        let metaWindowActor = metaWindow.get_compositor_private();
++
++        // Workaround for https://gitlab.gnome.org/GNOME/mutter/issues/156
++        if (!metaWindowActor) {
++            let id = Mainloop.idle_add(() => {
++                if (metaWindow.get_compositor_private())
++                    this._onWindowAdded(metaDisplay, metaWindow);
++                return GLib.SOURCE_REMOVE;
++            });
++            GLib.Source.set_name_by_id(id, '[gnome-shell] this._onWindowAdded');
++            return;
++        }
++
++        ['allocation-changed', 'notify::visible'].forEach(s => {
++            signalIds.push(metaWindowActor.connect(s, this._updateWindowNearState.bind(this)));
++        });
++        this._trackedWindows.set(metaWindowActor, signalIds);
++
++        metaWindowActor.connect('destroy', this._onWindowRemoved.bind(this));
++    }
++
++    _onWindowRemoved(metaWindowActor) {
++        this._trackedWindows.get(metaWindowActor).forEach(id => {
++            metaWindowActor.disconnect(id);
++        });
++        this._trackedWindows.delete(metaWindowActor);
++        this._updateWindowNearState();
++    }
++
+     vfunc_get_preferred_width(forHeight) {
+         let primaryMonitor = Main.layoutManager.primaryMonitor;
+ 
+@@ -1088,6 +1162,8 @@ class Panel extends St.Widget {
+         else
+             Main.messageTray.bannerAlignment = Clutter.ActorAlign.CENTER;
+ 
++        this._updateWindowNearState();
++
+         if (this._sessionStyle)
+             this._removeStyleClassName(this._sessionStyle);
+ 
+@@ -1104,6 +1180,93 @@ class Panel extends St.Widget {
+         }
+     }
+ 
++    _updateWindowNearState() {
++        // We don't want to do any style changes to the panel while we're showing the overview.
++        // Windows opened from the overview might be placed near the panel, but the style should
++        // only be updated later.
++        if (this.has_style_pseudo_class('overview'))
++            return;
++
++        // Get all the windows in the active workspace that are in the primary monitor and visible
++        let workspaceManager = global.workspace_manager;
++        let activeWorkspace = workspaceManager.get_active_workspace();
++        let windows = activeWorkspace.list_windows().filter(metaWindow => {
++            return metaWindow.is_on_primary_monitor() &&
++                   metaWindow.showing_on_its_workspace() &&
++                   metaWindow.get_window_type() != Meta.WindowType.DESKTOP;
++        });
++
++        // Check if at least one window is near enough to the panel
++        let [, panelTop] = this.get_transformed_position();
++        let panelBottom = panelTop + this.get_height();
++        let scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
++
++        let windowNearPanel = windows.some(metaWindow => {
++            let verticalPosition = metaWindow.get_frame_rect().y;
++            return verticalPosition < panelBottom + 5 * scale;
++        });
++
++        if (windowNearPanel)
++            this._addStyleClassName('window-near');
++        else
++            this._removeStyleClassName('window-near');
++    }
++
++    _onBackgroundChanged(bgManager) {
++        let allStyleClassNames = ['background-noisy', 'background-dark', 'background-bright'];
++
++        // Reset the size cache since the panel relayout might not have
++        // happened yet after a monitor change.
++        this.queue_relayout();
++
++        // We use a slightly bigger height to make sure the algorithm
++        // can factor in sudden color changes right beneath the panel.
++        let height = parseInt(this.get_height() * 1.2);
++
++        let [success, bgIsNoisy, bgIsDark, bgIsBright, meanLuminance] =
++            bgManager.getCharacteristicsForArea(this.x, this.y, this.get_width(), height, true);
++
++        let styleClassNames = [];
++        if (success) {
++            // Additionally, check the areas where widgets are most likely to be in, we
++            // want to have a stricter check for noisy wallpapers in these areas.
++            // Also make sure that if one area should have the opposite text color of the
++            // color we decided to use, we always call the image noisy.
++            let additionalCheckAreas =
++                [{ start: this.x, width: BACKGROUND_CHECK_AREA_WIDTH },
++                 { start: this._centerBox.x,
++                   width: this._centerBox.get_width() },
++                 { start: this._rightBox.x,
++                   width: this._rightBox.get_width() }];
++
++            for (let point of additionalCheckAreas) {
++                let [boxSuccess, boxBgIsNoisy, boxBgIsDark, boxBgIsBright, boxMeanLuminance] =
++                    bgManager.getCharacteristicsForArea(point.start, this.y, point.width, this.get_height(), true);
++
++                if (boxSuccess)
++                    bgIsNoisy |= boxBgIsNoisy ||
++                                 (bgIsBright != boxBgIsBright && Math.abs(meanLuminance - boxMeanLuminance) > 15);
++            }
++
++            if (bgIsNoisy)
++                styleClassNames.push('background-noisy');
++            if (bgIsDark)
++                styleClassNames.push('background-dark');
++            if (bgIsBright)
++                styleClassNames.push('background-bright');
++        } else {
++            // Always assume the background is noisy if the color check failed
++            styleClassNames.push('background-noisy');
++        }
++
++        allStyleClassNames.forEach(name => {
++            if (styleClassNames.includes(name))
++                this._addStyleClassName(name);
++            else
++                this._removeStyleClassName(name);
++        });
++    }
++
+     _hideIndicators() {
+         for (let role in PANEL_ITEM_IMPLEMENTATIONS) {
+             let indicator = this.statusArea[role];
+
+diff --git a/data/theme/gnome-shell-sass/_common.scss b/data/theme/gnome-shell-sass/_common.scss
+index 504587db47890805cce9a17e9f005f6e42e9d415..c3d10c23f14f6b7d0d2ea40a8d3131d6ca412f7b 100644
+--- a/data/theme/gnome-shell-sass/_common.scss
++++ b/data/theme/gnome-shell-sass/_common.scss
+@@ -1252,7 +1252,7 @@ StScrollBar {
+     border-radius: 6px;
+     border-color: darken($osd_fg_color,50%);
+     color: $osd_fg_color;
+-    background-color: $osd_bg_color;
++    background-color: transparentize($osd_bg_color,.4);
+     &:focus {
+       padding: 6px 8px;
+       border-width: 2px;

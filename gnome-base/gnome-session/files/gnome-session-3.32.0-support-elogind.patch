@@ -1,0 +1,77 @@
+--- a/meson.build	2019-01-07 12:36:00.000000000 -0600
++++ b/meson.build	2019-02-22 16:28:04.182548335 -0600
+@@ -119,10 +119,11 @@
+ # Check for session tracking backend
+ session_tracking = 'null backend'
+ 
++enable_elogind = get_option('elogind')
+ enable_systemd = get_option('systemd')
+ enable_systemd_journal = get_option('systemd_journal')
+ enable_consolekit = get_option('consolekit')
+-if enable_systemd or enable_consolekit
++if enable_systemd or enable_consolekit or enable_elogind
+   session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
+ 
+   # Check for systemd
+@@ -147,6 +148,13 @@
+     session_tracking = 'systemd'
+   endif
+ 
++  # Check for elogind
++  if enable_elogind
++    libelogind_dep = dependency('libelogind', version: '>= 235', required: false)
++    session_bin_deps += libelogind_dep
++    session_tracking = 'elogind'
++  endif
++
+   # Check for ConsoleKit
+   if enable_consolekit
+     dbus_glib_dep = dependency('dbus-glib-1', version: '>= 0.76')
+@@ -161,6 +169,7 @@
+     endif
+   endif
+ endif
++config_h.set('HAVE_ELOGIND', enable_elogind)
+ config_h.set('HAVE_SYSTEMD', enable_systemd)
+ config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
+ config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
+
+--- a/meson_options.txt	2019-01-07 12:36:00.000000000 -0600
++++ b/meson_options.txt	2019-02-22 16:29:56.638768660 -0600
+@@ -1,7 +1,8 @@
+ option('deprecation_flags', type: 'boolean', value: false, description: 'use *_DISABLE_DEPRECATED flags')
+ option('session_selector', type: 'boolean', value: false, description: 'enable building a custom session selector dialog')
+-option('systemd', type: 'boolean', value: true, description: 'Use systemd')
+-option('systemd_journal', type: 'boolean', value:'true', description: 'Send log to systemd-journal')
++option('elogind', type: 'boolean', value: true, description: 'Use elogind')
++option('systemd', type: 'boolean', value: false, description: 'Use systemd')
++option('systemd_journal', type: 'boolean', value:'false', description: 'Send log to systemd-journal')
+ option('consolekit', type: 'boolean', value: false, description: 'Use consolekit')
+ option('docbook', type: 'boolean', value: true, description: 'build documentation')
+ option('man', type: 'boolean', value: true, description: 'build documentation (requires xmlto)')
+
+--- a/gnome-session/gsm-systemd.c	2019-01-07 12:36:00.000000000 -0600
++++ b/gnome-session/gsm-systemd.c	2019-02-22 16:32:31.095021064 -0600
+@@ -21,7 +21,7 @@
+ #include "config.h"
+ #include "gsm-systemd.h"
+ 
+-#ifdef HAVE_SYSTEMD
++#if defined(HAVE_ELOGIND) || defined(HAVE_SYSTEMD)
+ 
+ #include <errno.h>
+ #include <string.h>
+@@ -30,7 +30,13 @@
+ #include <sys/types.h>
+ #include <pwd.h>
+ 
++#ifdef HAVE_ELOGIND
++#include <elogind/sd-login.h>
++#endif
++
++#ifdef HAVE_SYSTEMD
+ #include <systemd/sd-login.h>
++#endif
+ 
+ #include <glib.h>
+ #include <glib-object.h>

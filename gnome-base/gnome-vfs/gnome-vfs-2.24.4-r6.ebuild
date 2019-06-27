@@ -6,48 +6,44 @@ GCONF_DEBUG="no"
 GNOME_TARBALL_SUFFIX="bz2"
 GNOME2_LA_PUNT="yes"
 
-inherit autotools eutils gnome2 multilib-minimal virtualx
+inherit autotools eutils gnome2 virtualx
 
 DESCRIPTION="Gnome Virtual Filesystem"
 HOMEPAGE="https://www.gnome.org/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
-KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="*"
 IUSE="acl gnutls ipv6 kerberos libressl samba ssl zeroconf"
 
 RDEPEND="
-	>=gnome-base/gconf-2.32.4-r1[${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.34.3[${MULTILIB_USEDEP}]
-	>=dev-libs/libxml2-2.9.1-r4[${MULTILIB_USEDEP}]
-	>=app-arch/bzip2-1.0.6-r4[${MULTILIB_USEDEP}]
+	>=gnome-base/gconf-2.32.4-r1
+	>=dev-libs/glib-2.34.3
+	>=dev-libs/libxml2-2.9.1-r4
+	>=app-arch/bzip2-1.0.6-r4
 	gnome-base/gnome-mime-data
 	>=x11-misc/shared-mime-info-0.14
-	>=dev-libs/dbus-glib-0.100.2[${MULTILIB_USEDEP}]
+	>=dev-libs/dbus-glib-0.100.2
 	acl? (
-		>=sys-apps/acl-2.2.52-r1[${MULTILIB_USEDEP}]
-		>=sys-apps/attr-2.4.47-r1[${MULTILIB_USEDEP}] )
-	kerberos? ( >=virtual/krb5-0-r1[${MULTILIB_USEDEP}] )
-	samba? ( >=net-fs/samba-3.6.23-r1[${MULTILIB_USEDEP}] )
+		>=sys-apps/acl-2.2.52-r1
+		>=sys-apps/attr-2.4.47-r1 )
+		kerberos? ( >=virtual/krb5-0-r1 )
+		samba? ( >=net-fs/samba-3.6.23-r1 )
 	ssl? (
 		gnutls?	(
-			>=net-libs/gnutls-2.12.23-r6[${MULTILIB_USEDEP}]
+			>=net-libs/gnutls-2.12.23-r6
 			!gnome-extra/gnome-vfs-sftp )
 		!gnutls? (
-			!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0[${MULTILIB_USEDEP}] )
-			libressl? ( dev-libs/libressl[${MULTILIB_USEDEP}] )
+			!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0 )
+			libressl? ( dev-libs/libressl )
 			!gnome-extra/gnome-vfs-sftp ) )
-	zeroconf? ( >=net-dns/avahi-0.6.31-r2[${MULTILIB_USEDEP}] )
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-gtklibs-20140508-r1
-		!app-emulation/emul-linux-x86-gtklibs[-abi_x86_32(-)]
-	)
+	zeroconf? ( >=net-dns/avahi-0.6.31-r2 )
 "
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	gnome-base/gnome-common
 	>=dev-util/intltool-0.40
-	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
+	>=virtual/pkgconfig-0-r1
 	>=dev-util/gtk-doc-am-1.13
 "
 
@@ -89,13 +85,16 @@ src_prepare() {
 	# always use system defaults (patch from Arch Linux)
 	epatch "${FILESDIR}"/${P}-gnutls34.patch
 
+	# Fix build with openssl-1.1 #592540
+	epatch "${FILESDIR}"/${PN}-2.24.4-openssl-1.1.patch
+
 	sed -e "s/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/" -i configure.in || die
 
 	eautoreconf
 	gnome2_src_prepare
 }
 
-multilib_src_configure() {
+src_configure() {
 	local myconf=(
 		--disable-schemas-install
 		--disable-static
@@ -128,23 +127,21 @@ multilib_src_configure() {
 	ECONF_SOURCE=${S} \
 	gnome2_src_configure "${myconf[@]}"
 
-	if multilib_is_native_abi; then
-		ln -s "${S}"/doc/html doc/html || die
-	fi
+	ln -s "${S}"/doc/html doc/html || die
 }
 
-multilib_src_test() {
+src_test() {
 	unset DISPLAY
 	# Fix bug #285706
 	unset XAUTHORITY
 	Xemake check
 }
 
-multilib_src_install() {
+src_install() {
 	gnome2_src_install
 }
 
-multilib_src_install_all() {
+src_install_all() {
 	DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
 	einstalldocs
 }

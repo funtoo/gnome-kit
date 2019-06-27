@@ -23,7 +23,7 @@ RDEPEND="!gnome-base/gnome
 	>=gnome-base/gnome-core-libs-${PV}[cups?]
 
 	>=gnome-base/gnome-session-${PV}
-	>=gnome-base/gnome-menus-3.10.1:3
+	>=gnome-base/gnome-menus-${PV}:3
 	>=gnome-base/gnome-settings-daemon-${PV}[cups?]
 	>=gnome-base/gnome-control-center-${PV}
 
@@ -41,7 +41,7 @@ RDEPEND="!gnome-base/gnome
 	>=x11-terms/gnome-terminal-${PV}
 "
 DEPEND=""
-PDEPEND=">=gnome-base/gvfs-1.34.0"
+PDEPEND=">=gnome-base/gvfs-1.40.0"
 S="${WORKDIR}"
 
 pkg_pretend() {

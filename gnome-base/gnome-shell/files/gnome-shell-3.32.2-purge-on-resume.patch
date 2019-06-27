@@ -1,0 +1,54 @@
+diff --git a/js/ui/main.js b/js/ui/main.js
+index d86cf9e8127535b7f78ab15945f59d4dfb5ee68a..19c0d4dc9197ff08be075cac6ff873617b1dd6af 100644
+--- a/js/ui/main.js
++++ b/js/ui/main.js
+@@ -207,7 +207,13 @@ function _initializeUI() {
+         return true;
+     });
+ 
+-    global.display.connect('gl-video-memory-purged', loadTheme);
++    global.display.connect('gl-video-memory-purged', () => {
++	let cache = St.TextureCache.get_default();
++
++        cache.clear();
++
++        loadTheme();
++    });
+ 
+     // Provide the bus object for gnome-session to
+     // initiate logouts.
+diff --git a/src/st/st-texture-cache.c b/src/st/st-texture-cache.c
+index 0c794a3abdd716edc1d6e026ac9abe6d8e3576d7..5a3dcd81f141c68591c73e47ed6088bb165e1cdc 100644
+--- a/src/st/st-texture-cache.c
++++ b/src/st/st-texture-cache.c
+@@ -105,6 +105,18 @@ st_texture_cache_class_init (StTextureCacheClass *klass)
+                   G_TYPE_NONE, 1, G_TYPE_FILE);
+ }
+ 
++/* Evicts all cached textures */
++void
++st_texture_cache_clear (StTextureCache *cache)
++{
++  GHashTableIter iter;
++  gpointer key;
++  gpointer value;
++
++  g_hash_table_remove_all (cache->priv->keyed_cache);
++  g_signal_emit (cache, signals[ICON_THEME_CHANGED], 0);
++}
++
+ /* Evicts all cached textures for named icons */
+ static void
+ st_texture_cache_evict_icons (StTextureCache *cache)
+diff --git a/src/st/st-texture-cache.h b/src/st/st-texture-cache.h
+index 26f9c30ac14adc8fb6cf4daab43a2d30bd825cda..b87adc4d5be24aba33a556e2f19ac01ae0d9d6f3 100644
+--- a/src/st/st-texture-cache.h
++++ b/src/st/st-texture-cache.h
+@@ -52,6 +52,7 @@ typedef enum {
+ } StTextureCachePolicy;
+ 
+ StTextureCache* st_texture_cache_get_default (void);
++void st_texture_cache_clear (StTextureCache *cache);
+ 
+ ClutterActor *
+ st_texture_cache_load_sliced_image (StTextureCache *cache,
