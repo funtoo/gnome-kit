@@ -12,7 +12,7 @@ SRC_URI="http://www.kdau.com/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~sparc x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="

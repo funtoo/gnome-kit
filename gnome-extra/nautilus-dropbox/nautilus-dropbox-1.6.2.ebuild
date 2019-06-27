@@ -14,7 +14,7 @@ SRC_URI="http://www.dropbox.com/download?dl=packages/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 IUSE="debug"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"

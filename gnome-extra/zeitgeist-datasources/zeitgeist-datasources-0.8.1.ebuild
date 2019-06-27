@@ -18,7 +18,7 @@ HOMEPAGE="https://launchpad.net/zeitgeist-datasources/ http://zeitgeist-project.
 SRC_URI="https://launchpad.net/zeitgeist-datasources/${DIR_PV}/${DIR_PV2}/+download/${P}.tar.gz"
 
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 LICENSE="GPL-3"
 PLUGINS_IUSE="bzr chromium emacs firefox geany mono telepathy thunderbird tomboy vim"
 PLUGINS="bzr chrome emacs firefox geany monodevelop telepathy thunderbird tomboy vim"

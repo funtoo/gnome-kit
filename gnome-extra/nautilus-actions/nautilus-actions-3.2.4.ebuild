@@ -12,7 +12,7 @@ HOMEPAGE="http://www.nautilus-actions.org/ https://git.gnome.org/browse/nautilus
 
 LICENSE="GPL-2 FDL-1.3"
 SLOT="3"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="

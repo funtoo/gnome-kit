@@ -12,7 +12,7 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-web-photo/"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2.14:2

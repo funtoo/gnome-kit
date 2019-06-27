@@ -8,7 +8,7 @@ HOMEPAGE="https://git.gnome.org/browse/nautilus-sendto/"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 IUSE="debug"
 
 RDEPEND=">=dev-libs/glib-2.25.9:2"

@@ -17,7 +17,7 @@ SRC_URI="https://launchpad.net/gnome-activity-journal/${DIR_PV}/${PV}/+download/
 
 SLOT="0"
 LICENSE="GPL-3 LGPL-3"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="

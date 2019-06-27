@@ -11,7 +11,7 @@ HOMEPAGE="http://www.hadess.net/search/label/office-runner"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE=""
 
 COMMON_DEPEND="

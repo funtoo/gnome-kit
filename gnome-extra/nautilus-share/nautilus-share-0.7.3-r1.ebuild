@@ -17,7 +17,7 @@ SRC_URI="mirror://debian/pool/main/n/${PN}/${PN}_${PV}.orig.tar.bz2
 IUSE=""
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 
 COMMON_DEPEND=">=dev-libs/glib-2.4:2
 	>=gnome-base/nautilus-2.10"

@@ -8,7 +8,7 @@ SRC_URI="https://github.com/hadess/${PN}/releases/download/${PV}/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="dev-libs/glib

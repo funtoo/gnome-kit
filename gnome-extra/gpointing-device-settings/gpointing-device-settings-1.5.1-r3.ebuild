@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge.jp/gsynaptics/45812/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="*"
 IUSE=""
 
 # recent enough x11-base/xorg-server required
