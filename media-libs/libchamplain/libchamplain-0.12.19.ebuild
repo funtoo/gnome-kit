@@ -13,7 +13,7 @@ SLOT="0.12"
 LICENSE="LGPL-2"
 KEYWORDS="*"
 
-IUSE="doc +gtk +introspection vala"
+IUSE="doc +gtk +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="

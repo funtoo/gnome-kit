@@ -34,6 +34,7 @@ COMMON_DEPEND="
 	>=app-crypt/gcr-3:=[gtk]
 	x11-libs/cairo
 	opencv? ( >=media-libs/opencv-2.3.0:= )
+	>=media-libs/libchamplain-0.12[vala]
 "
 RDEPEND="${COMMON_DEPEND}
 	media-plugins/gst-plugins-gdkpixbuf:1.0
