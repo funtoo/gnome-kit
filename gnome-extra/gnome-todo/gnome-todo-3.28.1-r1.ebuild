@@ -18,7 +18,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.22.0:3
 	>=net-libs/gnome-online-accounts-3.28.0
 	>=gnome-extra/evolution-data-server-3.28.0:=[gtk]
-	>=dev-libs/libical-0.43
+	>=dev-libs/libical-3
 	>=dev-libs/libpeas-1.22
 	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
 "

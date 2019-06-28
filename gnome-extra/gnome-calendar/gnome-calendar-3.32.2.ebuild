@@ -16,7 +16,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-libs/glib-2.58.0:2
-	dev-libs/libical:0/2
+	>=dev-libs/libical-3
 	>=gnome-base/gsettings-desktop-schemas-3.21.2
 	>=gnome-extra/evolution-data-server-3.17.1:=
 	>=net-libs/gnome-online-accounts-3.2.0:=
