@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -11,9 +11,9 @@ DESCRIPTION="A text widget implementing syntax highlighting and other features"
 HOMEPAGE="https://wiki.gnome.org/Projects/GtkSourceView"
 
 LICENSE="GPL-2+ LGPL-2.1+"
-SLOT="4.0"
+SLOT="4"
 
-IUSE="glade +introspection vala"
+IUSE="glade +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 KEYWORDS="*"
@@ -26,9 +26,9 @@ RDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
 "
 DEPEND="${RDEPEND}
+	dev-util/glib-utils
 	>=dev-util/gtk-doc-am-1.25
 	>=sys-devel/gettext-0.19.4
-	dev-util/itstool
 	virtual/pkgconfig
 	vala? ( $(vala_depend) )
 "
@@ -40,7 +40,6 @@ src_prepare() {
 
 src_configure() {
 	gnome2_src_configure \
-		--disable-deprecations \
 		$(use_enable glade glade-catalog) \
 		$(use_enable introspection) \
 		$(use_enable vala)
@@ -53,6 +52,12 @@ src_test() {
 src_install() {
 	gnome2_src_install
 
-	insinto /usr/share/${PN}-4.0/language-specs
+	insinto /usr/share/${PN}-4/language-specs
 	doins "${FILESDIR}"/2.0/gentoo.lang
+
+	# Avoid conflict with gtksourceview:3.0 glade-catalog
+	# TODO: glade doesn't actually show multiple GtkSourceView widget collections, so with both installed, can't really be sure which ones are used
+	if use glade; then
+		mv "${ED}"/usr/share/glade/catalogs/gtksourceview.xml "${ED}"/usr/share/glade/catalogs/gtksourceview-${SLOT}.xml || die
+	fi
 }
