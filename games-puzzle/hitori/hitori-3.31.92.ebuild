@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="Logic puzzle game for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Hitori"
