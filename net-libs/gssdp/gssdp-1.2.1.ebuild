@@ -10,7 +10,7 @@ DESCRIPTION="A GObject-based API for handling resource discovery and announcemen
 HOMEPAGE="https://wiki.gnome.org/Projects/GUPnP"
 
 LICENSE="LGPL-2"
-SLOT="0"
+SLOT="1.2"
 KEYWORDS="*"
 IUSE="doc examples +introspection gtk vala"
 
