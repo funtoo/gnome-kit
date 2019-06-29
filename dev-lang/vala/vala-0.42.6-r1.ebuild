@@ -3,14 +3,14 @@
 # $Id$
 
 EAPI=6
-inherit gnome2
+inherit autotools gnome2
 
 DESCRIPTION="Compiler for the GObject type system"
 HOMEPAGE="https://wiki.gnome.org/Projects/Vala"
 
 LICENSE="LGPL-2.1"
 SLOT="0.42"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+KEYWORDS="*"
 IUSE="test"
 
 RDEPEND="
@@ -26,8 +26,14 @@ DEPEND="${RDEPEND}
 	>=media-gfx/graphviz-2.16
 	test? (
 		dev-libs/dbus-glib
-		>=dev-libs/glib-2.26:2 )
+		>=dev-libs/glib-2.26:2
+		dev-libs/gobject-introspection )
 "
+
+PATCHES=(
+	# Add missing bits to make valadoc parallel installable
+	"${FILESDIR}"/vala-0.40-valadoc-doclets-data-parallel-installable.patch
+)
 
 src_configure() {
 	# weasyprint enables generation of PDF from HTML
@@ -35,4 +41,9 @@ src_configure() {
 		--disable-unversioned \
 		VALAC=: \
 		WEASYPRINT=:
+}
+
+src_install() {
+	default
+	find "${D}" -name "*.la" -delete || die
 }
