@@ -23,7 +23,6 @@ RDEPEND="
 	x11-libs/libXres
 	x11-libs/libXext
 	introspection? ( >=dev-libs/gobject-introspection-0.6.14:= )
-	startup-notification? ( >=x11-libs/startup-notification-0.4 )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.9
@@ -38,10 +37,18 @@ src_configure() {
 	# Don't collide with SLOT=1
 	local emesonargs=(
 		-Dintrospection=$(usex introspection enabled disabled)
-		-Dstartup_notification=auto
+		-Dstartup_notification=$(usex startup-notification enabled disabled)
 		$(meson_use tools install_tools)
 		$(meson_use doc gtk_doc)
 	)
 
 	meson_src_configure
 }
+
+post_src_install() {
+	if ! use startup-notification; then
+		# fix pkgconfig file to be correct.
+		sed -i -e 's/ libstartup-notification-1.0//g' ${D}/usr/lib*/pkgconfig/libwnck-3.0.pc || die
+	fi
+}
+
