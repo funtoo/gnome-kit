@@ -11,9 +11,10 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="elogind +gles2 input_devices_wacom +introspection nvidia udev wayland"
+IUSE="elogind +gles2 input_devices_wacom +introspection nvidia -test udev wayland"
 REQUIRED_USE="
 	wayland? ( elogind )
+	test? ( wayland )
 "
 
 # libXi-1.7.4 or newer needed per:
@@ -103,6 +104,7 @@ src_configure() {
 		$(meson_use gles2 native_backend)
 		$(meson_use udev)
 		$(meson_use input_devices_wacom libwacom)
+		$(meson_use test tests)
 	)
 
 	meson_src_configure
