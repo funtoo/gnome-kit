@@ -23,7 +23,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}
 
 # prefix: uuid dependency can be adapted to non-linux platforms
 RDEPEND="${PYTHON_DEPS}
-	>=net-libs/gssdp-1.1.2:0=[introspection?]
+	>=net-libs/gssdp-1.1.2:1.2=[introspection?]
 	>=net-libs/libsoup-2.48.0:2.4[introspection?]
 	>=dev-libs/glib-2.40:2
 	>=dev-libs/libxml2-2.9.1-r4
