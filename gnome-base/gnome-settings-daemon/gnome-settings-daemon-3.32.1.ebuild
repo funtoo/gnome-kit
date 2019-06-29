@@ -110,4 +110,9 @@ src_configure() {
 	)
 
 	meson_src_configure
+	if ! use wayland; then
+		# config.h gets a #define HAVE_WAYLAND 0 which is NOT the same as not having it defined.
+		# So manually zap is so that wacom sources know it's really not there.
+		sed -i -e '/WAYLAND/d' ${S}-build/config.h || die
+	fi
 }
