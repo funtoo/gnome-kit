@@ -48,4 +48,6 @@ src_configure() {
 
 src_install() {
 	meson_src_install
+	# slotify
+	mv ${D}/usr/bin/gssdp-device-sniffer ${D}/usr/bin/gssdp-device-sniffer-$SLOT || die
 }
