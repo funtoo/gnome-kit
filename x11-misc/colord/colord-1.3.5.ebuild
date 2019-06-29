@@ -11,7 +11,7 @@ HOMEPAGE="https://www.freedesktop.org/software/colord/"
 SRC_URI="https://www.freedesktop.org/software/colord/releases/${P}.tar.xz"
 
 LICENSE="GPL-2+"
-SLOT="0/3" # subslot = libcolord soname version
+SLOT="0/2" # subslot = libcolord soname version
 KEYWORDS="*"
 
 # We prefer policykit enabled by default, bug #448058
