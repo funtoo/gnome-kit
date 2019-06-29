@@ -13,7 +13,7 @@ DESCRIPTION="An object-oriented framework for creating UPnP devs and control poi
 HOMEPAGE="https://wiki.gnome.org/Projects/GUPnP"
 
 LICENSE="LGPL-2"
-SLOT="0"
+SLOT="1.2"
 KEYWORDS="*"
 
 IUSE="connman doc example +introspection kernel_linux networkmanager vala"
