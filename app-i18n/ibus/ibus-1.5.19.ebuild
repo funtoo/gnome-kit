@@ -1,25 +1,20 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
 VALA_MIN_API_VERSION="0.34"
 VALA_USE_DEPEND="vapigen"
-GITHUB_REPO="$PN"
-GITHUB_USER="ibus"
-GITHUB_TAG="76dec79"
-SRC_URI="https://www.github.com/${GITHUB_USER}/${GITHUB_REPO}/tarball/${GITHUB_TAG} -> ${PN}-${GITHUB_TAG}.tar.gz"
 
 inherit autotools bash-completion-r1 gnome2-utils python-r1 vala virtualx xdg-utils
 
 DESCRIPTION="Intelligent Input Bus for Linux / Unix OS"
 HOMEPAGE="https://github.com/ibus/ibus/wiki"
-
-# This version of ibus contains a fix that should allow compilation without wayland.
-# This fix will likely be part of 1.5.21+.
+SRC_URI="https://github.com/${PN}/${PN}/releases/download/${PV}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm arm64 ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="+X +emoji gconf +gtk +gtk2 +introspection kde +libnotify nls +python test +unicode vala wayland"
 REQUIRED_USE="emoji? ( gtk )
 	gtk2? ( gtk )
@@ -27,17 +22,10 @@ REQUIRED_USE="emoji? ( gtk )
 	libnotify? ( gtk )
 	python? (
 		${PYTHON_REQUIRED_USE}
-		gtk
 		introspection
 	)
 	test? ( gtk )
 	vala? ( introspection )"
-
-src_unpack() {
-	unpack ${A}
-	mv "${WORKDIR}/${GITHUB_USER}-${PN}"-??????? "${S}" || die
-}
-
 
 CDEPEND="app-text/iso-codes
 	dev-libs/glib:2
@@ -75,6 +63,7 @@ RDEPEND="${CDEPEND}
 	)"
 DEPEND="${CDEPEND}
 	$(vala_depend)
+	dev-util/glib-utils
 	dev-util/intltool
 	virtual/pkgconfig
 	emoji? (
@@ -84,11 +73,17 @@ DEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )
 	unicode? ( app-i18n/unicode-data )"
 
-PATCHES=( "${FILESDIR}/${PN}-1.5.19-conditional.patch" )
+PATCHES=(
+	"${FILESDIR}"/${P}-gdk-wayland.patch
+	"${FILESDIR}"/${P}-vala-0.43.4.patch
+)
 
 src_prepare() {
 	vala_src_prepare --ignore-use
 	sed -i "/UCD_DIR=/s/\$with_emoji_annotation_dir/\$with_ucd_dir/" configure.ac
+	if ! has_version 'x11-libs/gtk+:3[wayland]'; then
+		touch ui/gtk3/panelbinding.vala
+	fi
 	if ! use emoji; then
 		touch \
 			tools/main.vala \
@@ -103,12 +98,9 @@ src_prepare() {
 	# for multiple Python implementations
 	sed -i "s/^\(PYGOBJECT_DIR =\).*/\1/" bindings/Makefile.am
 	# fix for parallel install
-	sed -i \
-		-e "/^py2_compile/,/^$/d" \
-		-e "/^install-data-hook/,/^$/d" \
-		bindings/pygobject/Makefile.am
+	sed -i "/^if ENABLE_PYTHON2/,/^endif/d" bindings/pygobject/Makefile.am
 	# require user interaction
-	sed -i "/^TESTS += ibus-compose/d" src/tests/Makefile.am
+	sed -i "/^TESTS += ibus-\(compose\|keypress\)/d" src/tests/Makefile.am
 
 	sed -i "/^bash_completion/d" tools/Makefile.am
 
@@ -180,8 +172,6 @@ src_install() {
 
 pkg_preinst() {
 	use gconf && gnome2_gconf_savelist
-	gnome2_icon_savelist
-	gnome2_schemas_savelist
 }
 
 pkg_postinst() {
