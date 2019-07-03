@@ -49,7 +49,7 @@ src_configure() {
 		$(meson_use introspection)
 		$(meson_use samba ntlm)
 		$(meson_use vala vapi)
-		$(usex samba -Dntlm-auth="'${EPREFIX}/usr/bin/ntlm_auth'" "")
+		$(usex samba -Dntlm_auth="'${EPREFIX}/usr/bin/ntlm_auth'" "")
 	)
 
 	meson_src_configure
