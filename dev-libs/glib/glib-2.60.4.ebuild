@@ -159,6 +159,7 @@ src_configure() {
 	local emesonargs=(
 		-Dman=true
 		-Dinternal_pcre=false
+		-Ddefault_library=$(usex static-libs both shared)
 		$(meson_use xattr)
 		$(meson_use fam)
 		$(meson_use gtk-doc gtk_doc)
