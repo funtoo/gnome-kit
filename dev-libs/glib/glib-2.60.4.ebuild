@@ -157,6 +157,7 @@ src_configure() {
 	fi
 
 	local emesonargs=(
+                -Dc_args="${CFLAGS}"
 		-Dman=true
 		-Dinternal_pcre=false
 		-Ddefault_library=$(usex static-libs both shared)
@@ -257,3 +258,4 @@ pkg_postrm() {
 		rm -f "${EROOT}"usr/share/glib-2.0/schemas/gschemas.compiled
 	fi
 }
+
