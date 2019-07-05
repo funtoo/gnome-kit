@@ -59,9 +59,8 @@ src_configure() {
 	gnome2_src_configure \
 		--build=${CHOST_default} \
 		--disable-static \
-		--disable-tools \
 		$(use_enable introspection) \
-		$(use_with tools gtk3) \
+		$(use_enable tools) \
 		$(use_enable vala) \
 		--enable-pixbuf-loader
 
