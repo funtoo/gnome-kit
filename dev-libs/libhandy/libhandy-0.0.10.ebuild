@@ -16,7 +16,7 @@ KEYWORDS="*"
 
 IUSE=""
 
-DEPEND=""
+DEPEND="$(vala_depend)"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-util/meson
 	dev-lang/vala
