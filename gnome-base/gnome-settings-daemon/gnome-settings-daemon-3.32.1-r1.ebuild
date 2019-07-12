@@ -94,7 +94,12 @@ DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 "
 
-PATCHES=( "${FILESDIR}/${PN}-3.30.1.2-disable-autosleep.patch" )
+PATCHES=(
+#	# Tell gsd to not set DPMS timeouts to '0' (disable) on startup, so DPMS keeps working by default:
+	"${FILESDIR}/${PN}-3.32-elementary-dpms-enable.patch"
+	# Turn off auto-sleeping when AC power is active, and set battery auto-sleep timeout to 15 minutes:
+	"${FILESDIR}/${PN}-3.32-disable-ac-autosleep.patch" 
+)
 
 src_prepare() {
 	gnome2_src_prepare
