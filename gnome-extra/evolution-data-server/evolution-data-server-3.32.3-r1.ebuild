@@ -16,7 +16,7 @@ LICENSE="|| ( LGPL-2 LGPL-3 ) BSD Sleepycat"
 SLOT="0/62" # subslot = libcamel-1.2 soname version
 KEYWORDS="*"
 
-IUSE="api-doc-extras berkdb +gnome-online-accounts +gtk google +introspection ipv6 ldap kerberos vala +weather"
+IUSE="api-doc-extras berkdb +gnome-online-accounts +gtk +google +introspection ipv6 ldap kerberos vala +weather"
 REQUIRED_USE="vala? ( introspection )"
 
 
@@ -56,6 +56,7 @@ RDEPEND="
 	kerberos? ( virtual/krb5:= )
 	ldap? ( >=net-nds/openldap-2:= )
 	weather? ( >=dev-libs/libgweather-3.10:2= )
+	>=media-libs/libcanberra-0.2.5
 "
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
@@ -106,6 +107,7 @@ src_configure() {
 		-DWITH_PHONENUMBER=OFF
 		-DENABLE_EXAMPLES=OFF
 		-DENABLE_UOA=OFF
+		-DENABLE_LIBCANBERRA=ON
 	)
 
 	if use google || use gnome-online-accounts; then
