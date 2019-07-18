@@ -1,0 +1,3 @@
+This was forked to keep up with gentoo's version but I made some minor changes. Python is only used for like
+one test, it is not a major dep, and it works with python2 or python3. No need to use an eclass to handle
+this so made it simpler.

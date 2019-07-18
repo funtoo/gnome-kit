@@ -2,12 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python2_7 )
 
 # vala and introspection support is broken, bug #468208
 VALA_USE_DEPEND=vapigen
 
-inherit autotools gnome2-utils python-any-r1 vala
+inherit autotools gnome2-utils vala
 
 if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
@@ -15,7 +14,7 @@ if [[ ${PV} == *9999* ]]; then
 	SRC_URI=""
 else
 	SRC_URI="http://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.bz2"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+	KEYWORDS="*"
 fi
 
 DESCRIPTION="A graph based image processing framework"
@@ -69,7 +68,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/libtool-2.2
 	test? ( ffmpeg? ( media-libs/gexiv2 )
 		introspection? (
-			$(python_gen_any_dep '>=dev-python/pygobject-3.2[${PYTHON_USEDEP}]')
+			dev-lang/python
 		)
 	)
 	vala? ( $(vala_depend) )
@@ -78,10 +77,6 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-0.3.12-failing-tests.patch"
 )
-
-pkg_setup() {
-	use test && use introspection && python-any-r1_pkg_setup
-}
 
 src_prepare() {
 	default
