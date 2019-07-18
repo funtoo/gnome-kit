@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+bluetooth elogind +ibus +networkmanager nsplugin nvidia systemd tpanel"
+IUSE="+bluetooth elogind +networkmanager nsplugin nvidia systemd tpanel"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	?? ( elogind systemd )
 "
@@ -78,7 +78,7 @@ RDEPEND="${COMMON_DEPEND}
 	networkmanager? (
 		net-misc/mobile-broadband-provider-info
 		sys-libs/timezone-data )
-	ibus? ( >=app-i18n/ibus-1.5.2[dconf(+),gtk,introspection] )
+	>=app-i18n/ibus-1.5.2[dconf(+),gtk,introspection(+)]
 "
 # avoid circular dependency, see bug #546134
 PDEPEND="
