@@ -1,31 +1,46 @@
-# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
 VALA_MIN_API_VERSION="0.34"
 VALA_USE_DEPEND="vapigen"
+GITHUB_REPO="$PN"
+GITHUB_USER="ibus"
+GITHUB_TAG="76dec79"
+SRC_URI="https://www.github.com/${GITHUB_USER}/${GITHUB_REPO}/tarball/${GITHUB_TAG} -> ${PN}-${GITHUB_TAG}.tar.gz"
 
 inherit autotools bash-completion-r1 gnome2-utils python-r1 vala virtualx xdg-utils
 
 DESCRIPTION="Intelligent Input Bus for Linux / Unix OS"
 HOMEPAGE="https://github.com/ibus/ibus/wiki"
-SRC_URI="https://github.com/${PN}/${PN}/releases/download/${PV}/${P}.tar.gz"
+
+# This version of ibus contains a fix that should allow compilation without wayland.
+# This fix will likely be part of 1.5.21+.
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 ia64 ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE="+X +emoji gconf +gtk +gtk2 +introspection kde +libnotify nls +python test +unicode vala wayland"
+KEYWORDS="*"
+IUSE="+X +emoji gconf +gtk +gtk2 +introspection kde nls +python test +unicode wayland"
 REQUIRED_USE="emoji? ( gtk )
 	gtk2? ( gtk )
 	kde? ( gtk )
-	libnotify? ( gtk )
 	python? (
 		${PYTHON_REQUIRED_USE}
+		gtk
 		introspection
 	)
 	test? ( gtk )
-	vala? ( introspection )"
+	introspection"
+
+PATCHES=(
+	"${FILESDIR}"/ibus-1.5.20-fix-pygobject-makefile.patch
+)
+
+src_unpack() {
+	unpack ${A}
+	mv "${WORKDIR}/${GITHUB_USER}-${PN}"-??????? "${S}" || die
+}
+
 
 CDEPEND="app-text/iso-codes
 	dev-libs/glib:2
@@ -45,7 +60,7 @@ CDEPEND="app-text/iso-codes
 	)
 	introspection? ( dev-libs/gobject-introspection )
 	kde? ( dev-qt/qtgui:5 )
-	libnotify? ( x11-libs/libnotify )
+	x11-libs/libnotify
 	nls? ( virtual/libintl )
 	python? (
 		${PYTHON_DEPS}
@@ -63,7 +78,6 @@ RDEPEND="${CDEPEND}
 	)"
 DEPEND="${CDEPEND}
 	$(vala_depend)
-	dev-util/glib-utils
 	dev-util/intltool
 	virtual/pkgconfig
 	emoji? (
@@ -73,17 +87,9 @@ DEPEND="${CDEPEND}
 	nls? ( sys-devel/gettext )
 	unicode? ( app-i18n/unicode-data )"
 
-PATCHES=(
-	"${FILESDIR}"/${P}-gdk-wayland.patch
-	"${FILESDIR}"/${P}-vala-0.43.4.patch
-)
-
 src_prepare() {
 	vala_src_prepare --ignore-use
 	sed -i "/UCD_DIR=/s/\$with_emoji_annotation_dir/\$with_ucd_dir/" configure.ac
-	if ! has_version 'x11-libs/gtk+:3[wayland]'; then
-		touch ui/gtk3/panelbinding.vala
-	fi
 	if ! use emoji; then
 		touch \
 			tools/main.vala \
@@ -92,15 +98,16 @@ src_prepare() {
 	if ! use kde; then
 		touch ui/gtk3/panel.vala
 	fi
-	if ! use libnotify; then
-		touch ui/gtk3/panel.vala
-	fi
+	touch ui/gtk3/panel.vala
 	# for multiple Python implementations
 	sed -i "s/^\(PYGOBJECT_DIR =\).*/\1/" bindings/Makefile.am
 	# fix for parallel install
-	sed -i "/^if ENABLE_PYTHON2/,/^endif/d" bindings/pygobject/Makefile.am
+	sed -i \
+		-e "/^py2_compile/,/^$/d" \
+		-e "/^install-data-hook/,/^$/d" \
+		bindings/pygobject/Makefile.am
 	# require user interaction
-	sed -i "/^TESTS += ibus-\(compose\|keypress\)/d" src/tests/Makefile.am
+	sed -i "/^TESTS += ibus-compose/d" src/tests/Makefile.am
 
 	sed -i "/^bash_completion/d" tools/Makefile.am
 
@@ -127,18 +134,16 @@ src_configure() {
 		$(use_enable emoji emoji-dict) \
 		$(use_with emoji unicode-emoji-dir "${unicodedir}"/emoji) \
 		$(use_with emoji emoji-annotation-dir "${unicodedir}"/cldr/common/annotations) \
-		$(use_enable gconf) \
 		$(use_enable gtk gtk3) \
 		$(use_enable gtk ui) \
 		$(use_enable gtk2) \
 		$(use_enable introspection) \
 		$(use_enable kde appindicator) \
-		$(use_enable libnotify) \
 		$(use_enable nls) \
 		$(use_enable test tests) \
 		$(use_enable unicode unicode-dict) \
 		$(use_with unicode ucd-dir "${EPREFIX}/usr/share/unicode-data") \
-		$(use_enable vala) \
+		--enable-vala \
 		$(use_enable wayland) \
 		"${python_conf[@]}"
 }
@@ -168,14 +173,18 @@ src_install() {
 
 	insinto /etc/X11/xinit/xinput.d
 	newins xinput-${PN} ${PN}.conf
+	# uncompress pre-compressed man pages
+	find ${D}/usr/share/man -iname '*.gz' -exec gzip -d {} \;
 }
 
 pkg_preinst() {
-	use gconf && gnome2_gconf_savelist
+	gnome2_gconf_savelist
+	gnome2_icon_savelist
+	gnome2_schemas_savelist
 }
 
 pkg_postinst() {
-	use gconf && gnome2_gconf_install
+	gnome2_gconf_install
 	use gtk && gnome2_query_immodules_gtk3
 	use gtk2 && gnome2_query_immodules_gtk2
 	gnome2_icon_cache_update

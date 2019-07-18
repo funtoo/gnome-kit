@@ -1,3 +1,2 @@
-ibus-1.5.20 build breaks when wayland is disabled. A snapshot from June 2019
-fixes this, but doesn't complete building. So the best option seems to be to
-stick with 1.5.19 until 1.5.20+ build improves.
+ibus can be a real pain but it seems I've found a snapshot that will work for wayland as
+well as non-wayland. So yay!
