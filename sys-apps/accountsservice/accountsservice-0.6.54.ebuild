@@ -23,6 +23,7 @@ CDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
 	systemd? ( >=sys-apps/systemd-186:0= )
 	!systemd? ( !elogind? ( sys-auth/consolekit ) )
+	sys-apps/dbus
 "
 DEPEND="${CDEPEND}
 	dev-libs/libxslt
