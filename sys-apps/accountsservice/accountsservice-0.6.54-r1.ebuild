@@ -45,14 +45,24 @@ PATCHES=(
 )
 
 src_configure() {
-	local emesonargs=(
+	local mesonargs=(
+		--buildtype plain
+		--libdir "$(get_libdir)"
+		--prefix "${EPREFIX}/usr"
+		--sysconfdir "${EPREFIX}/etc"
+		--wrap-mode nodownload
 		$(meson_use systemd)
 		$(meson_use elogind)
 		-Dadmin_group="wheel"
 		-Dsystemdsystemunitdir="$(systemd_get_systemunitdir)"
+		-Dlocalstatedir=/var
 		$(meson_use doc docbook)
 		$(meson_use introspection)
 	)
-
-	meson_src_configure
+	BUILD_DIR="${BUILD_DIR:-${WORKDIR}/${P}-build}"
+	install -d $BUILD_DIR
+	set -- meson "${mesonargs[@]}" "$@" \
+		"${EMESON_SOURCE:-${S}}" "${BUILD_DIR}"
+	echo "$@"
+	tc-env_build "$@" || die
 }
