@@ -66,6 +66,11 @@ src_configure() {
 		$(meson_use test installed_tests)
 }
 
+src_compile() {
+	# 2.38.0 still has some parallel build failures -- rare, but it happens.
+	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_compile
+}
+
 src_install() {
 	# Parallel install fails when no gdk-pixbuf is already installed, bug #481372
 	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_install
@@ -74,14 +79,14 @@ src_install() {
 pkg_preinst() {
 	gnome-meson_pkg_preinst
 
-    # Make sure loaders.cache belongs to gdk-pixbuf alone
-    local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
+	# Make sure loaders.cache belongs to gdk-pixbuf alone
+	local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
 
-    if [[ -e ${EROOT}${cache} ]]; then
-        cp "${EROOT}"${cache} "${ED}"/${cache} || die
-    else
-        touch "${ED}"/${cache} || die
-    fi
+	if [[ -e ${EROOT}${cache} ]]; then
+		cp "${EROOT}"${cache} "${ED}"/${cache} || die
+	else
+		touch "${ED}"/${cache} || die
+	fi
 }
 
 pkg_postinst() {
