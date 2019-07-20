@@ -14,6 +14,7 @@ IUSE="aqua broadway cloudprint colord cups docs examples ffmpeg +gstreamer +intr
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
+	colord? ( cups )
 "
 
 KEYWORDS="*"
@@ -97,18 +98,8 @@ PDEPEND="
 	vim-syntax? ( app-vim/gtk-syntax )
 "
 
-strip_builddir() {
-	local rule=$1
-	shift
-	local directory=$1
-	shift
-	sed -e "s/^\(${rule} =.*\)${directory}\(.*\)$/\1\2/" -i $@ \
-		|| die "Could not strip director ${directory} from build."
-}
-
 src_prepare() {
-	eapply "${FILESDIR}/${PF}"-noschema.patch
-
+	eapply "${FILESDIR}/"gtk+-3.94.0-noschema.patch
 	gnome2_src_prepare
 }
 
