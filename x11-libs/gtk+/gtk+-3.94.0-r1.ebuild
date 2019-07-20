@@ -10,7 +10,7 @@ HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="4"
-IUSE="aqua broadway cloudprint colord cups docs examples +introspection test vim-syntax vulkan wayland X xinerama"
+IUSE="aqua broadway cloudprint colord cups docs examples ffmpeg +gstreamer +introspection test vim-syntax vulkan wayland X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -60,6 +60,8 @@ COMMON_DEPEND="
 		x11-libs/libXdamage
 		xinerama? ( x11-libs/libXinerama )
 	)
+	gstreamer? ( >=media-libs/gstreamer-1.12.3 )
+	ffmpeg? ( media-video/ffmpeg )
 "
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xsl-stylesheets
@@ -111,23 +113,42 @@ src_prepare() {
 }
 
 src_configure() {
+	local print_backends="file"
+	if use cups; then
+		print_backends="$print_backends,cups"
+	fi
+	if use cloudprint; then
+		print_backends="$print_backends,cloudprint"
+	fi
+	local video_backends=""
+	if use ffmpeg; then
+		video_backends="ffmpeg"
+	fi
+	if use gstreamer; then
+		video_backends="$video_backends,gstreamer"
+	fi
+	# strip potential leading comma
+	if [ ${video_backends:0:1} == "," ]; then
+		video_backends=${video_backends:1}
+	fi
+	if [ -z "${video_backends}" ]; then
+		video_backends=none
+	fi
 	local emesonargs=(
+		-Dc_args="$CFLAGS"
+		-Dlink_args="$LDFLAGS"
+		-Dprint-backends=$print_backends
+		-Dmedia=$video_backends
 		-Dquartz-backend=$(usex aqua true false)
 		-Dbroadway-backend=$(usex broadway true false)
-		-Dcloudprint-print-backend=$(usex cloudprint yes no)
 		-Dcolord=$(usex colord yes no)
-		-Dcups-print-backend=$(usex cups yes no)
 		-Dwayland-backend=$(usex wayland true false)
 		-Dx11-backend=$(usex X true false)
 		-Dvulkan=$(usex vulkan yes no)
 		-Dxinerama=$(usex xinerama yes no)
 		-Ddocumentation=$(usex docs true false)
 		-Dcloudproviders=false
-		-Dmir-backend=false
 		-Dwin32-backend=false
-		-Dmodules=false
-		-Dtest-print-backend=no
-		-Dpapi-print-backend=no
 		-Dbuild-tests=$(usex test true false)
 		-Ddemos=$(usex examples true false)
 		-Dinstall-tests=false
@@ -145,6 +166,7 @@ src_test() {
 }
 
 src_compile() {
+	export CFLAGS="$CFLAGS"
 	meson_src_compile
 
 	sed -i -e "s/\(\"\)\/.*gsk\//\1/" gsk/gskenumtypes.h
