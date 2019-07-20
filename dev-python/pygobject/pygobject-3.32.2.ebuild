@@ -49,7 +49,7 @@ src_configure() {
 	# docs disabled by upstream default since they are very out of date
 	configuring() {
 		local emesonargs=(
-		    -Dpython=${EPYTHON}
+			-Dpython=${EPYTHON}
 			$(meson_use cairo pycairo)
 		)
 
