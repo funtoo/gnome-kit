@@ -1,3 +1,5 @@
+x11-libs/gtk+ cloudprint
+
 # needed by simple-scan
 dev-libs/libgusb vala
 
