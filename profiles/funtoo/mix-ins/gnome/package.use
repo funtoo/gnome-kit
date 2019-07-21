@@ -25,9 +25,7 @@ media-libs/libwebp -tiff
 dev-libs/boehm-gc threads
 
 # QA-459. gegl needs cairo and raw USE's
-# FL-6524. gegl does not need pdf.  Pulling in pdf requires a
-# Gentoo-masked version of poppler.
-media-libs/gegl cairo raw -pdf
+media-libs/gegl cairo raw
 
 x11-wm/mutter -kms -deprecated-background
 
