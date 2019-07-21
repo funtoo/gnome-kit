@@ -14,7 +14,7 @@ HOMEPAGE="http://www.pygtk.org/"
 LICENSE="LGPL-2.1"
 SLOT="2"
 KEYWORDS="*"
-IUSE="doc examples test"
+IUSE="doc examples -numpy test"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
@@ -24,7 +24,7 @@ RDEPEND="${PYTHON_DEPS}
 	>=x11-libs/gtk+-2.24:2
 	>=dev-python/pycairo-1.0.2[${PYTHON_USEDEP}]
 	>=dev-python/pygobject-2.26.8-r53:2[${PYTHON_USEDEP}]
-	dev-python/numpy[${PYTHON_USEDEP}]
+	numpy? ( dev-python/numpy[${PYTHON_USEDEP}] )
 	>=gnome-base/libglade-2.5:2.0
 "
 DEPEND="${RDEPEND}
@@ -71,7 +71,8 @@ src_configure() {
 		ECONF_SOURCE="${S}" gnome2_src_configure \
 			$(use_enable doc docs) \
 			--with-glade \
-			--enable-thread
+			--enable-thread \
+			$(use_enable numpy)
 	}
 	python_foreach_impl run_in_build_dir configure_pygtk
 }
