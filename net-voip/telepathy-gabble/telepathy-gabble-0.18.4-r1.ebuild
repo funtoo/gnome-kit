@@ -13,7 +13,7 @@ SRC_URI="https://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~x86-linux"
+KEYWORDS="*"
 IUSE="gnutls +jingle plugins test"
 
 # Prevent false positives due nested configure
@@ -63,6 +63,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	# Fix build with USE=-jingle, bug #523230
 	"${FILESDIR}"/${P}-build-fix-no-jingle.patch
+	"${FILESDIR}"/${P}-openssl-1.1.patch
 )
 
 pkg_setup() {
