@@ -27,6 +27,7 @@ RDEPEND="
 	>=app-arch/file-roller-${PV}
 	>=app-dicts/gnome-dictionary-3.26.1
 	>=gnome-base/dconf-editor-${PV}
+	>=gnome-extra/chrome-gnome-shell-10
 	>=gnome-extra/gconf-editor-3
 	>=gnome-extra/gnome-calculator-${PV}
 	>=gnome-extra/gnome-calendar-${PV}
