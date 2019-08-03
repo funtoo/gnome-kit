@@ -19,6 +19,8 @@ REQUIRED_USE="
 "
 KEYWORDS="*"
 
+# configure: error: Unable to locate required libgbm library for the KMS egl platform  
+
 COMMON_DEPEND="
 	>=dev-libs/glib-2.32:2
 	x11-libs/cairo:=
@@ -30,6 +32,9 @@ COMMON_DEPEND="
 	>=x11-libs/libXfixes-3
 	>=x11-libs/libXrandr-1.2
 	virtual/opengl
+	kms? (
+		media-libs/mesa[egl]
+	)
 	gles2? ( media-libs/mesa[gles2] )
 	gstreamer? (
 		media-libs/gstreamer:1.0
@@ -41,7 +46,8 @@ COMMON_DEPEND="
 	pango? ( >=x11-libs/pango-1.20.0[introspection?] )
 	wayland? (
 		>=dev-libs/wayland-1.1.90
-		media-libs/mesa[egl,wayland] )
+		media-libs/mesa[egl,wayland] 
+	)
 "
 # before clutter-1.7, cogl was part of clutter
 RDEPEND="${COMMON_DEPEND}
