@@ -21,7 +21,7 @@ RDEPEND="
 	>=media-libs/clutter-gtk-0.91.6:1.0
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=x11-libs/gtk+-3.12:3
-	>=sys-libs/libmanette-0.2
+	>=dev-libs/libmanette-0.2
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)
