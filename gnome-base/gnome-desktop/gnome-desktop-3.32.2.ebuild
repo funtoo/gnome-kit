@@ -27,6 +27,7 @@ COMMON_DEPEND="
 	udev? (
 		sys-apps/hwids
 		virtual/libudev:= )
+	sys-apps/bubblewrap
 "
 RDEPEND="${COMMON_DEPEND}
 	!<gnome-base/gnome-desktop-2.32.1-r1:2[doc]
