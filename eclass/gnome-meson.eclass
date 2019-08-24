@@ -41,17 +41,6 @@ gnome-meson_src_prepare() {
 gnome-meson_src_configure() {
 	# Avoid sandbox violations caused by gnome-vfs (bug #128289 and #345659)
 	addpredict "$(unset	 HOME; echo ~)/.gnome2"
-	
-	#FIXME are these valid/needed
-	#	"-Dgtk-doc=no"
-	#	"-Dmaintainer-mode=no"
-	#	"-Dschemas-install=no"
-	#	"-Dupdate-mimedb=no"
-	#	"-Dcompile-warnings=minimum"
-	local emesonargs=(
-		"$@"
-	)
-	
 	meson_src_configure
 }
 
