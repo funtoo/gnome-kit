@@ -68,7 +68,6 @@ src_configure() {
 	# Python bindings are via gobject-introspection
 	# Ex: from gi.repository import Vte
 	gnome2_src_configure \
-		--disable-test-application \
 		--disable-static \
 		--with-gtk=3.0 \
 		$(use_enable debug) \
