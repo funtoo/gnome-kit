@@ -1,3 +1,1 @@
 =dev-util/itstool-2.0.4
-# for gst-plugins-libav:
->=media-video/ffmpeg-4
