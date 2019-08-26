@@ -44,10 +44,19 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 src_configure() {
-	# Hard-enable libffi support since both gobject-introspection and
-	# glib-2.29.x rdepend on it anyway
-	# docs disabled by upstream default since they are very out of date
+
 	configuring() {
+
+		# This is run for each python implementation; EPYTHON will be auto-set to the python implementation
+		# currently active.
+
+		if ! python_is_python3; then
+			# python eclasses install python binaries into this ${T}/${EPYTHON}, and set up python3 ones to be "duds" when
+			# we are building for a python2 target (to trigger errors.) Unfortunately, meson.build tries to be
+			# smarter than this lame trick and detects that the python3 implementations are broken and dies.
+			rm -f ${T}/${EPYTHON}/bin/python3*
+		fi
+
 		local emesonargs=(
 			-Dpython=${EPYTHON}
 			$(meson_use cairo pycairo)
