@@ -53,8 +53,6 @@ QA_MULTILIB_PATHS="
 	usr/lib/polkit-1/polkitd"
 
 PATCHES=(
-	# bug 660880
-	"${FILESDIR}"/polkit-0.115-elogind.patch
 	"${FILESDIR}"/CVE-2018-19788.patch
 	"${FILESDIR}"/polkit-0.115-spidermonkey-60.patch
 )
