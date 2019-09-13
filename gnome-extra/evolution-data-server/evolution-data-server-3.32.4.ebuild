@@ -87,6 +87,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
+		-DSYSCONF_INSTALL_DIR="/etc"
 		-DENABLE_GOA=$(usex gnome-online-accounts)
 		-DENABLE_OAUTH2=ON
 		-DENABLE_GTK=$(usex gtk)
