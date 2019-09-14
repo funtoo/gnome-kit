@@ -1,1 +1,1 @@
-This is gnome kit!
+This is gnome kit! :)
