@@ -96,8 +96,6 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/gnome-shell-3.32.0-improve-motd-handling.patch"
 	"${FILESDIR}/gnome-shell-3.32.0-improve-screen-blanking.patch"
-	"${FILESDIR}/${P}-refresh-background.patch"
-	"${FILESDIR}/${P}-purge-on-resume.patch"
 )
 
 src_prepare() {
@@ -108,6 +106,8 @@ src_prepare() {
 	fi
 
 	if use nvidia; then
+		eapply "${FILESDIR}/${P}-refresh-background.patch"
+		eapply "${FILESDIR}/${P}-purge-on-resume.patch"
 		eapply "${FILESDIR}/${P}-nvidia-random-freezing.patch"
 	fi
 }
