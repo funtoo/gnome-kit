@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+bluetooth elogind +networkmanager nsplugin nvidia systemd tpanel"
+IUSE="+bluetooth elogind +networkmanager nsplugin systemd tpanel"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	?? ( elogind systemd )
 "
@@ -105,11 +105,9 @@ src_prepare() {
 		eapply "${FILESDIR}/${P}-transparent-panel.patch"
 	fi
 
-	if use nvidia; then
-		eapply "${FILESDIR}/${P}-refresh-background.patch"
-		eapply "${FILESDIR}/${P}-purge-on-resume.patch"
-		eapply "${FILESDIR}/${P}-nvidia-random-freezing.patch"
-	fi
+	eapply "${FILESDIR}/${P}-refresh-background.patch"
+	eapply "${FILESDIR}/${P}-purge-on-resume.patch"
+	eapply "${FILESDIR}/${P}-nvidia-random-freezing.patch"
 }
 
 src_configure() {
