@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+GNOME2_EAUTORECONF="yes"
+
 inherit gnome2
 
 DESCRIPTION="C++ interface for pango"
@@ -14,7 +16,7 @@ IUSE="doc"
 
 COMMON_DEPEND="
 	>=x11-libs/pango-1.38.0
-	>=dev-cpp/glibmm-2.57.1:2
+	>=dev-cpp/glibmm-2.61.1:2.6
 	>=dev-cpp/cairomm-1.15.5:1
 	>=dev-libs/libsigc++-2.3.2:2
 "
@@ -33,6 +35,8 @@ pkg_setup() {
 	export CFLAGS="-std=c++17 $CFLAGS"
 	export CXXFLAGS="-std=c++17 $CXXFLAGS"
 }
+
+PATCHES=( "${FILESDIR}"/pangomm-2.43.1-glibmm-2.61.1.patch )
 
 src_configure() {
 	ECONF_SOURCE="${S}" gnome2_src_configure \
