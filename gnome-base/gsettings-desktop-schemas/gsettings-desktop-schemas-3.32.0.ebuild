@@ -15,6 +15,7 @@ RDEPEND="
 	>=dev-libs/glib-2.58:2
 	introspection? ( >=dev-libs/gobject-introspection-1.31.0:= )
 	!<gnome-base/gdm-3.8
+	media-fonts/source-pro
 "
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.50.1
