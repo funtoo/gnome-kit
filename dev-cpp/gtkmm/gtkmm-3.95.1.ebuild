@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,19 +7,19 @@ DESCRIPTION="C++ interface for GTK+"
 HOMEPAGE="https://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+"
-SLOT="3.0"
+SLOT="4.0"
 KEYWORDS="*"
 
 IUSE="aqua doc test wayland X"
 REQUIRED_USE="|| ( aqua wayland X )"
 
 RDEPEND="
-	>=dev-cpp/glibmm-2.49.1:2
+	>=dev-cpp/glibmm-2.55.2:3
 	>=x11-libs/gtk+-3.22.0:3[aqua?,wayland?,X?]
 	>=x11-libs/gdk-pixbuf-2.35.5:2
-	>=dev-cpp/atkmm-2.24.2:0
-	>=dev-cpp/cairomm-1.12.0
-	>=dev-cpp/pangomm-2.38.2:1.4
+	>=dev-cpp/atkmm-2.27.1
+	>=dev-cpp/cairomm-1.15.5
+	>=dev-cpp/pangomm-2.41.2:2
 	>=dev-libs/libsigc++-2.3.2:2
 "
 DEPEND="${RDEPEND}
@@ -49,7 +48,7 @@ src_prepare() {
 src_configure() {
 	ECONF_SOURCE="${S}" gnome2_src_configure \
 		--enable-api-atkmm \
-		$(multilib_native_use_enable doc documentation) \
+		$(native_use_enable doc documentation) \
 		$(use_enable aqua quartz-backend) \
 		$(use_enable wayland wayland-backend) \
 		$(use_enable X x11-backend)

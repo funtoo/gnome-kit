@@ -8,7 +8,7 @@ DESCRIPTION="C++ interface for glib2"
 HOMEPAGE="https://www.gtkmm.org"
 
 LICENSE="LGPL-2.1+ GPL-2+" # GPL-2+ applies only to the build system
-SLOT="2"
+SLOT="2.64"
 KEYWORDS="*"
 
 IUSE="doc debug test"
@@ -42,14 +42,14 @@ src_prepare() {
 	gnome2_src_prepare
 }
 
-multilib_src_configure() {
+src_configure() {
 	ECONF_SOURCE="${S}" gnome2_src_configure \
 		$(use_enable debug debug-refcounting) \
-		$(multilib_native_use_enable doc documentation) \
+		$(use_enable doc documentation) \
 		--enable-deprecated-api
 }
 
-multilib_src_test() {
+src_test() {
 	cd tests
 	default
 
@@ -58,11 +58,9 @@ multilib_src_test() {
 	done
 }
 
-multilib_src_install() {
+src_install() {
 	gnome2_src_install
-}
 
-multilib_src_install_all() {
 	einstalldocs
 
 	find examples -type d -name '.deps' -exec rm -rf {} \; 2>/dev/null
