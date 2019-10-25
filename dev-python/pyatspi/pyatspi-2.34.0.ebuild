@@ -29,11 +29,6 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=(
-	# https://bugzilla.gnome.org/show_bug.cgi?id=689957
-	"${FILESDIR}/${PN}-2.6.0-examples-python3.patch"
-)
-
 src_prepare() {
 	gnome2_src_prepare
 	python_copy_sources
