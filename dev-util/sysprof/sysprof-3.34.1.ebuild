@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome-meson linux-info systemd gnome2-utils xdg
+inherit gnome2 linux-info systemd gnome2-utils xdg meson
 
 DESCRIPTION="System-wide Linux Profiler"
 HOMEPAGE="http://sysprof.com/"
@@ -31,11 +31,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=(
-	"${FILESDIR}"/sysprof-3.28.1-polkit.patch
-	"${FILESDIR}"/sysprof-3.30.2-support-elogind.patch
-)
-
 pkg_pretend() {
 	kernel_is -ge 2 6 31 && return
 	die "Sysprof will not work with a kernel version less than 2.6.31"
@@ -50,14 +45,17 @@ src_configure() {
 		sysprof_opt=none
 	fi
 
-	gnome-meson_src_configure \
-		-Dsystemdunitdir=$(systemd_get_systemunitdir) \
-		-Dwith_sysprofd=${sysprof_opt} \
+	local emesonargs=(
+		-Dsystemdunitdir=$(systemd_get_systemunitdir)
+		-Dwith_sysprofd=${sysprof_opt}
 		$(meson_use gtk enable_gtk)
+	)
+
+	meson_src_configure
 }
 
 pkg_postinst() {
-	gnome-meson_pkg_postinst
+	gnome2_pkg_postinst
 
 	elog "On many systems, especially amd64, it is typical that with a modern"
 	elog "toolchain -fomit-frame-pointer for gcc is the default, because"
@@ -71,5 +69,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome-meson_pkg_postrm
+	gnome2_pkg_postrm
 }
