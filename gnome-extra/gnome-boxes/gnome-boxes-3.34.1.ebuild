@@ -35,7 +35,7 @@ RDEPEND="
 	>=app-emulation/libvirt-glib-0.2.3
 	>=app-emulation/libgovirt-0.3.4
 	>=x11-libs/gtk+-3.19.8:3
-	>=net-libs/gtk-vnc-0.4.4[gtk3,vala]
+	>=net-libs/gtk-vnc-0.4.4
 	app-crypt/libsecret[vala]
 	app-emulation/spice[smartcard]
 	>=net-misc/spice-gtk-0.32[gtk3,smartcard,usbredir,vala]
