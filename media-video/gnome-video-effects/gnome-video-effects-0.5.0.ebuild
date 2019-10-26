@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome2
+inherit gnome2 meson
 
 DESCRIPTION="Effects for Cheese, the webcam video and picture application"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeVideoEffects"

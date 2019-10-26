@@ -1,9 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-VALA_MIN_API_VERSION="0.26"
 
-inherit gnome2 vala virtualx
+inherit gnome2 vala virtualx meson
 
 DESCRIPTION="A cheesy program to take pictures and videos from your webcam"
 HOMEPAGE="https://wiki.gnome.org/Apps/Cheese"
@@ -15,7 +14,7 @@ KEYWORDS="*"
 IUSE="+introspection test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.39.90:2
+	>=dev-libs/glib-2.59.90:2
 	>=x11-libs/gtk+-3.13.4:3[introspection?]
 	>=gnome-base/gnome-desktop-2.91.6:3=
 	>=media-libs/libcanberra-0.26[gtk3]
@@ -64,11 +63,21 @@ src_prepare() {
 }
 
 src_configure() {
-	gnome2_src_configure \
-		GST_INSPECT=$(type -P true) \
-		$(use_enable introspection) \
-		--disable-lcov \
-		--disable-static
+	# work around sandbox violation
+	for card in /dev/dri/card* ; do
+		addpredict "${card}"
+	done
+
+	for render in /dev/dri/render* ; do
+		addpredict "${render}"
+	done
+
+	local emesonargs=(
+		$(meson_use introspection)
+		$(meson_use test tests)
+	)
+
+	meson_src_configure
 }
 
 src_test() {
