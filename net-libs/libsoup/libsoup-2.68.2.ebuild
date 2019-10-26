@@ -8,6 +8,8 @@ VALA_USE_DEPEND="vapigen"
 
 inherit gnome2 meson python-any-r1 vala eutils
 
+VALA_MAX_API_VERSION=0.44
+
 DESCRIPTION="An HTTP library implementation in C"
 HOMEPAGE="https://wiki.gnome.org/Projects/libsoup"
 
@@ -15,7 +17,7 @@ LICENSE="LGPL-2+"
 SLOT="2.4"
 KEYWORDS="*"
 
-IUSE="gssapi +introspection samba +vala"
+IUSE="gtk-doc gssapi +introspection samba +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
@@ -35,6 +37,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/gtk-doc-am-1.20
 	sys-devel/gettext
 	>=virtual/pkgconfig-0-r1
+	app-arch/brotli
 	vala? ( $(vala_depend) )
 "
 
@@ -47,11 +50,12 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		$(meson_use gssapi)
-		$(meson_use introspection)
-		$(meson_use samba ntlm)
-		$(meson_use vala vapi)
+		-Dgssapi=$(usex gssapi enabled disabled)
+		-Dintrospection=$(usex introspection enabled disabled)
+		-Dntlm=$(usex samba enabled disabled)
+		-Dvapi=$(usex vala enabled disabled)
 		$(usex samba -Dntlm_auth="'${EPREFIX}/usr/bin/ntlm_auth'" "")
+		$(meson_use gtk-doc gtk_doc)
 	)
 
 	meson_src_configure
