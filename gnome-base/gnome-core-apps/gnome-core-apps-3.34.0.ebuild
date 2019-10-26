@@ -22,7 +22,7 @@ RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}[cups?]
 
 	>=gnome-base/gnome-session-${PV}
-	>=gnome-base/gnome-menus-${PV}:3
+	>=gnome-base/gnome-menus-3.32.0
 	>=gnome-base/gnome-settings-daemon-${PV}[cups?]
 	>=gnome-base/gnome-control-center-${PV}
 
@@ -31,7 +31,7 @@ RDEPEND="
 	>=gnome-base/gnome-keyring-3.28
 	>=gnome-extra/evolution-data-server-${PV}
 
-	>=app-crypt/seahorse-${PV}
+	>=app-crypt/seahorse-3.34
 	>=app-editors/gedit-${PV}
 	>=app-text/evince-${PV}
 	>=gnome-extra/gnome-contacts-$(get_version_component_range 1-2)

@@ -44,7 +44,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_configure() {
 	local emesonargs=(
-		-Dgnome-distributor=Funtoo
+		-Dgnome_distributor=Funtoo
 		$(meson_use debug debug_tools)
 		-Dudev=$(usex udev enabled disabled)
 	)

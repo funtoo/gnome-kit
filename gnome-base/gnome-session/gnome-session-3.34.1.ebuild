@@ -1,3 +1,4 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -73,13 +74,15 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	eapply "${FILESDIR}"/${PN}-3.32.0-support-elogind.patch
+	eapply "${FILESDIR}"/${PN}-3.34.0-support-elogind.patch
 	gnome2_src_prepare
 }
 
 src_configure() {
 	local emesonargs=(
 		$(meson_use systemd)
+		-Dsystemd_session=$(usex systemd default disable)
+		-Dsystemd_journal=$(usex systemd true false)
 		$(meson_use consolekit)
 		$(meson_use elogind)
 		$(meson_use doc docbook)
@@ -97,7 +100,7 @@ src_install() {
 	doexe "${FILESDIR}/Gnome"
 
 	insinto /usr/share/applications
-	newins "${FILESDIR}/${PN}-3.16.0-defaults.list" gnome-mimeapps.list
+	newins "${FILESDIR}/defaults.list-r4" gnome-mimeapps.list
 
 	dodir /etc/X11/xinit/xinitrc.d/
 	exeinto /etc/X11/xinit/xinitrc.d/

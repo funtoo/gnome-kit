@@ -10,7 +10,7 @@ GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python2_7 pypy )
 PYTHON_REQ_USE='xml(+)'
 
-inherit autotools eutils gnome2 multilib-minimal python-single-r1 virtualx
+inherit autotools eutils gnome2 python-single-r1 virtualx
 
 DESCRIPTION="Library to construct graphical interfaces at runtime"
 HOMEPAGE="https://library.gnome.org/devel/libglade/stable/"
@@ -21,18 +21,14 @@ KEYWORDS="*"
 IUSE="static-libs test tools"
 REQUIRED_USE="tools? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND=">=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
-	>=x11-libs/gtk+-2.24.23:2[${MULTILIB_USEDEP}]
-	>=dev-libs/atk-2.10.0[${MULTILIB_USEDEP}]
-	>=dev-libs/libxml2-2.9.1-r4[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/glib-2.34.3:2
+	>=x11-libs/gtk+-2.24.23:2
+	>=dev-libs/atk-2.10.0
+	>=dev-libs/libxml2-2.9.1-r4
 	tools? ( ${PYTHON_DEPS} )"
 DEPEND="${RDEPEND}
-	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]"
-RDEPEND="${RDEPEND}
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-gtklibs-20140508-r2
-		!app-emulation/emul-linux-x86-gtklibs[-abi_x86_32(-)]
-	)"
+	>=virtual/pkgconfig-0-r1"
+RDEPEND="${RDEPEND}"
 
 pkg_setup() {
 	use tools && python-single-r1_pkg_setup
@@ -63,8 +59,8 @@ src_prepare() {
 	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
-multilib_src_configure() {
-	if ! multilib_is_native_abi || ! use tools; then
+src_configure() {
+	if ! use tools; then
 		export am_cv_pathless_PYTHON=none
 	fi
 
@@ -72,21 +68,17 @@ multilib_src_configure() {
 	gnome2_src_configure \
 		$(use_enable static-libs static)
 
-	if multilib_is_native_abi; then
-		ln -s "${S}"/doc/html doc/html || die
-	fi
+	ln -s "${S}"/doc/html doc/html || die
 }
 
-multilib_src_test() {
+src_test() {
 	Xemake check || die "make check failed"
 }
 
-multilib_src_install() {
+src_install() {
 	dodir /etc/xml
 	gnome2_src_install
-}
 
-multilib_src_install_all() {
 	local DOCS=( AUTHORS ChangeLog NEWS README )
 	einstalldocs
 }

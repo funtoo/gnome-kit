@@ -133,7 +133,7 @@ src_prepare() {
 	# Show logo when branding is enabled
 	use branding && eapply "${FILESDIR}/${PN}-3.32.0-logo.patch"
 
-	eapply "${FILESDIR}"/${PN}-3.32.0-support-elogind.patch
+	eapply "${FILESDIR}"/${PN}-3.34.0-support-elogind.patch
 
 	if use elogind; then
 		eapply "${FILESDIR}"/${PN}-3.32.0-enable-elogind.patch
@@ -165,7 +165,7 @@ src_configure() {
 		--with-xdmcp=yes \
 		--enable-authentication-scheme=pam \
 		--with-default-pam-config=exherbo \
-		--with-pam-dir=$(getpam_mod_dir) \
+		--with-pam-mod-dir=$(getpam_mod_dir) \
 		--with-at-spi-registryd-directory="${EPREFIX}"/usr/libexec \
 		--without-xevie \
 		$(use_enable systemd systemd-journal) \
