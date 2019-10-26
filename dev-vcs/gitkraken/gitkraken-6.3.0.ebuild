@@ -6,15 +6,17 @@ EAPI=6
 inherit eutils pax-utils xdg-utils gnome2-utils
 
 DESCRIPTION="Git GUI client"
-SRC_URI="http://release.gitkraken.com/linux/gitkraken-amd64.tar.gz -> ${PN}-amd64-${PV}.tar.gz"
+SRC_URI="https://release.gitkraken.com/linux/GitKraken-v${PV}.tar.gz -> ${PN}-amd64-${PV}.tar.gz"
 HOMEPAGE="https://www.gitkraken.com/"
-KEYWORDS="*"
+KEYWORDS="~amd64"
 SLOT="0"
 LICENSE="Axosoft, LLC"
 IUSE=""
 
-RDEPEND="x11-libs/libXScrnSaver
-		gnome-base/libgnome-keyring
+RDEPEND="
+	x11-libs/libXScrnSaver
+	gnome-base/libgnome-keyring
+	dev-libs/nss
 "
 
 DEPEND="${RDEPEND}"
