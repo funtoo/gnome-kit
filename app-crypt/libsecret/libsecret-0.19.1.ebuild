@@ -66,7 +66,7 @@ src_prepare() {
 	sed -e 's/CFLAGS="$CFLAGS -\(g\|O0\|O2\)"//' -i configure || die
 }
 
-multilib_src_configure() {
+src_configure() {
 	local ECONF_SOURCE=${S}
 	gnome2_src_configure \
 		--enable-manpages \
