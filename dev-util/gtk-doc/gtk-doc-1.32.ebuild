@@ -12,7 +12,7 @@ LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="debug doc emacs highlight vim"
+IUSE="debug doc emacs"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
@@ -27,10 +27,7 @@ RDEPEND="
 	~app-text/docbook-sgml-dtd-3.0
 	>=app-text/docbook-dsssl-stylesheets-1.40
 	emacs? ( virtual/emacs )
-	highlight? (
-		vim? ( || ( app-editors/vim app-editors/gvim ) )
-		!vim? ( dev-util/source-highlight )
-	)
+	dev-python/pygments
 "
 DEPEND="${RDEPEND}
 	app-text/yelp-tools
@@ -46,23 +43,15 @@ pkg_setup() {
 
 src_prepare() {
 	# Remove global Emacs keybindings, bug #184588
-	eapply "${FILESDIR}"/${PN}-1.8-emacs-keybindings.patch
+	eapply "${FILESDIR}"/${PN}-1.32-emacs-keybindings.patch
 
 	gnome2_src_prepare
 }
 
 src_configure() {
-	local myconf
-	if use vim; then
-		myconf="${myconf} $(use_with highlight highlight vim)"
-	else
-		myconf="${myconf} $(use_with highlight highlight source-highlight)"
-	fi
-
 	gnome2_src_configure \
 		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-		$(use_enable debug) \
-		${myconf}
+		$(use_enable debug)
 }
 
 src_compile() {
