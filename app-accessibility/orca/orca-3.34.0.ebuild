@@ -5,7 +5,7 @@ GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 PYTHON_REQ_USE="threads(+)"
 
-inherit gnome2 python-single-r1
+inherit gnome2 python-r1
 
 DESCRIPTION="Extensible screen reader that provides access to the desktop"
 HOMEPAGE="https://wiki.gnome.org/Projects/Orca"
