@@ -4,6 +4,8 @@
 EAPI=6
 inherit gnome.org gnome2-utils meson vala xdg
 
+VALA_MAX_API_VERSION=0.42
+
 DESCRIPTION="A calculator application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Calculator"
 
@@ -34,6 +36,14 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	vala_src_prepare
 	xdg_src_prepare
+}
+
+src_configure() {
+	local emesonargs=(
+		-Dvala-version=0.46
+	)
+
+	meson_src_configure
 }
 
 pkg_postinst() {

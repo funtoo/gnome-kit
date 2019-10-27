@@ -3,9 +3,8 @@
 
 EAPI=6
 GNOME2_LA_PUNT="yes"
-GNOME2_EAUTORECONF="yes"
 
-inherit gnome2 multilib systemd
+inherit gnome2 systemd meson
 
 DESCRIPTION="Personal file sharing for the GNOME desktop"
 HOMEPAGE="https://git.gnome.org/browse/gnome-user-share"
@@ -13,7 +12,7 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-user-share"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="*"
-IUSE=""
+IUSE="nautilus"
 
 # FIXME: could libnotify be made optional ?
 # FIXME: selinux automagic support
@@ -40,14 +39,15 @@ PATCHES=(
 	# that is problematic for us (bug #551012)
 	# https://bugzilla.gnome.org/show_bug.cgi?id=750525#c2
 	"${FILESDIR}"/${PN}-3.18.1-no-prefork.patch
-
-	# https://git.gnome.org/browse/vino/commit/?id=1538798a89653b8921ca574aebb3f153543b4921
-	"${FILESDIR}"/${PN}-3.18.2-allow-building-on-non-systemd-systems.patch
 )
 
 src_configure() {
-	gnome2_src_configure \
-		--with-httpd=apache2 \
-		--with-modules-path=/usr/$(get_libdir)/apache2/modules/ \
-		--with-systemduserunitdir="$(systemd_get_userunitdir)"
+	local emesonargs=(
+		-Dhttpd=apache2
+		-Dmodules_path=/usr/$(get_libdir)/apache2/modules/
+		-Dsystemduserunitdir="$(systemd_get_userunitdir)"
+		$(meson_use nautilus nautilus_extension)
+	)
+
+	meson_src_configure
 }

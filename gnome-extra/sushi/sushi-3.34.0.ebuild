@@ -40,3 +40,26 @@ DEPEND="${RDEPEND}
 RDEPEND="${COMMON_DEPEND}
 	>=gnome-base/nautilus-3.30.0
 "
+
+src_prepare() {
+	sed -i -e "s/meson.add_install_script('meson-post-install.py', libexecdir, bindir)//" "${S}"/meson.build || die "sed failed"
+	default
+}
+
+src_configure() {
+	# work around sandbox violation
+	for card in /dev/dri/card* ; do
+		addpredict "${card}"
+	done
+
+	for render in /dev/dri/render* ; do
+		addpredict "${render}"
+	done
+
+	meson_src_configure
+}
+
+pkg_postinst() {
+	addwrite /usr/bin/sushi
+	ln -s -f /usr/libexec/org.gnome.NautilusPreviewer /usr/bin/sushi
+}

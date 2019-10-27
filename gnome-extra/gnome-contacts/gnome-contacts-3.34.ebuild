@@ -52,8 +52,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=( "${FILESDIR}/${P}-disambiguate-headerbar.patch" )
-
 src_prepare() {
 	vala_src_prepare
 	gnome2_src_prepare
