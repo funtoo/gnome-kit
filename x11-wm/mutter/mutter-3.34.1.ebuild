@@ -11,7 +11,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="elogind +gles2 input_devices_wacom +introspection nvidia -test udev wayland"
+IUSE="elogind +gles2 input_devices_wacom +introspection nvidia profiler -test udev wayland"
 REQUIRED_USE="
 	wayland? ( elogind )
 	test? ( wayland )
@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=x11-libs/startup-notification-0.7
 	>=x11-libs/libXcomposite-0.2
-	>=gnome-base/gsettings-desktop-schemas-3.32[introspection?]
+	>=gnome-base/gsettings-desktop-schemas-3.32
 	gnome-base/gnome-desktop:3=
 	gnome-base/gnome-settings-daemon:0=
 	>sys-power/upower-0.99:=
@@ -71,6 +71,7 @@ COMMON_DEPEND="
 		nvidia? ( dev-libs/egl-wayland )
 	)
 	media-video/pipewire
+	profiler? ( dev-util/sysprof )
 "
 
 DEPEND="${COMMON_DEPEND}
@@ -84,8 +85,7 @@ RDEPEND="${COMMON_DEPEND}
 	!x11-misc/expocity
 "
 
-PATCHES=( "${FILESDIR}/${P}-add-get-color-info.patch"
-          "${FILESDIR}/${P}-support-eudev.patch" )
+PATCHES=( "${FILESDIR}/${PN}-3.32.2-add-get-color-info.patch" )
 
 src_configure() {
 	sed -i "/'-Werror=redundant-decls',/d" "${S}"/meson.build || die "sed failed"
@@ -96,13 +96,14 @@ src_configure() {
 		-Dglx=true
 		-Dsm=true
 		-Dremote_desktop=true
+		-Dnative_backend=true
 		$(meson_use gles2)
 		$(meson_use introspection)
 		$(meson_use wayland)
 		$(meson_use wayland egl_device)
 		$(meson_use nvidia wayland_eglstream)
-		$(meson_use gles2 native_backend)
 		$(meson_use udev)
+		$(meson_use profiler)
 		$(meson_use input_devices_wacom libwacom)
 		$(meson_use test tests)
 	)
