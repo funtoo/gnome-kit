@@ -8,7 +8,7 @@ VALA_MIN_API_VERSION="0.16"
 VALA_USE_DEPEND="vapigen"
 PYTHON_COMPAT=( python3_{6,7} )
 
-inherit gnome2 python-any-r1 vala multilib-minimal
+inherit gnome2 python-any-r1 vala
 
 DESCRIPTION="Compatibility library for accessing secrets"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
@@ -20,9 +20,9 @@ REQUIRED_USE="vala? ( introspection )"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.16.0:2[${MULTILIB_USEDEP}]
-	>=dev-libs/libgcrypt-1.2.2:0=[${MULTILIB_USEDEP}]
-	>=sys-apps/dbus-1[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.16.0:2
+	>=dev-libs/libgcrypt-1.2.2:0=
+	>=sys-apps/dbus-1
 	>=gnome-base/gnome-keyring-3.1.92
 	introspection? ( >=dev-libs/gobject-introspection-1.30.0 )
 "
@@ -45,20 +45,18 @@ src_prepare() {
 		-i configure.ac configure || die "sed failed"
 }
 
-multilib_src_configure() {
+src_configure() {
 	ECONF_SOURCE="${S}" gnome2_src_configure \
-		$(multilib_native_use_enable vala)
+		$(use_enable vala)
 
-	if multilib_is_native_abi; then
-		ln -s "${S}"/docs/reference/gnome-keyring/html docs/reference/gnome-keyring/html || die
-	fi
+	ln -s "${S}"/docs/reference/gnome-keyring/html docs/reference/gnome-keyring/html || die
 }
 
-multilib_src_install() {
+src_install() {
 	gnome2_src_install
 }
 
-multilib_src_test() {
+src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
 	dbus-launch emake check || die "tests failed"
 }

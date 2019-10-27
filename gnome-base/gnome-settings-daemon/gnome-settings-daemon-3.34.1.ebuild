@@ -24,7 +24,7 @@ REQUIRED_USE="
 COMMON_DEPEND="
 	>=dev-libs/glib-2.44.0:2[dbus]
 	>=x11-libs/gtk+-3.15.3:3[X,wayland?]
-	>=gnome-base/gsettings-desktop-schemas-3.23.3
+	>=gnome-base/gsettings-desktop-schemas-3.33.0
 	>=gnome-base/librsvg-2.36.2:2
 	media-fonts/cantarell
 	media-libs/alsa-lib
@@ -96,9 +96,9 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 #	# Tell gsd to not set DPMS timeouts to '0' (disable) on startup, so DPMS keeps working by default:
-	"${FILESDIR}/${PN}-3.32-elementary-dpms-enable.patch"
+	"${FILESDIR}/${PN}-3.34-elementary-dpms-enable.patch"
 	# Turn off auto-sleeping when AC power is active, and set battery auto-sleep timeout to 15 minutes:
-	"${FILESDIR}/${PN}-3.32-disable-ac-autosleep.patch" 
+	"${FILESDIR}/${PN}-3.34-disable-ac-autosleep.patch" 
 )
 
 src_prepare() {
@@ -112,6 +112,7 @@ src_configure() {
 		$(meson_use networkmanager network_manager)
 		$(meson_use smartcard)
 		$(meson_use wayland)
+		$(meson_use systemd)
 	)
 
 	meson_src_configure

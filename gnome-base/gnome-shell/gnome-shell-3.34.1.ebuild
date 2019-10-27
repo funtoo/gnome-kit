@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="+bluetooth elogind +networkmanager nsplugin nvidia systemd tpanel"
+IUSE="+bluetooth elogind +networkmanager nsplugin systemd"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	?? ( elogind systemd )
 "
@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	>=dev-libs/atk-2[introspection]
 	>=app-crypt/gcr-3.7.5[introspection]
 	>=dev-libs/glib-2.58.0:2[dbus]
-	>=dev-libs/gjs-1.55.92
+	>=dev-libs/gjs-1.57.3
 	>=dev-libs/gobject-introspection-1.58.0:=
 	>=dev-libs/libical-3:=
 	>=x11-libs/gtk+-3.15.0:3[introspection]
@@ -93,23 +93,8 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=(
-	"${FILESDIR}/gnome-shell-3.32.0-improve-motd-handling.patch"
-	"${FILESDIR}/gnome-shell-3.32.0-improve-screen-blanking.patch"
-	"${FILESDIR}/${P}-refresh-background.patch"
-	"${FILESDIR}/${P}-purge-on-resume.patch"
-)
-
 src_prepare() {
 	gnome2_src_prepare
-
-	if use tpanel; then
-		eapply "${FILESDIR}/${P}-transparent-panel.patch"
-	fi
-
-	if use nvidia; then
-		eapply "${FILESDIR}/${P}-nvidia-random-freezing.patch"
-	fi
 }
 
 src_configure() {
