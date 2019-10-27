@@ -249,7 +249,7 @@ diff --git a/src/compositor/meta-background.c b/src/compositor/meta-background.c
 index 6dd4242d2487b1c909ce6d28270a34f98971ad8d..14839ba1d087e73f1fa7d6d8447f927bf6d29e44 100644
 --- a/src/compositor/meta-background.c
 +++ b/src/compositor/meta-background.c
-@@ -477,6 +477,173 @@ get_texture_area (MetaBackground          *self,
+@@ -503,6 +503,173 @@ get_texture_area (MetaBackground          *self,
      }
  }
  
@@ -511,7 +511,7 @@ diff --git a/src/compositor/meta-background.c b/src/compositor/meta-background.c
 index 14839ba1d087e73f1fa7d6d8447f927bf6d29e44..709886bacaf5a3705abc8aad9364d3c826600029 100644
 --- a/src/compositor/meta-background.c
 +++ b/src/compositor/meta-background.c
-@@ -1007,7 +1007,7 @@ meta_background_get_texture (MetaBackground         *self,
+@@ -866,7 +866,7 @@ meta_background_get_texture (MetaBackground         *self,
                                       (1 - self->blend_factor),
                                       (1 - self->blend_factor),
                                       (1 - self->blend_factor),
