@@ -25,8 +25,6 @@ DEPEND="
 "
 
 PATCHES=(
-	# https://bugzilla.gnome.org/show_bug.cgi?id=746920
-	"${FILESDIR}"/${PN}-3.14.2.3-srcdir.patch
 	# Leave build of gtk+:2 engine to x11-themes/gtk-engines-adwaita
 	"${FILESDIR}"/${PN}-3.22.2-exclude-engine.patch
 )
