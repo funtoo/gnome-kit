@@ -5,7 +5,7 @@ EAPI="6"
 PYTHON_COMPAT=( python{3_5,3_6,3_7} )
 PYTHON_REQ_USE="xml"
 
-inherit gnome2 python-single-r1 toolchain-funcs versionator
+inherit gnome2 python-single-r1 toolchain-funcs versionator meson
 
 DESCRIPTION="Introspection system for GObject-based libraries"
 HOMEPAGE="https://wiki.gnome.org/Projects/GObjectIntrospection"
@@ -14,7 +14,7 @@ LICENSE="LGPL-2+ GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="cairo doctool test"
+IUSE="cairo doc doctool test"
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
 	test? ( cairo )
@@ -53,19 +53,22 @@ src_configure() {
 	fi
 
 	# To prevent crosscompiling problems, bug #414105
-	gnome2_src_configure \
-		--disable-static \
-		CC="$(tc-getCC)" \
-		YACC="$(type -p yacc)" \
-		$(use_with cairo) \
-		$(use_enable doctool)
+	local mesonargs=(
+		$(meson_use cairo) \
+		$(meson_use doc gtk_doc) \
+		$(meson_use doctool)
+	)
+
+	meson_src_configure
 }
 
 src_install() {
-	gnome2_src_install
+	meson_src_install
 
 	# Prevent collision with gobject-introspection-common
 	rm -v "${ED}"usr/share/aclocal/introspection.m4 \
 		"${ED}"usr/share/gobject-introspection-1.0/Makefile.introspection || die
 	rmdir "${ED}"usr/share/aclocal || die
+
+	sed -i -e "s#/usr/bin/env python3#/usr/bin/python3#" "${ED}"usr/bin/g-ir-scanner "${ED}"usr/bin/g-ir-annotation-tool
 }

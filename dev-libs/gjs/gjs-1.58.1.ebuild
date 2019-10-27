@@ -23,6 +23,7 @@ RDEPEND="
 	virtual/libffi
 	cairo? ( x11-libs/cairo[X] )
 	gtk? ( x11-libs/gtk+:3 )
+	elibc_glibc? ( dev-util/sysprof )
 "
 
 DEPEND="${RDEPEND}
@@ -44,10 +45,9 @@ src_configure() {
 	gnome2_src_configure \
 		--disable-systemtap \
 		--disable-dtrace \
-		--disable-coverage \
+		--disable-code-coverage \
 		$(use_enable elibc_glibc profiler) \
 		$(use_with cairo cairo) \
-		$(use_with gtk) \
 		$(use_with test dbus-tests) \
 		$(use_with test xvfb-tests)
 }

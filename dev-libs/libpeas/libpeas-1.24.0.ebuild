@@ -4,7 +4,7 @@ EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 
-inherit autotools gnome2 multilib python-single-r1 virtualx
+inherit gnome2 python-single-r1 virtualx meson
 
 DESCRIPTION="A GObject plugins library"
 HOMEPAGE="https://developer.gnome.org/libpeas/stable/"
@@ -13,7 +13,7 @@ LICENSE="LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+gtk glade jit lua +python"
+IUSE="doc demos +gtk glade +introspection lua +python vala"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
@@ -23,8 +23,7 @@ RDEPEND="
 	gtk? ( >=x11-libs/gtk+-3:3[introspection] )
 	lua? (
 		>=dev-lua/lgi-0.9.0
-		jit? ( >=dev-lang/luajit-2:2 )
-		!jit? ( =dev-lang/lua-5.1*:0 ) )
+		=dev-lang/lua-5.1*:0 )
 	python? (
 		${PYTHON_DEPS}
 		>=dev-python/pygobject-3.2:3[${PYTHON_USEDEP}] )
@@ -44,30 +43,30 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# Gentoo uses unversioned lua - lua.pc instad of lua5.1.pc, /usr/bin/lua instead of /usr/bin/lua5.1
-	eapply "${FILESDIR}"/${PN}-1.14.0-lua.pc.patch
-	eautoreconf
 	gnome2_src_prepare
 }
 
 src_configure() {
 	# Wtf, --disable-gcov, --enable-gcov=no, --enable-gcov, all enable gcov
 	# What do we do about gdb, valgrind, gcov, etc?
-	local myconf=(
-		$(use_enable glade glade-catalog)
-		$(use_enable gtk)
-		--disable-static
+	local emesonargs=(
+		$(meson_use glade glade_catalog)
+		$(meson_use gtk widgetry)
 
 		# py2 not supported anymore
-		--disable-python2
-		$(use_enable python python3)
+		-Dpython2=false
+		$(meson_use python python3)
 
 		# lua
-		$(use_enable lua lua5.1)
-		$(use_enable $(usex jit lua jit) luajit)
+		$(meson_use lua lua51)
+
+		$(meson_use doc gtk_doc)
+		$(meson_use demos)
+		$(meson_use introspection)
+		$(meson_use vala vapi)
 	)
 
-	gnome2_src_configure "${myconf[@]}"
+	meson_src_configure "${myconf[@]}"
 }
 
 src_test() {
