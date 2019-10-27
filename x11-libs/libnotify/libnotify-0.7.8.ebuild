@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome.org multilib-minimal xdg-utils
+inherit gnome.org meson xdg-utils
 
 DESCRIPTION="A library for sending desktop notifications"
 HOMEPAGE="https://git.gnome.org/browse/libnotify"
@@ -15,15 +15,15 @@ IUSE="+introspection test"
 
 RDEPEND="
 	app-eselect/eselect-notify-send
-	>=dev-libs/glib-2.26:2[${MULTILIB_USEDEP}]
-	x11-libs/gdk-pixbuf:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.26:2
+	x11-libs/gdk-pixbuf:2
 	introspection? ( >=dev-libs/gobject-introspection-1.32:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-libs/gobject-introspection-common-1.32
 	>=dev-util/gtk-doc-am-1.14
 	virtual/pkgconfig
-	test? ( x11-libs/gtk+:3[${MULTILIB_USEDEP}] )
+	test? ( x11-libs/gtk+:3 )
 "
 PDEPEND="virtual/notification-daemon"
 
@@ -32,20 +32,21 @@ src_prepare() {
 	xdg_environment_reset
 }
 
-multilib_src_configure() {
-	ECONF_SOURCE=${S} econf \
-		--disable-gtk-doc \
-		--disable-static \
-		$(multilib_native_use_enable introspection) \
-		$(use_enable test tests)
+src_configure() {
+	local emesonargs=( \
+		-Dgtk_doc=false \
+		$(meson_use introspection enabled disabled) \
+		$(meson_use test tests)
+	)
+
+	meson_src_configure
 
 	# work-around gtk-doc out-of-source brokedness
-	if multilib_is_native_abi; then
-		ln -s "${S}"/docs/reference/html docs/reference/html || die
-	fi
+	ln -s "${S}"/docs/reference/html docs/reference/html || die
 }
 
-multilib_src_install() {
+src_install() {
+	meson_src_install
 	default
 	prune_libtool_files
 

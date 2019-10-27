@@ -4,17 +4,18 @@
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit autotools flag-o-matic gnome2 virtualx
+inherit flag-o-matic gnome2 meson virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="3"
-IUSE="aqua broadway cloudprint colord cups examples +introspection test vim-syntax wayland +X xinerama"
+IUSE="aqua broadway cloudprint colord cups +doc examples +introspection test vim-syntax wayland +X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
+	colord? ( cups )
 "
 
 KEYWORDS="*"
@@ -27,12 +28,12 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15[introspection?]
-	>=dev-libs/glib-2.49.4:2
+	>=dev-libs/glib-2.53.4:2
 	media-libs/fontconfig
-	>=media-libs/libepoxy-1.0[X(+)?]
+	>=media-libs/libepoxy-1.4[X(+)?]
 	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?]
 	>=x11-libs/gdk-pixbuf-2.30:2[introspection?]
-	>=x11-libs/pango-1.37.3[introspection?]
+	>=x11-libs/pango-1.41.0[introspection?]
 	x11-misc/shared-mime-info
 
 	cloudprint? (
@@ -42,8 +43,8 @@ COMMON_DEPEND="
 	cups? ( >=net-print/cups-1.2 )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
 	wayland? (
-		>=dev-libs/wayland-1.9.91
-		>=dev-libs/wayland-protocols-1.9
+		>=dev-libs/wayland-1.14.91
+		>=dev-libs/wayland-protocols-1.16
 		media-libs/mesa[wayland]
 		>=x11-libs/libxkbcommon-0.2
 	)
@@ -67,15 +68,10 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/gobject-introspection-common
 	>=dev-util/gdbus-codegen-2.48
 	>=dev-util/gtk-doc-am-1.20
+	doc? ( >=dev-util/gtk-doc-1.20 )
 	>=sys-devel/gettext-0.19.7
 	virtual/pkgconfig
-	X? (
-		x11-proto/xextproto
-		x11-proto/xproto
-		x11-proto/inputproto
-		x11-proto/damageproto
-		xinerama? ( x11-proto/xineramaproto )
-	)
+	X? ( x11-base/xorg-proto )
 	test? (
 		media-fonts/font-misc-misc
 		media-fonts/font-cursor-misc )
@@ -108,64 +104,48 @@ strip_builddir() {
 }
 
 src_prepare() {
-	if ! use test ; then
-		# don't waste time building tests
-		strip_builddir SRC_SUBDIRS testsuite Makefile.{am,in}
-
-		# the tests dir needs to be build now because since commit
-		# 7ff3c6df80185e165e3bf6aa31bd014d1f8bf224 tests/gtkgears.o needs to be there
-		# strip_builddir SRC_SUBDIRS tests Makefile.{am,in}
-	fi
-
-	if ! use examples; then
-		# don't waste time building demos
-		strip_builddir SRC_SUBDIRS demos Makefile.{am,in}
-		strip_builddir SRC_SUBDIRS examples Makefile.{am,in}
-	fi
+	# -O3 and company cause random crashes in applications. Bug #133469
+	replace-flags -O3 -O2
+	strip-flags
 
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	eapply "${FILESDIR}"/${PN}-3.22.2-update-icon-cache.patch
+	eapply "${FILESDIR}"/${PN}-3.24.12-update-icon-cache.patch
 
-	# Fix broken autotools logic
-	eapply "${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
-
-	eautoreconf
+	# call eapply_user (implicitly) before eautoreconf
 	gnome2_src_prepare
 }
 
 src_configure() {
-	# need libdir here to avoid a double slash in a path that libtool doesn't
-	# grok so well during install (// between $EPREFIX and usr ...)
-	# cloudprovider is not packaged in Gentoo
-	ECONF_SOURCE=${S} \
-	gnome2_src_configure \
-		$(use_enable aqua quartz-backend) \
-		$(use_enable broadway broadway-backend) \
-		$(use_enable cloudprint) \
-		$(use_enable colord) \
-		$(use_enable cups cups auto) \
-		$(use_enable introspection) \
-		$(use_enable wayland wayland-backend) \
-		$(use_enable X x11-backend) \
-		$(use_enable X xcomposite) \
-		$(use_enable X xdamage) \
-		$(use_enable X xfixes) \
-		$(use_enable X xkb) \
-		$(use_enable X xrandr) \
-		$(use_enable xinerama) \
-		--disable-cloudproviders \
-		--disable-mir-backend \
-		--disable-papi \
-		--enable-man \
-		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
+	local print_backends="file,lpr"
+	if use cups; then
+		print_backends="$print_backends,cups"
+	fi
+	if use cloudprint; then
+		print_backends="$print_backends,cloudprint"
+	fi
+	local emesonargs=(
+		-Dc_args="$CFLAGS"
+		-Dprint_backends=$print_backends
+		-Dquartz_backend=$(usex aqua true false)
+		-Dbroadway_backend=$(usex broadway true false)
+		-Dcolord=$(usex colord yes no)
+		-Dwayland_backend=$(usex wayland true false)
+		-Dx11_backend=$(usex X true false)
+		-Dxinerama=$(usex xinerama yes no)
+		-Dgtk_doc=$(usex doc true false)
+		-Dcloudproviders=false
+		-Dwin32_backend=false
+		-Dmir_backend=false
+		-Dtests=$(usex test true false)
+		-Ddemos=$(usex examples true false)
+		-Dexamples=$(usex examples true false)
+		-Dinstalled_tests=false
+		-Dintrospection=$(usex introspection true false)
+		-Dman=true
+		-Dbuiltin_immodules=auto
+	)
 
-	# work-around gtk-doc out-of-source brokedness
-    local d
-    for d in gdk gtk libgail-util; do
-        ln -s "${S}"/docs/reference/${d}/html docs/reference/${d}/html || die
-    done
+	meson_src_configure
 }
 
 src_test() {
@@ -174,10 +154,8 @@ src_test() {
 }
 
 src_install() {
-	gnome2_src_install
-}
+	meson_src_install
 
-src_install_all() {
 	insinto /etc/gtk-3.0
 	doins "${FILESDIR}"/settings.ini
 	# Skip README.{in,commits,win32} and useless ChangeLog that would get installed by default

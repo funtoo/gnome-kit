@@ -1,10 +1,9 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-GNOME2_LA_PUNT="yes"
-GNOME2_EAUTORECONF="yes"
 
-inherit flag-o-matic gnome-meson
+inherit flag-o-matic gnome2 meson
 
 DESCRIPTION="Image loading library for GTK+"
 HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
@@ -12,7 +11,9 @@ HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
 LICENSE="LGPL-2+"
 SLOT="2"
 KEYWORDS="*"
-IUSE="X doc +introspection jpeg jpeg2k tiff test"
+IUSE="X docs +introspection jpeg jpeg2k tiff test"
+
+RESTRICT="mirror"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.48.0:2
@@ -41,59 +42,53 @@ MULTILIB_CHOST_TOOLS=(
 )
 
 PATCHES=(
-	# Do not run lowmem test on uclibc
 	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
 	"${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
-	"${FILESDIR}"/${P}-enum.patch
 )
-
-src_prepare() {
-	gnome-meson_src_prepare
-}
 
 src_configure() {
 	# png always on to display icons
-	gnome-meson_src_configure \
-		-Dpng=true \
-		-Dman=true \
-		-Dbuiltin_loaders=none \
-		-Dgir=true \
-		$(meson_use tiff tiff) \
-		$(meson_use jpeg jpeg) \
-		$(meson_use jpeg2k jasper) \
-		$(meson_use X x11) \
-		$(meson_use doc docs) \
+	local emesonargs=(
+		-Dpng=true
+		-Dman=true
+		-Dbuiltin_loaders=none
+		-Dgir=true
+		$(meson_use jpeg)
+		$(meson_use jpeg2k jasper)
+		$(meson_use tiff)
+		$(meson_use X x11)
+		$(meson_use docs)
 		$(meson_use test installed_tests)
+	)
+
+	meson_src_configure
 }
 
-src_compile() {
-	# 2.38.0 still has some parallel build failures -- rare, but it happens.
-	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_compile
-}
+src_compile() { meson_src_compile; }
 
 src_install() {
 	# Parallel install fails when no gdk-pixbuf is already installed, bug #481372
-	MAKEOPTS="${MAKEOPTS} -j1" gnome-meson_src_install
+	MAKEOPTS="${MAKEOPTS} -j1" meson_src_install
 }
 
 pkg_preinst() {
-	gnome-meson_pkg_preinst
+	gnome2_pkg_preinst
 
-	# Make sure loaders.cache belongs to gdk-pixbuf alone
-	local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
+    # Make sure loaders.cache belongs to gdk-pixbuf alone
+    local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
 
-	if [[ -e ${EROOT}${cache} ]]; then
-		cp "${EROOT}"${cache} "${ED}"/${cache} || die
-	else
-		touch "${ED}"/${cache} || die
-	fi
+    if [[ -e ${EROOT}${cache} ]]; then
+        cp "${EROOT}"${cache} "${ED}"/${cache} || die
+    else
+        touch "${ED}"/${cache} || die
+    fi
 }
 
 pkg_postinst() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	gnome-meson_pkg_postinst
+	gnome2_pkg_postinst
 
 	# Migration snippet for when this was handled by gtk+
 	if [ -e "${EROOT}"usr/lib/gtk-2.0/2.*/loaders ]; then
@@ -104,7 +99,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome-meson_pkg_postrm
+	gnome2_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		rm -f "${EROOT}"usr/lib*/${PN}-2.0/2.10.0/loaders.cache

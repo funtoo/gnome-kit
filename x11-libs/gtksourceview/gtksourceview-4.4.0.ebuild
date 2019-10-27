@@ -2,10 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-VALA_MIN_API_VERSION="0.24"
+VALA_MAX_API_VERSION="0.44"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala virtualx
+inherit gnome2 vala virtualx meson
 
 DESCRIPTION="A text widget implementing syntax highlighting and other features"
 HOMEPAGE="https://wiki.gnome.org/Projects/GtkSourceView"
@@ -13,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GtkSourceView"
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="4"
 
-IUSE="glade +introspection +vala"
+IUSE="doc glade +introspection test +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 KEYWORDS="*"
@@ -39,10 +39,15 @@ src_prepare() {
 }
 
 src_configure() {
-	gnome2_src_configure \
-		$(use_enable glade glade-catalog) \
-		$(use_enable introspection) \
-		$(use_enable vala)
+	local emesonargs=(
+		$(meson_use glade glade_catalog)
+		$(meson_use introspection gir)
+		$(meson_use vala vapi)
+		$(meson_use doc gtk_doc)
+		$(meson_use test install_tests)
+	)
+
+	meson_src_configure
 }
 
 src_test() {
@@ -50,7 +55,7 @@ src_test() {
 }
 
 src_install() {
-	gnome2_src_install
+	meson_src_install
 
 	insinto /usr/share/${PN}-4/language-specs
 	doins "${FILESDIR}"/2.0/gentoo.lang

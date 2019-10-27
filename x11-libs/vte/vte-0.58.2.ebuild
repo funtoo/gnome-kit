@@ -1,20 +1,23 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 VALA_USE_DEPEND="vapigen"
+VALA_MAX_API_VERSION="0.44"
 
-inherit autotools gnome2 vala
+inherit eutils gnome2 vala meson
+
+# Gnome release team do ALWAYS forget to release vte and it likely will never change
+SRC_URI="https://gitlab.gnome.org/GNOME/vte/-/archive/${PV}/vte-${PV}.tar.bz2"
 
 DESCRIPTION="Library providing a virtual terminal emulator widget"
 HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Terminal/VTE"
-# SRC_URI="https://git.gnome.org/browse/vte/snapshot/${P}.tar.xz"
-SRC_URI="https://gitlab.gnome.org/GNOME/vte/-/archive/${PV}/vte-${PV}.tar.gz"
 
 LICENSE="LGPL-2+"
 SLOT="2.91"
 KEYWORDS="*"
 
-IUSE="+crypt debug glade +introspection vala"
+IUSE="+crypt debug docs glade +gtk3 gtk4 +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
@@ -26,14 +29,14 @@ RDEPEND="
 	sys-libs/ncurses:0=
 	sys-libs/zlib
 
-	crypt?  ( >=net-libs/gnutls-3.2.7:0= )
+	crypt?  ( >=net-libs/gnutls-3.2.7 )
 	glade? ( >=dev-util/glade-3.9:3.10 )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.0:= )
 "
 DEPEND="${RDEPEND}
-	dev-util/gperf
-	dev-libs/libxml2
 	dev-util/gtk-doc
+	dev-libs/libxml2
+	dev-libs/fribidi
 	>=dev-util/gtk-doc-am-1.13
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
@@ -46,39 +49,27 @@ RDEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	eautoreconf
 	use vala && vala_src_prepare
-
-	# build fails because of -Werror with gcc-5.x
-	sed -e 's#-Werror=format=2#-Wformat=2#' -i configure || die "sed failed"
-
 	gnome2_src_prepare
 }
 
 src_configure() {
-	local myconf=""
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		myconf="${myconf} --disable-Bsymbolic"
-
-		# interix stropts.h is empty...
-		export ac_cv_header_stropts_h=no
-	fi
-
 	# Python bindings are via gobject-introspection
 	# Ex: from gi.repository import Vte
-	gnome2_src_configure \
-		--disable-static \
-		--with-gtk=3.0 \
-		$(use_enable debug) \
-		$(use_enable glade glade-catalogue) \
-		$(use_with crypt gnutls) \
-		$(use_enable introspection) \
-		$(use_enable vala) \
-		${myconf}
+	local emesonargs=(
+		$(meson_use debug debugg)
+		$(meson_use docs)
+		$(meson_use gtk3)
+		$(meson_use gtk4)
+		$(meson_use crypt gnutls)
+		$(meson_use introspection gir)
+		$(meson_use vala vapi)
+	)
+
+	meson_src_configure
 }
 
 src_install() {
-	gnome2_src_install
-	mv "${ED}"/etc/profile.d/vte{,-${SLOT}}.sh || die
+	meson_src_install
+	mv "${D}"/etc/profile.d/vte{,-${SLOT}}.sh || die
 }
