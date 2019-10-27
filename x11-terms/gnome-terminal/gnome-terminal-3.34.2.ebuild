@@ -19,7 +19,7 @@ IUSE="debug +gnome-shell +nautilus"
 RDEPEND="
 	>=dev-libs/glib-2.54.0:2[dbus]
 	>=x11-libs/gtk+-3.20:3[X]
-	>=x11-libs/vte-0.56.0
+	>=x11-libs/vte-0.57.0
 	>=dev-libs/libpcre2-10
 	>=gnome-base/dconf-0.14
 	>=gnome-base/gsettings-desktop-schemas-0.1.0
@@ -42,8 +42,7 @@ DOC_CONTENTS="To get previous working directory inherited in new opened
 	. /etc/profile.d/vte.sh"
 
 PATCHES=(
-	"${FILESDIR}"/gnome-terminal-3.32.0-notify-open-title-transparency.patch
-	"${FILESDIR}"/gnome-terminal-3.32.0-new-vte.patch
+	"${FILESDIR}"/gnome-terminal-3.34.0-notify-open-title-transparency.patch
 )
 
 src_prepare() {
