@@ -17,7 +17,7 @@ IUSE="X doc +introspection jpeg jpeg2k tiff test"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.48.0:2
 	>=media-libs/libpng-1.4:0=
-	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
+	>=dev-libs/gobject-introspection-0.9.3:=
 	jpeg? ( virtual/jpeg:0= )
 	jpeg2k? ( media-libs/jasper:= )
 	tiff? ( >=media-libs/tiff-3.9.2:0= )
@@ -57,7 +57,7 @@ src_configure() {
 		-Dpng=true \
 		-Dman=true \
 		-Dbuiltin_loaders=none \
-		-Dgir=$(usex introspection true false) \
+		-Dgir=true \
 		$(meson_use tiff tiff) \
 		$(meson_use jpeg jpeg) \
 		$(meson_use jpeg2k jasper) \

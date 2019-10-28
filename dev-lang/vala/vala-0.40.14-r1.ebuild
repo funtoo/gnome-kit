@@ -13,21 +13,23 @@ SLOT="0.40"
 KEYWORDS="*"
 IUSE="test"
 
-RDEPEND="
-	>=dev-libs/glib-2.32:2
+COMMON_DEPEND="
+	>=dev-libs/glib-2.26:2
 	>=dev-libs/vala-common-${PV}
+	>=media-gfx/graphviz-2.16
+	dev-libs/gobject-introspection
 "
-DEPEND="${RDEPEND}
+
+RDEPEND="${COMMON_DEPEND}
 	!${CATEGORY}/${PN}:0
+"
+
+DEPEND="${COMMON_DEPEND}
 	dev-libs/libxslt
 	sys-devel/flex
 	virtual/pkgconfig
 	virtual/yacc
-	>=media-gfx/graphviz-2.16
-	test? (
-		dev-libs/dbus-glib
-		>=dev-libs/glib-2.26:2
-		dev-libs/gobject-introspection )
+	test? ( dev-libs/dbus-glib )
 "
 
 PATCHES=(
