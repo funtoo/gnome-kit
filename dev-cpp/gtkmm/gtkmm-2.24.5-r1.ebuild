@@ -2,7 +2,7 @@
 
 EAPI=6
 
-inherit gnome2 multilib-minimal
+inherit gnome2
 
 DESCRIPTION="C++ interface for GTK+"
 HOMEPAGE="https://www.gtkmm.org"
@@ -13,16 +13,16 @@ KEYWORDS="*"
 IUSE="doc examples test"
 
 RDEPEND="
-	dev-cpp/glibmm:2[${MULTILIB_USEDEP}]
-	>=x11-libs/gtk+-2.24.15:2[${MULTILIB_USEDEP}]
-	>=x11-libs/gdk-pixbuf-2.28:2[${MULTILIB_USEDEP}]
-	>=dev-cpp/atkmm-2.22.7:0[${MULTILIB_USEDEP}]
-	dev-cpp/cairomm:0[${MULTILIB_USEDEP}]
-	dev-cpp/pangomm:1.4[${MULTILIB_USEDEP}]
-	>=dev-libs/libsigc++-2.3.2:2[${MULTILIB_USEDEP}]
+	dev-cpp/glibmm:2
+	>=x11-libs/gtk+-2.24.15:2
+	>=x11-libs/gdk-pixbuf-2.28:2
+	>=dev-cpp/atkmm-2.22.7:0
+	dev-cpp/cairomm:0
+	dev-cpp/pangomm:1.4
+	>=dev-libs/libsigc++-2.3.2:2
 "
 DEPEND="${RDEPEND}
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	doc? (
 		media-gfx/graphviz
 		dev-libs/libxslt
@@ -45,18 +45,16 @@ src_prepare() {
 	gnome2_src_prepare
 }
 
-multilib_src_configure() {
+src_configure() {
 	ECONF_SOURCE="${S}" \
 	gnome2_src_configure \
 		--enable-api-atkmm \
-		$(multilib_native_use_enable doc documentation)
+		$(native_use_enable doc documentation)
 }
 
-multilib_src_install() {
+src_install() {
 	gnome2_src_install
-}
 
-multilib_src_install_all() {
 	DOCS="AUTHORS ChangeLog PORTING NEWS README"
 	einstalldocs
 }
