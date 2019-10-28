@@ -23,6 +23,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.9.1-r4:2
 	>=dev-db/sqlite-3.8.2:3
 	>=net-libs/glib-networking-2.38.2[ssl]
+	>=net-libs/libpsl-0.20.0
 	gssapi? ( virtual/krb5 )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 	samba? ( net-fs/samba )
@@ -32,7 +33,6 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	>=dev-util/gtk-doc-am-1.20
 	sys-devel/gettext
-	>=net-libs/libpsl-0.20.0
 	>=virtual/pkgconfig-0-r1
 	>=dev-libs/glib-2.40:2
 	vala? ( $(vala_depend) )
