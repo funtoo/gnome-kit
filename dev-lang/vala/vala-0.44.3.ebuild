@@ -15,24 +15,22 @@ IUSE="test"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.32:2
 	>=dev-libs/vala-common-${PV}
+	>=media-gfx/graphviz-2.40.1
+	dev-libs/gobject-introspection
 "
 
 RDEPEND="
-	!dev-lang/vala:0.38
 	${COMMON_DEPEND}
+	!${CATEGORY}/${PN}:0
+	!dev-lang/vala:0.38
 "
 
 DEPEND="${COMMON_DEPEND}
-	!${CATEGORY}/${PN}:0
 	dev-libs/libxslt
 	sys-devel/flex
 	virtual/pkgconfig
 	virtual/yacc
-	>=media-gfx/graphviz-2.40.1
-	test? (
-		dev-libs/dbus-glib
-		>=dev-libs/glib-2.26:2
-		dev-libs/gobject-introspection )
+	test? ( dev-libs/dbus-glib )
 "
 
 PATCHES=(
