@@ -124,6 +124,8 @@ src_install() {
 	else
 		pax-mark m "${ED}usr/bin/gnome-shell"{,-extension-prefs}
 	fi
+	insinto /usr/share/glib-2.0/schemas
+	doins ${FILESDIR}/funtoo-settings.gschema.override
 }
 
 pkg_postinst() {

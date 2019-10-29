@@ -29,10 +29,12 @@ COMMON_DEPEND="
 "
 DEPEND="${COMMON_DEPEND}
 	app-arch/gzip
+	app-text/yelp-tools
 	dev-libs/libxml2
 	>=dev-util/intltool-0.40.4
 	dev-util/itstool
 	sys-apps/lsb-release
+	sys-devel/autoconf-archive
 	>=sys-devel/gettext-0.12
 	virtual/pkgconfig
 	gnome? ( app-text/docbook-xml-dtd:4.3 )
