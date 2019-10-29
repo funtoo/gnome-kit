@@ -15,8 +15,7 @@ IUSE="debug extra gnome +sound"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.32:2
-	>=dev-scheme/guile-2.0.0[deprecated,regex]
-	<dev-scheme/guile-2.1.0
+	>=dev-scheme/guile-2.2.0[deprecated,regex]
 	>=gnome-base/librsvg-2.32:2
 	>=x11-libs/cairo-1.10
 	>=x11-libs/gtk+-3.4:3
@@ -78,7 +77,7 @@ src_configure() {
 
 	gnome2_src_configure \
 		--with-gtk=3.0 \
-		--with-guile=2.0 \
+		--with-guile=2.2 \
 		$(usex debug --enable-debug=yes --enable-debug=minimum) \
 		$(use_enable sound) \
 		${myconf[@]}
