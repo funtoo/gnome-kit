@@ -26,6 +26,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.16.0:3
 	>=x11-libs/libnotify-0.7:=
 	systemd? ( >=sys-apps/systemd-209:0= )
+	!systemd? ( >=sys-auth/elogind-239.3:0= )
 "
 RDEPEND="${COMMON_DEPEND}
 	x11-themes/adwaita-icon-theme
@@ -40,9 +41,17 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_configure() {
+	local myconf=""
+
+	if use systemd; then
+		myconf="libsystemd"
+	else
+		myconf="libelogind"
+	fi
+
 	local emesonargs=(
-		$(meson_use systemd enable-libsystemd)
-		$(meson_use gnome enable-gsd-plugin)
+		-Dlogind=${myconf}
+		$(meson_use gnome gsd_plugin)
 	)
 
 	meson_src_configure
