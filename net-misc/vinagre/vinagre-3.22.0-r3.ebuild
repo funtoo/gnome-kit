@@ -19,7 +19,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.9.6:3
 	app-crypt/libsecret
 	>=dev-libs/libxml2-2.6.31:2
-	>=net-libs/gtk-vnc-0.4.3[gtk3]
+	>=net-libs/gtk-vnc-0.4.3
 	x11-libs/cairo:=
 	x11-libs/gdk-pixbuf:2
 	x11-themes/hicolor-icon-theme
