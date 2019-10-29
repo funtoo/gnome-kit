@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -13,7 +13,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GtkSourceView"
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="3.0/3"
 
-IUSE="glade +introspection vala"
+IUSE="glade +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 KEYWORDS="*"
@@ -26,9 +26,9 @@ RDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
 "
 DEPEND="${RDEPEND}
+	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1.25
 	>=sys-devel/gettext-0.19.4
-	dev-util/itstool
 	virtual/pkgconfig
 	vala? ( $(vala_depend) )
 "
@@ -40,7 +40,6 @@ src_prepare() {
 
 src_configure() {
 	gnome2_src_configure \
-		--disable-deprecations \
 		$(use_enable glade glade-catalog) \
 		$(use_enable introspection) \
 		$(use_enable vala)
