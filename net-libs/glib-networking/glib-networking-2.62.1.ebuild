@@ -42,10 +42,9 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		-Doption=disable-static
-		$(meson_use libproxy libproxy_support)
-		$(meson_use gnome gnome_proxy_support)
-		$(meson_use smartcard pkcs11_support)
+		-Dopenssl=$(usex ssl enabled disabled)
+		-Dlibproxy=$(usex libproxy enabled disabled)
+		-Dgnome_proxy=$(usex gnome enabled disabled)
 	)
 
 	meson_src_configure
