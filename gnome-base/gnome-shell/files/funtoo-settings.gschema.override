@@ -1,0 +1,13 @@
+[org.gnome.desktop.background]
+picture-uri = 'file:///usr/share/backgrounds/gnome/RainDrops.jpg'
+
+[org.gnome.desktop.screensaver]
+picture-uri = 'file:///usr/share/backgrounds/gnome/ColdWarm.jpg'
+
+[org.gnome.Terminal.Legacy.Profile]
+font = 'Liberation Mono Regular 11'
+use-system-font = false
+use-theme-colors = false
+foreground-color = "#839496"
+background-color = "#002B36"
+
