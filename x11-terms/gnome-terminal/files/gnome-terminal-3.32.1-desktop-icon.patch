@@ -1,0 +1,13 @@
+diff '--exclude=.git' -urN a/org.gnome.Terminal.desktop.in.in b/org.gnome.Terminal.desktop.in.in
+--- a/org.gnome.Terminal.desktop.in.in	2019-04-08 15:47:56.000000000 -0500
++++ b/org.gnome.Terminal.desktop.in.in	2019-04-14 15:50:13.299651288 -0500
+@@ -5,7 +5,7 @@
+ _Keywords=shell;prompt;command;commandline;cmd;
+ TryExec=gnome-terminal
+ Exec=gnome-terminal
+-Icon=org.gnome.Terminal
++Icon=utilities-terminal
+ Type=Application
+ Categories=GNOME;GTK;System;TerminalEmulator;
+ StartupNotify=true
+
