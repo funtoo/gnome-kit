@@ -15,7 +15,7 @@ IUSE="cue exif ffmpeg flac gif gsf +gstreamer iptc +iso +jpeg libav +pdf +playli
 
 REQUIRED_USE="cue? ( gstreamer )" # cue is currently only supported via gstreamer, not ffmpeg/libav
 
-KEYWORDS=""
+KEYWORDS="*"
 
 # tracker-2.1.7 currently always depends on ICU (theoretically could be libunistring instead); so choose ICU over enca always here for the time being (ICU is preferred)
 RDEPEND="
