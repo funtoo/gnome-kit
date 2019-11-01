@@ -37,9 +37,6 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	# Fix documentation slotability
-	sed \
-		-e "s/^DOC_MODULE.*/DOC_MODULE = ${PN}-${SLOT}/" \
-		-i docs/reference/Makefile.am || die "sed (1) failed"
 	mv "${S}"/docs/reference/${PN/lib//}{,-${SLOT}}-docs.xml || die "mv (1) failed"
 
 	eapply_user
