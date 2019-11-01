@@ -36,9 +36,6 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	# Fix documentation slotability
-	mv "${S}"/docs/reference/${PN/lib//}{,-${SLOT}}-docs.xml || die "mv (1) failed"
-
 	eapply_user
 
 	use vala && vala_src_prepare
