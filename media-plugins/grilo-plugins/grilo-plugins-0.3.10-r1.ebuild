@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Grilo"
 
 LICENSE="LGPL-2.1+"
 SLOT="0.3"
-KEYWORDS="*"
+KEYWORDS=""
 IUSE="daap dvd examples chromaprint flickr freebox lua subtitles test thetvdb tracker upnp-av vimeo +youtube"
 
 # Bump gom requirement to avoid segfaults
@@ -34,7 +34,7 @@ RDEPEND="
 	freebox? ( net-dns/avahi )
 	>=net-libs/gnome-online-accounts-3.17.91:=
 	lua? (
-		>=dev-lang/lua-5.3
+		>=dev-lua/lua-5.3
 		app-arch/libarchive
 		dev-libs/libxml2:2
 		>=dev-libs/totem-pl-parser-3.4.1 )
