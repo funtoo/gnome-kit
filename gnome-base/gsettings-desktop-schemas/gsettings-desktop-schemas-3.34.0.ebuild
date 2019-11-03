@@ -9,11 +9,12 @@ HOMEPAGE="https://git.gnome.org/browse/gsettings-desktop-schemas"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-IUSE=""
+IUSE="+introspection"
 KEYWORDS="*"
 
 RDEPEND="
 	>=dev-libs/glib-2.58:2
+	introspection? ( >=dev-libs/gobject-introspection-1.31.0:= )
 	!<gnome-base/gdm-3.8
 	media-fonts/source-pro
 "
