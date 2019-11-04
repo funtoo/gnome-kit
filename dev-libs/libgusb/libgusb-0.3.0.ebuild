@@ -13,8 +13,8 @@ LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+introspection static-libs vala"
-REQUIRED_USE="vala? ( introspection )"
+# It is not worth the pain to remove these USE vars.
+IUSE="+vala +introspection static-libs"
 
 # Tests try to access usb devices in /dev
 RESTRICT="test"
@@ -22,21 +22,21 @@ RESTRICT="test"
 RDEPEND="
 	>=dev-libs/glib-2.44:2
 	virtual/libusb:1[udev]
-	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
+	>=dev-libs/gobject-introspection-1.29:=
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxslt
 	dev-util/gtk-doc
 	dev-util/gtk-doc-am
 	virtual/pkgconfig
-	vala? ( $(vala_depend) )
+	$(vala_depend)
 "
 
 PATCHES=("${FILESDIR}/${P}-introspection.patch")
 
 src_prepare() {
 	gnome2_src_prepare
-	use vala && vala_src_prepare
+	vala_src_prepare
 }
 
 src_configure() {
