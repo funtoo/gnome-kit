@@ -18,7 +18,7 @@ REQUIRED_USE="vala? ( introspection )"
 RDEPEND="
 	>=x11-libs/amtk-4.0
 	>=dev-libs/glib-2.52:2
-	>=x11-libs/gtk+-3.20
+	>=x11-libs/gtk+-3.20:3
 	>=x11-libs/gtksourceview-4.0
 	>=dev-libs/libxml2-2.5
 	app-i18n/uchardet
