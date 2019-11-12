@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libical-3
 	>=gnome-base/gsettings-desktop-schemas-3.21.2
 	>=gnome-extra/evolution-data-server-3.17.1:=

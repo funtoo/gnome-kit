@@ -17,7 +17,7 @@ IUSE="daap dvd examples chromaprint flickr freebox lua subtitles test thetvdb tr
 
 # Bump gom requirement to avoid segfaults
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=media-libs/grilo-0.3.1:${SLOT}=[network,playlist]
 	media-libs/libmediaart:2.0
 	>=dev-libs/gom-0.3.2

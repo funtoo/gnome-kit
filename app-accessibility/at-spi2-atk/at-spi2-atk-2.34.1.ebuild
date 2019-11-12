@@ -18,7 +18,7 @@ IUSE="test"
 COMMON_DEPEND="
 	>=app-accessibility/at-spi2-core-2.31.2
 	>=dev-libs/atk-2.31.90
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=sys-apps/dbus-1.5
 "
 RDEPEND="${COMMON_DEPEND}

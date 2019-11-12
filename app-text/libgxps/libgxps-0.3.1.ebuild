@@ -15,7 +15,7 @@ IUSE="+introspection jpeg lcms tiff"
 
 RDEPEND="
 	>=app-arch/libarchive-2.8
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	media-libs/freetype:2
 	media-libs/libpng:0
 	>=x11-libs/cairo-1.16.0[svg]

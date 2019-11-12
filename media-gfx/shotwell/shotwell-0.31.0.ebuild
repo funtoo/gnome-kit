@@ -16,7 +16,7 @@ IUSE="opencv udev"
 
 COMMON_DEPEND="
 	>=x11-libs/gtk+-3.24.12:3
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgee-0.8.5:0.8
 	>=net-libs/webkit-gtk-2.4:4
 	>=dev-libs/json-glib-0.7.6

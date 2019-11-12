@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="debug +introspection +vala"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 "
 DEPEND="${RDEPEND}

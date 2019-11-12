@@ -19,7 +19,7 @@ RDEPEND="
 	app-arch/gcab
 	app-arch/libarchive
 	dev-db/sqlite:3
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/json-glib-1.1.1
 	dev-libs/libyaml
 	>=media-libs/fontconfig-2.11:1.0

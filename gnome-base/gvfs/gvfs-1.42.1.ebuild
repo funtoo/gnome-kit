@@ -25,7 +25,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	app-crypt/gcr:=
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	sys-apps/dbus
 	dev-libs/libxml2:2
 	afp? ( >=dev-libs/libgcrypt-1.2.2:0= )

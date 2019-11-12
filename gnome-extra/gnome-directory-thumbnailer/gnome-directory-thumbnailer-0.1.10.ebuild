@@ -13,7 +13,7 @@ IUSE=""
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gdk-pixbuf-2.39.2:2
 	>=gnome-base/gnome-desktop-3.34.1:3=
 	x11-libs/gtk+:3

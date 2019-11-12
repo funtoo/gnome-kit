@@ -17,7 +17,7 @@ REQUIRED_USE="jpeg? ( zlib )"
 # cairo used in vino-fb
 # libSM and libICE used in eggsmclient-xsmp
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgcrypt-1.1.90:0=
 	>=x11-libs/gtk+-3:3
 

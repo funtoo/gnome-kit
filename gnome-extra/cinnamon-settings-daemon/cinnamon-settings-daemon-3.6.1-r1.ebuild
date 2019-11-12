@@ -18,7 +18,7 @@ RESTRICT=test
 
 # udev is non-optional since lots of plugins, not just gudev, pull it in
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=gnome-base/libgnomekbd-3.6
 	>=gnome-base/librsvg-2.36.2
 	>=gnome-extra/cinnamon-desktop-2.8.0:0=

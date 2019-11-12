@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE="dbus gnome-keyring libnotify spell ssl"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/gmime:2.6
 	>=sys-libs/zlib-1.2.0
 	>=x11-libs/gtk+-3:3

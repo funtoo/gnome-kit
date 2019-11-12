@@ -20,7 +20,7 @@ IUSE="doc +introspection vala"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=media-libs/lcms-2.2:2=
 	x11-libs/gdk-pixbuf:2[introspection?]
 	x11-libs/gtk+:3[X(+),introspection?]

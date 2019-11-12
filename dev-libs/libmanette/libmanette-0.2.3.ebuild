@@ -14,7 +14,7 @@ IUSE="+introspection +udev +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	udev? ( dev-libs/libgudev[introspection?] )
 	dev-libs/libevdev
 	introspection? ( >=dev-libs/gobject-introspection-1.56:= )

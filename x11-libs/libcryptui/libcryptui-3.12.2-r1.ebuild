@@ -16,7 +16,7 @@ KEYWORDS="*"
 
 # Pull in libnotify-0.7 because it's controlled via an automagic ifdef
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3:3[introspection?]
 	>=dev-libs/dbus-glib-0.72
 	>=app-crypt/gcr-3[gtk]

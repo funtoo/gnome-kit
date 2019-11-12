@@ -20,7 +20,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 COMMON_DEPEND="python? ( ${PYTHON_DEPS} )
 	>=dev-libs/dotconf-1.3
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/libltdl:0
 	>=media-libs/libsndfile-1.0.2
 	alsa? ( media-libs/alsa-lib )

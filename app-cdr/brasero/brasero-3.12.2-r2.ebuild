@@ -15,7 +15,7 @@ IUSE="+css +introspection +libburn mp3 nautilus packagekit playlist test tracker
 KEYWORDS="*"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3:3[introspection?]
 	media-libs/gstreamer:1.0
 	media-libs/gst-plugins-base:1.0

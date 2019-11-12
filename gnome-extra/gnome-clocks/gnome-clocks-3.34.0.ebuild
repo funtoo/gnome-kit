@@ -15,7 +15,7 @@ IUSE=""
 
 RDEPEND="
 	>=app-misc/geoclue-2.3.1:2.0
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgweather-3.13.91:2=[vala]
 	>=gnome-base/gnome-desktop-3.34.1:3=
 	>=media-libs/gsound-0.98[vala]

@@ -21,7 +21,7 @@ REQUIRED_USE="bluetooth? ( eds )"
 
 COMMON_DEPEND="
 	$(vala_depend)
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/dbus-glib
 	>=dev-libs/gobject-introspection-1.30:=
 	>=dev-libs/libgee-0.10:0.8[introspection]
@@ -54,7 +54,7 @@ DEPEND="${COMMON_DEPEND}
 		sys-apps/dbus
 		bluetooth? (
 			>=gnome-extra/evolution-data-server-3.9.1
-			>=dev-libs/glib-2.62.2 ) )
+			>=dev-libs/glib-2.62.2:2) )
 "
 
 src_prepare() {

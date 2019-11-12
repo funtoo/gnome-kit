@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="debug extra gnome +sound"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-scheme/guile-2.2.0[deprecated,regex]
 	>=gnome-base/librsvg-2.32:2
 	>=x11-libs/cairo-1.16.0

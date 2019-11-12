@@ -25,7 +25,7 @@ REQUIRED_USE="
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/json-glib-1[introspection?]
 	>=dev-libs/libxml2-2:2
 	>=net-libs/liboauth-0.9.4

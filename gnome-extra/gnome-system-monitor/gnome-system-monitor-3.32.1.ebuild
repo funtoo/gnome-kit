@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="systemd X"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=gnome-base/libgtop-2.39.91
 	>=x11-libs/gtk+-3.24.12:3[X(+)]
 	>=dev-cpp/gtkmm-3.3.18:3.0

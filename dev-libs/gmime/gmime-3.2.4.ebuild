@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="crypt doc idn static-libs test vala"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	sys-libs/zlib
 	crypt? ( >=app-crypt/gpgme-1.8.0:1= )
 	idn? ( net-dns/libidn )

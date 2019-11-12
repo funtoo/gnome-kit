@@ -20,7 +20,7 @@ REQUIRED_USE="vala? ( introspection )"
 RESTRICT="test"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	virtual/libusb:1[udev]
 	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
 "

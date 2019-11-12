@@ -28,7 +28,7 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15[introspection?]
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	media-libs/fontconfig
 	>=media-libs/libepoxy-1.4[X(+)?]
 	>=x11-libs/cairo-1.16.0[aqua?,glib,svg,X?]

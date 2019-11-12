@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	sys-apps/dbus
 "
 DEPEND="${RDEPEND}

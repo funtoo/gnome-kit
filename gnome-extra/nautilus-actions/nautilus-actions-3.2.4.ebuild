@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libxml2-2.6:2
 	dev-libs/libunique:3
 	>=gnome-base/libgtop-2.23.1:2

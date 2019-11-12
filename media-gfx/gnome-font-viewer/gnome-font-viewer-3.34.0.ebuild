@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	gnome-base/gnome-desktop:3=
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2

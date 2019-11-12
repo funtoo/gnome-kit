@@ -15,7 +15,7 @@ IUSE="rdp +ssh spice +telepathy zeroconf"
 # cairo used in vinagre-tab
 # gdk-pixbuf used all over the place
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3.24.12:3
 	app-crypt/libsecret
 	>=dev-libs/libxml2-2.6.31:2

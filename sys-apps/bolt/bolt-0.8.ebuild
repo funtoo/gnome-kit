@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="+doc systemd"
 
 DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	dev-util/glib-utils
 	virtual/libudev
 	virtual/udev

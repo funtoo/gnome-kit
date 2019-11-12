@@ -21,7 +21,7 @@ REQUIRED_USE="vala? ( introspection )
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	crypt? ( >=dev-libs/libgcrypt-1.2.2:0= )
 	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
 "

@@ -18,7 +18,7 @@ IUSE=""
 # gtksourceview vapi definitions in dev-lang/vala itself are too old, and newer vala removes them
 # altogether, thus we need them installed by gtksourceview[vala]
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/gtksourceview:4[vala]
 	>=net-libs/libsoup-2.42:2.4

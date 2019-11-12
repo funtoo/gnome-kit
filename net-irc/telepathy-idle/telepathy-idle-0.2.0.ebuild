@@ -18,7 +18,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 	>=dev-libs/dbus-glib-0.51
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=net-libs/telepathy-glib-0.21[${PYTHON_USEDEP}]
 	sys-apps/dbus
 	${PYTHON_DEPS}

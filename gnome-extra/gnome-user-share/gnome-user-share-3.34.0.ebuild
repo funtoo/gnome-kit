@@ -17,7 +17,7 @@ IUSE="nautilus"
 # FIXME: could libnotify be made optional ?
 # FIXME: selinux automagic support
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3:3
 	>=gnome-base/nautilus-2.91.7
 	media-libs/libcanberra[gtk3]

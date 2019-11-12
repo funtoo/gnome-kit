@@ -15,7 +15,7 @@ IUSE="debug"
 KEYWORDS="*"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	gnome-base/libgtop:2=
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2

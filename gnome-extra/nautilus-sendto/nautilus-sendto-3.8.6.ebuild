@@ -11,7 +11,7 @@ SLOT="0"
 KEYWORDS="*"
 IUSE="debug"
 
-RDEPEND=">=dev-libs/glib-2.62.2"
+RDEPEND=">=dev-libs/glib-2.62.2:2
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.19.8
 	dev-libs/appstream-glib

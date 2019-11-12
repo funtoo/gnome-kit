@@ -20,7 +20,7 @@ KEYWORDS="*"
 
 COMMON_DEPEND="
 	>=app-crypt/p11-kit-0.19
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgcrypt-1.2.2:0=
 	>=dev-libs/libtasn1-1:=
 	>=sys-apps/dbus-1

@@ -15,7 +15,7 @@ IUSE="doc ipv6 systemd"
 
 COMMON_DEPEND="
 	>=dev-libs/dbus-glib-0.88
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	media-libs/libcanberra
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3:3

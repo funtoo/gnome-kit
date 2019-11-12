@@ -16,7 +16,7 @@ IUSE="+introspection vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	media-libs/libcanberra
 	introspection? ( >=dev-libs/gobject-introspection-1.2.9:= )
 "

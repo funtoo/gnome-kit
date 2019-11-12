@@ -19,7 +19,7 @@ IUSE="test"
 # gtk+-2.14 dep instead of 2.12 ensures system doesn't loose VFS capabilities in GtkFilechooser
 RDEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libxml2-2.4.20:2
 	>=dev-libs/popt-1.5
 	>=gnome-base/gconf-2:2

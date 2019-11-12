@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-cpp/glibmm-2.63.1
 	>=dev-cpp/gtkmm-2.24.4-r3:2.4
 	>=dev-cpp/libxmlpp-2.40:2.6

@@ -29,7 +29,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=app-editors/gedit-3.31.90
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libpeas-1.7.0[gtk]
 	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/gtksourceview-3.21.3:3.0

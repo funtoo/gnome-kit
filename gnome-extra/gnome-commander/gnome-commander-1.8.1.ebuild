@@ -19,7 +19,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	app-text/yelp-tools
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	unique? ( >=dev-libs/libunique-0.9.3:1 )
 	gnome-base/gnome-keyring
 	>=gnome-base/gnome-vfs-2.0.0

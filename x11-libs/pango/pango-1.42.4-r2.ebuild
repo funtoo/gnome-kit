@@ -18,7 +18,7 @@ IUSE="X +introspection test"
 
 RDEPEND="
 	>=media-libs/harfbuzz-1.4.2:=[glib(+),truetype(+)]
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=media-libs/fontconfig-2.12.92:1.0=
 	>=media-libs/freetype-2.5.0.1:2=
 	>=x11-libs/cairo-1.16.0-r4:=[X?]

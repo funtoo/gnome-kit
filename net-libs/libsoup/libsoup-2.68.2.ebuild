@@ -21,7 +21,7 @@ IUSE="gtk-doc gssapi +introspection samba +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=net-libs/glib-networking-2.38.2[ssl]
 	>=net-libs/libpsl-0.20.0
 	>=dev-libs/libxml2-2.9.1-r4:2

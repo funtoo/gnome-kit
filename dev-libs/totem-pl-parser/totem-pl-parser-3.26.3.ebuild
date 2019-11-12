@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="archive crypt +introspection +quvi test"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=net-libs/libsoup-2.43:2.4
 	archive? ( >=app-arch/libarchive-3 )
 	crypt? ( dev-libs/libgcrypt:0= )

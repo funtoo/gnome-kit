@@ -19,7 +19,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
 	dev-libs/atk[introspection?]
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libxml2-2.4.0:2
 	x11-libs/cairo:=
 	x11-libs/gdk-pixbuf:2[introspection?]

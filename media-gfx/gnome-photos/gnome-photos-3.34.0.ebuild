@@ -16,7 +16,7 @@ IUSE="flickr test upnp-av"
 
 COMMON_DEPEND="
 	>=app-misc/tracker-2:=[miners]
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	gnome-base/gsettings-desktop-schemas
 	>=dev-libs/libgdata-0.15.2:0=[gnome-online-accounts]
 	media-libs/babl

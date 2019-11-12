@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE="+introspection +modemmanager zeroconf"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/json-glib-0.14
 	>=net-libs/libsoup-2.42:2.4
 	sys-apps/dbus

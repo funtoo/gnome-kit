@@ -16,7 +16,7 @@ IUSE="+gnome +libproxy smartcard test +ssl"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	gnome? ( gnome-base/gsettings-desktop-schemas )
 	libproxy? ( >=net-libs/libproxy-0.4.11-r1:= )
 	smartcard? (

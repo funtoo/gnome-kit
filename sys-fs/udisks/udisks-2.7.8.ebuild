@@ -16,7 +16,7 @@ IUSE="acl cryptsetup debug elogind +gptfdisk +introspection lvm nls selinux syst
 REQUIRED_USE="?? ( elogind systemd )"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libatasmart-0.19
 	>=sys-auth/polkit-0.110
 	>=sys-libs/libblockdev-2.14[cryptsetup,lvm?]

@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="doc mono smime static-libs test vala"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	sys-libs/zlib
 	mono? (
 		dev-lang/mono

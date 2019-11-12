@@ -15,7 +15,7 @@ IUSE="+introspection"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=net-libs/libsoup-2.38:2.4
 	dev-libs/json-glib
 	net-libs/rest

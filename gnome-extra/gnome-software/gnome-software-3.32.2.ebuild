@@ -19,7 +19,7 @@ RDEPEND="
 	app-crypt/libsecret
 	dev-db/sqlite:3
 	>=dev-libs/appstream-glib-0.6.7:0
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/json-glib-1.1.1
 	>=gnome-base/gsettings-desktop-schemas-3.11.5
 	>=net-libs/libsoup-2.51.92:2.4

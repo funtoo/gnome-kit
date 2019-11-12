@@ -18,7 +18,7 @@ IUSE="+introspection startup-notification"
 
 RDEPEND="
 	>=x11-libs/gtk+-2.19.7:2[introspection?]
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	x11-libs/libX11
 	x11-libs/libXres
 	x11-libs/libXext

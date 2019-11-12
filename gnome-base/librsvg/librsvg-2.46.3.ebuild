@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="+introspection tools vala"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/cairo-1.16.0
 	>=x11-libs/pango-1.44.7
 	>=dev-libs/libxml2-2.9.1:2

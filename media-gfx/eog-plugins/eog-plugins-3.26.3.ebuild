@@ -20,7 +20,7 @@ REQUIRED_USE="
 "
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libpeas-0.7.4:=
 	>=media-gfx/eog-3.15.90
 	>=x11-libs/gtk+-3.24.12:3

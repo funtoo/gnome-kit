@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3:3[X]
 	>=gnome-base/gsettings-desktop-schemas-0.1
 

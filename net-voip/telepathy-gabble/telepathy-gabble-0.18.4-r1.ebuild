@@ -24,7 +24,7 @@ QA_CONFIGURE_OPTIONS=".*"
 # x11-libs/gtksourceview:3.0 needed by telepathy-gabble-xmpp-console, bug #495184
 # Keep in mind some deps or higher minimum versions are in ext/wocky/configure.ac
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=sys-apps/dbus-1.1.0
 	>=dev-libs/dbus-glib-0.82
 	>=net-libs/telepathy-glib-0.19.9

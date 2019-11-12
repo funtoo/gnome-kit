@@ -21,7 +21,7 @@ SRC_URI="${SRC_URI}
 
 RDEPEND="
 	>=gnome-base/gconf-2
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=gnome-base/gnome-vfs-2.5.3
 	>=gnome-base/libbonobo-2.13
 	>=dev-libs/popt-1.7

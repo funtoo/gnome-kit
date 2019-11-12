@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/vala-common-${PV}
 	dev-libs/libxslt
 	>=media-gfx/graphviz-2.40.1

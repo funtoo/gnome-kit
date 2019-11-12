@@ -17,7 +17,7 @@ IUSE="X +introspection +sqlite tracker test transcode"
 # The deps for tracker? and transcode? are just the earliest available
 # version at the time of writing this ebuild
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgee-0.8:0.8
 	>=dev-libs/libxml2-2.7:2
 	>=media-libs/gupnp-dlna-0.9.4:2.0

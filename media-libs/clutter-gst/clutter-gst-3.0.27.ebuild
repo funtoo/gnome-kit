@@ -16,7 +16,7 @@ IUSE="X debug examples +introspection udev"
 
 # >=cogl-1.18 provides cogl-2.0-experimental
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=media-libs/clutter-1.20:1.0=[X=,introspection?]
 	>=media-libs/cogl-1.18:1.0=[introspection?]
 	>=media-libs/gstreamer-1.4:1.0[introspection?]

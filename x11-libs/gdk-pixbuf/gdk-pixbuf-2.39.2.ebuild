@@ -16,7 +16,7 @@ IUSE="X docs +introspection jpeg jpeg2k tiff test"
 RESTRICT="mirror"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=media-libs/libpng-1.4:0=
 	>=dev-libs/gobject-introspection-0.9.3:=
 	jpeg? ( virtual/jpeg:0= )

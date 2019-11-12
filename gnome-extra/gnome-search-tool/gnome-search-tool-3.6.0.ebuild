@@ -17,7 +17,7 @@ KEYWORDS="*"
 
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	sys-apps/grep
 	x11-libs/gdk-pixbuf
 	>=x11-libs/gtk+-3:3[X]

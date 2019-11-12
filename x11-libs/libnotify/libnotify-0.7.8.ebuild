@@ -15,7 +15,7 @@ IUSE="+introspection test"
 
 RDEPEND="
 	app-eselect/eselect-notify-send
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	x11-libs/gdk-pixbuf:2
 	introspection? ( >=dev-libs/gobject-introspection-1.32:= )
 "

@@ -29,7 +29,7 @@ RESTRICT="test"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/dbus-glib-0.90
 	introspection? ( >=dev-libs/gobject-introspection-1.30 )
 "

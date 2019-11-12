@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="+cairo elibc_glibc examples gtk test"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/gobject-introspection-1.41.4:=
 
 	sys-libs/readline:0

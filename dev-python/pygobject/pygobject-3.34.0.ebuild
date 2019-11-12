@@ -21,7 +21,7 @@ REQUIRED_USE="
 "
 
 COMMON_DEPEND="${PYTHON_DEPS}
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/gobject-introspection-1.58.0:=
 	virtual/libffi:=
 	cairo? (

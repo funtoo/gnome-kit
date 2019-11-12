@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="zeitgeist"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3.24.12:3
 	>=gnome-extra/evolution-data-server-3.13.90:=
 	>=net-libs/webkit-gtk-2.10.0:4

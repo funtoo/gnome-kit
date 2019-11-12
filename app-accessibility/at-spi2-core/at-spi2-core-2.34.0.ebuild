@@ -19,7 +19,7 @@ IUSE="X +introspection"
 # making the dep unneeded or fixing their configure
 # Only libX11 is optional right now
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=sys-apps/dbus-1
 	x11-libs/libSM
 	x11-libs/libXi

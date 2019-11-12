@@ -33,7 +33,7 @@ REQUIRED_USE="
 #       so there is no chance to support libav right now (Gentoo bug #567638)
 #       If it returns, please check prior GEGL ebuilds for how libav was integrated.  Thanks!
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/json-glib
 	>=media-libs/babl-0.1.62
 	>=media-libs/libpng-1.6.0:0=

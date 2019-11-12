@@ -25,7 +25,7 @@ VALA_DEPEND="
 # Configure is wrong; it needs cheese-3.5.91, not 3.3.91
 RDEPEND="
 	>=dev-libs/folks-0.9.5:=[eds,telepathy]
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgee-0.10:0.8
 	>=gnome-extra/evolution-data-server-3.13.90:=[gnome-online-accounts]
 	>=gnome-base/gnome-desktop-3.34.1:3=

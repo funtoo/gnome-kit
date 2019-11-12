@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/libgee:0.8=[introspection]
 	dev-libs/json-glib
 	>=dev-libs/qqwing-1.3.4
