@@ -20,12 +20,12 @@ RDEPEND="
 	>=dev-libs/glib-2.62.2
 	>=media-libs/fontconfig-2.10.92:1.0=
 	>=media-libs/freetype-2.5.0.1:2=
-	>=x11-libs/cairo-1.16.0-r4:=[X?]
+	>=x11-libs/cairo-1.16.0:=[X?]
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 	X? (
 		>=x11-libs/libXrender-0.9.8
 		>=x11-libs/libX11-1.6.2
-		>=x11-libs/libXft-2.3.1-r1
+		>=x11-libs/libXft-2.3.1
 	)
 "
 DEPEND="${RDEPEND}
