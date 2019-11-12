@@ -28,7 +28,7 @@ COMMON_DEPEND="
 	>=dev-libs/gjs-1.57.3
 	>=dev-libs/gobject-introspection-1.58.0:=
 	>=dev-libs/libical-3:=
-	>=x11-libs/gtk+-3.15.0:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=dev-libs/libcroco-0.6.8:0.6
 	>=gnome-base/gnome-desktop-3.7.90:3=[introspection]
 	>=gnome-base/gsettings-desktop-schemas-3.21.3

@@ -18,7 +18,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.40:2
 	>=gnome-base/librsvg-2.32.0:2
 	>=media-libs/libcanberra-0.26[gtk3]
-	>=x11-libs/gtk+-3.15:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 RDEPEND="${COMMON_DEPEND}
 	!<x11-themes/gnome-themes-standard-3.14

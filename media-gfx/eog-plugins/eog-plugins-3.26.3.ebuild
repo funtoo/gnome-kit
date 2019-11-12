@@ -23,7 +23,7 @@ RDEPEND="
 	>=dev-libs/glib-2.38:2
 	>=dev-libs/libpeas-0.7.4:=
 	>=media-gfx/eog-3.15.90
-	>=x11-libs/gtk+-3.14:3
+	>=x11-libs/gtk+-3.24.12:3
 	exif? ( >=media-libs/libexif-0.6.16 )
 	flickr? ( media-gfx/postr )
 	map? (

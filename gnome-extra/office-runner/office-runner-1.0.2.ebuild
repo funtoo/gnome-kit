@@ -17,7 +17,7 @@ IUSE=""
 COMMON_DEPEND="
 	dev-libs/glib:2
 	>=gnome-base/gnome-settings-daemon-3.0
-	>=x11-libs/gtk+-3.8:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 # requires systemd's org.freedesktop.login1 dbus service
 RDEPEND="${COMMON_DEPEND}

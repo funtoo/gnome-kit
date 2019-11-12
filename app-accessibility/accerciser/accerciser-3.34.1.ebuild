@@ -18,7 +18,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 RDEPEND="
 	>=app-accessibility/at-spi2-core-2.5.2:2
 	>=dev-python/pygobject-2.90.3:3[${PYTHON_USEDEP}]
-	>=x11-libs/gtk+-3.1.13:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 
 	dev-libs/atk[introspection]
 	>=dev-libs/glib-2.28:2

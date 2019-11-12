@@ -16,7 +16,7 @@ IUSE="test"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.46.0:2[dbus]
-	>=x11-libs/gtk+-3.22.13:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/webkit-gtk-2.17.4:4=
 	>=x11-libs/cairo-1.2
 	>=app-crypt/gcr-3.5.5:=[gtk]

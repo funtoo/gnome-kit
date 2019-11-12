@@ -16,7 +16,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-libs/glib-2.40:2
-	>=x11-libs/gtk+-3.13.4:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)

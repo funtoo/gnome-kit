@@ -18,7 +18,7 @@ COMMON_DEPEND="
 	app-text/iso-codes
 	>=dev-libs/glib-2.58.0:2[dbus]
 	>=x11-libs/gdk-pixbuf-2.36.5:2[introspection?]
-	>=x11-libs/gtk+-3.24.0:3[X,introspection?]
+	>=x11-libs/gtk+-3.24.12:3[X,introspection?]
 	x11-libs/cairo:=[X]
 	x11-libs/libX11
 	x11-misc/xkeyboard-config

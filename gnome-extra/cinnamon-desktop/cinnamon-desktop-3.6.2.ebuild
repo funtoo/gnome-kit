@@ -20,7 +20,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.37.3:2[dbus]
 	media-sound/pulseaudio[glib]
 	>=x11-libs/gdk-pixbuf-2.22:2[introspection?]
-	>=x11-libs/gtk+-3.3.16:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=x11-libs/libXext-1.1
 	>=x11-libs/libXrandr-1.3
 	x11-libs/cairo:=[X]

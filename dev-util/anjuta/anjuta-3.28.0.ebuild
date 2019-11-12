@@ -25,7 +25,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.34:2[dbus]
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.10:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/libxml2-2.4.23
 	>=dev-libs/gdl-3.5.5:3=
 	>=x11-libs/gtksourceview-3:3.0

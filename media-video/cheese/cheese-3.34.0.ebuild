@@ -15,7 +15,7 @@ IUSE="+introspection test"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.59.90:2
-	>=x11-libs/gtk+-3.13.4:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=gnome-base/gnome-desktop-2.91.6:3=
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=media-libs/clutter-1.13.2:1.0[introspection?]

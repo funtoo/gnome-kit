@@ -19,7 +19,7 @@ RDEPEND="
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
 	>=media-libs/harfbuzz-0.9.9
-	>=x11-libs/gtk+-3.20:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40

@@ -42,7 +42,7 @@ RDEPEND="
 	berkdb? ( >=sys-libs/db-4:= )
 	gtk? (
 		>=app-crypt/gcr-3.4[gtk]
-		>=x11-libs/gtk+-3.10:3
+		>=x11-libs/gtk+-3.24.12:3
 	)
 	google? (
 		>=dev-libs/json-glib-1.0.4

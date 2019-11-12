@@ -27,7 +27,7 @@ COMMON_DEPEND="
 	>=dev-libs/libxml2-2:2
 	dev-libs/libxslt
 	>=sys-apps/util-linux-2.16:=
-	>=x11-libs/gtk+-3.20:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 RDEPEND="${COMMON_DEPEND}
 	gnome-base/gsettings-desktop-schemas

@@ -23,7 +23,7 @@ REQUIRED_USE="vala? ( introspection )"
 RDEPEND="
 	>=dev-libs/glib-2.40:2
 	>=dev-libs/libpcre2-10.21
-	>=x11-libs/gtk+-3.16:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=x11-libs/pango-1.22.0
 
 	sys-libs/ncurses:0=

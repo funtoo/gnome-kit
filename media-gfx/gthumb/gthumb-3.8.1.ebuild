@@ -16,7 +16,7 @@ IUSE="cdr colord debug +exif gnome-keyring gstreamer http jpeg json +lcms +raw +
 
 RDEPEND="
 	>=dev-libs/glib-2.36.0:2[dbus]
-	>=x11-libs/gtk+-3.16.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	exif? ( >=media-gfx/exiv2-0.21:= )
 	slideshow? (
 		>=media-libs/clutter-1.12.0:1.0

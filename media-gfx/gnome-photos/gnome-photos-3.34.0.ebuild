@@ -29,7 +29,7 @@ COMMON_DEPEND="
 	sci-geosciences/geocode-glib
 	>=x11-libs/cairo-1.14
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.22.16:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 # gnome-online-miners is also used for google, facebook, DLNA - not only flickr
 # but out of all the grilo-plugins, only upnp-av and flickr get used, which have USE flags here,

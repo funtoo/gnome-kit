@@ -19,7 +19,7 @@ RDEPEND="
 	app-text/iso-codes
 	>=app-text/enchant-2.1.3
 	>=dev-libs/glib-2.44:2
-	>=x11-libs/gtk+-3.20:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-1.42.0:= )
 	vala? ( $(vala_depend) )
 "

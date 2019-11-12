@@ -19,7 +19,7 @@ RDEPEND="
 	>=dev-libs/glib-2.49.4:2
 	>=x11-libs/gdk-pixbuf-2.30:2
 	!<x11-libs/gtk+-2.24.28-r1:2
-	!<x11-libs/gtk+-3.22.2:3
+	!<x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	app-text/docbook-xml-dtd:4.3

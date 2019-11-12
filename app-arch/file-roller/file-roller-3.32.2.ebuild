@@ -23,7 +23,7 @@ RDEPEND="
 	>=app-arch/libarchive-3:=
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/json-glib-0.14
-	>=x11-libs/gtk+-3.13.2:3
+	>=x11-libs/gtk+-3.24.12:3
 	sys-apps/file
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2

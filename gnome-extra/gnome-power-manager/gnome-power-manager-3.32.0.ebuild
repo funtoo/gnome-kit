@@ -16,7 +16,7 @@ IUSE="test"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.58.0:2
-	>=x11-libs/gtk+-3.3.8:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/cairo-1
 	>=sys-power/upower-0.99:=
 "

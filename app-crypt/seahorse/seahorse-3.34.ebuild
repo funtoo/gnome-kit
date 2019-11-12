@@ -22,7 +22,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.10:2
 	>=net-libs/libsoup-2.33.92:2.4
 	net-misc/openssh
-	>=x11-libs/gtk+-3.4:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-misc/shared-mime-info
 	net-nds/openldap:=
 	zeroconf? ( >=net-dns/avahi-0.6:= )

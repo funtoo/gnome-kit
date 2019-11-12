@@ -36,7 +36,7 @@ RDEPEND="
 	firebird? ( dev-db/firebird )
 	gnome-keyring? ( app-crypt/libsecret )
 	gtk? (
-		>=x11-libs/gtk+-3.0.0:3
+		>=x11-libs/gtk+-3.24.12:3
 		canvas? ( x11-libs/goocanvas:2.0= )
 		sourceview? ( x11-libs/gtksourceview:3.0 )
 		graphviz? ( media-gfx/graphviz )

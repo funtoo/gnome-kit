@@ -15,7 +15,7 @@ REQUIRED_USE="|| ( aqua wayland X )"
 
 RDEPEND="
 	>=dev-cpp/glibmm-2.55.2:3
-	>=x11-libs/gtk+-3.22.0:3[aqua?,wayland?,X?]
+	>=x11-libs/gtk+-3.24.12:3[aqua?,wayland?,X?]
 	>=x11-libs/gdk-pixbuf-2.35.5:2
 	>=dev-cpp/atkmm-2.27.1
 	>=dev-cpp/cairomm-1.15.5

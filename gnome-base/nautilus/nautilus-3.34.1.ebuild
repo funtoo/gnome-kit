@@ -27,7 +27,7 @@ COMMON_DEPEND="
 	>=app-arch/gnome-autoar-0.2.1
 	>=dev-libs/glib-2.53.4:2[dbus]
 	>=x11-libs/pango-1.28.3
-	>=x11-libs/gtk+-3.21.6:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=dev-libs/libxml2-2.7.8:2
 	>=media-libs/gexiv2-0.10.6
 	>=gnome-base/gnome-desktop-3.30:3=

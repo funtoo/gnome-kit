@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	>=dev-libs/libxml2-2.5:2
 	sys-libs/zlib:=
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.16.0:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	gnome-base/gsettings-desktop-schemas
 	>=x11-libs/cairo-1.10:=
 	>=app-text/poppler-0.33:=[cairo]

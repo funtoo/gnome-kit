@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-libs/libxslt-1.1.4
 	>=gnome-extra/yelp-xsl-3.32.0
 	>=net-libs/webkit-gtk-2.19.2:4
-	>=x11-libs/gtk+-3.13.3:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-themes/adwaita-icon-theme
 "
 DEPEND="${RDEPEND}

@@ -28,7 +28,7 @@ RDEPEND="
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtkhotkey
-	>=x11-libs/gtk+-3.0.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/libnotify
 	x11-libs/pango
 	x11-themes/adwaita-icon-theme

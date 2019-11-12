@@ -16,7 +16,7 @@ IUSE=""
 RDEPEND="
 	dev-libs/libgee:0.8=
 	>=dev-libs/glib-2.40:2
-	>=x11-libs/gtk+-3.19.2:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${DEPEND}
 	>=sys-devel/gettext-0.19.8

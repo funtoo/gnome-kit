@@ -17,7 +17,7 @@ IUSE="debug +introspection"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.38:2
 	media-libs/libcanberra[gtk3]
-	>=x11-libs/gtk+-3.12:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	x11-libs/libnotify
 	virtual/udev
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )

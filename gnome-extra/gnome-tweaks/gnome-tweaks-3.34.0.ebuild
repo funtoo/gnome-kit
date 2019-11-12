@@ -27,7 +27,7 @@ COMMON_DEPEND="
 # g-s-d, gnome-desktop, gnome-shell etc. needed at runtime for the gsettings schemas
 RDEPEND="${COMMON_DEPEND}
 	>=gnome-base/gnome-desktop-3.30.0:3=[introspection]
-	>=x11-libs/gtk+-3.24.0:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 
 	net-libs/libsoup:2.4[introspection]
 	x11-libs/libnotify[introspection]

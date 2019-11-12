@@ -19,7 +19,7 @@ REQUIRED_USE="
 RDEPEND="
 	>=dev-libs/glib-2.44:2
 	sys-auth/polkit
-	gtk? ( >=x11-libs/gtk+-3.22.0:3 )
+	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
 	systemd? ( >=sys-apps/systemd-222 )
 "
 DEPEND="${RDEPEND}

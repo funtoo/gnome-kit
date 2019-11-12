@@ -15,7 +15,7 @@ IUSE=""
 RDEPEND="
 	dev-libs/glib
 	>=x11-misc/xdg-user-dirs-0.14
-	>=x11-libs/gtk+-3.5.1:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	dev-util/intltool

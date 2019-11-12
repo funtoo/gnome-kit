@@ -16,7 +16,7 @@ RDEPEND="
 	dev-libs/glib:2
 	media-libs/libcanberra
 	net-libs/libsoup:2.4
-	>=x11-libs/gtk+-3.22:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/json-glib-1
 	>=net-libs/rest-0.7
 	net-libs/gnome-online-accounts

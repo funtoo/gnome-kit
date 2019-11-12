@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE=""
 
 COMMON_DEPEND="
-	>=x11-libs/gtk+-3.21.6:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	net-libs/telepathy-glib[introspection]
 	>=dev-libs/glib-2.43.4:2
 	>=dev-libs/gobject-introspection-1.50:=

@@ -26,7 +26,7 @@ RDEPEND="
 	>=gnome-extra/evolution-data-server-${PV}:0=
 	>=mail-client/evolution-${PV}:2.0
 	>=net-libs/libsoup-2.42:2.4
-	>=x11-libs/gtk+-3.10:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	dev-util/gdbus-codegen

@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=x11-libs/gtk+-3.0.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=gnome-base/gconf-2.12:2
 "
 DEPEND="${RDEPEND}

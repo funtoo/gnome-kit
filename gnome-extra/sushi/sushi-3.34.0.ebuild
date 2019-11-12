@@ -19,7 +19,7 @@ COMMON_DEPEND="
 	>=dev-libs/gobject-introspection-0.9.6:=
 	>=media-libs/clutter-1.11.4:1.0[introspection]
 	>=media-libs/clutter-gtk-1.0.1:1.0[introspection]
-	>=x11-libs/gtk+-3.13.2:3[X,introspection]
+	>=x11-libs/gtk+-3.24.12:3[X,introspection]
 
 	>=app-text/evince-3.0[introspection]
 	media-libs/freetype:2

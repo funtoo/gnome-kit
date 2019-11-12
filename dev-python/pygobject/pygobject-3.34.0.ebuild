@@ -34,7 +34,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/atk[introspection]
 	x11-libs/cairo[glib]
 	>=x11-libs/gdk-pixbuf-2.38.0:2[introspection]
-	>=x11-libs/gtk+-3.24.0:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	x11-libs/pango[introspection]
 "
 

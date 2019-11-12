@@ -21,7 +21,7 @@ RDEPEND="
 	media-libs/libexif
 	media-libs/tiff:0=
 
-	>=x11-libs/gtk+-3.3.8:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/vte-0.25.1:2.91
 	>=x11-misc/colord-1.3.1:0=
 	>=x11-libs/colord-gtk-0.1.20

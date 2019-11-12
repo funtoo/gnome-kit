@@ -18,7 +18,7 @@ REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.35.1:2
-	>=x11-libs/gtk+-3.13.5:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=net-libs/libsoup-2.44:2.4
 	>=dev-libs/libxml2-2.6.0:2
 	sci-geosciences/geocode-glib

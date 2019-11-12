@@ -22,7 +22,7 @@ RDEPEND="
 	>=net-wireless/gnome-bluetooth-3.22.0
 	>=sys-auth/polkit-0.97
 	>=sys-power/upower-0.99:=
-	>=x11-libs/gtk+-3.19.5:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-wm/metacity-3.26.0
 
 	x11-libs/libX11

@@ -26,7 +26,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.58.0:2[dbus]
 	dev-libs/libhandy
 	>=x11-libs/gdk-pixbuf-2.23.0:2
-	>=x11-libs/gtk+-3.22.0:3[X,wayland?]
+	>=x11-libs/gtk+-3.24.12:3[X,wayland?]
 	>=gnome-base/gsettings-desktop-schemas-3.28.0
 	>=gnome-base/gnome-desktop-3.27.90:3=
 	>=gnome-base/gnome-settings-daemon-3.25.2

@@ -40,7 +40,7 @@ COMMON_DEPEND="
 	>=net-libs/webkit-gtk-2.13.90:4
 	>=x11-libs/cairo-1.9.15:=[glib]
 	>=x11-libs/gdk-pixbuf-2.24:2
-	>=x11-libs/gtk+-3.10:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7:=
 	>=x11-misc/shared-mime-info-0.22
 

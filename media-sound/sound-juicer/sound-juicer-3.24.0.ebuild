@@ -15,7 +15,7 @@ IUSE="debug flac test vorbis"
 COMMON_DEPEND="
 	app-text/iso-codes
 	>=dev-libs/glib-2.49.5:2[dbus]
-	>=x11-libs/gtk+-3.21.6:3
+	>=x11-libs/gtk+-3.24.12:3
 	media-libs/libcanberra[gtk3]
 	>=app-cdr/brasero-2.90
 	sys-apps/dbus

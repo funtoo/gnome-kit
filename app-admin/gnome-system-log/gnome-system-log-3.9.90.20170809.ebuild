@@ -17,7 +17,7 @@ IUSE=""
 COMMON_DEPEND="
 	>=dev-libs/glib-2.31:2
 	sys-libs/zlib:=
-	>=x11-libs/gtk+-3.11.4:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/pango
 "
 # ${PN} was part of gnome-utils before 3.4

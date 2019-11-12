@@ -39,7 +39,7 @@ RDEPEND="
 		>=virtual/libgudev-136
 		x11-libs/libxkbcommon
 	)
-	gtk? ( >=x11-libs/gtk+-3.22.6:3[aqua?] )
+	gtk? ( >=x11-libs/gtk+-3.24.12:3[aqua?] )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
 	X? (
 		media-libs/fontconfig

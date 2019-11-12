@@ -52,7 +52,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	net-libs/libsoup:2.4[introspection]
 	>=sys-auth/polkit-0.100[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
-	>=x11-libs/gtk+-3.9.12:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	x11-libs/pango[introspection]
 	>=x11-libs/startup-notification-0.11
 	x11-libs/libX11

@@ -37,7 +37,7 @@ RDEPEND="
 	>=sci-geosciences/geocode-glib-3.15.3
 	x11-libs/cairo:=
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.20.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/pango
 	v4l? ( >=media-video/cheese-3.5.91:= )
 "

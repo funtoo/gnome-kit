@@ -14,7 +14,7 @@ KEYWORDS="*"
 
 RDEPEND="
 	dev-libs/glib:2
-	>=x11-libs/gtk+-3.0.0:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=dev-libs/libxml2-2.4:2
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
 "

@@ -19,7 +19,7 @@ COMMON_DEPEND="
 	>=media-libs/libcanberra-0.26-r2[gtk3]
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
-	>=x11-libs/gtk+-3.0.3:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/libX11
 	x11-libs/libXext
 "

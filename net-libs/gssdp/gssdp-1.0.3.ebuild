@@ -16,7 +16,7 @@ IUSE="+introspection gtk"
 RDEPEND="
 	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
 	>=net-libs/libsoup-2.44.2:2.4[${MULTILIB_USEDEP},introspection?]
-	gtk? ( >=x11-libs/gtk+-3.0:3 )
+	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
 	introspection? (
 		$(vala_depend)
 		>=dev-libs/gobject-introspection-1.36:= )

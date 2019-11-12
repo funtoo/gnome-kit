@@ -34,7 +34,7 @@ RDEPEND="
 	>=app-emulation/libvirt-0.9.3[libvirtd,qemu]
 	>=app-emulation/libvirt-glib-0.2.3
 	>=app-emulation/libgovirt-0.3.4
-	>=x11-libs/gtk+-3.19.8:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/gtk-vnc-0.4.4
 	app-crypt/libsecret[vala]
 	app-emulation/spice[smartcard]

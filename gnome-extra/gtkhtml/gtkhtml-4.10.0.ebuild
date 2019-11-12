@@ -16,7 +16,7 @@ IUSE=""
 
 # orbit is referenced in configure, but is not used anywhere else
 RDEPEND="
-	>=x11-libs/gtk+-3.2:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/cairo-1.10:=
 	x11-libs/pango
 	>=app-text/enchant-1.1.7:=

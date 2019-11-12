@@ -31,7 +31,7 @@ COMMON_DEPEND="
 	>=media-libs/clutter-gtk-1.8.1:1.0
 	>=x11-libs/cairo-1.14
 	>=x11-libs/gdk-pixbuf-2.23.0:2
-	>=x11-libs/gtk+-3.19.4:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 
 	>=media-libs/grilo-0.3.0:0.3[playlist]
 	>=media-libs/gstreamer-1.6.0:1.0
@@ -45,7 +45,7 @@ COMMON_DEPEND="
 
 	cdr? (
 		>=dev-libs/libxml2-2.6:2
-		>=x11-libs/gtk+-3.19.4:3[X]
+		>=x11-libs/gtk+-3.24.12:3[X]
 	)
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
 	lirc? ( app-misc/lirc )
@@ -63,7 +63,7 @@ RDEPEND="${COMMON_DEPEND}
 		>=dev-libs/libpeas-1.1.0[python,${PYTHON_USEDEP}]
 		dev-python/pyxdg[${PYTHON_USEDEP}]
 		dev-python/dbus-python[${PYTHON_USEDEP}]
-		>=x11-libs/gtk+-3.5.2:3[introspection] )
+		>=x11-libs/gtk+-3.24.12:3[introspection] )
 "
 # libxml2+gdk-pixbuf required for glib-compile-resources
 DEPEND="${COMMON_DEPEND}

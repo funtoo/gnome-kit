@@ -20,7 +20,7 @@ RDEPEND="
 	dev-libs/json-glib
 	>=dev-libs/qqwing-1.3.4
 	x11-libs/gdk-pixbuf:2[introspection]
-	>=x11-libs/gtk+-3.19.0:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	x11-libs/pango[introspection]
 "
 DEPEND="${RDEPEND}

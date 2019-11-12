@@ -15,7 +15,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-libs/glib-2.52:2
-	>=x11-libs/gtk+-3.20:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/gobject-introspection-1.42:=
 "
 DEPEND="${RDEPEND}

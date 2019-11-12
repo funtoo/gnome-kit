@@ -25,7 +25,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	dev-python/gst-python:1.0[${PYTHON_USEDEP}]
 	>=dev-python/pygobject-3.10:3[${PYTHON_USEDEP}]
 	media-libs/gstreamer:1.0[introspection]
-	>=x11-libs/gtk+-3.6.2:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	braille? (
 		>=app-accessibility/brltty-5.0-r3[python,${PYTHON_USEDEP}]
 		dev-libs/liblouis[python,${PYTHON_USEDEP}] )

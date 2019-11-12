@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	>=media-libs/libcanberra-0.1[gtk3]
 	>=media-libs/libdvdread-4.2.0
 	>=sys-fs/udisks-2.7.6:2
-	>=x11-libs/gtk+-3.16.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7:=
 	systemd? ( >=sys-apps/systemd-209:0= )
 	!systemd? ( >=sys-auth/elogind-239.3:0= )

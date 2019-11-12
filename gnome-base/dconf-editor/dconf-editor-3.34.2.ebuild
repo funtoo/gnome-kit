@@ -17,7 +17,7 @@ COMMON_DEPEND="
 	dev-libs/appstream-glib
 	>=dev-libs/glib-2.58.0:2
 	>=gnome-base/dconf-0.31.2
-	>=x11-libs/gtk+-3.22.27:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50

@@ -20,7 +20,7 @@ COMMON_DEPEND="
 	dev-libs/gjs
 	>=dev-libs/glib-2.39.3:2
 	>=dev-libs/gobject-introspection-1.31.6:=
-	>=x11-libs/gtk+-3.22.10:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=net-libs/libsoup-2.41.3:2.4
 	gnome-base/gnome-desktop:3=[introspection]
 	>=app-misc/tracker-2:=[miners]

@@ -24,7 +24,7 @@ KEYWORDS="*"
 COMMON_DEPEND="
 	>=dev-libs/libxml2-2.5.0:2
 	>=dev-libs/glib-2.44:2[dbus]
-	>=x11-libs/gtk+-3.21.3:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=x11-libs/gtksourceview-4[introspection?]
 	>=dev-libs/libpeas-1.14.1[gtk]
 

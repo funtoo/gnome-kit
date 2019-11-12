@@ -28,7 +28,7 @@ RDEPEND="
 	sys-apps/dbus
 	>=sys-auth/polkit-0.97
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.9.10:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7.3:0=
 	x11-libs/libX11
 	x11-libs/libXext

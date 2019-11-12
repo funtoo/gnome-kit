@@ -20,7 +20,7 @@ RDEPEND="
 	>=media-libs/clutter-1:1.0
 	>=media-libs/clutter-gtk-0.91.6:1.0
 	>=media-libs/libcanberra-0.26[gtk3]
-	>=x11-libs/gtk+-3.12:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/libmanette-0.2
 "
 DEPEND="${RDEPEND}

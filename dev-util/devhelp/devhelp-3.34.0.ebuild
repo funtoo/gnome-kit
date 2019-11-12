@@ -17,7 +17,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.38:2[dbus]
-	>=x11-libs/gtk+-3.20:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/webkit-gtk-2.20:4
 	>=x11-libs/amtk-5.0.0
 "

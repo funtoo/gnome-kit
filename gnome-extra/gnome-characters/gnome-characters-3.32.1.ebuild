@@ -20,7 +20,7 @@ RDEPEND="
 	>=dev-libs/glib-2.32:2
 	>=dev-libs/gobject-introspection-1.35.9:=
 	>=dev-libs/libunistring-0.9.5
-	>=x11-libs/gtk+-3.20:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=x11-libs/pango-1.36[introspection]
 "
 DEPEND="${RDEPEND}

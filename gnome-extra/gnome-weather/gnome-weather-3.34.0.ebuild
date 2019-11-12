@@ -21,7 +21,7 @@ RDEPEND="
 	>=dev-libs/gobject-introspection-1.35.9:=
 	>=dev-libs/libgweather-3.17.2:=
 	gnome-base/gsettings-desktop-schemas
-	>=x11-libs/gtk+-3.11.4:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	dev-libs/appstream-glib

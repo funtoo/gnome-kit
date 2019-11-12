@@ -18,7 +18,7 @@ COMMON_DEPEND="
 	>=dev-scheme/guile-2.2.0[deprecated,regex]
 	>=gnome-base/librsvg-2.32:2
 	>=x11-libs/cairo-1.10
-	>=x11-libs/gtk+-3.4:3
+	>=x11-libs/gtk+-3.24.12:3
 	extra? (
 		games-board/pysolfc
 		kde-base/libkdegames

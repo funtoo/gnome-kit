@@ -20,7 +20,7 @@ RDEPEND="
 	dev-libs/libgnome-games-support:1
 	>=media-libs/clutter-1.12:1.0
 	>=media-libs/clutter-gtk-1.6:1.0
-	>=x11-libs/gtk+-3.12:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)

@@ -25,7 +25,7 @@ DEPEND="
 	dev-libs/gmime:2.6
 	media-libs/libcanberra
 	>=net-libs/webkit-gtk-2.10.0:4=[introspection]
-	>=x11-libs/gtk+-3.14.0:3[introspection]
+	>=x11-libs/gtk+-3.24.12:3[introspection]
 	x11-libs/libnotify
 	sys-libs/libunwind
 "

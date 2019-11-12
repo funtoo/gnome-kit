@@ -21,7 +21,7 @@ RDEPEND="
 	>=dev-libs/dbus-glib-0.88
 	>=sys-apps/dbus-1.4.1
 	>=sys-auth/polkit-0.96-r1
-	>=x11-libs/gtk+-3.10:3[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=x11-libs/libnotify-0.7.0
 
 	app-text/iso-codes

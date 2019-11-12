@@ -17,7 +17,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.40:2
 	dev-libs/libgnome-games-support:1
 	>=gnome-base/librsvg-2.32.0:2
-	>=x11-libs/gtk+-3.12:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 RDEPEND="${COMMON_DEPEND}
 	!<x11-themes/gnome-themes-standard-3.14

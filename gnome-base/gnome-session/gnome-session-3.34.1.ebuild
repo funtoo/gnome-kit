@@ -24,7 +24,7 @@ REQUIRED_USE="
 COMMON_DEPEND="
 	>=dev-libs/glib-2.58.0:2[dbus]
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.18.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/json-glib-0.10
 	>=gnome-base/gnome-desktop-3.27.90:3
 	wayland? ( media-libs/mesa[egl,gles2] )

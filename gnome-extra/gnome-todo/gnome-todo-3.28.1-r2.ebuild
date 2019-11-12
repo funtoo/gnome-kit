@@ -15,7 +15,7 @@ SRC_URI="https://ftp.gnome.org/pub/GNOME/sources/gnome-todo/3.28/${P}.tar.xz"
 
 RDEPEND="
 	>=dev-libs/glib-2.43.4:2
-	>=x11-libs/gtk+-3.22.0:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/gnome-online-accounts-3.28.0
 	>=gnome-extra/evolution-data-server-3.28.0:=[gtk]
 	>=dev-libs/libical-3

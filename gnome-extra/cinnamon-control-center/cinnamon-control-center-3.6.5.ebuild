@@ -34,7 +34,7 @@ COMMON_DEPEND="
 	>=net-misc/networkmanager-0.9.8:=[modemmanager]
 	>=sys-auth/polkit-0.103
 	>=x11-libs/gdk-pixbuf-2.23.0:2
-	>=x11-libs/gtk+-3.4.1:3
+	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7.3:0=
 	x11-libs/libX11
 	x11-libs/libxklavier
@@ -42,7 +42,7 @@ COMMON_DEPEND="
 	cups? ( >=net-print/cups-1.4[dbus] )
 	input_devices_wacom? (
 		>=dev-libs/libwacom-0.7
-		>=x11-libs/gtk+-3.8:3
+		>=x11-libs/gtk+-3.24.12:3
 		>=x11-libs/libXi-1.2 )
 "
 # <gnome-color-manager-3.1.2 has file collisions with g-c-c-3.1.x

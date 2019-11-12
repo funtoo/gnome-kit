@@ -22,7 +22,7 @@ QA_CONFIGURE_OPTIONS=".*"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.48:2[dbus]
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.9.4:3
+	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/pango
 	>=dev-libs/dbus-glib-0.51
 	>=dev-libs/folks-0.9.5:=[telepathy]

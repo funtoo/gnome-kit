@@ -17,7 +17,7 @@ RDEPEND="
 	>=dev-libs/glib-2.36:2
 	>=media-libs/clutter-1.14:1.0
 	>=media-libs/clutter-gtk-1.5:1.0
-	>=x11-libs/gtk+-3.12:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)

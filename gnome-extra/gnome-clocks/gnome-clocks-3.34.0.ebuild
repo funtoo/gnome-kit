@@ -20,7 +20,7 @@ RDEPEND="
 	>=gnome-base/gnome-desktop-3.7.90:3=
 	>=media-libs/gsound-0.98[vala]
 	>=sci-geosciences/geocode-glib-0.99.4
-	>=x11-libs/gtk+-3.19.8:3
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)
