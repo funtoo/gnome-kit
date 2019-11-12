@@ -15,7 +15,7 @@ KEYWORDS="*"
 
 COMMON_DEPEND="
 	dev-libs/appstream-glib
-	>=dev-libs/glib-2.58.0:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/dconf-0.31.2
 	>=x11-libs/gtk+-3.24.12:3
 "

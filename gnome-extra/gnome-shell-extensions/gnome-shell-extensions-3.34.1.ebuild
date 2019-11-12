@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE=""
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.26:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/libgtop-2.28.3[introspection]
 	>=app-eselect/eselect-gnome-shell-extensions-20111211
 "

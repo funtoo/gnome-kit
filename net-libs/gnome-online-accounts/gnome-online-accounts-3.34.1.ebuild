@@ -16,7 +16,7 @@ IUSE="debug gnome +introspection kerberos vala"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.53.4:2
+	>=dev-libs/glib-2.62.2
 	>=app-crypt/libsecret-0.5
 	>=dev-libs/json-glib-0.16
 	dev-libs/libxml2:2

@@ -16,7 +16,7 @@ IUSE="+introspection test vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
-	>=dev-libs/glib-2.52:2
+	>=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/gtksourceview-3.22
 	>=dev-libs/libxml2-2.5

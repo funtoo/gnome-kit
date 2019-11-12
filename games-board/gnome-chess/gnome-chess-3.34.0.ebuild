@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="+engines"
 
 RDEPEND="
-	>=dev-libs/glib-2.40:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/librsvg-2.32:2[vala]
 	>=x11-libs/gtk+-3.24.12:3
 	engines? (

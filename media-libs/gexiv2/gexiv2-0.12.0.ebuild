@@ -25,7 +25,7 @@ REQUIRED_USE="
 "
 
 RDEPEND="${PYTHON_DEPS}
-	>=dev-libs/glib-2.38.0:2
+	>=dev-libs/glib-2.62.2
 	>=media-gfx/exiv2-0.21:0=
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )"
 

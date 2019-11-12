@@ -20,7 +20,7 @@ KEYWORDS="*"
 
 # Unsure about osinfo-db-tools rdep, but at least fedora does it too
 RDEPEND="
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.62.2
 	>=net-libs/libsoup-2.42:2.4
 	>=dev-libs/libxml2-2.6.0
 	>=dev-libs/libxslt-1.0.0

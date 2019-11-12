@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE="test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/vala-common-${PV}
 	>=media-gfx/graphviz-2.40.1
 	dev-libs/gobject-introspection

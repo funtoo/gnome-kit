@@ -21,7 +21,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 
 	dev-libs/atk[introspection]
-	>=dev-libs/glib-2.28:2
+	>=dev-libs/glib-2.62.2
 	dev-libs/gobject-introspection:=
 	>=dev-python/ipython-0.11[${PYTHON_USEDEP}]
 	>=dev-python/pyatspi-2.1.5[${PYTHON_USEDEP}]

@@ -20,11 +20,11 @@ IUSE="+introspection"
 # libview is used in examples/gvncviewer -- no need
 # glib-2.30.1 needed to avoid linking failure due to .la files (bug #399129)
 COMMON_DEPEND="
-	>=dev-libs/glib-2.30.1:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/libgcrypt-1.4.2:0=
 	dev-libs/libgpg-error
 	>=net-libs/gnutls-3.0:0=
-	>=x11-libs/cairo-1.2
+	>=x11-libs/cairo-1.16.0
 	>=x11-libs/gtk+-2.18:2
 	x11-libs/libX11
 	>=x11-libs/gtk+-2.91.3:3[introspection?]

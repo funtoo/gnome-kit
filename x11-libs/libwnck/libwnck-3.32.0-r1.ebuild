@@ -18,7 +18,7 @@ IUSE="doc +introspection startup-notification tools"
 RDEPEND="
 	x11-libs/cairo[X]
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	x11-libs/libX11
 	x11-libs/libXres
 	x11-libs/libXext

@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.38:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/librsvg-2.32:2
 	>=media-libs/clutter-1.14:1.0
 	>=media-libs/clutter-gtk-1.5.5:1.0

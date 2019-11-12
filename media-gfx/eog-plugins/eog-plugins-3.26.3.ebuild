@@ -20,7 +20,7 @@ REQUIRED_USE="
 "
 
 RDEPEND="
-	>=dev-libs/glib-2.38:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/libpeas-0.7.4:=
 	>=media-gfx/eog-3.15.90
 	>=x11-libs/gtk+-3.24.12:3
@@ -33,7 +33,7 @@ RDEPEND="
 	picasa? ( >=dev-libs/libgdata-0.9.1:= )
 	python? (
 		${PYTHON_DEPS}
-		>=dev-libs/glib-2.32:2[dbus]
+		>=dev-libs/glib-2.62.2[dbus]
 		dev-libs/libpeas:=[gtk,python,${PYTHON_USEDEP}]
 		dev-python/pygobject:3[${PYTHON_USEDEP}]
 		gnome-base/gsettings-desktop-schemas

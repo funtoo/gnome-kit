@@ -16,7 +16,7 @@ IUSE="+introspection test"
 RESTRICT="test"
 
 RDEPEND="
-	>=dev-libs/glib-2.34:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/json-glib-0.99.2[introspection?]
 	gnome-base/gvfs[http]
 	>=net-libs/libsoup-2.42:2.4[introspection?]

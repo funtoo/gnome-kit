@@ -17,7 +17,7 @@ KEYWORDS="*"
 # Coverage testing should not be enabled
 RDEPEND="
 	app-misc/ca-certificates
-	>=dev-libs/glib-2.24:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
 	dev-libs/libxml2:2[${MULTILIB_USEDEP}]
 	net-libs/libsoup:2.4[${MULTILIB_USEDEP}]
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )

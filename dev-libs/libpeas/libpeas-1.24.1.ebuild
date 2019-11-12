@@ -17,7 +17,7 @@ IUSE="doc demos +gtk glade +introspection lua +python vala"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
-	>=dev-libs/glib-2.38:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/gobject-introspection-1.39:=
 	glade? ( >=dev-util/glade-3.9.1:3.10 )
 	gtk? ( >=x11-libs/gtk+-3:3[introspection] )

@@ -18,7 +18,7 @@ IUSE=""
 
 # recent enough x11-base/xorg-server required
 RDEPEND="
-	>=dev-libs/glib-2.10:2
+	>=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-2.14.0:2
 	>=gnome-base/gconf-2.24:2
 	>=gnome-base/gnome-settings-daemon-2.28

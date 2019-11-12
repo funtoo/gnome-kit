@@ -21,10 +21,10 @@ IUSE="+crypt debug docs glade +gtk3 gtk4 +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
-	>=dev-libs/glib-2.40:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/libpcre2-10.21
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
-	>=x11-libs/pango-1.22.0
+	>=x11-libs/pango-1.44.7
 
 	sys-libs/ncurses:0=
 	sys-libs/zlib

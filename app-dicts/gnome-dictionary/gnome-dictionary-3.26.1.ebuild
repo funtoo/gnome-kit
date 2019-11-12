@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="debug +introspection ipv6"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.42:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	x11-libs/cairo:=
 	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/pango

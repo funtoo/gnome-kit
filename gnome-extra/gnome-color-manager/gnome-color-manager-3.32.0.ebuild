@@ -15,7 +15,7 @@ IUSE="exiv packagekit"
 
 # Need gtk+-3.3.8 for https://bugzilla.gnome.org/show_bug.cgi?id=673331
 RDEPEND="
-	>=dev-libs/glib-2.31.10:2
+	>=dev-libs/glib-2.62.2
 	>=media-libs/lcms-2.2:2
 	>=media-libs/libcanberra-0.10[gtk3]
 	media-libs/libexif

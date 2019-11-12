@@ -19,7 +19,7 @@ KEYWORDS="*"
 
 # tracker-2.1.7 currently always depends on ICU (theoretically could be libunistring instead); so choose ICU over enca always here for the time being (ICU is preferred)
 RDEPEND="
-	>=dev-libs/glib-2.46:2
+	>=dev-libs/glib-2.62.2
 	>=app-misc/tracker-2.2.1:=
 	gstreamer? (
 		media-libs/gstreamer:1.0

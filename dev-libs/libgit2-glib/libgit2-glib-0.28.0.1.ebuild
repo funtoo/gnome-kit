@@ -19,7 +19,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 # libgit2-glib is now compatible with SONAME 26 and 27 of libgit2.
 RDEPEND="
 	>=dev-libs/gobject-introspection-0.10.1:=
-	>=dev-libs/glib-2.44.0:2
+	>=dev-libs/glib-2.62.2
 	<dev-libs/libgit2-0.29:0=[ssh?]
 	>=dev-libs/libgit2-0.28.0:0
 	python? (

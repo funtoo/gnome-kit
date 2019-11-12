@@ -26,7 +26,7 @@ RDEPEND="
 	>=sys-libs/zlib-1.2.8-r1
 	>=x11-libs/pixman-0.32.4
 	gles2? ( >=media-libs/mesa-9.1.6[gles2] )
-	glib? ( >=dev-libs/glib-2.34.3:2 )
+	glib? ( >=dev-libs/glib-2.62.2 )
 	opengl? ( >=media-libs/mesa-9.1.6[egl] )
 	X? (
 		>=x11-libs/libXrender-0.9.8

@@ -18,7 +18,7 @@ IUSE="doc +introspection test +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
-	>=dev-libs/glib-2.22:2
+	>=dev-libs/glib-2.62.2
 	sys-libs/zlib
 	introspection? ( >=dev-libs/gobject-introspection-0.9.4:= )
 "

@@ -24,14 +24,14 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}
 RDEPEND="${PYTHON_DEPS}
 	>=net-libs/gssdp-0.14.15:0=[introspection?,${MULTILIB_USEDEP}]
 	>=net-libs/libsoup-2.48.0:2.4[introspection?,${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.40:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.1-r4[${MULTILIB_USEDEP}]
 	>=sys-apps/util-linux-2.24.1-r3[${MULTILIB_USEDEP}]
 	introspection? (
 			>=dev-libs/gobject-introspection-1.36:=
 			$(vala_depend) )
-	connman? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}] )
-	networkmanager? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}] )
+	connman? ( >=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}] )
+	networkmanager? ( >=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}] )
 	!net-libs/gupnp-vala
 "
 DEPEND="${RDEPEND}

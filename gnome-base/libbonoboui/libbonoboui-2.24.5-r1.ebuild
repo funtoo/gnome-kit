@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.4.20:2
 	>=gnome-base/gconf-2:2
 	>=x11-libs/gtk+-2.8.12:2
-	>=dev-libs/glib-2.6.0:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/libglade-1.99.11:2.0
 	>=dev-libs/popt-1.5
 "

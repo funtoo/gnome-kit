@@ -33,14 +33,14 @@ REQUIRED_USE="
 #       so there is no chance to support libav right now (Gentoo bug #567638)
 #       If it returns, please check prior GEGL ebuilds for how libav was integrated.  Thanks!
 RDEPEND="
-	>=dev-libs/glib-2.44:2
+	>=dev-libs/glib-2.62.2
 	dev-libs/json-glib
 	>=media-libs/babl-0.1.62
 	>=media-libs/libpng-1.6.0:0=
 	virtual/jpeg:0=
 	>=x11-libs/gdk-pixbuf-2.32:2
 	x11-libs/pango
-	cairo? ( >=x11-libs/cairo-1.12.2 )
+	cairo? ( >=x11-libs/cairo-1.16.0 )
 	ffmpeg? (
 		libav? ( media-video/libav:0= )
 		!libav? ( media-video/ffmpeg:0= )

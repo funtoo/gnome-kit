@@ -18,7 +18,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="
 	${PYTHON_DEPS}
-	>=dev-libs/glib-2.58.0:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-python/pygobject-3.30.0:3[${PYTHON_USEDEP}]
 	>=gnome-base/gsettings-desktop-schemas-3.28.1
 	!gnome-extra/gnome-tweak-tool

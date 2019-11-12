@@ -23,7 +23,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 # FIXME: make python dependency non-automagic
 COMMON_DEPEND="
-	>=dev-libs/glib-2.34:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/libxml2-2.4.23

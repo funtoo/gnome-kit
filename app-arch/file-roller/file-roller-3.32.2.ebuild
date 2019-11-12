@@ -21,7 +21,7 @@ KEYWORDS="*"
 RDEPEND="
 	|| ( >=dev-util/meson-0.48.1 <dev-util/meson-0.48.0 )
 	>=app-arch/libarchive-3:=
-	>=dev-libs/glib-2.36:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/json-glib-0.14
 	>=x11-libs/gtk+-3.24.12:3
 	sys-apps/file

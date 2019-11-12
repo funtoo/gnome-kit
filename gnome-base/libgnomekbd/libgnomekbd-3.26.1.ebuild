@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="+introspection test"
 
 RDEPEND="
-	>=dev-libs/glib-2.18:2
+	>=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-2.91.7:3[X,introspection?]
 	>=x11-libs/libxklavier-5.2[introspection?]
 

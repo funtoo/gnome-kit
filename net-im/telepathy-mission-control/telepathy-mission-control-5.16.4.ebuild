@@ -19,7 +19,7 @@ IUSE="debug networkmanager" # test
 
 RDEPEND="
 	>=dev-libs/dbus-glib-0.82
-	>=dev-libs/glib-2.46:2
+	>=dev-libs/glib-2.62.2
 	>=sys-apps/dbus-0.95
 	>=net-libs/telepathy-glib-0.20
 	networkmanager? ( >=net-misc/networkmanager-1:= )

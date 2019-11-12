@@ -17,7 +17,7 @@ KEYWORDS="*"
 IUSE="debug examples test"
 
 RDEPEND="
-	>=dev-libs/glib-2.14:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/orbit-2.14.0
 	>=dev-libs/libxml2-2.4.20:2
 	>=sys-apps/dbus-1.0.0

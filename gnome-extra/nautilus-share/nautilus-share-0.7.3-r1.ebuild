@@ -19,7 +19,7 @@ SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="*"
 
-COMMON_DEPEND=">=dev-libs/glib-2.4:2
+COMMON_DEPEND=">=dev-libs/glib-2.62.2
 	>=gnome-base/nautilus-2.10"
 RDEPEND="${COMMON_DEPEND}
 	net-fs/samba"

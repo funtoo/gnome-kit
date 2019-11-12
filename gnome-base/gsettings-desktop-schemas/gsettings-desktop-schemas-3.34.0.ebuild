@@ -13,7 +13,7 @@ IUSE="+introspection"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.58:2
+	>=dev-libs/glib-2.62.2
 	introspection? ( >=dev-libs/gobject-introspection-1.31.0:= )
 	!<gnome-base/gdm-3.8
 	media-fonts/source-pro

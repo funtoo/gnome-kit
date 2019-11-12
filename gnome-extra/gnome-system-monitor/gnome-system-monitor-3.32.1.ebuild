@@ -14,11 +14,11 @@ KEYWORDS="*"
 IUSE="systemd X"
 
 RDEPEND="
-	>=dev-libs/glib-2.37.3:2
+	>=dev-libs/glib-2.62.2
 	>=gnome-base/libgtop-2.39.91
 	>=x11-libs/gtk+-3.24.12:3[X(+)]
 	>=dev-cpp/gtkmm-3.3.18:3.0
-	>=dev-cpp/glibmm-2.46:2
+	>=dev-cpp/glibmm-2.63.1:2
 	>=dev-cpp/atkmm-2.25.1
 	>=dev-libs/libxml2-2.0:2
 	>=gnome-base/librsvg-2.35:2

@@ -18,7 +18,7 @@ KEYWORDS="*"
 
 RDEPEND="
 	>=app-arch/libarchive-3.2.0
-	>=dev-libs/glib-2.35.6:2
+	>=dev-libs/glib-2.62.2
 	gtk? ( >=x11-libs/gtk+-3.24.12:3[introspection?] )
 	introspection? ( >=dev-libs/gobject-introspection-1.30.0:= )
 "

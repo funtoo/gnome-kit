@@ -18,7 +18,7 @@ KEYWORDS="*"
 IUSE="doc examples test"
 
 RDEPEND="
-	>=x11-libs/cairo-1.13.1[svg]
+	>=x11-libs/cairo-1.16.0[svg]
 "
 DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx )

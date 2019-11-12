@@ -22,7 +22,7 @@ KEYWORDS="*"
 # configure: error: Unable to locate required libgbm library for the KMS egl platform  
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	x11-libs/cairo:=
 	>=x11-libs/gdk-pixbuf-2:2
 	x11-libs/libX11
@@ -43,7 +43,7 @@ COMMON_DEPEND="
 	kms? (
 		media-libs/mesa[gbm]
 		x11-libs/libdrm:= )
-	pango? ( >=x11-libs/pango-1.20.0[introspection?] )
+	pango? ( >=x11-libs/pango-1.44.7[introspection?] )
 	wayland? (
 		>=dev-libs/wayland-1.1.90
 		media-libs/mesa[egl,wayland] 

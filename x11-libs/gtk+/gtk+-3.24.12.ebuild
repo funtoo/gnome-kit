@@ -28,12 +28,12 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15[introspection?]
-	>=dev-libs/glib-2.53.4:2
+	>=dev-libs/glib-2.62.2
 	media-libs/fontconfig
 	>=media-libs/libepoxy-1.4[X(+)?]
-	>=x11-libs/cairo-1.14[aqua?,glib,svg,X?]
+	>=x11-libs/cairo-1.16.0[aqua?,glib,svg,X?]
 	>=x11-libs/gdk-pixbuf-2.30:2[introspection?]
-	>=x11-libs/pango-1.41.0[introspection?]
+	>=x11-libs/pango-1.44.7[introspection?]
 	x11-misc/shared-mime-info
 
 	cloudprint? (

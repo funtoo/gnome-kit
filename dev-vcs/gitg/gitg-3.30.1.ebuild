@@ -24,7 +24,7 @@ RDEPEND="
 	app-crypt/libsecret
 	dev-libs/libgee:0.8[introspection]
 	>=app-text/gtkspell-3.0.3:3
-	>=dev-libs/glib-2.38:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-libs/gobject-introspection-0.10.1:=
 	dev-libs/libgit2:=[threads]
 

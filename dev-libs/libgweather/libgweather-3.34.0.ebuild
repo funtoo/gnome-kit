@@ -17,7 +17,7 @@ IUSE="glade gtk-doc +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.35.1:2
+	>=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=net-libs/libsoup-2.44:2.4
 	>=dev-libs/libxml2-2.6.0:2

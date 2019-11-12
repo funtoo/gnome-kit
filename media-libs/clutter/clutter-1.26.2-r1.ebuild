@@ -23,12 +23,12 @@ KEYWORDS="*"
 # >=libX11-1.3.1 needed for X Generic Event support
 # do not depend on tslib, it does not build and is disabled by default upstream
 RDEPEND="
-	>=dev-libs/glib-2.44.0:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/atk-2.5.3[introspection?]
 	>=dev-libs/json-glib-0.12[introspection?]
 	>=media-libs/cogl-1.21.2:1.0=[introspection?,pango]
-	>=x11-libs/cairo-1.14:=[aqua?,glib]
-	>=x11-libs/pango-1.30[introspection?]
+	>=x11-libs/cairo-1.16.0:=[aqua?,glib]
+	>=x11-libs/pango-1.44.7[introspection?]
 
 	virtual/opengl
 	x11-libs/libdrm:=

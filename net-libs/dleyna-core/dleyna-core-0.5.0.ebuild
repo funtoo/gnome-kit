@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.28:2
+	>=dev-libs/glib-2.62.2
 	>=net-libs/gupnp-0.20.5:0=
 "
 DEPEND="${RDEPEND}

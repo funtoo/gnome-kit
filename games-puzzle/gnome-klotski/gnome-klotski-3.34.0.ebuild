@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	dev-libs/libgee:0.8=
 	dev-libs/libgnome-games-support:1
 	>=gnome-base/librsvg-2.32.0:2

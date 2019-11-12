@@ -17,7 +17,7 @@ IUSE="cups doc"
 
 RDEPEND=">=dev-libs/glib-2.34.3[${MULTILIB_USEDEP}]
 	>=media-libs/libart_lgpl-2.3.21-r2[${MULTILIB_USEDEP}]
-	>=x11-libs/pango-1.36.3[${MULTILIB_USEDEP}]
+	>=x11-libs/pango-1.44.7[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.1-r4[${MULTILIB_USEDEP}]
 	>=media-libs/fontconfig-2.10.92[${MULTILIB_USEDEP}]
 	>=media-libs/freetype-2.5.0.1[${MULTILIB_USEDEP}]

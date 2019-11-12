@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.40:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=x11-libs/gtk+-3.24.12:3
 "
 RDEPEND="${COMMON_DEPEND}

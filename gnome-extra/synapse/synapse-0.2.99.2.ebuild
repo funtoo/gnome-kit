@@ -20,7 +20,7 @@ IUSE="plugins +zeitgeist"
 
 RDEPEND="
 	dev-libs/libgee:0.8
-	>=dev-libs/glib-2.28.0:2
+	>=dev-libs/glib-2.62.2
 	dev-libs/json-glib
 	dev-libs/keybinder:3
 	dev-libs/libunique:1

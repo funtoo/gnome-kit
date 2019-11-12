@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	app-arch/gnome-autoar[gtk]
 	>=app-crypt/gcr-3.4:=
 	>=app-text/enchant-2.2.0
-	>=dev-libs/glib-2.46:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-libs/libxml2-2.7.3:2
 	>=gnome-base/gnome-desktop-2.91.3:3=
 	>=gnome-base/gsettings-desktop-schemas-2.91.92
@@ -38,7 +38,7 @@ COMMON_DEPEND="
 	>=media-libs/libcanberra-0.25[gtk3]
 	>=net-libs/libsoup-2.42:2.4
 	>=net-libs/webkit-gtk-2.13.90:4
-	>=x11-libs/cairo-1.9.15:=[glib]
+	>=x11-libs/cairo-1.16.0:=[glib]
 	>=x11-libs/gdk-pixbuf-2.24:2
 	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7:=

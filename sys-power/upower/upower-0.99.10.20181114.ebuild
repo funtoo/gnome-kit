@@ -19,7 +19,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 COMMON_DEPS="
 	${PYTHON_DEPS}
 	>=dev-libs/dbus-glib-0.100
-	>=dev-libs/glib-2.34:2
+	>=dev-libs/glib-2.62.2
 	dev-util/gdbus-codegen
 	sys-apps/dbus:=
 	>=sys-auth/polkit-0.110

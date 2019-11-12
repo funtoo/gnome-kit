@@ -17,7 +17,7 @@ KEYWORDS="*"
 IUSE="+introspection"
 
 RDEPEND="
-	>=dev-libs/glib-2.28:2
+	>=dev-libs/glib-2.62.2
 	>=sys-apps/dbus-1.1
 	>=dev-libs/dbus-glib-0.82
 	>=net-libs/telepathy-glib-0.19.2[introspection?]

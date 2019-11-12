@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE="examples +introspection"
 
 RDEPEND="
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	>=sys-apps/dbus-0.60
 	>=dev-libs/dbus-glib-0.60
 	media-libs/gstreamer:1.0[introspection?]

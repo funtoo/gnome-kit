@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="+introspection test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.29.15:2
+	>=dev-libs/glib-2.62.2
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 "
 # Older versions of slot 0 install the menu editor and the desktop directories

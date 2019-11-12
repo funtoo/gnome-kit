@@ -15,8 +15,8 @@ KEYWORDS=""
 IUSE="doc"
 
 COMMON_DEPEND="
-	>=x11-libs/pango-1.38.0
-	>=dev-cpp/glibmm-2.57.1:2
+	>=x11-libs/pango-1.44.7
+	>=dev-cpp/glibmm-2.63.1:2
 	>=dev-cpp/cairomm-1.15.5:1
 	>=dev-libs/libsigc++-2.3.2:2
 	dev-cpp/mm-common

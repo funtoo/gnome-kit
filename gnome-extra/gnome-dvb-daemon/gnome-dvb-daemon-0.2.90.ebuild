@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="*"
 IUSE="nls totem vala"
 
-RDEPEND=">=dev-libs/glib-2.32.0:2
+RDEPEND=">=dev-libs/glib-2.62.2
 	>=media-libs/gstreamer-1.4.0:1.0
 	>=media-libs/gst-plugins-good-1.4.0:1.0
 	>=media-libs/gst-plugins-bad-1.4.0:1.0

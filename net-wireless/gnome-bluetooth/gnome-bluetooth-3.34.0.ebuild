@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="debug +introspection"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.38:2
+	>=dev-libs/glib-2.62.2
 	media-libs/libcanberra[gtk3]
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	x11-libs/libnotify

@@ -14,9 +14,9 @@ IUSE=""
 
 # gtk+-3.22 for build-time optional gtk_show_uri_on_window usage
 RDEPEND="
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-3.24.12:3
-	>=x11-libs/cairo-1.4
+	>=x11-libs/cairo-1.16.0
 "
 DEPEND="${RDEPEND}
 	app-text/yelp-tools

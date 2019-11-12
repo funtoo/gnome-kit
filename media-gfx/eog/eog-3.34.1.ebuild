@@ -18,7 +18,7 @@ REQUIRED_USE="exif? ( jpeg )"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.42.0:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-libs/libpeas-0.7.4:=[gtk]
 	>=gnome-base/gnome-desktop-2.91.2:3=
 	>=gnome-base/gsettings-desktop-schemas-2.91.92

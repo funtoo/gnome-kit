@@ -20,7 +20,7 @@ REQUIRED_USE="vala? ( introspection )"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.16.0:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/libgcrypt-1.2.2:0=
 	>=sys-apps/dbus-1
 	>=gnome-base/gnome-keyring-3.1.92

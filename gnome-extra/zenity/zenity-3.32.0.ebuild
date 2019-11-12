@@ -14,7 +14,7 @@ IUSE="debug libnotify webkit"
 
 # TODO: X11 dependency is automagically enabled
 RDEPEND="
-	>=dev-libs/glib-2.8:2
+	>=dev-libs/glib-2.62.2
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3:3[X]
 	x11-libs/libX11

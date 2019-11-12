@@ -17,9 +17,9 @@ KEYWORDS="*"
 IUSE="exif +introspection +nls packagekit tracker xmp"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.37.3:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=gnome-extra/cinnamon-desktop-2.6.1:0=
-	>=x11-libs/pango-1.28.3
+	>=x11-libs/pango-1.44.7
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=dev-libs/libxml2-2.7.8:2
 

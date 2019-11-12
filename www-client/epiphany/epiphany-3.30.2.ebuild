@@ -15,10 +15,10 @@ KEYWORDS="*"
 IUSE="test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.46.0:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/webkit-gtk-2.17.4:4=
-	>=x11-libs/cairo-1.2
+	>=x11-libs/cairo-1.16.0
 	>=app-crypt/gcr-3.5.5:=[gtk]
 	>=x11-libs/gdk-pixbuf-2.36.5:2
 	>=gnome-base/gnome-desktop-2.91.2:3=

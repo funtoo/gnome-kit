@@ -18,14 +18,14 @@ COMMON_DEPEND="
 	>=app-text/evince-3.13.3[introspection]
 	>=net-libs/webkit-gtk-2.6:4[introspection]
 	dev-libs/gjs
-	>=dev-libs/glib-2.39.3:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/gobject-introspection-1.31.6:=
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=net-libs/libsoup-2.41.3:2.4
 	gnome-base/gnome-desktop:3=[introspection]
 	>=app-misc/tracker-2:=[miners]
 	>=app-misc/tracker-miners-2:=
-	>=x11-libs/cairo-1.14
+	>=x11-libs/cairo-1.16.0
 	>=dev-libs/libgdata-0.13.3:=[crypt,gnome-online-accounts,introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
 	>=net-libs/gnome-online-accounts-3.2.0:=[introspection]

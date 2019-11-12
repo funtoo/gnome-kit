@@ -16,7 +16,7 @@ IUSE="flickr"
 # libgdata[gnome-online-accounts] needed for goa support
 RDEPEND="
 	>=app-misc/tracker-1.99:=
-	>=dev-libs/glib-2.35.1:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/libgdata-0.15.2:0=[crypt,gnome-online-accounts]
 	media-libs/grilo:0.3
 	>=net-libs/gnome-online-accounts-3.13.3:=

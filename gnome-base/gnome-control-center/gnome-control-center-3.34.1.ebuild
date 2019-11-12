@@ -23,7 +23,7 @@ REQUIRED_USE="
 QA_CONFIGURE_OPTIONS=".*"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.58.0:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	dev-libs/libhandy
 	>=x11-libs/gdk-pixbuf-2.23.0:2
 	>=x11-libs/gtk+-3.24.12:3[X,wayland?]

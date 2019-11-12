@@ -18,10 +18,10 @@ IUSE="X +introspection test"
 
 RDEPEND="
 	>=media-libs/harfbuzz-1.4.2:=[glib(+),truetype(+)]
-	>=dev-libs/glib-2.50.2:2
+	>=dev-libs/glib-2.62.2
 	>=media-libs/fontconfig-2.12.92:1.0=
 	>=media-libs/freetype-2.5.0.1:2=
-	>=x11-libs/cairo-1.12.14-r4:=[X?]
+	>=x11-libs/cairo-1.16.0-r4:=[X?]
 	>=dev-libs/fribidi-0.19.7
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 	X? (

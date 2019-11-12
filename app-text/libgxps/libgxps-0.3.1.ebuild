@@ -15,10 +15,10 @@ IUSE="+introspection jpeg lcms tiff"
 
 RDEPEND="
 	>=app-arch/libarchive-2.8
-	>=dev-libs/glib-2.36:2
+	>=dev-libs/glib-2.62.2
 	media-libs/freetype:2
 	media-libs/libpng:0
-	>=x11-libs/cairo-1.10[svg]
+	>=x11-libs/cairo-1.16.0[svg]
 	introspection? ( >=dev-libs/gobject-introspection-0.10.1:= )
 	jpeg? ( virtual/jpeg:0 )
 	lcms? ( media-libs/lcms:2 )

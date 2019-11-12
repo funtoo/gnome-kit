@@ -24,7 +24,7 @@ COMMON_DEPEND="
 	>=app-accessibility/at-spi2-atk-2.5.3
 	>=dev-libs/atk-2[introspection]
 	>=app-crypt/gcr-3.7.5[introspection]
-	>=dev-libs/glib-2.58.0:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-libs/gjs-1.57.3
 	>=dev-libs/gobject-introspection-1.58.0:=
 	>=dev-libs/libical-3:=

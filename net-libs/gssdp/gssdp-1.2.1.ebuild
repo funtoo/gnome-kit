@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="doc examples +introspection gtk vala"
 
 RDEPEND="
-	>=dev-libs/glib-2.34.3:2
+	>=dev-libs/glib-2.62.2
 	>=net-libs/libsoup-2.44.2:2.4[introspection?]
 	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
 	introspection? (

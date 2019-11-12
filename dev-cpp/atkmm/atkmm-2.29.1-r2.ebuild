@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="doc"
 
 COMMON_DEPEND="
-	>=dev-cpp/glibmm-2.59.0:2.64[doc?]
+	>=dev-cpp/glibmm-2.63.1:2.64[doc?]
 	>=dev-libs/atk-2.18.0
 	>=dev-libs/libsigc++-2.3.2:2
 "

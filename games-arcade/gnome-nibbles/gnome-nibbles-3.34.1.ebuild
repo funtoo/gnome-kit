@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.40.0:2
+	>=dev-libs/glib-2.62.2
 	dev-libs/libgee:0.8=
 	dev-libs/libgnome-games-support:1
 	>=media-libs/clutter-1.22.0:1.0

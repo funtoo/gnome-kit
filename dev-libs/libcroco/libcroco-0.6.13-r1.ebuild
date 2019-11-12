@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="test"
 
 RDEPEND="
-	>=dev-libs/glib-2.34.3:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/libxml2-2.9.1-r4
 "
 DEPEND="${RDEPEND}

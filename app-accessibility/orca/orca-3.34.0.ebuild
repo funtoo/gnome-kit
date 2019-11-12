@@ -21,7 +21,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=app-accessibility/at-spi2-atk-2.12:2
 	>=app-accessibility/at-spi2-core-2.12:2[introspection]
 	>=dev-libs/atk-2.10
-	>=dev-libs/glib-2.28:2
+	>=dev-libs/glib-2.62.2
 	dev-python/gst-python:1.0[${PYTHON_USEDEP}]
 	>=dev-python/pygobject-3.10:3[${PYTHON_USEDEP}]
 	media-libs/gstreamer:1.0[introspection]

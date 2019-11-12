@@ -20,7 +20,7 @@ IUSE="debug +introspection ldap policykit"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	>=dev-libs/glib-2.34.3:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/dbus-glib-0.100.2:=
 	>=sys-apps/dbus-1.6.18-r1:=
 	>=dev-libs/libxml2-2.9.1-r4:2

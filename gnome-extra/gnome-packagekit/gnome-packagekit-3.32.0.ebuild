@@ -18,7 +18,7 @@ RESTRICT="test"
 # gdk-pixbuf used in gpk-animated-icon
 # pango used on gpk-common
 RDEPEND="
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7.0:=

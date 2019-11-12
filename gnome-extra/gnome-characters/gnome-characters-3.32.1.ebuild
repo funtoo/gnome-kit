@@ -17,11 +17,11 @@ IUSE="test"
 
 RDEPEND="
 	>=dev-libs/gjs-1.43.3
-	>=dev-libs/glib-2.32:2
+	>=dev-libs/glib-2.62.2
 	>=dev-libs/gobject-introspection-1.35.9:=
 	>=dev-libs/libunistring-0.9.5
 	>=x11-libs/gtk+-3.24.12:3[introspection]
-	>=x11-libs/pango-1.36[introspection]
+	>=x11-libs/pango-1.44.7[introspection]
 "
 DEPEND="${RDEPEND}
 	dev-libs/appstream-glib

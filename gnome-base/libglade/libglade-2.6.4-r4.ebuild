@@ -21,7 +21,7 @@ KEYWORDS="*"
 IUSE="static-libs test tools"
 REQUIRED_USE="tools? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND=">=dev-libs/glib-2.34.3:2
+RDEPEND=">=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-2.24.23:2
 	>=dev-libs/atk-2.10.0
 	>=dev-libs/libxml2-2.9.1-r4

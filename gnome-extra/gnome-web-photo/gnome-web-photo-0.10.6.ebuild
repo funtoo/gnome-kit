@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="*"
 IUSE=""
 
-RDEPEND=">=dev-libs/glib-2.14:2
+RDEPEND=">=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-2.99.3:3
 	>=net-libs/webkit-gtk-1.1.23:3
 "

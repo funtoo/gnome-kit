@@ -19,7 +19,7 @@ PV_SERIES=$(ver_cut 1-2)
 
 # In 2.2.0 util-linux should only be necessary if glib is older than 2.52 at compile-time
 RDEPEND="
-	>=dev-libs/glib-2.59.3:2
+	>=dev-libs/glib-2.62.2
 	>=sys-apps/dbus-1.3.2
 	>=dev-libs/gobject-introspection-1.54:=
 	>=dev-libs/icu-4.8.1.2:=

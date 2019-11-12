@@ -19,7 +19,7 @@ COMMON_DEPEND="
 	$(vala_depend)
 	app-text/enchant
 	>=app-text/gspell-1.0:0=
-	>=dev-libs/glib-2.50:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-libs/libgee-0.10:0.8=
 	gnome-base/gsettings-desktop-schemas
 	>=x11-libs/tepl-4.0

@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="test"
 
 RDEPEND="
-	>=dev-libs/glib-2.43.90:2
+	>=dev-libs/glib-2.62.2
 	gnome-base/gsettings-desktop-schemas
 	sys-apps/systemd:=
 	>=x11-libs/gtk+-3.24.12:3

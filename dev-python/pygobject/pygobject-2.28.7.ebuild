@@ -17,7 +17,7 @@ KEYWORDS="*"
 IUSE="examples libffi test"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-COMMON_DEPEND=">=dev-libs/glib-2.24.0:2
+COMMON_DEPEND=">=dev-libs/glib-2.62.2
 	dev-lang/python-exec:2
 	libffi? ( virtual/libffi:= )
 	${PYTHON_DEPS}

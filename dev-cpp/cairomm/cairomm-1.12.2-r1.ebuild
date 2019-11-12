@@ -18,7 +18,7 @@ IUSE="aqua doc +svg X"
 RESTRICT="mirror"
 
 RDEPEND="
-	>=x11-libs/cairo-1.12.10[aqua=,svg=,X=]
+	>=x11-libs/cairo-1.16.0[aqua=,svg=,X=]
 	dev-libs/libsigc++:2=
 	>=dev-libs/libsigc++-2.5.1:2
 "

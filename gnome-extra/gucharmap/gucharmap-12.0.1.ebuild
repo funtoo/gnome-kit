@@ -17,8 +17,8 @@ REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
 	app-i18n/unicode-data
-	>=dev-libs/glib-2.32:2
-	>=x11-libs/pango-1.2.1[introspection?]
+	>=dev-libs/glib-2.62.2
+	>=x11-libs/pango-1.44.7[introspection?]
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-0.9.0:= )
 "

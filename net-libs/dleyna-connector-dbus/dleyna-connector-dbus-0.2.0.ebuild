@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-libs/glib-2.28:2
+	>=dev-libs/glib-2.62.2
 	>=net-libs/dleyna-core-0.2.1:1.0
 	>=sys-apps/dbus-1
 "

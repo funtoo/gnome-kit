@@ -19,13 +19,13 @@ IUSE="djvu dvi gstreamer gnome gnome-keyring +introspection nautilus nsplugin +p
 # gdk-pixbuf used all over the place
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.53.4:2[dbus]
+	>=dev-libs/glib-2.62.2[dbus]
 	>=dev-libs/libxml2-2.5:2
 	sys-libs/zlib:=
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	gnome-base/gsettings-desktop-schemas
-	>=x11-libs/cairo-1.10:=
+	>=x11-libs/cairo-1.16.0:=
 	>=app-text/poppler-0.33:=[cairo]
 	djvu? ( >=app-text/djvu-3.5.22:= )
 	dvi? (
