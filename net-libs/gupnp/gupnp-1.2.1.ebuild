@@ -31,8 +31,8 @@ RDEPEND="${PYTHON_DEPS}
 	introspection? (
 			>=dev-libs/gobject-introspection-1.36:=
 			$(vala_depend) )
-	connman? ( >=dev-libs/glib-2.62.2:2)
-	networkmanager? ( >=dev-libs/glib-2.62.2:2)
+	connman? ( >=dev-libs/glib-2.62.2:2 )
+	networkmanager? ( >=dev-libs/glib-2.62.2:2 )
 	!net-libs/gupnp-vala
 "
 DEPEND="${RDEPEND}

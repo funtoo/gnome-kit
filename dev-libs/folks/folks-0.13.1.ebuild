@@ -54,7 +54,7 @@ DEPEND="${COMMON_DEPEND}
 		sys-apps/dbus
 		bluetooth? (
 			>=gnome-extra/evolution-data-server-3.9.1
-			>=dev-libs/glib-2.62.2:2) )
+			>=dev-libs/glib-2.62.2:2 ) )
 "
 
 src_prepare() {
