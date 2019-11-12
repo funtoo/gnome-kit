@@ -19,7 +19,7 @@ IUSE="djvu dvi gstreamer gnome gnome-keyring +introspection nautilus nsplugin +p
 # gdk-pixbuf used all over the place
 COMMON_DEPEND="
 	dev-libs/atk
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/libxml2-2.5:2
 	sys-libs/zlib:=
 	x11-libs/gdk-pixbuf:2

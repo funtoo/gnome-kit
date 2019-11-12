@@ -17,7 +17,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 KEYWORDS="*"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=gnome-extra/cinnamon-desktop-2.6.3:0=[systemd=]
 	>=gnome-base/gsettings-desktop-schemas-0.1.7

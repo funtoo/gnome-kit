@@ -23,14 +23,14 @@ KEYWORDS="*"
 # FIXME:
 # Runtime dependency on gnome-session-2.91
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/libpeas-1.1[gtk]
 	>=dev-libs/totem-pl-parser-3.26.0:0=[introspection?]
 	>=media-libs/clutter-1.17.3:1.0[gtk]
 	>=media-libs/clutter-gst-2.99.2:3.0
 	>=media-libs/clutter-gtk-1.8.1:1.0
 	>=x11-libs/cairo-1.16.0
-	>=x11-libs/gdk-pixbuf-2.23.0:2
+	>=x11-libs/gdk-pixbuf-2.39.2:2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 
 	>=media-libs/grilo-0.3.0:0.3[playlist]

@@ -24,13 +24,13 @@ COMMON_DEPEND="
 	>=app-accessibility/at-spi2-atk-2.5.3
 	>=dev-libs/atk-2[introspection]
 	>=app-crypt/gcr-3.7.5[introspection]
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/gjs-1.57.3
 	>=dev-libs/gobject-introspection-1.58.0:=
 	>=dev-libs/libical-3:=
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=dev-libs/libcroco-0.6.8:0.6
-	>=gnome-base/gnome-desktop-3.7.90:3=[introspection]
+	>=gnome-base/gnome-desktop-3.34.1:3=[introspection]
 	>=gnome-base/gsettings-desktop-schemas-3.21.3
 	>=gnome-extra/evolution-data-server-3.17.2:=
 	>=media-libs/gstreamer-0.11.92:1.0

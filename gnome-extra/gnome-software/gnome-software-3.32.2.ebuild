@@ -24,9 +24,9 @@ RDEPEND="
 	>=gnome-base/gsettings-desktop-schemas-3.11.5
 	>=net-libs/libsoup-2.51.92:2.4
 	sys-auth/polkit
-	>=x11-libs/gdk-pixbuf-2.31.5
+	>=x11-libs/gdk-pixbuf-2.39.2:2
 	>=x11-libs/gtk+-3.24.12:3
-	gnome? ( >=gnome-base/gnome-desktop-3.17.92:3= )
+	gnome? ( >=gnome-base/gnome-desktop-3.34.1:3= )
 	spell? ( app-text/gtkspell:3 )
 	udev? ( virtual/libgudev )
 "

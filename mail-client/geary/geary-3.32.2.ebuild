@@ -19,7 +19,7 @@ DEPEND="
 	app-crypt/libsecret
 	app-text/iso-codes
 	dev-db/sqlite:3
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/libgee-0.8.5:0.8=
 	dev-libs/libxml2:2
 	dev-libs/gmime:2.6

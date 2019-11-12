@@ -22,11 +22,11 @@ REQUIRED_USE="
 # xdg-user-dirs-update is run during login (see 10-user-dirs-update-gnome below).
 # gdk-pixbuf used in the inhibit dialog
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/json-glib-0.10
-	>=gnome-base/gnome-desktop-3.27.90:3
+	>=gnome-base/gnome-desktop-3.34.1:3
 	wayland? ( media-libs/mesa[egl,gles2] )
 	!wayland? ( media-libs/mesa[gles2] )
 

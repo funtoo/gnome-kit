@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE="+introspection"
 
 RDEPEND="
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/json-glib[introspection?]
 	net-libs/libsoup:2.4[introspection?]
 	net-libs/gnome-online-accounts

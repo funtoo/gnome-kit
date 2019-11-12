@@ -28,7 +28,7 @@ RDEPEND="
 	>=dev-libs/glib-2.62.2
 	>=dev-libs/libgee-0.10:0.8
 	>=gnome-extra/evolution-data-server-3.13.90:=[gnome-online-accounts]
-	>=gnome-base/gnome-desktop-3.0:3=
+	>=gnome-base/gnome-desktop-3.34.1:3=
 	media-libs/clutter:1.0
 	media-libs/clutter-gtk:1.0
 	media-libs/libchamplain:0.12

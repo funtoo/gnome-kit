@@ -24,7 +24,7 @@ KEYWORDS="*"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2
 	x11-libs/cairo:=
-	>=x11-libs/gdk-pixbuf-2:2
+	>=x11-libs/gdk-pixbuf-2.39.2:2
 	x11-libs/libX11
 	>=x11-libs/libXcomposite-0.4
 	x11-libs/libXdamage

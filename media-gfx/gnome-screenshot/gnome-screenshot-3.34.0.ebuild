@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=media-libs/libcanberra-0.26-r2[gtk3]
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf

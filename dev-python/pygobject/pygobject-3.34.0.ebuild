@@ -33,7 +33,7 @@ DEPEND="${COMMON_DEPEND}
 	cairo? ( x11-libs/cairo[glib] )
 	dev-libs/atk[introspection]
 	x11-libs/cairo[glib]
-	>=x11-libs/gdk-pixbuf-2.38.0:2[introspection]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection]
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	x11-libs/pango[introspection]
 "

@@ -43,7 +43,7 @@ src_unpack() {
 
 
 CDEPEND="app-text/iso-codes
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	gnome-base/dconf
 	gnome-base/librsvg:2
 	sys-apps/dbus[X?]

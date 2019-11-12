@@ -33,7 +33,7 @@ COMMON_DEPEND="
 	>=net-misc/modemmanager-0.7
 	>=net-misc/networkmanager-0.9.8:=[modemmanager]
 	>=sys-auth/polkit-0.103
-	>=x11-libs/gdk-pixbuf-2.23.0:2
+	>=x11-libs/gdk-pixbuf-2.39.2:2
 	>=x11-libs/gtk+-3.24.12:3
 	>=x11-libs/libnotify-0.7.3:0=
 	x11-libs/libX11

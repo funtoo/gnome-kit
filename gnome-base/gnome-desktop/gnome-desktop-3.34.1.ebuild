@@ -16,8 +16,8 @@ IUSE="debug +introspection udev"
 # cairo[X] needed for gnome-bg
 COMMON_DEPEND="
 	app-text/iso-codes
-	>=dev-libs/glib-2.62.2[dbus]
-	>=x11-libs/gdk-pixbuf-2.36.5:2[introspection?]
+	>=dev-libs/glib-2.62.2:2[dbus]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?]
 	>=x11-libs/gtk+-3.24.12:3[X,introspection?]
 	x11-libs/cairo:=[X]
 	x11-libs/libX11

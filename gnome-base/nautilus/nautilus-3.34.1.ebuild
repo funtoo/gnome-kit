@@ -25,12 +25,12 @@ RESTRICT="test"
 COMMON_DEPEND="
 	>=dev-util/meson-0.40.0
 	>=app-arch/gnome-autoar-0.2.1
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/pango-1.44.7
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=dev-libs/libxml2-2.7.8:2
 	>=media-libs/gexiv2-0.10.6
-	>=gnome-base/gnome-desktop-3.30:3=
+	>=gnome-base/gnome-desktop-3.34.1:3=
 
 	gnome-base/dconf
 	>=gnome-base/gsettings-desktop-schemas-3.8.0

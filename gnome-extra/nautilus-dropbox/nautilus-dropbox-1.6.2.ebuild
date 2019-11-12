@@ -21,7 +21,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
 	gnome-base/nautilus
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	dev-python/pygtk:2[${PYTHON_USEDEP}]
 	net-misc/dropbox
 	x11-libs/gtk+:2

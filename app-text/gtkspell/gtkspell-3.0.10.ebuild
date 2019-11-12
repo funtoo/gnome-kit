@@ -18,7 +18,7 @@ REQUIRED_USE="vala? ( introspection )"
 RDEPEND="
 	>=app-text/enchant-2
 	app-text/iso-codes
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	x11-libs/gtk+:3[introspection?]
 	>=x11-libs/pango-1.44.7[introspection?]
 	introspection? ( >=dev-libs/gobject-introspection-1.30:= )

@@ -16,7 +16,7 @@ IUSE="+introspection test"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
-	>=gnome-base/gnome-desktop-2.91.6:3=
+	>=gnome-base/gnome-desktop-3.34.1:3=
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=media-libs/clutter-1.13.2:1.0[introspection?]
 	>=media-libs/clutter-gtk-0.91.8:1.0
@@ -54,7 +54,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/itstool
 	virtual/pkgconfig
 	x11-base/xorg-proto
-	test? ( dev-libs/glib:2[utils] )
+	test? ( >=dev-libs/glib-2.62.2:2[utils] )
 "
 
 src_prepare() {

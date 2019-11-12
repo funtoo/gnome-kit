@@ -15,13 +15,13 @@ KEYWORDS="*"
 IUSE="test"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/webkit-gtk-2.17.4:4=
 	>=x11-libs/cairo-1.16.0
 	>=app-crypt/gcr-3.5.5:=[gtk]
-	>=x11-libs/gdk-pixbuf-2.36.5:2
-	>=gnome-base/gnome-desktop-2.91.2:3=
+	>=x11-libs/gdk-pixbuf-2.39.2:2
+	>=gnome-base/gnome-desktop-3.34.1:3=
 	dev-libs/icu:=
 	>=dev-libs/json-glib-1.2.0
 	>=x11-libs/libnotify-0.5.1:=

@@ -18,14 +18,14 @@ REQUIRED_USE="exif? ( jpeg )"
 KEYWORDS="*"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/libpeas-0.7.4:=[gtk]
-	>=gnome-base/gnome-desktop-2.91.2:3=
+	>=gnome-base/gnome-desktop-3.34.1:3=
 	>=gnome-base/gsettings-desktop-schemas-2.91.92
 	>=x11-libs/gtk+-3.24.12:3[introspection,X]
 	>=x11-misc/shared-mime-info-0.20
 
-	>=x11-libs/gdk-pixbuf-2.30.0:2[jpeg?,tiff?]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[jpeg?,tiff?]
 	x11-libs/libX11
 
 	exif? ( >=media-libs/libexif-0.6.14 )

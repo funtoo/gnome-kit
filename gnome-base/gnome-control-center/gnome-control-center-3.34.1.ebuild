@@ -23,12 +23,12 @@ REQUIRED_USE="
 QA_CONFIGURE_OPTIONS=".*"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	dev-libs/libhandy
-	>=x11-libs/gdk-pixbuf-2.23.0:2
+	>=x11-libs/gdk-pixbuf-2.39.2:2
 	>=x11-libs/gtk+-3.24.12:3[X,wayland?]
 	>=gnome-base/gsettings-desktop-schemas-3.28.0
-	>=gnome-base/gnome-desktop-3.27.90:3=
+	>=gnome-base/gnome-desktop-3.34.1:3=
 	>=gnome-base/gnome-settings-daemon-3.25.2
 	>=x11-misc/colord-0.1.34:0=
 

@@ -21,7 +21,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2
-	!qt5? ( >=x11-libs/gdk-pixbuf-2.12:2 )
+	!qt5? ( >=x11-libs/gdk-pixbuf-2.39.2:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
 	qt5? ( dev-qt/qtgui:5 )
 "

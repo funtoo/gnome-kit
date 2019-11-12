@@ -17,9 +17,9 @@ IUSE="+introspection systemd"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="${PYTHON_DEPS}
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	media-sound/pulseaudio[glib]
-	>=x11-libs/gdk-pixbuf-2.22:2[introspection?]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?]
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=x11-libs/libXext-1.1
 	>=x11-libs/libXrandr-1.3

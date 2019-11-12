@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="+introspection"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
 	>=net-libs/gssdp-0.14.7[${MULTILIB_USEDEP}]
 	>=net-libs/gupnp-0.20.10[${MULTILIB_USEDEP}]
 	introspection? ( >=dev-libs/gobject-introspection-0.10 )

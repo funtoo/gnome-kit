@@ -14,5 +14,5 @@ IUSE=""
 
 RDEPEND=""
 DEPEND="sys-devel/gettext
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	>=dev-util/intltool-0.40"

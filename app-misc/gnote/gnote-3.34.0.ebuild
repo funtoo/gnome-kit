@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	>=dev-cpp/glibmm-2.63.1:2
 	>=dev-cpp/gtkmm-3.18:3.0
 	>=dev-libs/boost-1.34:=
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/libxml2-2:2
 	dev-libs/libxslt
 	>=sys-apps/util-linux-2.16:=

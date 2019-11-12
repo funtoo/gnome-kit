@@ -19,14 +19,14 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="
 	${PYTHON_DEPS}
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-python/pygobject-3.30.0:3[${PYTHON_USEDEP}]
 	>=gnome-base/gsettings-desktop-schemas-3.28.1
 	!gnome-extra/gnome-tweak-tool
 "
 # g-s-d, gnome-desktop, gnome-shell etc. needed at runtime for the gsettings schemas
 RDEPEND="${COMMON_DEPEND}
-	>=gnome-base/gnome-desktop-3.30.0:3=[introspection]
+	>=gnome-base/gnome-desktop-3.34.1:3=[introspection]
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 
 	net-libs/libsoup:2.4[introspection]

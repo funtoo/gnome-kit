@@ -23,10 +23,10 @@ RESTRICT="test"
 
 COMMON_DEPEND="
 	>=dev-libs/atk-2.10.0[introspection?,${MULTILIB_USEDEP}]
-	>=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
 	>=media-libs/fontconfig-2.10.92[${MULTILIB_USEDEP}]
 	>=x11-libs/cairo-1.16.0-r4:=[aqua?,svg,${MULTILIB_USEDEP}]
-	>=x11-libs/gdk-pixbuf-2.30.7:2[introspection?,${MULTILIB_USEDEP}]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?,${MULTILIB_USEDEP}]
 	>=x11-libs/pango-1.44.7[introspection?,${MULTILIB_USEDEP}]
 	x11-misc/shared-mime-info
 

@@ -42,7 +42,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	gtk-doc? ( dev-util/gtk-doc )
 	test? ( >=net-libs/uhttpmock-0.5
-		>=x11-libs/gdk-pixbuf-2.14:2 )
+		>=x11-libs/gdk-pixbuf-2.39.2:2 )
 	vala? ( $(vala_depend) )
 "
 

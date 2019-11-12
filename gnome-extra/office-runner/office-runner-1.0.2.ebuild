@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE=""
 
 COMMON_DEPEND="
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	>=gnome-base/gnome-settings-daemon-3.0
 	>=x11-libs/gtk+-3.24.12:3
 "

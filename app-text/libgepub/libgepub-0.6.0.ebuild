@@ -15,7 +15,7 @@ IUSE="+introspection"
 
 RDEPEND="
 	app-arch/libarchive
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/libxml2
 	net-libs/libsoup:2.4
 	net-libs/webkit-gtk:4

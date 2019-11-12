@@ -52,7 +52,7 @@ CDEPEND="
 	caps? ( >=sys-libs/libcap-2.22-r2[${MULTILIB_USEDEP}] )
 	libsamplerate? ( >=media-libs/libsamplerate-0.1.1-r1 )
 	alsa? ( >=media-libs/alsa-lib-1.0.19 )
-	glib? ( >=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}] )
+	glib? ( >=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}] )
 	zeroconf? ( >=net-dns/avahi-0.6.12[dbus] )
 	jack? ( virtual/jack )
 	tcpd? ( sys-apps/tcp-wrappers[${MULTILIB_USEDEP}] )

@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE="autoar gspell"
 
 RDEPEND="
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	media-libs/libcanberra
 	net-libs/libsoup:2.4
 	>=x11-libs/gtk+-3.24.12:3

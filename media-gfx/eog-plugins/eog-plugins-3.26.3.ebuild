@@ -33,7 +33,7 @@ RDEPEND="
 	picasa? ( >=dev-libs/libgdata-0.9.1:= )
 	python? (
 		${PYTHON_DEPS}
-		>=dev-libs/glib-2.62.2[dbus]
+		>=dev-libs/glib-2.62.2:2[dbus]
 		dev-libs/libpeas:=[gtk,python,${PYTHON_USEDEP}]
 		dev-python/pygobject:3[${PYTHON_USEDEP}]
 		gnome-base/gsettings-desktop-schemas

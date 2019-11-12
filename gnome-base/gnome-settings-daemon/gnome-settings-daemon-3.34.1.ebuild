@@ -22,7 +22,7 @@ REQUIRED_USE="
 "
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.62.2[dbus]
+	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/gtk+-3.24.12:3[X,wayland?]
 	>=gnome-base/gsettings-desktop-schemas-3.33.0
 	>=gnome-base/librsvg-2.36.2:2

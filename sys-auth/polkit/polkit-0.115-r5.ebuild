@@ -16,7 +16,7 @@ IUSE="elogind examples gtk +introspection jit kde nls pam selinux test"
 
 CDEPEND="
 	dev-lang/spidermonkey:60[-debug]
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/expat
 	elogind? ( sys-auth/elogind )
 	introspection? ( dev-libs/gobject-introspection:= )

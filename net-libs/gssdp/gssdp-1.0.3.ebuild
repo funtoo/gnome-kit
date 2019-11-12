@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="+introspection gtk"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
 	>=net-libs/libsoup-2.44.2:2.4[${MULTILIB_USEDEP},introspection?]
 	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
 	introspection? (

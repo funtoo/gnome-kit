@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="*"
 IUSE="glade"
 
-RDEPEND=">=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
 	>=x11-libs/gtk+-2.24.23:2[${MULTILIB_USEDEP}]
 	>=media-libs/libart_lgpl-2.3.21-r2[${MULTILIB_USEDEP}]
 	>=x11-libs/pango-1.44.7[${MULTILIB_USEDEP}]

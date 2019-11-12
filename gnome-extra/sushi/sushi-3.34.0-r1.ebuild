@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE="office wayland"
 
 COMMON_DEPEND="
-	>=x11-libs/gdk-pixbuf-2.23[introspection]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection]
 	>=dev-libs/gjs-1.40
 	>=dev-libs/glib-2.62.2
 	>=dev-libs/gobject-introspection-0.9.6:=

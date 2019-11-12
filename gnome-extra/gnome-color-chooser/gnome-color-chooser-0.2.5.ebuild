@@ -20,7 +20,7 @@ RDEPEND="
 	>=dev-cpp/libglademm-2.6.0:2.4
 	dev-cpp/glibmm:2
 	>=dev-cpp/gtkmm-2.8.0:2.4
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	dev-libs/libsigc++:2
 	>=dev-libs/libxml2-2.6.0
 	>=gnome-base/libgnome-2.16.0

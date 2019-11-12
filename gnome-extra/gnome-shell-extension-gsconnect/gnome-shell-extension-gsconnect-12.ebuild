@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="*"
 IUSE=""
 
-COMMON_DEPEND="dev-libs/glib:2"
+COMMON_DEPEND=">=dev-libs/glib-2.62.2:2"
 
 RDEPEND="${COMMON_DEPEND}
 	app-eselect/eselect-gnome-shell-extensions

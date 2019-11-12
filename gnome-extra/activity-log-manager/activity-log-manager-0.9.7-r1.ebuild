@@ -21,7 +21,7 @@ IUSE=""
 
 RDEPEND="
 	dev-libs/libgee:0
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	gnome-extra/zeitgeist
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf

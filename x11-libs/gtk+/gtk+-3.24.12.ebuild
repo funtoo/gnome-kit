@@ -32,7 +32,7 @@ COMMON_DEPEND="
 	media-libs/fontconfig
 	>=media-libs/libepoxy-1.4[X(+)?]
 	>=x11-libs/cairo-1.16.0[aqua?,glib,svg,X?]
-	>=x11-libs/gdk-pixbuf-2.30:2[introspection?]
+	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?]
 	>=x11-libs/pango-1.44.7[introspection?]
 	x11-misc/shared-mime-info
 

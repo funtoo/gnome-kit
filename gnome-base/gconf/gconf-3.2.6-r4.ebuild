@@ -20,7 +20,7 @@ IUSE="debug +introspection ldap policykit"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	>=dev-libs/glib-2.62.2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
 	>=dev-libs/dbus-glib-0.100.2:=[${MULTILIB_USEDEP}]
 	>=sys-apps/dbus-1.6.18-r1:=[${MULTILIB_USEDEP}]
 	>=dev-libs/libxml2-2.9.1-r4:2[${MULTILIB_USEDEP}]

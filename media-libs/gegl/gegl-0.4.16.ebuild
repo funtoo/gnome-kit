@@ -38,7 +38,7 @@ RDEPEND="
 	>=media-libs/babl-0.1.62
 	>=media-libs/libpng-1.6.0:0=
 	virtual/jpeg:0=
-	>=x11-libs/gdk-pixbuf-2.32:2
+	>=x11-libs/gdk-pixbuf-2.39.2:2
 	x11-libs/pango
 	cairo? ( >=x11-libs/cairo-1.16.0 )
 	ffmpeg? (

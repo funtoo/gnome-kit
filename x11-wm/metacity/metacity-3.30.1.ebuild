@@ -16,7 +16,7 @@ RESTRICT="mirror"
 # XXX: libgtop is automagic, hard-enabled instead
 RDEPEND="x11-libs/gtk+:3
 	x11-libs/pango[X]
-	dev-libs/glib:2
+	>=dev-libs/glib-2.62.2:2
 	gnome-base/gsettings-desktop-schemas
 	x11-libs/startup-notification
 	x11-libs/libXcomposite
