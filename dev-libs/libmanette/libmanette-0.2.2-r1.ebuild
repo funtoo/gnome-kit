@@ -1,34 +1,39 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-VALA_MIN_API_VERSION=${VALA_MIN_API_VERSION:-0.44}
-VALA_USE_DEPEND="vapigen"
+EAPI=7
+inherit gnome.org gnome2-utils meson vala xdg
 
-inherit gnome2 meson vala
-
-DESCRIPTION="A simple GObject game controller library."
+DESCRIPTION="Simple GObject game controller library"
 HOMEPAGE="https://gitlab.gnome.org/aplazas/libmanette"
 
-LICENSE="LGPL-2+"
+LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="*"
-IUSE=""
+IUSE="+introspection +udev +vala"
+REQUIRED_USE="vala? ( introspection )"
 
-COMMON_DEPEND="
-	>=dev-libs/glib-2.56.0
-	dev-libs/libgudev
+RDEPEND="
+	>=dev-libs/glib-2.60.4:2
+	udev? ( dev-libs/libgudev[introspection?] )
 	dev-libs/libevdev
+	introspection? ( >=dev-libs/gobject-introspection-1.56:= )
 "
-
-DEPEND="${COMMON_DEPEND}
-	${vala_depend}
+DEPEND="${DEPEND}
+	vala? ( $(vala_depend) )
+	virtual/pkgconfig
 "
 
 src_prepare() {
-	vala_src_prepare
-	gnome2_src_prepare
+	xdg_src_prepare
+	use vala && vala_src_prepare
 }
 
 src_configure() {
+	local emesonargs=(
+		$(meson_feature udev gudev)
+		$(meson_use introspection)
+		$(meson_use vala vapi)
+	)
 	meson_src_configure
 }
