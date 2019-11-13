@@ -26,6 +26,7 @@ RDEPEND="${COMMON_DEPEND}
 	!<x11-themes/gnome-themes-standard-3.14
 "
 DEPEND="${COMMON_DEPEND}
+	>=x11-libs/gtk+-3.24.12:3
 	sys-devel/gettext
 	virtual/pkgconfig
 "
