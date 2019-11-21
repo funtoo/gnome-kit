@@ -25,7 +25,7 @@ RDEPEND="
 	x11-libs/gdk-pixbuf:2[introspection?]
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	x11-libs/pango[introspection?]
-	introspection? ( >=dev-libs/gobject-introspection-1.32:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	python? (
 		${PYTHON_DEPS}
 		>=dev-python/pygobject-3.31.2:3[${PYTHON_USEDEP}] )

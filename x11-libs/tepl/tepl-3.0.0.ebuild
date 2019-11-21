@@ -21,7 +21,7 @@ RDEPEND="
 	>=x11-libs/gtksourceview-3.22
 	>=dev-libs/libxml2-2.5
 	app-i18n/uchardet
-	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${DEPEND}
 	test? ( dev-util/valgrind )

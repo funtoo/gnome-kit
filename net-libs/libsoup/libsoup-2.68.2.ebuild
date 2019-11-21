@@ -27,7 +27,7 @@ COMMON_DEPEND="
 	>=dev-libs/libxml2-2.9.1-r4:2
 	>=dev-db/sqlite-3.8.2:3
 	gssapi? ( virtual/krb5 )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	samba? ( net-fs/samba )
 "
 

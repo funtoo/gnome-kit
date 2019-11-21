@@ -29,7 +29,7 @@ RDEPEND="
 	x11-libs/libX11
 
 	exif? ( >=media-libs/libexif-0.6.14 )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	jpeg? ( virtual/jpeg:0 )
 	lcms? ( media-libs/lcms:2 )
 	svg? ( >=gnome-base/librsvg-2.36.2:2 )

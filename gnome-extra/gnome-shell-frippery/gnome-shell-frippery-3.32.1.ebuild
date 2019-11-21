@@ -15,7 +15,7 @@ IUSE=""
 RDEPEND="
 	app-eselect/eselect-gnome-shell-extensions
 	>=dev-libs/gjs-1.29
-	dev-libs/gobject-introspection:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	gnome-base/gnome-menus:3[introspection]
 	>=gnome-base/gnome-shell-3.32
 	media-libs/clutter:1.0[introspection]

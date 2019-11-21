@@ -31,7 +31,7 @@ COMMON_DEPS="
 		dev-python/dbusmock[${PYTHON_USEDEP}]
 		dev-util/umockdev
 	)
-	introspection? ( dev-libs/gobject-introspection:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	kernel_linux? (
 		virtual/libusb:1
 		virtual/libgudev:=

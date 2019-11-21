@@ -20,7 +20,7 @@ CDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	sys-auth/polkit
 	elogind? ( >=sys-auth/elogind-229.4 )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	systemd? ( >=sys-apps/systemd-186:0= )
 	!systemd? ( !elogind? ( sys-auth/consolekit ) )
 	sys-apps/dbus

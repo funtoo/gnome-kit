@@ -17,7 +17,7 @@ IUSE="+introspection"
 RDEPEND="
 	>=dev-db/sqlite-3.7:3
 	>=dev-libs/glib-2.62.2:2
-	introspection? ( >=dev-libs/gobject-introspection-1.30.0:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	>=dev-python/pygobject-3.16:3
 "
 DEPEND="${RDEPEND}

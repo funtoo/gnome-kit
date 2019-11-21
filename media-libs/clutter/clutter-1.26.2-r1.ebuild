@@ -40,7 +40,7 @@ RDEPEND="
 		x11-libs/libxkbcommon
 	)
 	gtk? ( >=x11-libs/gtk+-3.24.12:3[aqua?] )
-	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	X? (
 		media-libs/fontconfig
 		>=x11-libs/libX11-1.3.1

@@ -53,7 +53,7 @@ RDEPEND="
 	dev-libs/libpcre:3
 	>=net-libs/webkit-gtk-2.12.0:4=[introspection]
 
-	>=dev-libs/gobject-introspection-1.48.0:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-python/pygobject-3.22.0:3[${PYTHON_USEDEP}]
 	${PYTHON_DEPS}
 	clang? ( sys-devel/clang:= )

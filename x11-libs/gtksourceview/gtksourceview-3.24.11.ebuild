@@ -23,7 +23,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.6:2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	glade? ( >=dev-util/glade-3.9:3.10 )
-	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	dev-util/gdbus-codegen

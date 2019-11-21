@@ -27,7 +27,7 @@ RDEPEND="
 	gtk? (
 		x11-libs/gtk+:3[introspection?]
 		media-libs/clutter-gtk:1.0 )
-	introspection? ( dev-libs/gobject-introspection:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	doc? ( dev-util/gtk-doc-am )

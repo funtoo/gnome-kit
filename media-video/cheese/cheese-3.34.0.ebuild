@@ -31,7 +31,7 @@ COMMON_DEPEND="
 	>=media-libs/gstreamer-1.4:1.0[introspection?]
 	>=media-libs/gst-plugins-base-1.4:1.0[introspection?,ogg,pango,theora,vorbis,X]
 
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	>=media-libs/gst-plugins-bad-1.4:1.0

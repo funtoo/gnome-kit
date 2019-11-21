@@ -33,7 +33,7 @@ RDEPEND="
 	gtk? ( x11-libs/gtk+:3 )
 	crypt? ( app-crypt/gcr:= )
 	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.8:=[introspection?,vala?] )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	dev-util/glib-utils

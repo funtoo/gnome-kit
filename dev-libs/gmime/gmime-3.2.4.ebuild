@@ -21,7 +21,7 @@ RDEPEND="
 	idn? ( net-dns/libidn )
 	vala? (
 		$(vala_depend)
-		>=dev-libs/gobject-introspection-1.30.0:= )
+		>=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.8

@@ -35,7 +35,7 @@ DEPEND="
 	cairo? (
 		>=dev-libs/glib-2.62.2:2
 		x11-libs/cairo
-		introspection? ( dev-libs/gobject-introspection:= )
+		introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	)
 	curl? ( net-misc/curl )
 	jpeg? ( virtual/jpeg:0 )

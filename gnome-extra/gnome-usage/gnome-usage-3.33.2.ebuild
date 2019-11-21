@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-libs/glib-2.38
-	>=dev-libs/gobject-introspection-1:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=x11-libs/gtk+-3.24.12:3
 	>=gnome-base/libgtop-2.34.2
 "

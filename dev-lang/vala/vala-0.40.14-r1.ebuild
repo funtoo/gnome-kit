@@ -17,7 +17,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/vala-common-${PV}
 	>=media-gfx/graphviz-2.16
-	dev-libs/gobject-introspection
+	>=dev-libs/gobject-introspection-1.62.0:=
 "
 
 RDEPEND="${COMMON_DEPEND}

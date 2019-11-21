@@ -29,7 +29,7 @@ RDEPEND="
 	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?]
 	x11-libs/gtk+:3
 	x11-libs/pango
-	introspection? ( >=dev-libs/gobject-introspection-0.9.8:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	stemmer? ( dev-libs/snowball-stemmer )
 "
 DEPEND="${RDEPEND}

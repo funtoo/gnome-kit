@@ -16,7 +16,7 @@ IUSE="+cairo elibc_glibc examples gtk test"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.41.4:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 
 	sys-libs/readline:0
 	dev-lang/spidermonkey:60

@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	>=dev-libs/libtasn1-1:=
 	>=sys-apps/dbus-1
 	gtk? ( >=x11-libs/gtk+-3.24.12:3[X,introspection?] )
-	introspection? ( >=dev-libs/gobject-introspection-1.34:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	!<gnome-base/gnome-keyring-3.3

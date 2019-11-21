@@ -15,7 +15,7 @@ IUSE="+introspection nls"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-lang/perl-5

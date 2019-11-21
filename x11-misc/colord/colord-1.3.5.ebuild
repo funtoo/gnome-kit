@@ -31,7 +31,7 @@ COMMON_DEPEND="
 	>=media-libs/lcms-2.6:2=[${MULTILIB_USEDEP}]
 	argyllcms? ( media-gfx/argyllcms )
 	gusb? ( >=dev-libs/libgusb-0.2.7[introspection?,${MULTILIB_USEDEP}] )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.8:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	policykit? ( >=sys-auth/polkit-0.104 )
 	scanner? (
 		media-gfx/sane-backends

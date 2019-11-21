@@ -22,7 +22,7 @@ RDEPEND="
 
 	dev-libs/atk[introspection]
 	>=dev-libs/glib-2.62.2:2
-	dev-libs/gobject-introspection:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-python/ipython-0.11[${PYTHON_USEDEP}]
 	>=dev-python/pyatspi-2.1.5[${PYTHON_USEDEP}]
 	dev-python/pycairo[${PYTHON_USEDEP}]

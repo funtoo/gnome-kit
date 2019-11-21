@@ -27,7 +27,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/pango
 
-	introspection? ( >=dev-libs/gobject-introspection-0.6.2:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	kerberos? (
 		app-crypt/gcr:0=
 		app-crypt/mit-krb5 )

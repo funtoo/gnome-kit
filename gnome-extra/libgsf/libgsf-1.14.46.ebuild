@@ -22,7 +22,7 @@ RDEPEND="
 		x11-libs/gdk-pixbuf:2
 		virtual/imagemagick-tools
 		)
-	introspection? ( >=dev-libs/gobject-introspection-1:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.12

@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.62.2:2
 	media-plugins/gst-plugins-dvb:1.0
 	dev-python/gst-python:1.0
 	>=dev-python/pygobject-3.2.1:3
-	>=dev-libs/gobject-introspection-1.44.0:0
+	>=>=dev-libs/gobject-introspection-1.62.0:=.44.0:0
 	x11-libs/gtk+:3[introspection]
 	virtual/libgudev:0
 	vala? ( $(vala_depend) )

@@ -23,7 +23,7 @@ RDEPEND="
 	>=media-libs/freetype-2.5.0.1:2=
 	>=x11-libs/cairo-1.16.0-r3:=[X?]
 	>=dev-libs/fribidi-0.19.7
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	X? (
 		>=x11-libs/libXrender-0.9.8
 		>=x11-libs/libX11-1.6.2

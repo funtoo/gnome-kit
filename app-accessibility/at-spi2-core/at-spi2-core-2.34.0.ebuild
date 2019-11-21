@@ -24,7 +24,7 @@ RDEPEND="
 	x11-libs/libSM
 	x11-libs/libXi
 	x11-libs/libXtst
-	introspection? ( >=dev-libs/gobject-introspection-0.9.6:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	X? (
 		x11-libs/libX11
 		x11-libs/libXi

@@ -25,7 +25,7 @@ RDEPEND="
 	dev-libs/libgee:0.8[introspection]
 	>=app-text/gtkspell-3.0.3:3
 	>=dev-libs/glib-2.62.2:2[dbus]
-	>=dev-libs/gobject-introspection-0.10.1:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	dev-libs/libgit2:=[threads]
 
 	>=dev-libs/libgit2-glib-0.25.0[ssh]

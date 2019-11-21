@@ -39,7 +39,7 @@ COMMON_DEPEND="
 	gstreamer? (
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0 )
-	introspection? ( >=dev-libs/gobject-introspection-1.34.2:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	kms? (
 		media-libs/mesa[gbm]
 		x11-libs/libdrm:= )

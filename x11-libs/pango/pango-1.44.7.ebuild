@@ -21,7 +21,7 @@ RDEPEND="
 	>=media-libs/fontconfig-2.10.92:1.0=
 	>=media-libs/freetype-2.5.0.1:2=
 	>=x11-libs/cairo-1.16.0:=[X?]
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	X? (
 		>=x11-libs/libXrender-0.9.8
 		>=x11-libs/libX11-1.6.2

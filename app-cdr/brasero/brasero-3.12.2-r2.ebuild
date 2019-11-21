@@ -26,7 +26,7 @@ COMMON_DEPEND="
 	x11-libs/libICE
 	x11-libs/libSM
 
-	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	libburn? (
 		>=dev-libs/libburn-0.4:=
 		>=dev-libs/libisofs-0.6.4:= )

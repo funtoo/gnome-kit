@@ -23,7 +23,7 @@ KEYWORDS="*"
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	crypt? ( >=dev-libs/libgcrypt-1.2.2:0= )
-	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 PDEPEND=">=gnome-base/gnome-keyring-3
 "

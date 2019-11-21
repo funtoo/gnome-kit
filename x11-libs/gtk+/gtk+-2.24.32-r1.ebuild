@@ -31,7 +31,7 @@ COMMON_DEPEND="
 	x11-misc/shared-mime-info
 
 	cups? ( >=net-print/cups-1.7.1-r2:=[${MULTILIB_USEDEP}] )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	!aqua? (
 		>=x11-libs/cairo-1.16.0:=[aqua?,svg,X,${MULTILIB_USEDEP}]
 		>=x11-libs/libXrender-0.9.8[${MULTILIB_USEDEP}]

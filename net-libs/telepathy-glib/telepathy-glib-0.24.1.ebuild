@@ -31,7 +31,7 @@ RDEPEND="
 	${PYTHON_DEPS}
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/dbus-glib-0.90
-	introspection? ( >=dev-libs/gobject-introspection-1.30 )
+	introspection? ( >=>=dev-libs/gobject-introspection-1.62.0:=.30 )
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxslt

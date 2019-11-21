@@ -22,7 +22,7 @@ RDEPEND="
 	>=dev-libs/libcroco-0.6.8
 	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?]
 	>=virtual/rust-1.34
-	introspection? ( >=dev-libs/gobject-introspection-0.10.8:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common

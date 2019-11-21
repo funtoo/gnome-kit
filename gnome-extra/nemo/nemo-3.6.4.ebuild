@@ -32,7 +32,7 @@ COMMON_DEPEND="
 	>=x11-libs/xapps-1.0.4
 
 	exif? ( >=media-libs/libexif-0.6.20:= )
-	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	tracker? ( >=app-misc/tracker-0.12:= )
 	xmp? ( >=media-libs/exempi-2.2.0:= )
 	sys-libs/libselinux

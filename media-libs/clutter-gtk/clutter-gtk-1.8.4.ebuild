@@ -18,7 +18,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.24.12:3[X=,introspection?,wayland=]
 	>=media-libs/clutter-1.23.7:1.0[X=,gtk=,introspection?,wayland=]
 	media-libs/cogl:1.0=[introspection?]
-	introspection? ( >=dev-libs/gobject-introspection-1.32:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.24

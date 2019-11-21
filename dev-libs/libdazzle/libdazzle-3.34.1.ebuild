@@ -18,7 +18,7 @@ IUSE="gtk-doc +introspection"
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 
 DEPEND="${RDEPEND}

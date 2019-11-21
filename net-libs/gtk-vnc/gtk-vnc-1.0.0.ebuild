@@ -28,7 +28,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-2.18:2
 	x11-libs/libX11
 	>=x11-libs/gtk+-2.91.3:3[introspection?]
-	>=dev-libs/gobject-introspection-0.9.4:=
+	>=>=dev-libs/gobject-introspection-1.62.0:=.62.0:=
 	media-sound/pulseaudio
 	${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
@@ -42,7 +42,7 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig
 	$(vala_depend)
-	>=dev-libs/gobject-introspection-1.56.0
+	>=>=dev-libs/gobject-introspection-1.62.0:=.56.0
 "
 # eautoreconf requires gnome-common
 

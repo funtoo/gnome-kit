@@ -18,7 +18,7 @@ REQUIRED_USE="vala? ( introspection )"
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	media-libs/libcanberra
-	introspection? ( >=dev-libs/gobject-introspection-1.2.9:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.20

@@ -62,7 +62,7 @@ COMMON_DEPEND="
 	sys-auth/pambase
 
 	audit? ( sys-process/audit )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	plymouth? ( sys-boot/plymouth )
 	selinux? ( sys-libs/libselinux )
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )

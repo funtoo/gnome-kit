@@ -28,7 +28,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	x11-libs/libxkbfile
 	x11-misc/xkeyboard-config
 	>=gnome-base/gsettings-desktop-schemas-3.5.91
-	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	sys-apps/accountsservice
 "
 RDEPEND="${COMMON_DEPEND}

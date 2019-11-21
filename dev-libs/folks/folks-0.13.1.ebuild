@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	$(vala_depend)
 	>=dev-libs/glib-2.62.2:2
 	dev-libs/dbus-glib
-	>=dev-libs/gobject-introspection-1.30:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/libgee-0.10:0.8[introspection]
 	dev-libs/libxml2
 	sys-libs/ncurses:0=

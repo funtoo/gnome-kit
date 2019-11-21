@@ -15,7 +15,7 @@ IUSE=""
 COMMON_DEPEND="
 	dev-libs/gjs
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.31.6
+	>=>=dev-libs/gobject-introspection-1.62.0:=.31.6
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 "

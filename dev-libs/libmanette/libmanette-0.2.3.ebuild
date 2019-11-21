@@ -17,7 +17,7 @@ RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	udev? ( dev-libs/libgudev[introspection?] )
 	dev-libs/libevdev
-	introspection? ( >=dev-libs/gobject-introspection-1.56:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${DEPEND}
 	vala? ( $(vala_depend) )

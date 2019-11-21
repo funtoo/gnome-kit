@@ -58,7 +58,7 @@ CDEPEND="app-text/iso-codes
 		x11-libs/libXi
 		gtk2? ( x11-libs/gtk+:2 )
 	)
-	introspection? ( dev-libs/gobject-introspection )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	kde? ( dev-qt/qtgui:5 )
 	x11-libs/libnotify
 	nls? ( virtual/libintl )

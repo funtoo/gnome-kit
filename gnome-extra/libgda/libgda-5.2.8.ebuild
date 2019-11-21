@@ -42,7 +42,7 @@ RDEPEND="
 		graphviz? ( media-gfx/graphviz )
 	)
 	http? ( >=net-libs/libsoup-2.24:2.4 )
-	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	json? ( dev-libs/json-glib )
 	ldap? ( net-nds/openldap:= )
 	mdb? ( >app-office/mdbtools-0.5:= )

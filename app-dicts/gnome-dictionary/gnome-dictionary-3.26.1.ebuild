@@ -18,7 +18,7 @@ COMMON_DEPEND="
 	x11-libs/cairo:=
 	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/pango
-	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	gnome-base/gsettings-desktop-schemas

@@ -38,7 +38,7 @@ RDEPEND="
 	datahub? ( x11-libs/gtk+:3 )
 	fts? ( dev-libs/xapian:0=[inmemory] )
 	icu? ( dev-libs/dee[icu?] )
-	introspection? ( dev-libs/gobject-introspection )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	telepathy? ( net-libs/telepathy-glib )
 "
 DEPEND="${RDEPEND}

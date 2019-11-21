@@ -24,7 +24,7 @@ COMMON_DEPEND="
 	virtual/udev
 	acl? ( virtual/acl )
 	elogind? ( >=sys-auth/elogind-219 )
-	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	lvm? ( sys-fs/lvm2 )
 	systemd? ( >=sys-apps/systemd-209 )
 "

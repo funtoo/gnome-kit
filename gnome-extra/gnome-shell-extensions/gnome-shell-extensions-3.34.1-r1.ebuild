@@ -20,7 +20,7 @@ COMMON_DEPEND="
 "
 RDEPEND="${COMMON_DEPEND}
 	>=dev-libs/gjs-1.29
-	dev-libs/gobject-introspection:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	dev-libs/atk[introspection]
 	>=gnome-base/gnome-menus-3.31.92:3[introspection]
 	>=gnome-base/gnome-shell-${PV}

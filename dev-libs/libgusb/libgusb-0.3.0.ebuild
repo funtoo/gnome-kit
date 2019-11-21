@@ -22,7 +22,7 @@ RESTRICT="test"
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	virtual/libusb:1[udev]
-	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxslt

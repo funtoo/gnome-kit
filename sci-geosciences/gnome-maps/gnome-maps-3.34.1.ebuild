@@ -17,7 +17,7 @@ COMMON_DEPEND="
 	>=app-misc/geoclue-1.99.3:2.0[introspection]
 	>=dev-libs/folks-0.10
 	>=dev-libs/gjs-1.44.0
-	>=dev-libs/gobject-introspection-0.10.1:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libgee-0.16:0.8[introspection]
 	dev-libs/libxml2:2

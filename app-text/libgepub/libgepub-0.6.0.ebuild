@@ -20,7 +20,7 @@ RDEPEND="
 	net-libs/libsoup:2.4
 	net-libs/webkit-gtk:4
 	x11-libs/gtk+:3
-	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	virtual/pkgconfig

@@ -19,7 +19,7 @@ RDEPEND="
 	media-libs/freetype:2
 	media-libs/libpng:0
 	>=x11-libs/cairo-1.16.0[svg]
-	introspection? ( >=dev-libs/gobject-introspection-0.10.1:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	jpeg? ( virtual/jpeg:0 )
 	lcms? ( media-libs/lcms:2 )
 	tiff? ( media-libs/tiff:0[zlib] )

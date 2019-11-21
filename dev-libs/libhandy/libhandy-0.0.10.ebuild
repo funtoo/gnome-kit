@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 BDEPEND="dev-util/meson
 	dev-lang/vala
 	dev-util/glade
-	dev-libs/gobject-introspection
+	>=dev-libs/gobject-introspection-1.62.0:=
 	gnome-base/gnome-desktop"
 
 VALA_USE_DEPEND=vapigen

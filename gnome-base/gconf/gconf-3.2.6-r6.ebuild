@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-libs/dbus-glib-0.100.2:=
 	>=sys-apps/dbus-1.6.18-r1:=
 	>=dev-libs/libxml2-2.9.1-r4:2
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	ldap? ( >=net-nds/openldap-2.4.38-r1:= )
 	policykit? ( sys-auth/polkit:= )
 "

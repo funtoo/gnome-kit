@@ -17,7 +17,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	net-libs/telepathy-glib[introspection]
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.50:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/gjs-1.45.3
 	x11-libs/gdk-pixbuf:2[introspection]
 	>=app-text/gspell-1.4.0[introspection]

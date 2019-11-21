@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-libs/libgcrypt-1.2.2:0=
 	>=sys-apps/dbus-1
 	>=gnome-base/gnome-keyring-3.1.92
-	introspection? ( >=dev-libs/gobject-introspection-1.30.0 )
+	introspection? ( >=>=dev-libs/gobject-introspection-1.62.0:=.30.0 )
 "
 DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am

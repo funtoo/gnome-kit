@@ -52,7 +52,7 @@ RDEPEND="
 	gnome-online-accounts? (
 		>=net-libs/gnome-online-accounts-3.8:=
 		${gdata_depend} )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	kerberos? ( virtual/krb5:= )
 	ldap? ( >=net-nds/openldap-2:= )
 	weather? ( >=dev-libs/libgweather-3.10:2= )

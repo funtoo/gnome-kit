@@ -16,7 +16,7 @@ IUSE="+introspection"
 # FIXME: add doc support, requires valadoc
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
-	introspection? ( >=dev-libs/gobject-introspection-0.9.6:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	virtual/pkgconfig

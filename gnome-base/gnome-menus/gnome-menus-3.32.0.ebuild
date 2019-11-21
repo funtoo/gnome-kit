@@ -16,7 +16,7 @@ IUSE="+introspection test"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 # Older versions of slot 0 install the menu editor and the desktop directories
 RDEPEND="${COMMON_DEPEND}

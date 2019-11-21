@@ -20,7 +20,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	x11-libs/libnotify
 	virtual/udev
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	>=net-wireless/bluez-5.50

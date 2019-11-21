@@ -19,7 +19,7 @@ COMMON_DEPEND="
 	>=net-libs/webkit-gtk-2.6:4[introspection]
 	dev-libs/gjs
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.31.6:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	>=net-libs/libsoup-2.41.3:2.4
 	gnome-base/gnome-desktop:3=[introspection]

@@ -57,7 +57,7 @@ COMMON_DEPEND="
 
 	gles2? ( media-libs/mesa[gles2] )
 	input_devices_wacom? ( >=dev-libs/libwacom-0.13 )
-	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	udev? ( >=virtual/libgudev-232:= )
 	wayland? (
 		>=dev-libs/libinput-1.4

@@ -19,7 +19,7 @@ CDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	dev-libs/expat
 	elogind? ( sys-auth/elogind )
-	introspection? ( dev-libs/gobject-introspection:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	pam? (
 		sys-auth/pambase
 		virtual/pam
@@ -35,7 +35,6 @@ DEPEND="${CDEPEND}
 	dev-util/intltool
 	sys-devel/gettext
 	virtual/pkgconfig
-	introspection? ( dev-libs/gobject-introspection )
 "
 RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-policykit )

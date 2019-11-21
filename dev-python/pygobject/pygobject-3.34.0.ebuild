@@ -22,7 +22,7 @@ REQUIRED_USE="
 
 COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.58.0:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	virtual/libffi:=
 	cairo? (
 		>=dev-python/pycairo-1.17.0[${PYTHON_USEDEP}]

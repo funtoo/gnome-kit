@@ -35,7 +35,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	app-misc/ca-certificates
 	dev-libs/dbus-glib
 	>=dev-libs/glib-2.62.2:2[dbus]
-	>=dev-libs/gobject-introspection-0.10.1:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/json-glib-0.13.2
 	>=dev-libs/libcroco-0.6.2:0.6
 	dev-libs/libxml2:2

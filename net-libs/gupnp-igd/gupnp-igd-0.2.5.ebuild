@@ -17,7 +17,7 @@ RDEPEND="
 	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
 	>=net-libs/gssdp-0.14.7[${MULTILIB_USEDEP}]
 	>=net-libs/gupnp-0.20.10[${MULTILIB_USEDEP}]
-	introspection? ( >=dev-libs/gobject-introspection-0.10 )
+	introspection? ( >=>=dev-libs/gobject-introspection-1.62.0:=.10 )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.10

@@ -23,7 +23,7 @@ COMMON_DEPEND="
 	x11-libs/libX11
 	x11-misc/xkeyboard-config
 	>=gnome-base/gsettings-desktop-schemas-3.28.0
-	introspection? ( >=dev-libs/gobject-introspection-0.9.7:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	udev? (
 		sys-apps/hwids
 		virtual/libudev:= )

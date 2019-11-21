@@ -27,7 +27,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtksourceview-3.24:3.0=
 	x11-libs/gdk-pixbuf:2
 	x11-libs/pango
-	introspection? ( >=dev-libs/gobject-introspection-1.30.0:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	virtual/latex-base

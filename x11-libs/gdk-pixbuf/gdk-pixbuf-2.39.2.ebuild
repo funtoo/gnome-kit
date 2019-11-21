@@ -18,7 +18,7 @@ RESTRICT="mirror"
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=media-libs/libpng-1.4:0=
-	>=dev-libs/gobject-introspection-0.9.3:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	jpeg? ( virtual/jpeg:0= )
 	jpeg2k? ( media-libs/jasper:= )
 	tiff? ( >=media-libs/tiff-3.9.2:0= )

@@ -38,7 +38,7 @@ COMMON_DEPEND="
 		media-libs/gst-plugins-good:1.0 )
 	gnome? ( gnome-base/gnome-desktop:3= )
 	gnome-keyring? ( >=app-crypt/libsecret-0.5 )
-	introspection? ( >=dev-libs/gobject-introspection-1:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	nautilus? ( >=gnome-base/nautilus-2.91.4[introspection?] )
 	postscript? ( >=app-text/libspectre-0.2:= )
 	tiff? ( >=media-libs/tiff-3.6:0= )

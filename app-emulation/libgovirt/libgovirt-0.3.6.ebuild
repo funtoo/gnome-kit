@@ -15,7 +15,7 @@ KEYWORDS="*"
 IUSE="+introspection nls"
 
 RDEPEND="
-	introspection? ( >=dev-libs/gobject-introspection-0.10.8:= )"
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )"
 DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am
     net-libs/rest

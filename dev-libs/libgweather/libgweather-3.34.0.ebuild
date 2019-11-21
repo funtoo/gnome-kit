@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	>=sys-libs/timezone-data-2010k
 
 	glade? ( >=dev-util/glade-3.16:3.10 )
-	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${COMMON_DEPEND}
 	gtk-doc? ( >=dev-util/gtk-doc-1.11

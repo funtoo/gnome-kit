@@ -42,7 +42,7 @@ COMMON_DEPEND="
 
 	devhelp? ( >=dev-util/devhelp-3.7.4:= )
 	glade? ( >=dev-util/glade-3.12:3.10= )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	subversion? (
 		>=dev-vcs/subversion-1.8:=
 		>=net-libs/serf-1.2:1=

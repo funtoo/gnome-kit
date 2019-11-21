@@ -29,7 +29,7 @@ RDEPEND="${PYTHON_DEPS}
 	>=dev-libs/libxml2-2.9.1-r4
 	>=sys-apps/util-linux-2.24.1-r3
 	introspection? (
-			>=dev-libs/gobject-introspection-1.36:=
+			>=dev-libs/gobject-introspection-1.62.0:=
 			$(vala_depend) )
 	connman? ( >=dev-libs/glib-2.62.2:2 )
 	networkmanager? ( >=dev-libs/glib-2.62.2:2 )

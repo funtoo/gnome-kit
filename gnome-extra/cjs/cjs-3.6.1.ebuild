@@ -16,7 +16,7 @@ KEYWORDS="*"
 RDEPEND="
 	dev-lang/spidermonkey:38
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.38:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	sys-libs/readline:0
 	virtual/libffi
 	cairo? ( x11-libs/cairo[X,glib] )

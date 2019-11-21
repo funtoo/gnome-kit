@@ -20,7 +20,7 @@ RDEPEND="
 	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
 	introspection? (
 		$(vala_depend)
-		>=dev-libs/gobject-introspection-1.36:= )
+		>=dev-libs/gobject-introspection-1.62.0:= )
 	!<net-libs/gupnp-vala-0.10.3
 "
 DEPEND="${RDEPEND}

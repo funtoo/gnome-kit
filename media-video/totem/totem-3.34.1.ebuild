@@ -47,7 +47,7 @@ COMMON_DEPEND="
 		>=dev-libs/libxml2-2.6:2
 		>=x11-libs/gtk+-3.24.12:3[X]
 	)
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	lirc? ( app-misc/lirc )
 	nautilus? ( >=gnome-base/nautilus-2.91.3 )
 	python? (

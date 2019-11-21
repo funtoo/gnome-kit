@@ -20,7 +20,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/pango-1.44.7[introspection?]
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
-	introspection? ( >=dev-libs/gobject-introspection-0.9.0:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 RDEPEND="${COMMON_DEPEND}
 	!<gnome-extra/gucharmap-3:0

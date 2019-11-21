@@ -20,7 +20,7 @@ RDEPEND="
 	>=dev-libs/json-glib-0.14
 	>=net-libs/libsoup-2.42:2.4
 	sys-apps/dbus
-	introspection? ( >=dev-libs/gobject-introspection-0.9.6:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	modemmanager? ( >=net-misc/modemmanager-1 )
 	zeroconf? ( >=net-dns/avahi-0.6.10[dbus] )
 	!<sci-geosciences/geocode-glib-3.10.0

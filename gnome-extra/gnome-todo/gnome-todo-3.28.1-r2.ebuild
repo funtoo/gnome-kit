@@ -20,7 +20,7 @@ RDEPEND="
 	>=gnome-extra/evolution-data-server-3.28.0:=[gtk]
 	>=dev-libs/libical-3
 	>=dev-libs/libpeas-1.22
-	introspection? ( >=dev-libs/gobject-introspection-1.42:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/meson-0.40.0

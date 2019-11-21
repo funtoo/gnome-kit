@@ -26,7 +26,7 @@ COMMON_DEPEND="
 	>=app-crypt/gpgme-1:1=
 	>=app-crypt/gnupg-1.4
 
-	introspection? ( >=dev-libs/gobject-introspection-0.6.4:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	libnotify? ( >=x11-libs/libnotify-0.7:= )
 "
 DEPEND="${COMMON_DEPEND}

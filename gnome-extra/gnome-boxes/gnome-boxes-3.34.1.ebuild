@@ -26,7 +26,7 @@ IUSE="rdp" #bindist
 RDEPEND="
 	>=app-arch/libarchive-3:=
 	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-0.9.6:=
+	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/libxml2-2.7.8:2
 	>=sys-libs/libosinfo-1.4.0
 	>=sys-apps/osinfo-db-20190319

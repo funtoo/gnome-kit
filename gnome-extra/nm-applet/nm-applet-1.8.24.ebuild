@@ -31,7 +31,7 @@ RDEPEND="
 	ayatana? (
 		dev-libs/libappindicator:3
 		>=dev-libs/libdbusmenu-16.04.0 )
-	introspection? ( >=dev-libs/gobject-introspection-0.9.6:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	virtual/freedesktop-icon-theme
 	virtual/libgudev:=
 	gcr? ( >=app-crypt/gcr-3.14:=[gtk] )

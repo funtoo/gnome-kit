@@ -17,7 +17,7 @@ RDEPEND="
 	app-eselect/eselect-notify-send
 	>=dev-libs/glib-2.62.2:2
 	x11-libs/gdk-pixbuf:2
-	introspection? ( >=dev-libs/gobject-introspection-1.32:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-libs/gobject-introspection-common-1.32

@@ -64,7 +64,7 @@ RDEPEND="
 	media-libs/woff2
 	gnome-keyring? ( app-crypt/libsecret )
 	geolocation? ( >=app-misc/geoclue-2.1.5:2.0 )
-	introspection? ( >=dev-libs/gobject-introspection-1.32.0:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	dev-libs/libtasn1:=
 	nsplugin? ( >=x11-libs/gtk+-2.24.10:2 )
 	spell? ( >=app-text/enchant-0.22:= )
