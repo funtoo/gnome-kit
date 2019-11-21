@@ -24,7 +24,7 @@ RDEPEND="
 	dev-libs/libxml2
 	dev-libs/libxslt
 	dev-db/sqlite:3
-	introspection? ( >=>=dev-libs/gobject-introspection-1.62.0:=.9.6 )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
