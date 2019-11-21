@@ -22,7 +22,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.24.12:3
 	x11-libs/gtksourceview:4[vala]
 	>=net-libs/libsoup-2.42:2.4
-	dev-libs/libgee
+	dev-libs/libgee-0.20.2
 	dev-libs/libxml2:2
 	dev-libs/mpc:=
 	dev-libs/mpfr:0=
@@ -45,16 +45,4 @@ src_configure() {
 	)
 
 	meson_src_configure
-}
-
-pkg_postinst() {
-	xdg_pkg_postinst
-	xdg_icon_cache_update
-	gnome2_schemas_update
-}
-
-pkg_postrm() {
-	xdg_pkg_postrm
-	xdg_icon_cache_update
-	gnome2_schemas_update
 }
