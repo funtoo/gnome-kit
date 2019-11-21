@@ -6,7 +6,7 @@ GCONF_DEBUG="no"
 PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} )
 VALA_MIN_API_VERSION="0.26"
 
-inherit eutils gnome2 multilib python-any-r1 vala
+inherit eutils gnome2 python-any-r1 vala
 
 DESCRIPTION="Setup your DVB devices, record and watch TV shows and browse EPG using GStreamer"
 HOMEPAGE="https://wiki.gnome.org/action/show/Projects/DVBDaemon"
@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.62.2:2
 	media-plugins/gst-plugins-dvb:1.0
 	dev-python/gst-python:1.0
 	>=dev-python/pygobject-3.2.1:3
-	>=>=dev-libs/gobject-introspection-1.62.0:=.44.0:0
+	>=dev-libs/gobject-introspection-1.62.0:=
 	x11-libs/gtk+:3[introspection]
 	virtual/libgudev:0
 	vala? ( $(vala_depend) )

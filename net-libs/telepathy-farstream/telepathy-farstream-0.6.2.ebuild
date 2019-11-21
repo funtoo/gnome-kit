@@ -22,7 +22,7 @@ RDEPEND="
 	media-libs/gstreamer:1.0[introspection?]
 	>=net-libs/telepathy-glib-0.21[introspection?]
 	net-libs/farstream:0.2=[introspection?]
-	introspection? ( >=>=dev-libs/gobject-introspection-1.62.0:=.30 )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.17

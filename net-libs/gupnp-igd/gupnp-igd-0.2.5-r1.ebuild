@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit ltprune gnome.org multilib-minimal xdg-utils
+inherit ltprune gnome.org xdg-utils
 
 DESCRIPTION="Library to handle UPnP IGD port mapping for GUPnP"
 HOMEPAGE="http://gupnp.org"
@@ -14,15 +14,15 @@ KEYWORDS="*"
 IUSE="+introspection"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
-	>=net-libs/gssdp-0.14.7[${MULTILIB_USEDEP}]
-	>=net-libs/gupnp-0.20.10[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2:2
+	>=net-libs/gssdp-0.14.7
+	>=net-libs/gupnp-0.20.10
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.10
 	sys-devel/gettext
-	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
+	>=virtual/pkgconfig-0-r1
 "
 
 # The only existing test is broken
@@ -37,15 +37,12 @@ multilib_src_configure() {
 		--disable-static \
 		--disable-gtk-doc \
 		--disable-python \
-		$(multilib_native_use_enable introspection)
+		$(use_enable introspection)
 
-	if multilib_is_native_abi; then
-		ln -s "${S}"/doc/html doc/html || die
-	fi
+	ln -s "${S}"/doc/html doc/html || die
 }
 
-multilib_src_install_all() {
+src_install() {
 	einstalldocs
 	prune_libtool_files
 }
-
