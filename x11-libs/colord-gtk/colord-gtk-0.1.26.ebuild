@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	x11-libs/gdk-pixbuf:2[introspection?]
 	x11-libs/gtk+:3[X(+),introspection?]
 	x11-misc/colord:=[introspection?,vala?]
-	introspection? ( >=>=dev-libs/gobject-introspection-1.62.0:=.9.8 )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 # ${PN} was part of x11-misc/colord until 0.1.22
 RDEPEND="${COMMON_DEPEND}
