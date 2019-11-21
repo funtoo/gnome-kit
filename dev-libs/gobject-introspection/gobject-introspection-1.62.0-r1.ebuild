@@ -44,6 +44,14 @@ pkg_setup() {
 	python-single-r1_pkg_setup
 }
 
+src_prepare() {
+	# we want to configure the various tools to specifically reference the version of python
+	# we are building against. Otherwise, eselect python changes can break gobject-introspection.
+
+	sed -i -e "/PYTHON_CMD/s:python_cmd:'$PYTHON':" tools/meson.build || die
+	default
+}
+
 src_configure() {
 	if ! has_version "x11-libs/cairo[glib]"; then
 		# Bug #391213: enable cairo-gobject support even if it's not installed
