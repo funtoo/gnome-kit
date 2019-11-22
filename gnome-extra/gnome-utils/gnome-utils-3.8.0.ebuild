@@ -13,7 +13,6 @@ KEYWORDS="*"
 
 DEPEND=""
 RDEPEND="
-	>=app-admin/gnome-system-log-${PV}
 	>=app-dicts/gnome-dictionary-${PV}
 	>=gnome-extra/gnome-search-tool-3.6.0
 	>=media-gfx/gnome-font-viewer-${PV}
