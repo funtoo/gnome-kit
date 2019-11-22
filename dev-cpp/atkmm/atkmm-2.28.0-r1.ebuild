@@ -13,8 +13,12 @@ SLOT="0"
 KEYWORDS="*"
 IUSE="doc"
 
+# IMPORTANT: atkmm, glibmm and pangomm need to be treated as a logical set.
+# Make sure pangomm and atkmm are using the same glibmm version! Otherwise
+# deps get unpleasant.
+
 COMMON_DEPEND="
-	>=dev-cpp/glibmm-2.62.0[doc?]
+	=dev-cpp/glibmm-2.62.0*[doc?]
 	>=dev-libs/atk-2.18.0
 	>=dev-libs/libsigc++-2.3.2:2
 "
