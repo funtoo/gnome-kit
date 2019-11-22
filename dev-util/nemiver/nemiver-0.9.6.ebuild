@@ -16,7 +16,7 @@ IUSE="debug memoryview"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2[dbus]
-	>=dev-cpp/glibmm-2.63.1
+	>=dev-cpp/glibmm-2.62.0
 	>=dev-cpp/gtkmm-3:3.0
 	>=dev-cpp/gtksourceviewmm-3:3.0
 	>=gnome-base/gsettings-desktop-schemas-0.0.1

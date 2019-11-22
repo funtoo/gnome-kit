@@ -14,7 +14,7 @@ IUSE="doc"
 
 COMMON_DEPEND="
 	>=x11-libs/pango-1.44.7
-	>=dev-cpp/glibmm-2.63.1
+	=dev-cpp/glibmm-2.62.0*
 	>=dev-cpp/cairomm-1.12.0:0
 	>=dev-libs/libsigc++-2.3.2:2
 "

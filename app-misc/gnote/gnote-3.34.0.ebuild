@@ -20,7 +20,7 @@ IUSE="debug"
 COMMON_DEPEND="
 	>=app-crypt/libsecret-0.8
 	>=app-text/gtkspell-3.0:3
-	>=dev-cpp/glibmm-2.63.1
+	>=dev-cpp/glibmm-2.62.0
 	>=dev-cpp/gtkmm-3.18:3.0
 	>=dev-libs/boost-1.34:=
 	>=dev-libs/glib-2.62.2:2[dbus]

@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
-	>=dev-cpp/glibmm-2.63.1
+	>=dev-cpp/glibmm-2.62.0
 	>=dev-cpp/gtkmm-2.24.4-r3:2.4
 	>=dev-cpp/libxmlpp-2.40:2.6
 	>=dev-cpp/gnome-vfsmm-2.26.0-r1
