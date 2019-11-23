@@ -1,10 +1,11 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=6
+GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python3_{5,6,7} )
 
-inherit fcaps autotools gnome.org xdg pam python-any-r1 virtualx
+inherit fcaps gnome2 pam python-any-r1 virtualx
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
@@ -46,12 +47,11 @@ src_prepare() {
 		-e 's/CFLAGS="$CFLAGS -O0"//' \
 		-i configure.ac configure || die
 
-	eautoreconf
-	xdg_src_prepare
+	gnome2_src_prepare
 }
 
 src_configure() {
-	econf\
+	gnome2_src_configure \
 		$(use_with caps libcap-ng) \
 		$(use_enable pam) \
 		$(use_with pam pam-dir $(getpam_mod_dir)) \
@@ -69,7 +69,7 @@ pkg_postinst() {
 	# cap_ipc_lock only needed if building --with-libcap-ng
 	# Never install as suid root, this breaks dbus activation, see bug #513870
 	use caps && fcaps -m 755 cap_ipc_lock usr/bin/gnome-keyring-daemon
-	xdg_pkg_postinst
+	gnome2_pkg_postinst
 
 	if ! [[ $(eselect pinentry show | grep "pinentry-gnome3") ]] ; then
 		ewarn "Please select pinentry-gnome3 as default pinentry provider:"

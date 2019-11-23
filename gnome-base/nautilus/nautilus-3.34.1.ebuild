@@ -1,9 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=6
+GNOME2_LA_PUNT="yes" # Needed with USE 'sendto'
 
-inherit gnome.org xdg readme.gentoo-r1 virtualx multiprocessing meson
+inherit gnome2 readme.gentoo-r1 virtualx multiprocessing meson
 
 DESCRIPTION="A file manager for the GNOME desktop"
 HOMEPAGE="https://wiki.gnome.org/Apps/Nautilus"
@@ -67,7 +68,7 @@ src_prepare() {
 			To activate the previewer, select a file and press space; to
 			close the previewer, press space again."
 	fi
-	xdg_src_prepare
+	gnome2_src_prepare
 }
 
 src_configure() {
@@ -89,7 +90,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome2_pkg_postinst
 
 	if use previewer; then
 		readme.gentoo_print_elog
@@ -97,4 +98,3 @@ pkg_postinst() {
 		elog "To preview media files, emerge nautilus with USE=previewer"
 	fi
 }
-

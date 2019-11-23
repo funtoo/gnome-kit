@@ -1,10 +1,11 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-PYTHON_COMPAT=( python3_{5,6,7} )
+EAPI="6"
+GNOME2_LA_PUNT="yes"
+PYTHON_COMPAT=( python{3_5,3_6,3_7} )
 
-inherit gnome.org xdg python-any-r1 meson
+inherit eutils gnome2 python-any-r1 systemd udev virtualx meson
 
 DESCRIPTION="Gnome Settings Daemon"
 HOMEPAGE="https://git.gnome.org/browse/gnome-settings-daemon"
@@ -101,7 +102,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	xdg_src_prepare
+	gnome2_src_prepare
 }
 
 src_configure() {
