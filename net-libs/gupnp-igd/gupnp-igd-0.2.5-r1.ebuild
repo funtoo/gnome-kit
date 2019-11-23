@@ -1,9 +1,9 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit ltprune gnome.org xdg-utils
+inherit gnome.org xdg-utils
 
 DESCRIPTION="Library to handle UPnP IGD port mapping for GUPnP"
 HOMEPAGE="http://gupnp.org"
@@ -40,9 +40,4 @@ multilib_src_configure() {
 		$(use_enable introspection)
 
 	ln -s "${S}"/doc/html doc/html || die
-}
-
-src_install() {
-	einstalldocs
-	prune_libtool_files
 }
