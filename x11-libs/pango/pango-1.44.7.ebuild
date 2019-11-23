@@ -15,7 +15,12 @@ KEYWORDS="*"
 
 IUSE="X doc +introspection test"
 
+# The pygtk blocker is here to force an uninstall of pygtk if it is installed.
+# If someone had gimp merged with python enabled, it got pulled in. This is now
+# turned off but the package is likely lingering.
+
 RDEPEND="
+	!dev-python/pygtk
 	>=media-libs/harfbuzz-1.2.3:=[glib(+),truetype(+)]
 	>=dev-libs/glib-2.62.2:2
 	>=media-libs/fontconfig-2.10.92:1.0=
