@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 # The only existing test is broken
 RESTRICT="test"
 
-multilib_src_configure() {
+src_configure() {
 	xdg_environment_reset
 
 	# python is old-style bindings; use introspection and pygobject instead
