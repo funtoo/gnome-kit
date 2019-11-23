@@ -20,6 +20,7 @@ RDEPEND="
 	dev-libs/libgnome-games-support:1
 	>=media-libs/clutter-1.22.0:1.0
 	>=media-libs/clutter-gtk-1.4.0:1.0
+	media-libs/gsound
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=x11-libs/gtk+-3.24.12:3
 "

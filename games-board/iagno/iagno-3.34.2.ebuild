@@ -17,6 +17,7 @@ IUSE=""
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=gnome-base/librsvg-2.32.0:2
+	media-libs/gsound
 	>=media-libs/libcanberra-0.26[gtk3]
 	>=x11-libs/gtk+-3.24.12:3
 "
