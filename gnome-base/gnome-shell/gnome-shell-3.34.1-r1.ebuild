@@ -1,11 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-GNOME2_LA_PUNT="yes"
+EAPI="7"
 PYTHON_COMPAT=( python3_{5,6,7} )
 
-inherit gnome2 pax-utils python-r1 systemd meson ninja-utils
+inherit gnome.org xdg gnome2-utils pax-utils python-r1 meson
 
 DESCRIPTION="Provides core UI functions for the GNOME 3 desktop"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"
@@ -94,13 +93,17 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	gnome2_src_prepare
+		eapply "${FILESDIR}"/${PN}-3.34.0-improve-motd-handling.patch
+		eapply "${FILESDIR}"/${PN}-3.34.0-improve-screen-blanking.patch
+
+		xdg_src_prepare
 }
 
 src_configure() {
 	local emesonargs=(
 		-Dsystemd=$(usex systemd true false)
 		-Dnetworkmanager=$(usex networkmanager true false)
+		-Dman=true
 	)
 
 	meson_src_configure
@@ -129,7 +132,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	xdg_pkg_postinst
 	gnome2_schemas_update
 
 	if ! has_version 'media-libs/gst-plugins-good:1.0' || \
@@ -156,12 +159,6 @@ pkg_postinst() {
 	if has_version "x11-drivers/nvidia-drivers[-kms]"; then
 		ewarn "You will need to enable kms support in x11-drivers/nvidia-drivers,"
 		ewarn "otherwise Gnome will fail to start"
-	fi
-
-	if use systemd && ! systemd_is_booted; then
-		ewarn "${PN} needs Systemd to be *running* for working"
-		ewarn "properly. Please follow this guide to migrate:"
-		ewarn "https://wiki.gentoo.org/wiki/Systemd"
 	fi
 
 	if use elogind; then

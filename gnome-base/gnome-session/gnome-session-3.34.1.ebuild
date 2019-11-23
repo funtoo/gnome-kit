@@ -1,8 +1,8 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit gnome2 meson
+EAPI=7
+inherit gnome.org xdg meson
 
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="https://git.gnome.org/browse/gnome-session"
@@ -75,7 +75,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	eapply "${FILESDIR}"/${PN}-3.34.0-support-elogind.patch
-	gnome2_src_prepare
+	xdg_src_prepare
 }
 
 src_configure() {
@@ -116,7 +116,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	xdg_pkg_postinst
 
 	if ! has_version gnome-base/gdm && ! has_version x11-misc/sddm; then
 		ewarn "If you use a custom .xinitrc for your X session,"

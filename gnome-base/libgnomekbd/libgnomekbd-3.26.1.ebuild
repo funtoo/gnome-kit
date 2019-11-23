@@ -1,9 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit gnome2
+inherit gnome.org xdg
 
 DESCRIPTION="Gnome keyboard configuration library"
 HOMEPAGE="https://www.gnome.org"
@@ -26,7 +26,7 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
-	gnome2_src_configure \
+		econf \
 		--disable-static \
 		$(use_enable introspection) \
 		$(use_enable test tests)
