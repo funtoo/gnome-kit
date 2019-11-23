@@ -19,6 +19,7 @@ RDEPEND="
 	dev-libs/libgee:0.8=[introspection]
 	dev-libs/json-glib
 	>=dev-libs/qqwing-1.3.4
+	media-libs/gsound
 	x11-libs/gdk-pixbuf:2[introspection]
 	>=x11-libs/gtk+-3.24.12:3[introspection]
 	x11-libs/pango[introspection]

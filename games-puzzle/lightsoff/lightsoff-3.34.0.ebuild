@@ -18,6 +18,7 @@ RDEPEND="
 	>=gnome-base/librsvg-2.32:2
 	>=media-libs/clutter-1.14:1.0
 	>=media-libs/clutter-gtk-1.5.5:1.0
+	media-libs/gsound
 	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
