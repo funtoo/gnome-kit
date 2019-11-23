@@ -34,7 +34,7 @@ REQUIRED_USE="
 
 # Tests fail to link for inexplicable reasons
 # https://bugs.webkit.org/show_bug.cgi?id=148210
-RESTRICT="test"
+RESTRICT="test userpriv"
 
 # Aqua support in gtk3 is untested
 # Dependencies found at Source/cmake/OptionsGTK.cmake
