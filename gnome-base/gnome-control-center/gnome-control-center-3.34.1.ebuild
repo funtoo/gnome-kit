@@ -1,10 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-GNOME2_LA_PUNT="yes"
+EAPI="7"
 
-inherit bash-completion-r1 gnome2 meson
+inherit bash-completion-r1 gnome.org xdg meson
 
 DESCRIPTION="GNOME's main interface to configure various aspects of the desktop"
 HOMEPAGE="https://git.gnome.org/browse/gnome-control-center/"
@@ -127,5 +126,6 @@ src_configure() {
 
 src_install() {
 	addwrite /usr/share/icons
-	meson_src_install completiondir="$(get_bashcompdir)"
+	meson_src_install
+	completiondir="$(get_bashcompdir)"
 }

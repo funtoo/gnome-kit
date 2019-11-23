@@ -1,8 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-inherit gnome2 virtualx meson
+inherit gnome.org meson xdg
 
 DESCRIPTION="Libraries for the gnome desktop that are not part of the UI"
 HOMEPAGE="https://git.gnome.org/browse/gnome-desktop"
@@ -41,7 +41,6 @@ DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 	virtual/pkgconfig
 "
-
 src_configure() {
 	local emesonargs=(
 		-Dgnome_distributor=Funtoo

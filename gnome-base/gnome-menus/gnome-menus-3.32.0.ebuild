@@ -1,9 +1,9 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit eutils gnome2
+inherit eutils gnome.org xdg-utils gnome2-utils
 
 DESCRIPTION="Library for the Desktop Menu fd.o specification"
 HOMEPAGE="https://git.gnome.org/browse/gnome-menus"
@@ -28,20 +28,19 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 	test? ( dev-libs/gjs )
 "
-
-src_prepare() {
-	# Don't show KDE standalone settings desktop files in GNOME others menu
-	epatch "${FILESDIR}/${PN}-3.32.0-ignore_kde_standalone.patch"
-
-	gnome2_src_prepare
-}
+PATCHES=( "${FILESDIR}/${PN}-3.32.0-ignore_kde_standalone.patch" )
 
 src_configure() {
 	DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 	# Do NOT compile with --disable-debug/--enable-debug=no
 	# It disables api usage checks
-	gnome2_src_configure \
+		econf \
 		$(use_enable introspection) \
 		--disable-static
+}
+
+pkg_postinst() {
+	gnome2_schemas_update
+	xdg_icon_cache_update
 }
