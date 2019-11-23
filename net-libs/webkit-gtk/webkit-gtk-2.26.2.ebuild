@@ -17,7 +17,7 @@ LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
 KEYWORDS="*"
 
-IUSE="aqua coverage doc +egl +geolocation gles2 gnome-keyring +gstreamer +introspection +jpeg2k libnotify nsplugin +opengl spell wayland +webgl +X"
+IUSE="aqua +bwrap coverage doc +egl +geolocation gles2 gnome-keyring +gstreamer +introspection +jpeg2k libnotify nsplugin +opengl spell wayland +webgl +X"
 
 # webgl needs gstreamer, bug #560612
 # gstreamer with opengl/gles2 needs egl
@@ -61,6 +61,7 @@ RDEPEND="
 	>=dev-libs/glib-2.40:2
 	>=dev-libs/libxslt-1.1.7
 	media-libs/woff2
+	bwrap? ( >=sys-apps/bubblewrap-0.3.1:0 )
 	gnome-keyring? ( app-crypt/libsecret )
 	geolocation? ( >=app-misc/geoclue-2.1.5:2.0 )
 	introspection? ( >=dev-libs/gobject-introspection-1.32.0:= )
@@ -232,6 +233,7 @@ src_configure() {
 		-DUSE_LIBSECRET=$(usex gnome-keyring)
 		-DUSE_OPENJPEG=$(usex jpeg2k)
 		-DUSE_WOFF2=ON
+		-DENABLE_BUBBLEWRAP_SANDBOX=$(usex bwrap)
 		-DENABLE_PLUGIN_PROCESS_GTK2=$(usex nsplugin)
 		-DENABLE_SPELLCHECK=$(usex spell)
 		-DENABLE_WAYLAND_TARGET=$(usex wayland)
