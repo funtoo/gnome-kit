@@ -22,6 +22,7 @@ IUSE="X doc +introspection test"
 RDEPEND="
 	!dev-python/pygtk
 	>=media-libs/harfbuzz-1.2.3:=[glib(+),truetype(+)]
+	>=dev-libs/fribidi-0.19
 	>=dev-libs/glib-2.62.2:2
 	>=media-libs/fontconfig-2.10.92:1.0=
 	>=media-libs/freetype-2.5.0.1:2=
@@ -35,7 +36,6 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.20
-	>=dev-libs/fribidi-0.19
 	virtual/pkgconfig
 	test? ( media-fonts/cantarell )
 	X? ( >=x11-proto/xproto-7.0.24 )
