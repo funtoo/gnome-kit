@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -19,7 +19,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.62.2:2
-	<x11-libs/pango-1.44
+	>=x11-libs/pango-1.16
 	>=dev-libs/atk-1.12
 	>=x11-libs/gtk+-2.24:2
 	>=dev-python/pycairo-1.0.2[${PYTHON_USEDEP}]

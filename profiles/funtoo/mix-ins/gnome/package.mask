@@ -1,4 +1,1 @@
-#FL-6855:
-dev-python/pygtk2
-
 =dev-util/itstool-2.0.4
