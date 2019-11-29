@@ -16,6 +16,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/libsoup"
 LICENSE="LGPL-2+"
 SLOT="2.4"
 KEYWORDS="*"
+RESTRICT="userpriv"
 
 IUSE="gtk-doc gssapi +introspection samba +vala"
 REQUIRED_USE="vala? ( introspection )"
@@ -54,7 +55,7 @@ src_configure() {
 		-Dintrospection=$(usex introspection enabled disabled)
 		-Dntlm=$(usex samba enabled disabled)
 		-Dvapi=$(usex vala enabled disabled)
-		$(usex samba -Dntlm_auth="'${EPREFIX}/usr/bin/ntlm_auth'" "")
+		-Dntlm_auth="${EPREFIX}/usr/bin/ntlm_auth"
 		$(meson_use gtk-doc gtk_doc)
 	)
 
