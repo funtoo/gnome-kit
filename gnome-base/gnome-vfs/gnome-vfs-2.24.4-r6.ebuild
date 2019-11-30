@@ -6,7 +6,7 @@ GCONF_DEBUG="no"
 GNOME_TARBALL_SUFFIX="bz2"
 GNOME2_LA_PUNT="yes"
 
-inherit autotools eutils gnome2 virtualx
+inherit autotools eutils gnome.org virtualx xdg
 
 DESCRIPTION="Gnome Virtual Filesystem"
 HOMEPAGE="https://www.gnome.org/"
@@ -91,7 +91,7 @@ src_prepare() {
 	sed -e "s/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/" -i configure.in || die
 
 	eautoreconf
-	gnome2_src_prepare
+	xdg_src_prepare
 }
 
 src_configure() {
@@ -124,8 +124,7 @@ src_configure() {
 	#configure script is so messed up on res_init on Darwin
 	[[ ${CHOST} == *-darwin* ]] && export LIBS="${LIBS} -lresolv"
 
-	ECONF_SOURCE=${S} \
-	gnome2_src_configure "${myconf[@]}"
+	ECONF_SOURCE=${S} econf "${myconf[@]}"
 
 	ln -s "${S}"/doc/html doc/html || die
 }
@@ -137,11 +136,3 @@ src_test() {
 	Xemake check
 }
 
-src_install() {
-	gnome2_src_install
-}
-
-src_install_all() {
-	DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
-	einstalldocs
-}

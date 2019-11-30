@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit autotools gnome2
+inherit autotools gnome.org
 
 DESCRIPTION="Compiler for the GObject type system"
 HOMEPAGE="https://wiki.gnome.org/Projects/Vala"
@@ -39,7 +39,7 @@ PATCHES=(
 
 src_configure() {
 	# weasyprint enables generation of PDF from HTML
-	gnome2_src_configure \
+	ECONF_SOURCES="${S}" econf \
 		--disable-unversioned \
 		VALAC=: \
 		WEASYPRINT=:
