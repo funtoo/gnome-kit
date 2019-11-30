@@ -32,7 +32,7 @@ COMMON_DEPEND="
 
 	x11-libs/libX11
 
-	introspection? ( >=dev-libs/gobject-introspection-0.9.3:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	python? (
 		${PYTHON_DEPS}
 		dev-python/pycairo[${PYTHON_USEDEP}]
