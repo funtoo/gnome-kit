@@ -75,6 +75,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	eapply "${FILESDIR}"/${PN}-3.34.0-support-elogind.patch
+	eapply "${FILESDIR}"/${PN}-3.34.2-whitelist-xdg-session-id.patch
 	xdg_src_prepare
 }
 

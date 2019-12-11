@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit gnome.org linux-info systemd xdg meson
+inherit gnome3 linux-info systemd meson
 
 DESCRIPTION="System-wide Linux Profiler"
 HOMEPAGE="http://sysprof.com/"
@@ -18,6 +18,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
+	>=dev-libs/libdazzle-3.34.0
 	sys-auth/polkit
 	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
 	systemd? ( >=sys-apps/systemd-222 )
@@ -55,7 +56,7 @@ src_configure() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 
 	elog "On many systems, especially amd64, it is typical that with a modern"
 	elog "toolchain -fomit-frame-pointer for gcc is the default, because"
@@ -69,5 +70,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	xdg_pkg_postrm
+	gnome3_pkg_postrm
 }

@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 virtualx meson
+inherit gnome3 virtualx meson
 
 DESCRIPTION="Libraries for the gnome desktop that are not part of the UI"
 HOMEPAGE="https://git.gnome.org/browse/gnome-desktop"

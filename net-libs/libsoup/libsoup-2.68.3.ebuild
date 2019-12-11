@@ -2,11 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python{3_5,3_6,3_7} )
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 meson python-any-r1 vala eutils
+inherit gnome3 meson python-any-r1 vala eutils
 
 VALA_MAX_API_VERSION=0.44
 
