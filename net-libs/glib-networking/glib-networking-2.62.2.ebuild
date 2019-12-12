@@ -2,9 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-GNOME2_LA_PUNT="yes"
 
-inherit gnome2 virtualx meson
+inherit gnome3 virtualx meson
 
 DESCRIPTION="Network-related giomodules for glib"
 HOMEPAGE="https://git.gnome.org/browse/glib-networking/"
@@ -61,13 +60,13 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome3_pkg_postinst
 
-	gnome2_giomodule_cache_update || die "Update GIO modules cache failed (for ${ABI})"
+	gnome3_giomodule_cache_update || die "Update GIO modules cache failed (for ${ABI})"
 }
 
 pkg_postrm() {
-	gnome2_pkg_postrm
+	gnome3_pkg_postrm
 
-	gnome2_giomodule_cache_update || die "Update GIO modules cache failed (for ${ABI})"
+	gnome3_giomodule_cache_update || die "Update GIO modules cache failed (for ${ABI})"
 }

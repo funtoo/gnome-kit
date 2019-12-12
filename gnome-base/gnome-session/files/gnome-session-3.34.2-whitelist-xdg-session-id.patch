@@ -1,0 +1,11 @@
+diff '--exclude=.git' -urN a/gnome-session/gsm-util.c b/gnome-session/gsm-util.c
+--- a/gnome-session/gsm-util.c	2019-11-28 07:45:48.000000000 -0600
++++ b/gnome-session/gsm-util.c	2019-12-04 08:08:44.984519554 -0600
+@@ -44,7 +44,6 @@
+ static const char * const variable_blacklist[] = {
+     "NOTIFY_SOCKET",
+     "XDG_SEAT",
+-    "XDG_SESSION_ID",
+     "XDG_VTNR",
+     NULL
+ };
