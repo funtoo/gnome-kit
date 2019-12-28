@@ -4,7 +4,7 @@
 EAPI=6
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala
+inherit gnome3 vala
 
 DESCRIPTION="Automatic archives creating and extracting library"
 HOMEPAGE="https://git.gnome.org/browse/gnome-autoar"
@@ -31,11 +31,11 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	use vala && vala_src_prepare
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
-	gnome2_src_configure \
+	gnome3_src_configure \
 		--disable-static \
 		$(use_enable introspection) \
 		$(use_enable vala) \

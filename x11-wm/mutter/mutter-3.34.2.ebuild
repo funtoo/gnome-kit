@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-inherit gnome2 virtualx meson
+inherit gnome3 virtualx meson
 
 DESCRIPTION="GNOME 3 compositing window manager based on Clutter"
 HOMEPAGE="https://git.gnome.org/browse/mutter/"
@@ -85,9 +85,9 @@ RDEPEND="${COMMON_DEPEND}
 	!x11-misc/expocity
 "
 
-PATCHES=( "${FILESDIR}/${P}-add-get-color-info.patch"
-          "${FILESDIR}/${P}-support-eudev.patch"
-	  "${FILESDIR}/gdk-wayland-fix.patch"	)
+PATCHES=(	"${FILESDIR}/${P}-add-get-color-info.patch"
+			"${FILESDIR}/${P}-support-eudev.patch"
+			"${FILESDIR}/gdk-wayland-fix.patch" )
 
 src_configure() {
 	sed -i "/'-Werror=redundant-decls',/d" "${S}"/meson.build || die "sed failed"

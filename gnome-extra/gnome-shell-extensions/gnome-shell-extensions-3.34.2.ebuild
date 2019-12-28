@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-inherit gnome.org readme.gentoo-r1 meson xdg
+inherit gnome3 readme.gentoo-r1 meson
 
 DESCRIPTION="JavaScript extensions for GNOME Shell"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell/Extensions"
@@ -53,7 +53,7 @@ src_prepare() {
 	sed -e '/.*calendar-today.svg.*/d' \
 		-i data/meson.build || die "sed failed"
 
-	xdg_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
@@ -71,7 +71,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 
 	ebegin "Updating list of installed extensions"
 	eselect gnome-shell-extensions update

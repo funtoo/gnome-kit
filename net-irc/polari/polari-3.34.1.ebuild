@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome3 meson
 
 DESCRIPTION="An IRC client for Gnome"
 HOMEPAGE="https://wiki.gnome.org/Apps/Polari"
