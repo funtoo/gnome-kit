@@ -5,7 +5,7 @@ EAPI="6"
 GNOME2_LA_PUNT="yes"
 PYTHON_COMPAT=( python3_{5,6,7} )
 
-inherit gnome2 pax-utils python-r1 systemd meson ninja-utils
+inherit gnome3 pax-utils python-r1 systemd meson ninja-utils
 
 DESCRIPTION="Provides core UI functions for the GNOME 3 desktop"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell"
@@ -93,8 +93,11 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+PATCHES=(	"${FILESDIR}/${P}-improve-motd-handling.patch"
+			"${FILESDIR}/${P}-improve-screen-blanking.patch" )
+
 src_prepare() {
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
@@ -129,8 +132,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
-	gnome2_schemas_update
+	gnome3_pkg_postinst
+	gnome3_schemas_update
 
 	if ! has_version 'media-libs/gst-plugins-good:1.0' || \
 	   ! has_version 'media-plugins/gst-plugins-vpx:1.0'; then
