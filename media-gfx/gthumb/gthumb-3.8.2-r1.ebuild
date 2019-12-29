@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit gnome.org meson xdg
+inherit gnome3 meson
 
 DESCRIPTION="Image viewer and browser for Gnome"
 HOMEPAGE="https://wiki.gnome.org/Apps/gthumb"

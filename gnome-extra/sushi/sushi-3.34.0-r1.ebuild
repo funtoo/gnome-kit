@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	media-libs/musicbrainz:5=
 	net-libs/webkit-gtk:4[introspection]
 	x11-libs/gtksourceview:3.0[introspection]
-
+	x11-libs/gtksourceview:4[introspection]
 	office? ( app-office/unoconv )
 "
 DEPEND="${RDEPEND}

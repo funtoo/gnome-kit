@@ -233,6 +233,7 @@ src_configure() {
 		-DUSE_LIBSECRET=$(usex gnome-keyring)
 		-DUSE_OPENJPEG=$(usex jpeg2k)
 		-DUSE_WOFF2=ON
+		-DUSE_WPE_RENDERER=OFF
 		-DENABLE_BUBBLEWRAP_SANDBOX=$(usex bwrap)
 		-DENABLE_PLUGIN_PROCESS_GTK2=$(usex nsplugin)
 		-DENABLE_SPELLCHECK=$(usex spell)
