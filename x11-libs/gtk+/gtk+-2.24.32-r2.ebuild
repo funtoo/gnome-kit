@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit autotools flag-o-matic gnome.org gnome2-utils readme.gentoo-r1 virtualx xdg
+inherit autotools flag-o-matic gnome3 readme.gentoo-r1 virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
@@ -169,16 +169,17 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-2.24.31-update-icon-cache.patch
 
 	# Upstream gtk-2-24 branch up to 2018-09-08 state, bug #650536 safety
-	eapply "${FILESDIR}"/patches/2.24.32
+	eapply "${FILESDIR}"/patches
 
 	eautoreconf
-	xdg_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
 	[[ ${ABI} == ppc64 ]] && append-flags -mminimal-toc
 
-	ECONF_SOURCES="${S}" econf \
+	ECONF_SOURCE=${S} \
+	gnome3_src_configure \
 		$(usex aqua --with-gdktarget=quartz --with-gdktarget=x11) \
 		$(usex aqua "" --with-xinput) \
 		$(use_enable cups cups auto) \
@@ -201,7 +202,7 @@ src_test() {
 }
 
 src_install() {
-	default
+	gnome3_src_install
 
 	# see bug #133241
 	# Also set more default variables in sync with gtk3 and other distributions
@@ -223,7 +224,7 @@ src_install() {
 }
 
 pkg_preinst() {
-	xdg_pkg_preinst
+	gnome3_pkg_preinst
 
 	# Make immodules.cache belongs to gtk+ alone
 	local cache="usr/$(get_libdir)/gtk-2.0/2.10.0/immodules.cache"
@@ -236,9 +237,9 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 
-	gnome2_query_immodules_gtk2 \
+	gnome3_query_immodules_gtk2 \
 		|| die "Update immodules cache failed (for ${ABI})"
 
 	set_gtk2_confdir
@@ -286,7 +287,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	xdg_pkg_postrm
+	gnome3_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		rm -f "${EROOT}"usr/$(get_libdir)/gtk-2.0/2.10.0/immodules.cache
