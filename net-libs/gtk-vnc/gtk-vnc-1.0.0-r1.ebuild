@@ -14,7 +14,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/gtk-vnc"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="*"
-IUSE="+introspection +vala"
+IUSE="+introspection +vala pulseaudio sasl"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
@@ -25,10 +25,10 @@ COMMON_DEPEND="
 	x11-libs/libX11
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=dev-libs/gobject-introspection-1.62.0:=
-	media-sound/pulseaudio
+	pulseaudio? ( media-sound/pulseaudio )
 	${PYTHON_DEPS}
 	>=dev-python/pygobject-3:3[${PYTHON_USEDEP}]
-	dev-libs/cyrus-sasl
+	sasl? ( dev-libs/cyrus-sasl )
 "
 RDEPEND="${COMMON_DEPEND}"
 
