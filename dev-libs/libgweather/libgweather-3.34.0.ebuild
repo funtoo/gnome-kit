@@ -16,18 +16,17 @@ KEYWORDS="*"
 IUSE="glade gtk-doc +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
-COMMON_DEPEND="
+RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	>=net-libs/libsoup-2.44:2.4
 	>=dev-libs/libxml2-2.6.0:2
 	sci-geosciences/geocode-glib
 	>=sys-libs/timezone-data-2010k
-
 	glade? ( >=dev-util/glade-3.16:3.10 )
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
-DEPEND="${COMMON_DEPEND}
+DEPEND="${RDEPEND}
 	gtk-doc? ( >=dev-util/gtk-doc-1.11
 		app-text/docbook-xml-dtd:4.3 )
 	>=sys-devel/gettext-0.19.8
