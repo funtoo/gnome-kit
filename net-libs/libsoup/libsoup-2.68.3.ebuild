@@ -21,6 +21,7 @@ IUSE="gtk-doc gssapi +introspection samba +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 COMMON_DEPEND="
+	app-arch/brotli
 	>=dev-libs/glib-2.62.2:2
 	>=net-libs/glib-networking-2.38.2[ssl]
 	>=net-libs/libpsl-0.20.0
@@ -37,7 +38,6 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/gtk-doc-am-1.20
 	sys-devel/gettext
 	>=virtual/pkgconfig-0-r1
-	app-arch/brotli
 	vala? ( $(vala_depend) )
 "
 
