@@ -4,7 +4,7 @@
 EAPI=6
 GNOME2_LA_PUNT="yes"
 
-inherit flag-o-matic gnome.org gnome2-utils meson virtualx xdg
+inherit flag-o-matic gnome3 meson virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
@@ -112,7 +112,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-3.24.12-update-icon-cache.patch
 
 	# call eapply_user (implicitly) before eautoreconf
-	xdg_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
@@ -135,7 +135,6 @@ src_configure() {
 		-Dgtk_doc=$(usex doc true false)
 		-Dcloudproviders=false
 		-Dwin32_backend=false
-		-Dmir_backend=false
 		-Dtests=$(usex test true false)
 		-Ddemos=$(usex examples true false)
 		-Dexamples=$(usex examples true false)
@@ -164,7 +163,7 @@ src_install() {
 }
 
 pkg_preinst() {
-	xdg_pkg_preinst
+	gnome3_pkg_preinst
 
     # Make immodules.cache belongs to gtk+ alone
     local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
@@ -177,8 +176,8 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
-	gnome2_query_immodules_gtk3 || die "Update immodules cache failed"
+	gnome3_pkg_postinst
+	gnome3_query_immodules_gtk3 || die "Update immodules cache failed"
 
 	if ! has_version "app-text/evince"; then
 		elog "Please install app-text/evince for print preview functionality."
@@ -188,7 +187,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	xdg_pkg_postrm
+	gnome3_pkg_postrm
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		rm -f "${EROOT}"usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache
 	fi

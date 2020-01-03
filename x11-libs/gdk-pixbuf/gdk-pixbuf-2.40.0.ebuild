@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit flag-o-matic gnome.org meson xdg
+inherit flag-o-matic gnome3 meson
 
 DESCRIPTION="Image loading library for GTK+"
 HOMEPAGE="https://git.gnome.org/browse/gdk-pixbuf"
@@ -72,7 +72,7 @@ src_install() {
 }
 
 pkg_preinst() {
-	xdg_pkg_preinst
+	gnome3_pkg_preinst
 
     # Make sure loaders.cache belongs to gdk-pixbuf alone
     local cache="usr/$(get_libdir)/${PN}-2.0/2.10.0/loaders.cache"
@@ -88,7 +88,7 @@ pkg_postinst() {
 	# causes segfault if set, see bug 375615
 	unset __GL_NO_DSO_FINALIZER
 
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 
 	# Migration snippet for when this was handled by gtk+
 	if [ -e "${EROOT}"usr/lib/gtk-2.0/2.*/loaders ]; then
@@ -99,7 +99,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	xdg_pkg_postrm
+	gnome3_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		rm -f "${EROOT}"usr/lib*/${PN}-2.0/2.10.0/loaders.cache
