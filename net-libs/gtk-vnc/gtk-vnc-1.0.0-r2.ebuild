@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -15,6 +14,10 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="*"
 IUSE="+introspection +vala pulseaudio sasl"
+
+PATCHES=(
+	"$FILESDIR"/gtk-vnc-1.0.0-pulseaudio-optional.patch
+)
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
@@ -47,8 +50,8 @@ src_prepare() {
 src_configure() {
 	local emesonargs=(
 		-Dwith-coroutine=gthread
+		$(meson_use pulseaudio with-pulseaudio)
 		$(meson_use vala with-vala)
 	)
-
 	meson_src_configure
 }
