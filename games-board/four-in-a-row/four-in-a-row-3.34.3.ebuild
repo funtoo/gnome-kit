@@ -4,7 +4,7 @@
 EAPI=6
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala meson
+inherit gnome3 vala meson
 
 DESCRIPTION="Make lines of the same color to win"
 HOMEPAGE="https://wiki.gnome.org/Apps/Four-in-a-row"
@@ -31,6 +31,6 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome3_src_prepare
 	vala_src_prepare
 }

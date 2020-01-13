@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit cmake-utils gnome.org
+inherit cmake-utils gnome3
 
 DESCRIPTION="Evolution module for connecting to Microsoft Exchange Web Services"
 HOMEPAGE="https://wiki.gnome.org/Apps/Evolution"

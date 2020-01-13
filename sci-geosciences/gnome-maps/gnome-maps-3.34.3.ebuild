@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome.org meson
+inherit gnome3 meson
 
 DESCRIPTION="A map application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Maps"

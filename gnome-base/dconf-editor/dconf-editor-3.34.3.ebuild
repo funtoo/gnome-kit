@@ -3,7 +3,7 @@
 EAPI=6
 VALA_MIN_API_VERSION="0.36"
 
-inherit gnome2 meson vala
+inherit gnome3 meson vala
 
 DESCRIPTION="Graphical tool for editing the dconf configuration database"
 HOMEPAGE="https://git.gnome.org/browse/dconf-editor"

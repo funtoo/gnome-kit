@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome2 meson
+inherit gnome3 meson
 
 DESCRIPTION="Note editor designed to remain simple to use"
 HOMEPAGE="https://wiki.gnome.org/Apps/Bijiben"
@@ -40,7 +40,7 @@ src_prepare() {
 	# 	http://pkgs.fedoraproject.org/cgit/rpms/bijiben.git/tree/bijiben.spec?h=f27
 	sed -i -e 's/tracker-sparql-1\.0/tracker-sparql-2.0/g' configure
 
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {

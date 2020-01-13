@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-inherit gnome.org pax-utils virtualx flag-o-matic xdg
+inherit gnome3 pax-utils virtualx flag-o-matic
 
 DESCRIPTION="Javascript bindings for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Projects/Gjs"
@@ -34,7 +34,7 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	xdg_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
@@ -56,7 +56,8 @@ src_test() {
 }
 
 src_install() {
-	default
+	# installation sometimes fails in parallel, bug #???
+	gnome3_src_install -j1
 
 	if use examples; then
 		insinto /usr/share/doc/"${PF}"/examples

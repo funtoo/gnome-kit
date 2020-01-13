@@ -5,7 +5,7 @@ EAPI=6
 GCONF_DEBUG="no"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala meson
+inherit gnome3 vala meson
 
 DESCRIPTION="Library and tool for working with Microsoft Cabinet (CAB) files"
 HOMEPAGE="https://wiki.gnome.org/msitools"
@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	gnome2_src_prepare
+	gnome3_src_prepare
 	use vala && vala_src_prepare
 }
 

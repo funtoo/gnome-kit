@@ -5,7 +5,7 @@ EAPI="6"
 PYTHON_COMPAT=( python3_{5,6,7} )
 VALA_USE_DEPEND="vapigen"
 
-inherit db-use flag-o-matic gnome.org python-any-r1 systemd vala virtualx cmake-utils
+inherit db-use flag-o-matic gnome3 python-any-r1 systemd vala virtualx cmake-utils
 
 DESCRIPTION="Evolution groupware backend"
 HOMEPAGE="https://wiki.gnome.org/Apps/Evolution"

@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
 VALA_MIN_API_VERSION="0.28"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 python-any-r1 vala virtualx meson
+inherit gnome3 python-any-r1 vala virtualx meson
 
 DESCRIPTION="A framework for easy media discovery and browsing"
 HOMEPAGE="https://wiki.gnome.org/Projects/Grilo"
@@ -47,7 +47,7 @@ pkg_setup() {
 
 src_prepare() {
 	use vala && vala_src_prepare
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
