@@ -39,7 +39,7 @@ DEPEND="${RDEPEND}
 	vala? ( $(vala_depend) )"
 
 src_prepare() {
-	xdg_environment_reeset
+	xdg_environment_reset
 	use vala && vala_src_prepare
 	default
 }
