@@ -2,7 +2,7 @@
 
 EAPI="6"
 
-inherit gnome.org gnome2-utils meson xdg-utils
+inherit gnome3 meson
 
 DESCRIPTION="GNOME webbrowser based on Webkit"
 HOMEPAGE="https://wiki.gnome.org/Apps/Web"
@@ -61,11 +61,11 @@ src_configure() {
 }
 
 pkg_postinst() {
-	xdg_icon_cache_update
-	gnome2_schemas_update
+	gnome3_icon_cache_update
+	gnome3_schemas_update
 }
 
 pkg_postrm() {
-	xdg_icon_cache_update
-	gnome2_schemas_update
+	gnome3_icon_cache_update
+	gnome3_schemas_update
 }

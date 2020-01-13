@@ -85,8 +85,8 @@ RDEPEND="${COMMON_DEPEND}
 	!x11-misc/expocity
 "
 
-PATCHES=(	"${FILESDIR}/${P}-add-get-color-info.patch"
-			"${FILESDIR}/${P}-support-eudev.patch"
+PATCHES=(	"${FILESDIR}/${PN}-3.34.2-add-get-color-info.patch"
+			"${FILESDIR}/${PN}-3.34.2-support-eudev.patch"
 			"${FILESDIR}/gdk-wayland-fix.patch" )
 
 src_configure() {

@@ -4,7 +4,7 @@ EAPI="6"
 VALA_USE_DEPEND="vapigen"
 VALA_MIN_API_VERSION="0.28"
 
-inherit gnome.org linux-info readme.gentoo-r1 vala meson xdg
+inherit gnome3 linux-info readme.gentoo-r1 vala meson
 
 DESCRIPTION="Simple GNOME 3 application to access remote or virtual systems"
 HOMEPAGE="https://wiki.gnome.org/Apps/Boxes"
@@ -81,7 +81,7 @@ pkg_pretend() {
 
 src_prepare() {
 	vala_src_prepare
-	xdg_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
@@ -100,6 +100,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 	readme.gentoo_print_elog
 }
