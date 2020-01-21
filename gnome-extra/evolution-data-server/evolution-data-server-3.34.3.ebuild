@@ -5,7 +5,7 @@ EAPI="6"
 PYTHON_COMPAT=( python3_{5,6,7} )
 VALA_USE_DEPEND="vapigen"
 
-inherit db-use flag-o-matic gnome.org python-any-r1 systemd vala virtualx cmake-utils
+inherit db-use flag-o-matic gnome3 python-any-r1 systemd vala virtualx cmake-utils
 
 DESCRIPTION="Evolution groupware backend"
 HOMEPAGE="https://wiki.gnome.org/Apps/Evolution"
@@ -15,7 +15,7 @@ LICENSE="|| ( LGPL-2 LGPL-3 ) BSD Sleepycat"
 SLOT="0/62" # subslot = libcamel-1.2 soname version
 KEYWORDS="*"
 
-IUSE="api-doc-extras berkdb +gnome-online-accounts +gtk +google +introspection ipv6 ldap kerberos vala +weather"
+IUSE="api-doc-extras -berkdb +gnome-online-accounts +gtk +google +introspection ipv6 ldap kerberos vala +weather"
 REQUIRED_USE="vala? ( introspection )"
 
 
@@ -38,7 +38,7 @@ RDEPEND="
 	sys-libs/zlib:=
 	virtual/libiconv
 
-	berkdb? ( >=sys-libs/db-4:= )
+	berkdb? ( =sys-libs/db-18.1*:18.1 )
 	gtk? (
 		>=app-crypt/gcr-3.4[gtk]
 		>=x11-libs/gtk+-3.24.12:3
@@ -97,7 +97,6 @@ src_configure() {
 		-DENABLE_VALA_BINDINGS=$(usex vala)
 		-DENABLE_WEATHER=$(usex weather)
 		-DWITH_PRIVATE_DOCS=$(usex api-doc-extras "ON" "OFF")
-		-DWITH_LIBDB=$(usex berkdb "${EPREFIX}"/usr "OFF")
 		-DWITH_OPENLDAP=$(usex ldap "ON" "OFF")
 		-DWITH_KRB5=$(usex kerberos "ON" "OFF")
 		-DWITH_KRB5_LIBS=$(usex kerberos "${EPREFIX}"/usr/$(get_libdir) "")
@@ -110,6 +109,15 @@ src_configure() {
 		-DENABLE_UOA=OFF
 		-DENABLE_LIBCANBERRA=ON
 	)
+	if use berkdb; then
+		mycmakeargs+=(
+			-DWITH_LIBDB=/usr
+			-DWITH_LIBDB_CFLAGS=-I/usr/include/db18.1
+			-DWITH_LIBDB_LIBS=-ldb-18.1
+		)
+	else
+		mycmakeargs+=( -DWITH_LIBDB=OFF )
+	fi
 
 	if use google || use gnome-online-accounts; then
 		mycmakeargs+=( -DENABLE_GOOGLE=ON )

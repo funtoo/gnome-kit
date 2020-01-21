@@ -1,3 +1,6 @@
+# berkdb is only required for migrating from gnome 3.13. So not really needed at all.
+gnome-extra/evolution-data-server -berkdb vala
+
 gnome-base/gnome-control-center libinput networkmanager
 
 x11-libs/gtk+ cloudprint
@@ -68,7 +71,6 @@ net-im/pidgin -eds
 # Required by gnome, for FL-343
 media-libs/gst-plugins-base theora
 dev-libs/folks vala -tracker
-gnome-extra/evolution-data-server vala
 
 # The following are required by ekiga-3
 net-libs/opal sip

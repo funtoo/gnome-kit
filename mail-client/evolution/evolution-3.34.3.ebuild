@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-inherit gnome.org flag-o-matic readme.gentoo-r1 cmake-utils xdg
+inherit gnome3 flag-o-matic readme.gentoo-r1 cmake-utils
 
 DESCRIPTION="Integrated mail, addressbook and calendaring functionality"
 HOMEPAGE="https://wiki.gnome.org/Apps/Evolution"
@@ -131,6 +131,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 	readme.gentoo_print_elog
 }

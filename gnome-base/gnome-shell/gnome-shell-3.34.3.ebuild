@@ -93,8 +93,8 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=(	"${FILESDIR}/${P}-improve-motd-handling.patch"
-			"${FILESDIR}/${P}-improve-screen-blanking.patch" )
+PATCHES=(	"${FILESDIR}/${PN}-3.34.2-improve-motd-handling.patch"
+			"${FILESDIR}/${PN}-3.34.2-improve-screen-blanking.patch" )
 
 src_prepare() {
 	gnome3_src_prepare

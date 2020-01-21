@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala meson
+inherit gnome3 vala meson
 
 DESCRIPTION="GNOME contact management application"
 HOMEPAGE="https://wiki.gnome.org/Design/Apps/Contacts"
@@ -54,7 +54,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	vala_src_prepare
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
