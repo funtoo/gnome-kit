@@ -47,31 +47,31 @@ esac
 # Path to glib-compile-schemas
 : ${GLIB_COMPILE_SCHEMAS:="/usr/bin/glib-compile-schemas"}
 
-# @ECLASS-VARIABLE: GNOME2_ECLASS_SCHEMAS
+# @ECLASS-VARIABLE: GNOME3_ECLASS_SCHEMAS
 # @INTERNAL
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # List of GConf schemas provided by the package
 
-# @ECLASS-VARIABLE: GNOME2_ECLASS_ICONS
+# @ECLASS-VARIABLE: GNOME3_ECLASS_ICONS
 # @INTERNAL
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # List of icons provided by the package
 
-# @ECLASS-VARIABLE: GNOME2_ECLASS_SCROLLS
+# @ECLASS-VARIABLE: GNOME3_ECLASS_SCROLLS
 # @INTERNAL
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # List of scrolls (documentation files) provided by the package
 
-# @ECLASS-VARIABLE: GNOME2_ECLASS_GLIB_SCHEMAS
+# @ECLASS-VARIABLE: GNOME3_ECLASS_GLIB_SCHEMAS
 # @INTERNAL
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # List of GSettings schemas provided by the package
 
-# @ECLASS-VARIABLE: GNOME2_ECLASS_GDK_PIXBUF_LOADERS
+# @ECLASS-VARIABLE: GNOME3_ECLASS_GDK_PIXBUF_LOADERS
 # @INTERNAL
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -106,12 +106,12 @@ gnome3_environment_reset() {
 # @FUNCTION: gnome3_gconf_savelist
 # @DESCRIPTION:
 # Find the GConf schemas that are about to be installed and save their location
-# in the GNOME2_ECLASS_SCHEMAS environment variable.
+# in the GNOME3_ECLASS_SCHEMAS environment variable.
 # This function should be called from pkg_preinst.
 gnome3_gconf_savelist() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
 	pushd "${ED}" > /dev/null || die
-	export GNOME2_ECLASS_SCHEMAS=$(find 'etc/gconf/schemas/' -name '*.schemas' 2> /dev/null)
+	export GNOME3_ECLASS_SCHEMAS=$(find 'etc/gconf/schemas/' -name '*.schemas' 2> /dev/null)
 	popd > /dev/null || die
 }
 
@@ -129,7 +129,7 @@ gnome3_gconf_install() {
 		return
 	fi
 
-	if [[ -z "${GNOME2_ECLASS_SCHEMAS}" ]]; then
+	if [[ -z "${GNOME3_ECLASS_SCHEMAS}" ]]; then
 		debug-print "No GNOME 2 GConf schemas found"
 		return
 	fi
@@ -141,7 +141,7 @@ gnome3_gconf_install() {
 	einfo "Installing GNOME 2 GConf schemas"
 
 	local F
-	for F in ${GNOME2_ECLASS_SCHEMAS}; do
+	for F in ${GNOME3_ECLASS_SCHEMAS}; do
 		if [[ -e "${EROOT}${F}" ]]; then
 			debug-print "Installing schema: ${F}"
 			"${updater}" --makefile-install-rule "${EROOT}${F}" 1>/dev/null
@@ -170,7 +170,7 @@ gnome3_gconf_uninstall() {
 		return
 	fi
 
-	if [[ -z "${GNOME2_ECLASS_SCHEMAS}" ]]; then
+	if [[ -z "${GNOME3_ECLASS_SCHEMAS}" ]]; then
 		debug-print "No GNOME 2 GConf schemas found"
 		return
 	fi
@@ -181,7 +181,7 @@ gnome3_gconf_uninstall() {
 	einfo "Uninstalling GNOME 2 GConf schemas"
 
 	local F
-	for F in ${GNOME2_ECLASS_SCHEMAS}; do
+	for F in ${GNOME3_ECLASS_SCHEMAS}; do
 		if [[ -e "${EROOT}${F}" ]]; then
 			debug-print "Uninstalling gconf schema: ${F}"
 			"${updater}" --makefile-uninstall-rule "${EROOT}${F}" 1>/dev/null
@@ -251,12 +251,12 @@ gnome3_omf_fix() {
 # @FUNCTION: gnome3_scrollkeeper_savelist
 # @DESCRIPTION:
 # Find the scrolls that are about to be installed and save their location
-# in the GNOME2_ECLASS_SCROLLS environment variable.
+# in the GNOME3_ECLASS_SCROLLS environment variable.
 # This function should be called from pkg_preinst.
 gnome3_scrollkeeper_savelist() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
 	pushd "${ED}" > /dev/null || die
-	export GNOME2_ECLASS_SCROLLS=$(find 'usr/share/omf' -type f -name "*.omf" 2> /dev/null)
+	export GNOME3_ECLASS_SCROLLS=$(find 'usr/share/omf' -type f -name "*.omf" 2> /dev/null)
 	popd > /dev/null || die
 }
 
@@ -273,7 +273,7 @@ gnome3_scrollkeeper_update() {
 		return
 	fi
 
-	if [[ -z "${GNOME2_ECLASS_SCROLLS}" ]]; then
+	if [[ -z "${GNOME3_ECLASS_SCROLLS}" ]]; then
 		debug-print "No scroll cache to update"
 		return
 	fi
@@ -286,13 +286,13 @@ gnome3_scrollkeeper_update() {
 # @FUNCTION: gnome3_schemas_savelist
 # @DESCRIPTION:
 # Find if there is any GSettings schema to install and save the list in
-# GNOME2_ECLASS_GLIB_SCHEMAS variable. This is only necessary for eclass
+# GNOME3_ECLASS_GLIB_SCHEMAS variable. This is only necessary for eclass
 # implementations that call gnome3_schemas_update conditionally.
 # This function should be called from pkg_preinst.
 gnome3_schemas_savelist() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
 	pushd "${ED}" > /dev/null || die
-	export GNOME2_ECLASS_GLIB_SCHEMAS=$(find 'usr/share/glib-2.0/schemas' -name '*.gschema.xml' 2>/dev/null)
+	export GNOME3_ECLASS_GLIB_SCHEMAS=$(find 'usr/share/glib-2.0/schemas' -name '*.gschema.xml' 2>/dev/null)
 	popd > /dev/null || die
 }
 
@@ -318,19 +318,19 @@ gnome3_schemas_update() {
 # @FUNCTION: gnome3_gdk_pixbuf_savelist
 # @DESCRIPTION:
 # Find if there is any gdk-pixbuf loader to install and save the list in
-# GNOME2_ECLASS_GDK_PIXBUF_LOADERS variable.
+# GNOME3_ECLASS_GDK_PIXBUF_LOADERS variable.
 # This function should be called from pkg_preinst.
 gnome3_gdk_pixbuf_savelist() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
 	pushd "${ED}" > /dev/null || die
-	export GNOME2_ECLASS_GDK_PIXBUF_LOADERS=$(find usr/lib*/gdk-pixbuf-2.0 -type f 2>/dev/null)
+	export GNOME3_ECLASS_GDK_PIXBUF_LOADERS=$(find usr/lib*/gdk-pixbuf-2.0 -type f 2>/dev/null)
 	popd > /dev/null || die
 }
 
 # @FUNCTION: gnome3_gdk_pixbuf_update
 # @USAGE: gnome3_gdk_pixbuf_update
 # @DESCRIPTION:
-# Updates gdk-pixbuf loader cache if GNOME2_ECLASS_GDK_PIXBUF_LOADERS has some.
+# Updates gdk-pixbuf loader cache if GNOME3_ECLASS_GDK_PIXBUF_LOADERS has some.
 # This function should be called from pkg_postinst and pkg_postrm.
 gnome3_gdk_pixbuf_update() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && EROOT="${ROOT}"
@@ -345,7 +345,7 @@ gnome3_gdk_pixbuf_update() {
 		return
 	fi
 
-	if [[ -z ${GNOME2_ECLASS_GDK_PIXBUF_LOADERS} ]]; then
+	if [[ -z ${GNOME3_ECLASS_GDK_PIXBUF_LOADERS} ]]; then
 		debug-print "gdk-pixbuf loader cache does not need an update"
 		return
 	fi
@@ -456,14 +456,14 @@ case ${EAPI:-0} in
 # @FUNCTION: gnome3_icon_savelist
 # @DESCRIPTION:
 # Find the icons that are about to be installed and save their location
-# in the GNOME2_ECLASS_ICONS environment variable. This is only
+# in the GNOME3_ECLASS_ICONS environment variable. This is only
 # necessary for eclass implementations that call
 # gnome3_icon_cache_update conditionally.
 # This function should be called from pkg_preinst.
 gnome3_icon_savelist() {
 	has ${EAPI:-0} 0 1 2 && ! use prefix && ED="${D}"
 	pushd "${ED}" > /dev/null || die
-	export GNOME2_ECLASS_ICONS=$(find 'usr/share/icons' -maxdepth 1 -mindepth 1 -type d 2> /dev/null)
+	export GNOME3_ECLASS_ICONS=$(find 'usr/share/icons' -maxdepth 1 -mindepth 1 -type d 2> /dev/null)
 	popd > /dev/null || die
 }
 

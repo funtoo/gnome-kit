@@ -10,13 +10,13 @@
 # Exports portage base functions used by ebuilds written for packages using the
 # GNOME framework. For additional functions, see gnome3-utils.eclass.
 
-# @ECLASS-VARIABLE: GNOME2_EAUTORECONF
+# @ECLASS-VARIABLE: GNOME3_EAUTORECONF
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Run eautoreconf instead of only elibtoolize
-GNOME2_EAUTORECONF=${GNOME2_EAUTORECONF:-""}
+GNOME3_EAUTORECONF=${GNOME3_EAUTORECONF:-""}
 
-[[ ${GNOME2_EAUTORECONF} == 'yes' ]] && inherit autotools
+[[ ${GNOME3_EAUTORECONF} == 'yes' ]] && inherit autotools
 inherit eutils libtool gnome.org gnome3-utils xdg
 
 case "${EAPI:-0}" in
@@ -70,23 +70,23 @@ if has ${EAPI:-0} 4 5; then
 	fi
 fi
 
-# @ECLASS-VARIABLE: GNOME2_ECLASS_GIO_MODULES
+# @ECLASS-VARIABLE: GNOME3_ECLASS_GIO_MODULES
 # @INTERNAL
 # @DESCRIPTION:
 # Array containing glib GIO modules
 
-# @ECLASS-VARIABLE: GNOME2_LA_PUNT
+# @ECLASS-VARIABLE: GNOME3_LA_PUNT
 # @DESCRIPTION:
 # For eapi4 it sets if we should delete ALL or none of the .la files
 # For eapi5 and newer it relies on prune_libtool_files (from eutils.eclass)
-# for this. Available values for GNOME2_LA_PUNT:
+# for this. Available values for GNOME3_LA_PUNT:
 # - "no": will not clean any .la files
 # - "yes": will run prune_libtool_files --modules
 # - If it is not set, it will run prune_libtool_files
 if has ${EAPI:-0} 4; then
-	GNOME2_LA_PUNT=${GNOME2_LA_PUNT:-"no"}
+	GNOME3_LA_PUNT=${GNOME3_LA_PUNT:-"no"}
 else
-	GNOME2_LA_PUNT=${GNOME2_LA_PUNT:-""}
+	GNOME3_LA_PUNT=${GNOME3_LA_PUNT:-""}
 fi
 
 # @FUNCTION: gnome3_src_unpack
@@ -122,7 +122,7 @@ gnome3_src_prepare() {
 
 	# Run libtoolize or eautoreconf, bug #591584
 	# https://bugzilla.gnome.org/show_bug.cgi?id=655517
-	if [[ ${GNOME2_EAUTORECONF} == 'yes' ]]; then
+	if [[ ${GNOME3_EAUTORECONF} == 'yes' ]]; then
 		eautoreconf
 	else
 		elibtoolize ${ELTCONF}
@@ -294,7 +294,7 @@ gnome3_src_install() {
 
 	# Delete all .la files
 	if has ${EAPI:-0} 4; then
-		if [[ "${GNOME2_LA_PUNT}" != "no" ]]; then
+		if [[ "${GNOME3_LA_PUNT}" != "no" ]]; then
 			ebegin "Removing .la files"
 			if ! use_if_iuse static-libs ; then
 				find "${D}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
@@ -302,7 +302,7 @@ gnome3_src_install() {
 			eend
 		fi
 	else
-		case "${GNOME2_LA_PUNT}" in
+		case "${GNOME3_LA_PUNT}" in
 			yes)    prune_libtool_files --modules;;
 			no)     ;;
 			*)      prune_libtool_files;;
@@ -322,12 +322,12 @@ gnome3_pkg_preinst() {
 
 	local f
 
-	GNOME2_ECLASS_GIO_MODULES=()
+	GNOME3_ECLASS_GIO_MODULES=()
 	while IFS= read -r -d '' f; do
-		GNOME2_ECLASS_GIO_MODULES+=( ${f} )
+		GNOME3_ECLASS_GIO_MODULES+=( ${f} )
 	done < <(cd "${D}" && find usr/$(get_libdir)/gio/modules -type f -print0 2>/dev/null)
 
-	export GNOME2_ECLASS_GIO_MODULES
+	export GNOME3_ECLASS_GIO_MODULES
 }
 
 # @FUNCTION: gnome3_pkg_postinst
@@ -337,13 +337,13 @@ gnome3_pkg_preinst() {
 gnome3_pkg_postinst() {
 	xdg_pkg_postinst
 	gnome3_gconf_install
-	if [[ -n ${GNOME2_ECLASS_GLIB_SCHEMAS} ]]; then
+	if [[ -n ${GNOME3_ECLASS_GLIB_SCHEMAS} ]]; then
 		gnome3_schemas_update
 	fi
 	gnome3_scrollkeeper_update
 	gnome3_gdk_pixbuf_update
 
-	if [[ ${#GNOME2_ECLASS_GIO_MODULES[@]} -gt 0 ]]; then
+	if [[ ${#GNOME3_ECLASS_GIO_MODULES[@]} -gt 0 ]]; then
 		gnome3_giomodule_cache_update
 	fi
 }
@@ -358,12 +358,12 @@ gnome3_pkg_postinst() {
 # Handle scrollkeeper, GSettings, Icons, desktop and mime database updates.
 gnome3_pkg_postrm() {
 	xdg_pkg_postrm
-	if [[ -n ${GNOME2_ECLASS_GLIB_SCHEMAS} ]]; then
+	if [[ -n ${GNOME3_ECLASS_GLIB_SCHEMAS} ]]; then
 		gnome3_schemas_update
 	fi
 	gnome3_scrollkeeper_update
 
-	if [[ ${#GNOME2_ECLASS_GIO_MODULES[@]} -gt 0 ]]; then
+	if [[ ${#GNOME3_ECLASS_GIO_MODULES[@]} -gt 0 ]]; then
 		gnome3_giomodule_cache_update
 	fi
 }
