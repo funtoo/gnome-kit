@@ -16,7 +16,7 @@ KEYWORDS="*"
 IUSE="X doc +introspection test"
 
 RDEPEND="
-	>=media-libs/harfbuzz-1.2.3:=[glib(+),truetype(+)]
+	>=media-libs/harfbuzz-2.6.4:=[glib(+),truetype(+)]
 	>=dev-libs/fribidi-0.19
 	>=dev-libs/glib-2.62.2:2
 	>=media-libs/fontconfig-2.10.92:1.0=
