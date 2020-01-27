@@ -16,7 +16,8 @@ GITHUB_REPO="$PN"
 GITHUB_USER="rockdaboot"
 SRC_URI="https://github.com/${GITHUB_USER}/${PN}/releases/download/libpsl-${PV}/libpsl-${PV}.tar.gz"
 REQUIRED_USE="^^ ( idn2 icu idn )"
-DEPEND="sys-devel/gettext
+DEPEND="${PYTHON_DEPS}
+	sys-devel/gettext
 	virtual/pkgconfig
 	sys-devel/libtool
 	doc? ( dev-util/gtk-doc )
