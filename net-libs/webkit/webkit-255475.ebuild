@@ -30,7 +30,10 @@ IUSE="debug +introspection wayland +X"
 # "strip" is needed in RESTRICT for debugging...
 RESTRICT="test userpriv"
 
+# !<=net-libs/webkit-gtk-2.26.3:
+# blocker to remove older webkit-gtk that contains files this ebuild installs now.
 RDEPEND="
+	!<=net-libs/webkit-gtk-2.26.3
 	>=x11-libs/cairo-1.16.0:=[X?]
 	>=media-libs/fontconfig-2.13.0:1.0
 	>=media-libs/freetype-2.9.0:2
