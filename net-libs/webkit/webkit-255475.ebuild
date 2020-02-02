@@ -50,6 +50,7 @@ RDEPEND="
 	>=dev-libs/atk-2.8.0
 	media-libs/libwebp:=
 
+	net-libs/libevent
 	>=dev-libs/glib-2.40:2
 	>=dev-libs/libxslt-1.1.7
 	media-libs/woff2
