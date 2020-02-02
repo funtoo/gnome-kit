@@ -27,9 +27,8 @@ KEYWORDS="*"
 
 IUSE="debug +introspection wayland +X"
 
-# Tests fail to link for inexplicable reasons
-# https://bugs.webkit.org/show_bug.cgi?id=148210
-RESTRICT="test userpriv strip"
+# "strip" is needed in RESTRICT for debugging...
+RESTRICT="test userpriv"
 
 RDEPEND="
 	>=x11-libs/cairo-1.16.0:=[X?]
