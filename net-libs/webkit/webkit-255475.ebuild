@@ -79,8 +79,11 @@ RDEPEND="
 	virtual/opengl
 	x11-libs/libXcomposite
 	x11-libs/libXdamage
-	gui-libs/libwpe:1.0
-	>=gui-libs/wpebackend-fdo-1.4.0
+
+	wayland? (
+		gui-libs/wpebackend-fdo
+	)
+
 "
 
 # paxctl needed for bug #407085
@@ -105,8 +108,6 @@ DEPEND="${RDEPEND}
 
 	>=dev-util/gtk-doc-1.10
 	dev-util/gdbus-codegen
-	gui-libs/libwpe:1.0
-	>=gui-libs/wpebackend-fdo-1.4.0
 "
 
 CHECKREQS_DISK_BUILD="18G" # and even this might not be enough, bug #417307
