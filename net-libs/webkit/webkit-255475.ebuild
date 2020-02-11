@@ -79,6 +79,11 @@ RDEPEND="
 	virtual/opengl
 	x11-libs/libXcomposite
 	x11-libs/libXdamage
+
+	wayland? (
+		gui-libs/wpebackend-fdo
+	)
+
 "
 
 # paxctl needed for bug #407085
