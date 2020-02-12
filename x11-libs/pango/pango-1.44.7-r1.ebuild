@@ -53,4 +53,8 @@ src_configure() {
 
 src_install() {
 	meson_src_install
+	cd ${D}/usr/include/pango-1.0 || die
+	for x in $(find -iname *.h); do
+		sed -i -e 's:include <hb:include <harfbuzz/hb:g' $x || die
+	done
 }
