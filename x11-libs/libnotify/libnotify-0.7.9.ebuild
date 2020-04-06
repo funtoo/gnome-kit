@@ -22,6 +22,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-libs/gobject-introspection-common-1.32
 	>=dev-util/gtk-doc-am-1.14
+	app-text/docbook-xsl-ns-stylesheets
 	virtual/pkgconfig
 	test? ( x11-libs/gtk+:3 )
 "
@@ -35,8 +36,9 @@ src_prepare() {
 src_configure() {
 	local emesonargs=( \
 		-Dgtk_doc=false \
-		$(meson_use introspection enabled disabled) \
-		$(meson_use test tests)
+		-Dintrospection=$(usex introspection enabled disabled) \
+		-Ddocbook_docs=disabled \
+		-Dtests=$(usex test true false)
 	)
 
 	meson_src_configure
@@ -48,7 +50,6 @@ src_configure() {
 src_install() {
 	meson_src_install
 	default
-	prune_libtool_files
 
 	mv "${ED}"/usr/bin/{,libnotify-}notify-send || die #379941
 }
