@@ -32,7 +32,7 @@ RDEPEND="
 	telepathy? (
 		dev-libs/dbus-glib
 		>=net-libs/telepathy-glib-0.11.6 )
-	zeroconf? ( >=net-dns/avahi-0.6.26[dbus,gtk3] )
+	zeroconf? ( >=net-dns/avahi-0.6.26[dbus,gtk] )
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)
