@@ -47,6 +47,7 @@ RDEPEND="${COMMON_DEPEND}
 # test? ( bluetooth? ( dbusmock is missing in the tree ) )
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.0
+	>=dev-util/meson-0.51.0
 	sys-devel/gettext
 	virtual/pkgconfig
 
