@@ -2,7 +2,7 @@
 
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python3+ )
 
 inherit gnome2 python-any-r1 vala virtualx meson
 
@@ -24,6 +24,7 @@ RDEPEND="
 	>=x11-libs/pango-1.44.7[introspection]
 "
 DEPEND="${RDEPEND}
+	$(vala_depend)
 	dev-libs/appstream-glib
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
