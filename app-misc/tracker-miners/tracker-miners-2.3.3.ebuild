@@ -1,10 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 
-inherit gnome.org gnome2-utils meson python-any-r1 systemd xdg
+inherit gnome3 meson python-any-r1 systemd
 
 DESCRIPTION="Collection of data extractors for Tracker/Nepomuk"
 HOMEPAGE="https://wiki.gnome.org/Projects/Tracker"
@@ -71,8 +71,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	xdg_src_prepare
-	gnome2_environment_reset # sets gstreamer safety variables
+	gnome3_src_prepare
+	gnome3_environment_reset # sets gstreamer safety variables
 }
 
 src_configure() {
@@ -89,7 +89,6 @@ src_configure() {
 		-Ddocs=true
 		-Dextract=true
 		$(meson_use test functional_tests)
-		-Dminer_apps=true
 		-Dminer_fs=true
 		$(meson_use rss miner_rss)
 		-Dwriteback=true
@@ -113,7 +112,6 @@ src_configure() {
 		-Dplaylist=$(usex playlist enabled disabled)
 		-Dpng=enabled
 		-Draw=$(usex raw enabled disabled)
-		-Dtaglib=$(usex taglib enabled disabled)
 		-Dtiff=$(usex tiff enabled disabled)
 		-Dvorbis=$(usex vorbis enabled disabled)
 		-Dxml=$(usex xml enabled disabled)
@@ -126,6 +124,7 @@ src_configure() {
 		# gupnp gstreamer_backend is in bad state, upstream suggests to use discoverer, which is the default
 		-Dsystemd_user_services="$(systemd_get_userunitdir)"
 	)
+
 	meson_src_configure
 }
 

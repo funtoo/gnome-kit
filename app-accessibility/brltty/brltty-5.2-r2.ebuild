@@ -6,7 +6,7 @@ EAPI=5
 PYTHON_COMPAT=( python2_7 python3_{4,5,6,7} )
 FINDLIB_USE="ocaml"
 
-inherit findlib eutils multilib toolchain-funcs java-pkg-opt-2 flag-o-matic \
+inherit findlib eutils toolchain-funcs java-pkg-opt-2 flag-o-matic \
 	autotools udev systemd python-r1
 
 DESCRIPTION="Daemon that provides access to the Linux/Unix console for a blind person"

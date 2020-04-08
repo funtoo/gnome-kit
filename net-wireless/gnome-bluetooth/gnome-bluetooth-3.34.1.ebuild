@@ -1,9 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=7
 
-inherit gnome2 udev user meson
+inherit gnome3 udev user meson
 
 DESCRIPTION="Bluetooth graphical utilities integrated with GNOME"
 HOMEPAGE="https://wiki.gnome.org/Projects/GnomeBluetooth"
@@ -45,9 +45,9 @@ pkg_setup() {
 
 src_configure() {
 	local emesonargs=(
-		-Denable-icon-update=false
-		$(meson_use introspection enable-introspection)
-		-Denable-gtk-doc=true
+		-Dicon_update=false
+		$(meson_use introspection)
+		-Dgtk_doc=true
 	)
 
 	meson_src_configure
@@ -59,7 +59,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome3_pkg_postinst
 	if ! has_version sys-auth/consolekit[acl] && ! has_version sys-apps/systemd[acl] ; then
 		elog "Don't forget to add yourself to the plugdev group "
 		elog "if you want to be able to control bluetooth transmitter."

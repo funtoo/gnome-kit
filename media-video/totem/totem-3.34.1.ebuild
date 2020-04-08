@@ -104,10 +104,7 @@ src_configure() {
 	local emesonargs=(
 		-Denable-easy-codec-installation=yes
 		-Denable-gtk-doc=false
-		-Denable-introspection=$(usex introspection yes no)
-		-Denable-nautilus=$(usex nautilus yes no)
 		-Denable-python=$(usex python yes no)
-		-Denable-vala=$(usex vala yes no)
 		-Dwith-plugins=auto
 	)
 	meson_src_configure
