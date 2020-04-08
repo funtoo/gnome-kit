@@ -1,10 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-GNOME2_LA_PUNT="yes"
+GNOME3_LA_PUNT="yes"
+GNOME3_EAUTORECONF="yes"
 
-inherit flag-o-matic gnome3 meson virtualx
+inherit flag-o-matic gnome3 virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
@@ -28,19 +29,21 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15[introspection?]
+	>=dev-libs/fribidi-0.19.7
 	>=dev-libs/glib-2.62.2:2
 	media-libs/fontconfig
 	>=media-libs/libepoxy-1.4[X(+)?]
 	>=x11-libs/cairo-1.16.0[aqua?,glib,svg,X?]
 	>=x11-libs/gdk-pixbuf-2.39.2:2[introspection?]
 	>=x11-libs/pango-1.44.7[introspection?]
+	>=media-libs/harfbuzz-0.9:=
 	x11-misc/shared-mime-info
 
 	cloudprint? (
 		>=net-libs/rest-0.7
 		>=dev-libs/json-glib-1.0 )
 	colord? ( >=x11-misc/colord-0.1.9:0= )
-	cups? ( >=net-print/cups-1.2 )
+	cups? ( >=net-print/cups-2.0 )
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 	wayland? (
 		>=dev-libs/wayland-1.14.91
@@ -50,6 +53,7 @@ COMMON_DEPEND="
 	)
 	X? (
 		>=app-accessibility/at-spi2-atk-2.5.3
+		media-libs/mesa[X(+)]
 		x11-libs/libX11
 		>=x11-libs/libXi-1.3
 		x11-libs/libXext
@@ -67,8 +71,10 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/libxslt
 	dev-libs/gobject-introspection-common
 	>=dev-util/gdbus-codegen-2.48
+	dev-util/glib-utils
 	>=dev-util/gtk-doc-am-1.20
-	doc? ( >=dev-util/gtk-doc-1.20 )
+	doc? (	>=dev-util/gtk-doc-1.20
+			app-text/docbook-xml-dtd:4.3 )
 	>=sys-devel/gettext-0.19.7
 	virtual/pkgconfig
 	X? ( x11-base/xorg-proto )
@@ -108,43 +114,78 @@ src_prepare() {
 	replace-flags -O3 -O2
 	strip-flags
 
-	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	eapply "${FILESDIR}"/${PN}-3.24.12-update-icon-cache.patch
+	if ! use test ; then
+		# don't waste time building tests
+		strip_builddir SRC_SUBDIRS testsuite Makefile.{am,in}
 
-	# call eapply_user (implicitly) before eautoreconf
+		# the tests dir needs to be build now because since commit
+		# 7ff3c6df80185e165e3bf6aa31bd014d1f8bf224 tests/gtkgears.o needs to be there
+		# strip_builddir SRC_SUBDIRS tests Makefile.{am,in}
+	fi
+
+	if ! use examples; then
+		# don't waste time building demos
+		strip_builddir SRC_SUBDIRS demos Makefile.{am,in}
+		strip_builddir SRC_SUBDIRS examples Makefile.{am,in}
+	fi
+
+
+	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
+	eapply "${FILESDIR}"/${PN}-3.24.8-update-icon-cache.patch
+
+	# Fix broken autotools logic
+	eapply "${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
+
 	gnome3_src_prepare
 }
 
 src_configure() {
-	local print_backends="file,lpr"
-	if use cups; then
-		print_backends="$print_backends,cups"
-	fi
-	if use cloudprint; then
-		print_backends="$print_backends,cloudprint"
-	fi
-	local emesonargs=(
-		-Dc_args="$CFLAGS"
-		-Dprint_backends=$print_backends
-		-Dquartz_backend=$(usex aqua true false)
-		-Dbroadway_backend=$(usex broadway true false)
-		-Dcolord=$(usex colord yes no)
-		-Dwayland_backend=$(usex wayland true false)
-		-Dx11_backend=$(usex X true false)
-		-Dxinerama=$(usex xinerama yes no)
-		-Dgtk_doc=$(usex doc true false)
-		-Dcloudproviders=false
-		-Dwin32_backend=false
-		-Dtests=$(usex test true false)
-		-Ddemos=$(usex examples true false)
-		-Dexamples=$(usex examples true false)
-		-Dinstalled_tests=false
-		-Dintrospection=$(usex introspection true false)
-		-Dman=true
-		-Dbuiltin_immodules=auto
+	local myconf=(
+		$(use_enable aqua quartz-backend)
+		$(use_enable broadway broadway-backend)
+		$(use_enable cloudprint)
+		$(use_enable colord)
+		$(use_enable cups cups auto)
+		$(use_enable doc gtk-doc)
+		$(use_enable introspection)
+		$(use_enable wayland wayland-backend)
+		$(use_enable X x11-backend)
+		$(use_enable X xcomposite)
+		$(use_enable X xdamage)
+		$(use_enable X xfixes)
+		$(use_enable X xkb)
+		$(use_enable X xrandr)
+		$(use_enable xinerama)
+		# cloudprovider is not packaged in Gentoo yet
+		--disable-cloudproviders
+		--disable-papi
+		# sysprof integration needs >=sysprof-3.33.2
+		--disable-profiler
+		--enable-man
+		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog
+		# need libdir here to avoid a double slash in a path that libtool doesn't
+		# grok so well during install (// between $EPREFIX and usr ...)
+		# TODO: Is this still the case?
+		--libdir="${EPREFIX}"/usr/$(get_libdir)
+		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
 	)
 
-	meson_src_configure
+	if use wayland; then
+		myconf+=(
+			# Include wayland immodule into gtk itself, to avoid problems like
+			# https://gitlab.gnome.org/GNOME/gnome-shell/issues/109 from a
+			# user overridden GTK_IM_MODULE envvar
+			--with-included-immodules=wayland
+		)
+	fi;
+
+	ECONF_SOURCE=${S} gnome3_src_configure "${myconf[@]}"
+
+	# work-around gtk-doc out-of-source brokedness
+	local d
+	for d in gdk gtk libgail-util; do
+		ln -s "${S}"/docs/reference/${d}/html docs/reference/${d}/html || die
+	done
 }
 
 src_test() {
@@ -153,26 +194,26 @@ src_test() {
 }
 
 src_install() {
-	meson_src_install
+	gnome3_src_install
 
 	insinto /etc/gtk-3.0
 	doins "${FILESDIR}"/settings.ini
-	# Skip README.{in,commits,win32} and useless ChangeLog that would get installed by default
-	DOCS=( AUTHORS NEWS README )
+	# Skip README.{in,commits,win32} that would get installed by default
+	DOCS=( AUTHORS ChangeLog NEWS README )
 	einstalldocs
 }
 
 pkg_preinst() {
 	gnome3_pkg_preinst
 
-    # Make immodules.cache belongs to gtk+ alone
-    local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+	# Make immodules.cache belongs to gtk+ alone
+	local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 
-    if [[ -e ${EROOT}${cache} ]]; then
-        cp "${EROOT}"${cache} "${ED}"/${cache} || die
-    else
-        touch "${ED}"/${cache} || die
-    fi
+	if [[ -e ${EROOT}${cache} ]]; then
+		cp "${EROOT}"${cache} "${ED}"/${cache} || die
+	else
+		touch "${ED}"/${cache} || die
+	fi
 }
 
 pkg_postinst() {

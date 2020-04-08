@@ -1,11 +1,11 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 VALA_USE_DEPEND="vapigen"
-GNOME2_EAUTORECONF="yes"
+GNOME3_EAUTORECONF="yes"
 
-inherit gnome.org meson vala xdg
+inherit gnome3 meson vala
 
 DESCRIPTION="GLib-based library for accessing online service APIs using the GData protocol"
 HOMEPAGE="https://wiki.gnome.org/Projects/libgdata"
@@ -22,7 +22,7 @@ REQUIRED_USE="
 	vala? ( introspection )
 "
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="*"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
@@ -63,6 +63,7 @@ src_configure() {
 		$(meson_use vala vapi)
 		$(meson_use test always_build_tests)
 	)
+
 	meson_src_configure
 }
 
@@ -71,9 +72,9 @@ src_test() {
 }
 
 pkg_postinst() {
-	xdg_pkg_postinst
+	gnome3_pkg_postinst
 }
 
 pkg_postrm() {
-	xdg_pkg_postrm
+	gnome3_pkg_postrm
 }

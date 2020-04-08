@@ -4,7 +4,7 @@
 EAPI=6
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 
-inherit bash-completion-r1 eapi7-ver gnome.org linux-info meson python-any-r1 systemd vala xdg
+inherit bash-completion-r1 eapi7-ver gnome3 linux-info meson python-any-r1 systemd vala
 
 DESCRIPTION="A tagging metadata database, search tool and indexer"
 HOMEPAGE="https://wiki.gnome.org/Projects/Tracker"
@@ -65,7 +65,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	xdg_src_prepare
+	gnome3_src_prepare
 	vala_src_prepare
 }
 
@@ -73,7 +73,7 @@ src_configure() {
 	local emesonargs=(
 		-Dfts=true
 		-Dfunctional_tests=false # python2, but g-ir-merge needs py3; https://gitlab.gnome.org/GNOME/tracker/merge_requests/40
-		$(meson_use gtk-doc)
+		$(meson_use gtk-doc docs)
 		-Dman=true
 		-Dnetwork_manager=$(usex networkmanager enabled disabled)
 		-Dstemmer=$(usex stemmer enabled disabled)
@@ -81,6 +81,7 @@ src_configure() {
 		-Dbash_completion="$(get_bashcompdir)"
 		-Dsystemd_user_services="$(systemd_get_userunitdir)"
 	)
+
 	meson_src_configure
 }
 

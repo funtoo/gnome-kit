@@ -1,8 +1,8 @@
 # Copyright 1999-2017 Gentoo Foundation
 
-EAPI=6
+EAPI=7
 
-inherit ltprune multilib-minimal
+inherit gnome.org ltprune
 
 DESCRIPTION="Provides a standard configuration setup for installing PKCS#11"
 HOMEPAGE="https://p11-glue.freedesktop.org/p11-kit.html https://github.com/p11-glue/p11-kit"
@@ -14,8 +14,8 @@ KEYWORDS="*"
 IUSE="+asn1 debug +libffi +trust"
 REQUIRED_USE="trust? ( asn1 )"
 
-RDEPEND="asn1? ( >=dev-libs/libtasn1-3.4[${MULTILIB_USEDEP}] )
-	libffi? ( >=dev-libs/libffi-3.0.0[${MULTILIB_USEDEP}] )
+RDEPEND="asn1? ( >=dev-libs/libtasn1-3.4 )
+	libffi? ( >=dev-libs/libffi-3.0.0 )
 	trust? ( app-misc/ca-certificates )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
@@ -40,7 +40,7 @@ src_prepare() {
 	default
 }
 
-multilib_src_configure() {
+src_configure() {
 	ECONF_SOURCE="${S}" econf \
 		$(use_enable trust trust-module) \
 		$(use_with trust trust-paths ${EPREFIX}/etc/ssl/certs/ca-certificates.crt) \
@@ -48,13 +48,12 @@ multilib_src_configure() {
 		$(use_with libffi) \
 		$(use_with asn1 libtasn1)
 
-	if multilib_is_native_abi; then
-		# re-use provided documentation
-		ln -s "${S}"/doc/manual/html doc/manual/html || die
-	fi
+	# re-use provided documentation
+	ln -s "${S}"/doc/manual/html doc/manual/html || die
 }
 
-multilib_src_install_all() {
+src_install() {
+	default
 	einstalldocs
 	prune_libtool_files --modules
 }

@@ -146,3 +146,6 @@ net-im/telepathy-mission-control -deprecated
 
 x11-libs/gtksourceview vala
 dev-libs/libgweather vala
+dev-libs/libical glib vala
+
+net-libs/gnutls pkcs11
