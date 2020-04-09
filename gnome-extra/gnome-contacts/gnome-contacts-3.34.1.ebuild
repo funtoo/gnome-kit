@@ -14,14 +14,6 @@ KEYWORDS="*"
 
 IUSE="v4l"
 
-VALA_DEPEND="
-	$(vala_depend)
-	>=dev-libs/gobject-introspection-1.62.0:=
-	dev-libs/folks[vala(+)]
-	gnome-base/gnome-desktop:3=[introspection]
-	gnome-extra/evolution-data-server[vala]
-	net-libs/telepathy-glib[vala]
-"
 # Configure is wrong; it needs cheese-3.5.91, not 3.3.91
 RDEPEND="
 	>=dev-libs/folks-0.9.5:=[eds,telepathy]
@@ -42,7 +34,12 @@ RDEPEND="
 	v4l? ( >=media-video/cheese-3.5.91:= )
 "
 DEPEND="${RDEPEND}
-	${VALA_DEPEND}
+	$(vala_depend)
+	>=dev-libs/gobject-introspection-1.62.0:=
+	dev-libs/folks[vala(+)]
+	gnome-base/gnome-desktop:3=[introspection]
+	gnome-extra/evolution-data-server[vala]
+	net-libs/telepathy-glib[vala]
 	app-text/docbook-xml-dtd:4.2
 	app-text/docbook-xsl-stylesheets
 	dev-libs/libxslt
