@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python{3_5,3_6,3_7} )
+PYTHON_COMPAT=( python3+ )
 
 #TODO most of those classes are not used
 inherit meson bash-completion-r1 epunt-cxx flag-o-matic gnome.org gnome2-utils libtool linux-info \
