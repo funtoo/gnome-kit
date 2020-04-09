@@ -3,7 +3,7 @@
 
 EAPI="6"
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python{3_5,3_6,3_7} )
+PYTHON_COMPAT=( python3+ )
 
 inherit eutils gnome2 python-any-r1 systemd udev virtualx meson
 

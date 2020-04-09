@@ -2,7 +2,7 @@
 
 EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
-PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python2+ )
 USE_RUBY="ruby24 ruby25 ruby26"
 CMAKE_MIN_VERSION=3.10
 

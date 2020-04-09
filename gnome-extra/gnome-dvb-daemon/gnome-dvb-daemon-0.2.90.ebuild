@@ -3,7 +3,7 @@
 
 EAPI="5"
 GCONF_DEBUG="no"
-PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python3+ )
 VALA_MIN_API_VERSION="0.26"
 
 inherit eutils gnome2 python-any-r1 vala
