@@ -19,6 +19,7 @@ RDEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
+	$(vala_depend)
 	~app-text/docbook-xml-dtd-4.1.2
 	app-text/docbook-xsl-stylesheets
 	dev-libs/libxslt

@@ -20,6 +20,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${COMMON_DEPEND}
+	$(vala_depend)
 	>=dev-util/intltool-0.50
 	sys-devel/gettext
 	virtual/pkgconfig

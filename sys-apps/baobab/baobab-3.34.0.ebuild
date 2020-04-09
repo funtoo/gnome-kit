@@ -26,6 +26,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 # ${PN} was part of gnome-utils before 3.4
 DEPEND="${COMMON_DEPEND}
+	$(vala_depend)
 	app-text/yelp-tools
 	dev-libs/appstream-glib
 	>=sys-devel/gettext-0.19.8

@@ -22,10 +22,10 @@ RDEPEND="
 "
 
 DEPEND="${RDEPEND}
+	$(vala_depend)
 	>=dev-util/meson-0.47.2
 	~app-text/docbook-xml-dtd-4.1.2
 	app-text/docbook-xsl-stylesheets
-	dev-lang/vala
 	dev-libs/libxslt
 	>=dev-util/gtk-doc-am-1.20
 	>=sys-devel/gettext-0.18
