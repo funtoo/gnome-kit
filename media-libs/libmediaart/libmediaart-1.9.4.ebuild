@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 
 EAPI="6"
 
