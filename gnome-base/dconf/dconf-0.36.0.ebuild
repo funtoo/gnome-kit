@@ -33,14 +33,6 @@ src_prepare() {
 	default
 }
 
-src_configure() {
-	local emesonargs=(
-		-Denable-man=true
-	)
-
-	meson_src_configure
-}
-
 src_test() {
 	virtx emake check
 }
