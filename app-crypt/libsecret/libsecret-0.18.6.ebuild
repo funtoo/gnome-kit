@@ -14,7 +14,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Libsecret"
 LICENSE="LGPL-2.1+ Apache-2.0" # Apache-2.0 license is used for tests only
 SLOT="0"
 
-IUSE="+crypt +introspection test +vala"
+IUSE="+crypt +freedesktop-secret-service +introspection test +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 KEYWORDS="alpha amd64 arm ~arm64 ia64 ~mips ppc ppc64 sparc x86 ~amd64-fbsd"
@@ -24,8 +24,20 @@ RDEPEND="
 	crypt? ( >=dev-libs/libgcrypt-1.2.2:0= )
 	introspection? ( >=dev-libs/gobject-introspection-1.29:= )
 "
-PDEPEND=">=gnome-base/gnome-keyring-3
+
+# See https://bugs.gentoo.org/475182#c2 and https://bugs.gentoo.org/547456.
+# Gentoo has libsecret hard depend on a freedesktop secret service, in this case gnome-keyring.
+# We change this to have a configurable USE freedesktop-secret-service which can be met by
+# any freedesktop.org secret service API compatible program, e.g. gnome-keyring or keepassx.
+PDEPEND="
+	freedesktop-secret-service? (
+		|| (
+			>=gnome-base/gnome-keyring-3
+			app-admin/keepassxc
+		)
+	)
 "
+
 # PDEPEND to avoid circular dep (bug #547456)
 # gnome-keyring needed at runtime as explained at https://bugs.gentoo.org/475182#c2
 # Add ksecrets to PDEPEND when it's added to portage
