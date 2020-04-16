@@ -1,3 +1,4 @@
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -5,14 +6,14 @@ EAPI=7
 # vala and introspection support is broken, bug #468208
 VALA_USE_DEPEND=vapigen
 
-inherit autotools gnome2-utils vala
+inherit meson gnome2-utils vala
 
 if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://gitlab.gnome.org/GNOME/gegl.git"
 	SRC_URI=""
 else
-	SRC_URI="http://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.bz2"
+	SRC_URI="http://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
 	KEYWORDS="*"
 fi
 
@@ -34,7 +35,7 @@ REQUIRED_USE="
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	dev-libs/json-glib
-	>=media-libs/babl-0.1.62
+	>=media-libs/babl-0.1.74
 	>=media-libs/libpng-1.6.0:0=
 	virtual/jpeg:0=
 	>=x11-libs/gdk-pixbuf-2.39.2:2
@@ -74,26 +75,12 @@ DEPEND="${RDEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-0.3.12-failing-tests.patch"
+	"${FILESDIR}"/${PN}-0.4.18-drop-failing-tests.patch
+	"${FILESDIR}"/${PN}-0.4.18-program-suffix.patch
 )
 
 src_prepare() {
 	default
-
-	# FIXME: the following should be proper patch sent to upstream
-	# fix OSX loadable module filename extension
-	sed -i -e 's/\.dylib/.bundle/' configure.ac || die
-	# don't require Apple's OpenCL on versions of OSX that don't have it
-	if [[ ${CHOST} == *-darwin* && ${CHOST#*-darwin} -le 9 ]] ; then
-		sed -i -e 's/#ifdef __APPLE__/#if 0/' gegl/opencl/* || die
-	fi
-
-	# commit 7c78497b : tests that use gegl.png are broken on non-amd64
-	sed -e '/clones.xml/d' \
-		-e '/composite-transform.xml/d' \
-		-i tests/compositions/Makefile.am || die
-
-	eautoreconf
 
 	gnome2_environment_reset
 
@@ -101,67 +88,58 @@ src_prepare() {
 }
 
 src_configure() {
-	local myeconfargs=(
+	local emesonargs=(
 		# disable documentation as the generating is bit automagic
 		#    if anyone wants to work on it just create bug with patch
-		--disable-docs
-		# never enable altering of CFLAGS via profile option
-		--disable-profile
-		--disable-silent-rules
+		-Ddocs=true
 		#  - Parameter --disable-workshop disables any use of Lua, effectivly
-		--disable-workshop
-		--program-suffix=-${SLOT}
-		--with-gdk-pixbuf
-		--with-pango
+		-Dworkshop=true
+		# never enable altering of CFLAGS via profile option
+		-Dprofile=enabled
+		-Dsilent-rules=enabled
+		-Dgdk-pixbuf=enabled
+		-Dpango=enabled
 		#  - There are two checks for dot, one controllable by --with(out)-graphviz
 		#    which toggles HAVE_GRAPHVIZ that is not used anywhere.  Yes.
-		--without-graphviz
+		-Dgraphviz=disabled
 		# libspiro: not in portage main tree
-		--without-libspiro
-		--without-lua
-		--without-mrg
-		$(use_enable cpu_flags_x86_mmx mmx)
-		$(use_enable cpu_flags_x86_sse sse)
-		$(use_enable debug)
-		$(use_enable introspection)
-		$(use_with cairo)
-		$(use_with cairo pangocairo)
-		$(use_with ffmpeg libavformat)
-		$(use_with jpeg2k jasper)
-		$(use_with lcms)
-		$(use_with lensfun)
-		$(use_with openexr)
-		$(use_with pdf popplerglib)
-		$(use_with raw libraw)
-		$(use_with sdl)
-		$(use_with svg librsvg)
-		$(use_with tiff libtiff)
-		$(use_with umfpack)
+		-Dlibspiro=disabled
+		-Dlua=disabled
+		-Dmrg=disabled
+		$(meson_feature cairo)
+		$(meson_feature cairo pangocairo)
+		$(meson_feature ffmpeg libavformat)
+		$(meson_feature jpeg2k jasper)
+		$(meson_feature lcms)
+		$(meson_feature lensfun)
+		$(meson_feature openexr)
+		$(meson_feature pdf popplerglib)
+		$(meson_feature raw libraw)
+		$(meson_feature sdl)
+		$(meson_feature svg librsvg)
+		$(meson_feature tiff libtiff)
+		$(meson_feature umfpack)
 		#  - v4l support does not work with our media-libs/libv4l-0.8.9,
 		#    upstream bug at https://bugzilla.gnome.org/show_bug.cgi?id=654675
-		$(use_with v4l libv4l)
-		$(use_with v4l libv4l2)
-		$(use_with vala)
-		$(use_with webp)
-		$(use_with zlib)
+		$(meson_feature v4l libv4l)
+		$(meson_feature v4l libv4l2)
+		$(meson_feature vala)
+		$(meson_feature webp)
+		$(meson_feature zlib)
+		$(meson_use introspection)
 	)
 
-	if use test; then
-		myeconfargs+=( $(use_with ffmpeg gexiv2) )
-	else
-		myeconfargs+=( --without-gexiv2 )
-	fi
+#	if use test; then
+#		myeconfargs+=( $(use_with ffmpeg gexiv2) )
+#	else
+#		myeconfargs+=( --without-gexiv2 )
+#	fi
 
-	econf "${myeconfargs[@]}"
-}
-
-src_compile() {
-	default
-
-	[[ ${PV} == *9999* ]] && emake ./ChangeLog  # "./" prevents "Circular ChangeLog <- ChangeLog dependency dropped."
+	meson_src_configure
 }
 
 src_install() {
-	default
+	meson_src_install
 	find "${ED}" -name '*.la' -delete || die
 }
+
