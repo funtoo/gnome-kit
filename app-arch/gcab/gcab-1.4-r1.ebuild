@@ -37,6 +37,7 @@ src_prepare() {
 src_configure() {
 	local emesonargs=(
 		$(meson_use introspection)
+		$(meson_use vala vapi)
 		$(meson_use doc docs)
 		$(meson_use test tests)
 	)
