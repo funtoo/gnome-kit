@@ -146,3 +146,7 @@ net-im/telepathy-mission-control -deprecated
 
 x11-libs/gtksourceview vala
 dev-libs/libgweather vala
+
+# Relatively sane GNOME defaults app-editors/emacs.
+# Also, see the workstation profile.
+app-editors/emacs gsettings lcms
