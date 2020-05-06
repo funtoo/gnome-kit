@@ -85,10 +85,9 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 "
 
-PATCHES=(	"${FILESDIR}/${PN}-3.34.2-add-get-color-info.patch"
-			"${FILESDIR}/${PN}-3.34.2-support-eudev.patch"
-			"${FILESDIR}/gdk-wayland-fix.patch"
-			"${FILESDIR}/${P}-libwacom-not-config.patch" )
+PATCHES=( "${FILESDIR}/${PN}-3.34.2-add-get-color-info.patch"
+	"${FILESDIR}/${PN}-3.34.2-support-eudev.patch"
+)
 
 src_configure() {
 	sed -i "/'-Werror=redundant-decls',/d" "${S}"/meson.build || die "sed failed"
