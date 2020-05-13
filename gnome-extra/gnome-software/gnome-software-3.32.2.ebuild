@@ -12,7 +12,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="gnome spell test udev"
+IUSE="firmware gnome spell test udev"
 
 RDEPEND="
 	>=app-admin/packagekit-base-1.1.0
@@ -21,12 +21,14 @@ RDEPEND="
 	>=dev-libs/appstream-glib-0.6.7:0
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/json-glib-1.1.1
+	>=dev-libs/libxmlb-0.1.7
 	>=gnome-base/gsettings-desktop-schemas-3.11.5
 	>=net-libs/libsoup-2.51.92:2.4
 	sys-auth/polkit
 	>=x11-libs/gdk-pixbuf-2.39.2:2
 	>=x11-libs/gtk+-3.24.12:3
 	gnome? ( >=gnome-base/gnome-desktop-3.34.1:3= )
+	firmware? ( >=sys-apps/fwupd-1.0.3 )
 	spell? ( app-text/gtkspell:3 )
 	udev? ( virtual/libgudev )
 "
