@@ -4,20 +4,14 @@ EAPI=7
 
 inherit meson
 
-if [[ ${PV} == *9999* ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://gitlab.gnome.org/GNOME/babl.git"
-	SRC_URI=""
-else
-	SRC_URI="http://ftp.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
-	KEYWORDS="*"
-fi
-
+SRC_URI="http://ftp.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
 DESCRIPTION="A dynamic, any to any, pixel format conversion library"
 HOMEPAGE="http://www.gegl.org/babl/"
 
 LICENSE="LGPL-3"
 SLOT="0"
+KEYWORDS="*"
+
 IUSE="introspection lcms cpu_flags_x86_avx2 cpu_flags_x86_f16c cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse3 cpu_flags_x86_sse4_1"
 
 BDEPEND="virtual/pkgconfig"
