@@ -1,21 +1,13 @@
-# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-# vala and introspection support is broken, bug #468208
 VALA_USE_DEPEND=vapigen
+PYTHON_COMPAT=( python3+ )
+inherit meson gnome3-utils python-any-r1 vala
 
-inherit meson gnome2-utils vala
-
-if [[ ${PV} == *9999* ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://gitlab.gnome.org/GNOME/gegl.git"
-	SRC_URI=""
-else
-	SRC_URI="http://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
-	KEYWORDS="*"
-fi
+SRC_URI="http://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
+KEYWORDS="*"
 
 DESCRIPTION="A graph based image processing framework"
 HOMEPAGE="http://www.gegl.org/"
@@ -23,19 +15,16 @@ HOMEPAGE="http://www.gegl.org/"
 LICENSE="|| ( GPL-3+ LGPL-3 )"
 SLOT="0.4"
 
-IUSE="cairo cpu_flags_x86_mmx cpu_flags_x86_sse debug ffmpeg +introspection jpeg2k lcms lensfun libav openexr pdf raw sdl svg test tiff umfpack vala v4l webp zlib"
+IUSE="cairo cpu_flags_x86_mmx cpu_flags_x86_sse debug ffmpeg +introspection jpeg2k lcms lensfun libav openexr pdf raw sdl svg tiff umfpack vala v4l webp zlib"
 REQUIRED_USE="
 	svg? ( cairo )
 	vala? ( introspection )
 "
 
-# NOTE: Even current libav 11.4 does not have AV_CODEC_CAP_VARIABLE_FRAME_SIZE
-#       so there is no chance to support libav right now (Gentoo bug #567638)
-#       If it returns, please check prior GEGL ebuilds for how libav was integrated.  Thanks!
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	dev-libs/json-glib
-	>=media-libs/babl-0.1.74
+	>=media-libs/babl-0.1.74[introspection?]
 	>=media-libs/libpng-1.6.0:0=
 	virtual/jpeg:0=
 	>=x11-libs/gdk-pixbuf-2.39.2:2
@@ -66,41 +55,28 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
 	>=sys-devel/libtool-2.2
-	test? ( ffmpeg? ( media-libs/gexiv2 )
-		introspection? (
-			dev-lang/python
-		)
-	)
 	vala? ( $(vala_depend) )
 "
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-0.4.18-drop-failing-tests.patch
 	"${FILESDIR}"/${PN}-0.4.18-program-suffix.patch
 )
 
 src_prepare() {
 	default
-
-	gnome2_environment_reset
-
+	gnome3_environment_reset
 	use vala && vala_src_prepare
 }
 
 src_configure() {
 	local emesonargs=(
-		# disable documentation as the generating is bit automagic
-		#    if anyone wants to work on it just create bug with patch
-		-Ddocs=true
-		#  - Parameter --disable-workshop disables any use of Lua, effectivly
+		# FL-7209: docs target will throw a sandbox violation on /dev/video0 if it exists:
+		-Ddocs=false
 		-Dworkshop=true
-		# never enable altering of CFLAGS via profile option
 		-Dprofile=enabled
 		-Dsilent-rules=enabled
 		-Dgdk-pixbuf=enabled
 		-Dpango=enabled
-		#  - There are two checks for dot, one controllable by --with(out)-graphviz
-		#    which toggles HAVE_GRAPHVIZ that is not used anywhere.  Yes.
 		-Dgraphviz=disabled
 		# libspiro: not in portage main tree
 		-Dlibspiro=disabled
@@ -119,27 +95,13 @@ src_configure() {
 		$(meson_feature svg librsvg)
 		$(meson_feature tiff libtiff)
 		$(meson_feature umfpack)
-		#  - v4l support does not work with our media-libs/libv4l-0.8.9,
-		#    upstream bug at https://bugzilla.gnome.org/show_bug.cgi?id=654675
 		$(meson_feature v4l libv4l)
 		$(meson_feature v4l libv4l2)
-		$(meson_feature vala)
+		$(meson_feature vala vapigen)
 		$(meson_feature webp)
 		$(meson_feature zlib)
 		$(meson_use introspection)
 	)
 
-#	if use test; then
-#		myeconfargs+=( $(use_with ffmpeg gexiv2) )
-#	else
-#		myeconfargs+=( --without-gexiv2 )
-#	fi
-
 	meson_src_configure
 }
-
-src_install() {
-	meson_src_install
-	find "${ED}" -name '*.la' -delete || die
-}
-
