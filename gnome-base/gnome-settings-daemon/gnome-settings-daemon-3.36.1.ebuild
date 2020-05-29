@@ -1,9 +1,8 @@
-# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 GNOME3_LA_PUNT="yes"
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3+ )
 
 inherit eutils gnome3 python-any-r1 systemd udev virtualx meson
 
@@ -24,7 +23,7 @@ REQUIRED_USE="
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/gtk+-3.24.12:3[X,wayland?]
-	>=gnome-base/gsettings-desktop-schemas-3.33.0
+	>=gnome-base/gsettings-desktop-schemas-${PV%.*} # should eval to '3.36'
 	>=gnome-base/librsvg-2.36.2:2
 	media-fonts/cantarell
 	media-libs/alsa-lib
