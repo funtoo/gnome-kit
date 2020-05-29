@@ -20,10 +20,12 @@ REQUIRED_USE="
 	wayland? ( udev )
 "
 
+# ${PV%.}, below, should eval to '3.36'.
+
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/gtk+-3.24.12:3[X,wayland?]
-	>=gnome-base/gsettings-desktop-schemas-${PV%.*} # should eval to '3.36'
+	>=gnome-base/gsettings-desktop-schemas-${PV%.*}
 	>=gnome-base/librsvg-2.36.2:2
 	media-fonts/cantarell
 	media-libs/alsa-lib
