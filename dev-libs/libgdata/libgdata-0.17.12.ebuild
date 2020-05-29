@@ -32,7 +32,7 @@ RDEPEND="
 	>=net-libs/libsoup-2.55.90:2.4[introspection?]
 	gtk? ( x11-libs/gtk+:3 )
 	crypt? ( app-crypt/gcr:= )
-	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.8:=[introspection?,vala?] )
+	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.36:=[introspection?,vala?] )
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}

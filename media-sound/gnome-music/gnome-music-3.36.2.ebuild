@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3+ )
 
 inherit gnome3 python-single-r1 meson
 
@@ -17,6 +17,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 COMMON_DEPEND="
 	${PYTHON_DEPS}
+	>=net-libs/gnome-online-accounts-${PV%.*}
 	>=app-misc/tracker-2:=
 	>=dev-python/pygobject-3.21.1:3[cairo,${PYTHON_USEDEP}]
 	>=dev-libs/glib-2.62.2:2

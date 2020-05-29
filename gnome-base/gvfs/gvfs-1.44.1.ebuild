@@ -33,10 +33,10 @@ RDEPEND="
 	fuse? ( >=sys-fs/fuse-2.8.0 )
 	elogind? ( >=sys-auth/elogind-229:0= )
 	gnome-keyring? ( app-crypt/libsecret )
-	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.7.1:= )
+	gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.36:= )
 	google? (
 		>=dev-libs/libgdata-0.17.3:=[crypt,gnome-online-accounts]
-		>=net-libs/gnome-online-accounts-3.17.1:= )
+		>=net-libs/gnome-online-accounts-3.36:= )
 	gphoto2? ( >=media-libs/libgphoto2-2.5.0:= )
 	http? ( >=net-libs/libsoup-2.42:2.4 )
 	ios? (

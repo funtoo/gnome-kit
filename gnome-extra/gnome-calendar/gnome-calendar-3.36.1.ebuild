@@ -1,4 +1,3 @@
-# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -17,9 +16,8 @@ IUSE=""
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libical-3
-	>=gnome-base/gsettings-desktop-schemas-3.21.2
 	>=gnome-extra/evolution-data-server-3.17.1:=
-	>=net-libs/gnome-online-accounts-3.2.0:=
+	>=net-libs/gnome-online-accounts-${PV%.*}:=
 	>=x11-libs/gtk+-3.24.12:3
 	>=dev-libs/libdazzle-3.33.1
 	>=dev-libs/libgweather-3.27.4

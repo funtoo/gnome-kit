@@ -18,7 +18,7 @@ RDEPEND="
 	>=x11-libs/gtk+-3.24.12:3
 	>=gnome-extra/evolution-data-server-3.13.90:=
 	>=net-libs/webkit-gtk-2.10.0:4
-	net-libs/gnome-online-accounts:=
+	>=net-libs/gnome-online-accounts-${PV%.*}
 	dev-libs/libxml2
 	>=app-misc/tracker-2:=
 	sys-apps/util-linux

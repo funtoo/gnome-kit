@@ -25,20 +25,18 @@ COMMON_DEPEND="
 	>=net-libs/rest-0.7.90:0.7[introspection]
 	>=sci-geosciences/geocode-glib-3.15.2[introspection]
 	>=x11-libs/gtk+-3.24.12:3[introspection]
-"
-# Found by grepping imports.gi in ${S}
-RDEPEND="${COMMON_DEPEND}
 	app-crypt/libsecret[introspection]
 	dev-libs/libgweather[introspection]
 	media-libs/clutter-gtk:1.0[introspection]
 	media-libs/clutter:1.0[introspection]
 	media-libs/cogl:1.0[introspection]
-	net-libs/gnome-online-accounts:=[introspection]
+	>=net-libs/gnome-online-accounts-${PV%.*}:=[introspection]
 	net-libs/libgfbgraph[introspection]
 	net-libs/libsoup:2.4[introspection]
 	net-libs/webkit-gtk:4[introspection]
 	x11-libs/gdk-pixbuf:2[introspection]
 "
+RDEPEND="${COMMON_DEPEND}"
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
 	virtual/pkgconfig
