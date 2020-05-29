@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	>=dev-libs/atk-2[introspection]
 	>=app-crypt/gcr-3.7.5[introspection]
 	>=dev-libs/glib-2.62.2:2[dbus]
-	>=dev-libs/gjs-1.57.3
+	>=dev-libs/gjs-1.63.2
 	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/libical-3:=
 	>=x11-libs/gtk+-3.24.12:3[introspection]
