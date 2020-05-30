@@ -2,7 +2,7 @@
 
 EAPI=7
 VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python3_{6,7} )
+PYTHON_COMPAT=( python3+ )
 
 inherit gnome3 python-any-r1 vala virtualx meson
 

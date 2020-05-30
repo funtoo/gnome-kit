@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python2+ )
+PYTHON_COMPAT=( python3+ )
 
 inherit meson python-any-r1 udev
 

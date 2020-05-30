@@ -2,7 +2,7 @@
 
 EAPI=7
 GNOME3_LA_PUNT="yes"
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3+ )
 
 inherit fcaps gnome3 pam python-any-r1 virtualx
 

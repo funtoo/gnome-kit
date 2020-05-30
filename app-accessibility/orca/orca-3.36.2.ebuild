@@ -2,7 +2,7 @@
 
 EAPI=7
 GNOME3_LA_PUNT="yes"
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE="threads(+)"
 
 inherit gnome3 python-r1 ltprune

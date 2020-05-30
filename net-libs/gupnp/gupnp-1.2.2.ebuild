@@ -3,7 +3,7 @@
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
 # FIXME: Claims to works with python3 but appears to be wishful thinking
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE="xml"
 
 inherit gnome3 python-r1 vala meson

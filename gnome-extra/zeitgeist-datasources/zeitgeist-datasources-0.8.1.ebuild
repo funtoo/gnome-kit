@@ -5,7 +5,7 @@ EAPI=5
 
 AUTOTOOLS_AUTORECONF=true
 VALA_MIN_API_VERSION=0.14
-PYTHON_COMPAT=( python2_7  )
+PYTHON_COMPAT=( python2_7 )
 
 inherit autotools-utils eutils mono-env python-single-r1 versionator vala
 
