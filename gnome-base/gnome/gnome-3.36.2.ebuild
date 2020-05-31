@@ -40,6 +40,8 @@ RDEPEND="
 		>=gnome-extra/mousetweaks-3.32.0 )
 	classic? ( >=gnome-extra/gnome-shell-extensions-${PV} )
 	extras? ( >=gnome-base/gnome-extra-apps-${BASE_PV} )
+	>=gnome-extra/gnome-color-manager-${BASE_PV}
+	>=gnome-extra/gnome-weather-${BASE_PV}
 "
 
 DEPEND=""
