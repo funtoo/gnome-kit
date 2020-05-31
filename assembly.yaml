@@ -1,0 +1,153 @@
+# Steps: scan kit for catpkg versions.
+#        scan for extra non-kit versions.
+#        build meta-packages.
+#        build regular packages, expanding versions to self-reference. (template expansion) {{app-crypt/gcr|resolve}}
+
+gnome_kit_assembly:
+  resolve:
+    scope: local
+  components:
+    - gnome-base:
+        catpkgs:
+          - gnome-base/gnome-core-libs[cups?]
+          - x11-themes/adwaita-icon-theme
+          - gnome-base/gnome-menus
+          - gnome-base/gnome-session
+          - gnome-base/gnome-settings-daemon[cups?]
+          - gnome-base/gnome-control-center
+          - gnome-base/nautilus
+          - x11-wm/mutter
+          - gnome-base/gnome-shell
+          - gnome-base/gnome-shell-common
+          - x11-themes/gnome-themes-standard
+          - x11-themes/gnome-backgrounds
+          - x11-terms/gnome-terminal
+          - gnome-base/gvfs[udisks]
+     - gnome-core-apps:
+        catpkgs:
+          - gnome-base/gnome-base
+          - gnome-base/gnome-core-libs
+          - cdr? ( app-cdr/brasero )
+          - app-crypt/gcr
+          - app-crypt/seahorse
+          - app-editors/gedit
+          - app-text/evince
+          - gnome-base/gnome-keyring
+          - gnome-extra/evolution-data-server
+          - gnome-extra/gnome-contacts
+          - gnome-extra/gnome-user-docs
+          - gnome-extra/yelp
+          - media-gfx/eog
+          - media-video/totem
+          - bluetooth? ( net-wireless/gnome-bluetooth )
+    - gnome-core-libs:
+        catpkgs:
+          - dev-libs/glib
+          - x11-libs/gdk-pixbuf
+          - x11-libs/pango
+          - media-libs/clutter
+          - x11-libs/gtk+
+          - dev-libs/atk+
+          - x11-libs/libwnck
+          - gnome-base/librsvg
+          - gnome-base/gnome-desktop
+          - x11-libs/startup-notification
+          - gnome-base/dconf
+          - media-libs/gstreamer
+          - media-libs/gst-plugins-base
+          - media-libs/gst-plugins-good
+          - python ( dev-python/pygobject )
+    - gnome:
+        iuse: +extras
+        catpkgs:
+          - gnome-base/gdm
+          - gnome-base/gnome-core-apps
+          - extras? ( gnome-base/gnome-extra-apps )
+          - x11-themes/sound-theme-freedesktop
+          - classic? ( gnome-extra/gnome-shell-extensions )
+    - gnome-light:
+        catpkgs:
+          - gnome-base/gnome-base
+    - gnome-games:
+        catpkgs:
+          - games-arcade/gnome-nibbles
+          - games-arcade/gnome-robots
+          - games-board/aisleriot
+          - games-board/four-in-a-row
+          - games-board/gnome-chess
+          - games-board/gnome-mahjongg
+          - games-board/gnome-mines
+          - games-board/iagno
+          - games-board/tali
+          - games-puzzle/atomix
+          - games-puzzle/five-or-more
+          - games-puzzle/gnome2048
+          - games-puzzle/gnome-klotski
+          - games-puzzle/gnome-sudoku
+          - games-puzzle/gnome-taquin
+          - games-puzzle/gnome-tetravex
+          - games-puzzle/hitori
+          - games-puzzle/lightsoff
+          - games-puzzle/quadrapassel
+          - games-puzzle/swell-foop
+    - gnome-tracker:
+        catpkgs:
+          - app-misc/tracker
+          - gnome-extra/gnome-documents
+          - media-gfx/gnome-photos
+          - media-sound/gnome-music
+    - gnome-apps:
+        iuse: +games +geary +gnote +recipes +share +shotwell +simple-scan +todo +tracker
+        catpkgs:
+          - gnome-base/gnome-core-libs
+          - app-arch/file-roller
+          - app-dicts/gnome-dictionary
+          - gnome-base/dconf-editor
+          - gnome-extra/chrome-gnome-shell
+          - gnome-extra/gconf-editor
+          - gnome-extra/gnome-calculator
+          - gnome-extra/gnome-calendar
+          - gnome-extra/gnome-characters
+          - gnome-extra/gnome-clocks
+          - gnome-extra/gnome-color-manager
+          - gnome-extra/gnome-getting-started-docs
+          - gnome-extra/gnome-power-manager
+          - gnome-extra/gnome-search-tool
+          - gnome-extra/gnome-system-monitor
+          - gnome-extra/gnome-tweaks
+          - gnome-extra/gnome-weather
+          - gnome-extra/gucharmap
+          - gnome-extra/nautilus-sendto
+          - gnome-extra/sushi
+          - media-gfx/gnome-font-viewer
+          - media-gfx/gnome-screenshot
+          - media-sound/gnome-sound-recorder
+          - media-sound/sound-juicer
+          - media-video/cheese
+          - net-analyzer/gnome-nettool
+          - net-misc/vinagre
+          - net-misc/vino
+          - sci-geosciences/gnome-maps
+          - sys-apps/baobab
+          - sys-apps/gnome-disk-utility
+          - bijiben? ( app-misc/bijiben )
+          - boxes? ( gnome-extra/gnome-boxes )
+          - builder? ( gnome-extra/gnome-builder )
+          - empathy? ( net-im/empathy )
+          - epiphany? ( www-client/epiphany )
+          - evolution? ( mail-client/evolution )
+          - flashback? ( gnome-base/gnome-flashback )
+          - fonts? ( >=media-fonts/noto-20190524 >=media-fonts/symbola-11.00 >=media-fonts/unifont-11.0.02 )
+          games? ( gnome-base/gnome-games )
+          geary? ( mail-client/geary )
+          gnote? ( app-misc/gnote )
+          recipes? ( gnome-extra/gnome-recipes )
+          share? ( gnome-extra/gnome-user-share )
+          shotwell? ( media-gfx/shotwell )
+          simple-scan? ( media-gfx/simple-scan )
+          todo? ( gnome-extra/gnome-todo)
+          tracker? ( gnome-base/gnome-tracker )
+  catpkgs:
+    - gnome-base/gnome: 3.36.2
+    - gnome-base/gnome-menus:
+    - gnome-base: 
