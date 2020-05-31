@@ -20,8 +20,8 @@ BASE_PV="${PV%.*}"
 
 RDEPEND="
 	!<=gnome-base/gnome-${PV}
-	>=gnome-base/gnome-core-libs-${PV}[cups?]
-	>=gnome-base/gnome-core-apps-${PV}[cups?,bluetooth?,cdr?]
+	>=gnome-base/gnome-core-libs-${BASE_PV}[cups?]
+	>=gnome-base/gnome-core-apps-${BASE_PV}[cups?,bluetooth?,cdr?]
 
 	>=gnome-base/gdm-3.34
 
