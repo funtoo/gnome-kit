@@ -12,7 +12,7 @@ HOMEPAGE="https://git.gnome.org/browse/gcr"
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0/1" # subslot = suffix of libgcr-3
 
-IUSE="doc gtk +introspection"
+IUSE="doc gtk +introspection +vala"
 
 KEYWORDS="*"
 
