@@ -63,8 +63,8 @@ COMMON_DEPEND="
 RDEPEND="${COMMON_DEPEND}
 	gnome-base/dconf
 	>=gnome-base/gnome-control-center-${PV}
-	>=gnome-base/gnome-color-manager-${BASE_PV}
-	>=gnome-base/gnome-power-manager-3.32
+	>=gnome-extra/gnome-color-manager-${BASE_PV}
+	>=gnome-extra/gnome-power-manager-3.32
 	>=gnome-base/gnome-session-${BASE_PV}
 	sys-auth/elogind
 "
