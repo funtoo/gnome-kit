@@ -69,7 +69,7 @@ COMMON_DEPEND="
 		x11-libs/libdrm:=
 		nvidia? ( dev-libs/egl-wayland )
 	)
-	media-video/pipewire
+	=media-video/pipewire-0.2*
 	profiler? ( >=dev-util/sysprof-3.34.0 )
 "
 
