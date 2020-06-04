@@ -15,8 +15,10 @@ KEYWORDS="*"
 IUSE="introspection lcms cpu_flags_x86_avx2 cpu_flags_x86_f16c cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse3 cpu_flags_x86_sse4_1"
 
 BDEPEND="virtual/pkgconfig"
-RDEPEND="lcms? ( media-libs/lcms:2 )"
-DEPEND="${RDEPEND}"
+DEPEND="
+	introspection? ( dev-libs/gobject-introspection )
+	lcms? ( media-libs/lcms:2 )"
+RDEPEND="${DEPEND}"
 
 src_configure() {
 	# Automagic rsvg support is just for website generation we do not call,
