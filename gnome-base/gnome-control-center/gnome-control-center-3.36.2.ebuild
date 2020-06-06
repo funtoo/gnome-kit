@@ -94,6 +94,7 @@ RDEPEND="${COMMON_DEPEND}
 	!<gnome-extra/gnome-media-2.32.0-r300
 	!<net-wireless/gnome-bluetooth-3.3.2
 
+	net-print/cups-pk-helper
 	elogind? ( sys-auth/elogind )
 	systemd? ( >=sys-apps/systemd-186:0= )
 	!systemd? ( app-admin/openrc-settingsd )
