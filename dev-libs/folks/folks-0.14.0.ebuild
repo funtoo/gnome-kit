@@ -46,7 +46,6 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/meson-0.51.0
 	sys-devel/gettext
 	virtual/pkgconfig
-
 	test? (
 		sys-apps/dbus
 		bluetooth? (
