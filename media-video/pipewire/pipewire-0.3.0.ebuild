@@ -38,6 +38,7 @@ RDEPEND="
 "
 DEPEND="
 	${RDEPEND}
+	dev-util/vulkan-headers
 	app-doc/xmltoman
 	docs? ( app-doc/doxygen )
 "
