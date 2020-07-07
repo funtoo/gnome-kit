@@ -2,7 +2,10 @@
 
 EAPI=7
 
-inherit gnome3 linux-info systemd meson
+# This ebuild doesn't actually need systemd installed. But uses systemd
+# eclass. -drobbins
+
+inherit gnome3 linux-info meson systemd
 
 DESCRIPTION="System-wide Linux Profiler"
 HOMEPAGE="http://sysprof.com/"
@@ -10,17 +13,13 @@ HOMEPAGE="http://sysprof.com/"
 LICENSE="GPL-3+ GPL-2+"
 SLOT="0"
 KEYWORDS="*"
-IUSE="elogind gtk systemd"
-REQUIRED_USE="
-	?? ( elogind systemd )
-"
+IUSE="gtk"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libdazzle-3.34.0
 	sys-auth/polkit
 	gtk? ( >=x11-libs/gtk+-3.24.12:3 )
-	systemd? ( >=sys-apps/systemd-222 )
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxml2:2
@@ -32,6 +31,12 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	default
+	# test incompatible with 32-biti arches:
+	sed -i -e '/^allocs_by_size/,/^)/d' ${S}/src/tests/meson.build || die
+}
+
 pkg_pretend() {
 	kernel_is -ge 2 6 31 && return
 	die "Sysprof will not work with a kernel version less than 2.6.31"
@@ -40,18 +45,11 @@ pkg_pretend() {
 src_configure() {
 	# introspection & vala not use in build system
 	# --with-sysprofd=host currently unavailable from ebuild
-	if use elogind || use systemd; then
-		sysprof_opt=bundled
-	else
-		sysprof_opt=none
-	fi
-
 	local emesonargs=(
 		-Dsystemdunitdir=$(systemd_get_systemunitdir)
-		-Dwith_sysprofd=${sysprof_opt}
+		-Dwith_sysprofd=bundled
 		$(meson_use gtk enable_gtk)
 	)
-
 	meson_src_configure
 }
 
