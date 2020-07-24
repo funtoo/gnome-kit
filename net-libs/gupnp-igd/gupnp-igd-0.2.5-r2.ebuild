@@ -9,13 +9,13 @@ HOMEPAGE="http://gupnp.org"
 
 LICENSE="LGPL-2.1+"
 SLOT="0/1.2"
-KEYWORDS="~alpha amd64 ~arm arm64 ~hppa ~ia64 ~ppc ppc64 ~sparc x86"
+KEYWORDS="*"
 IUSE="+introspection"
 
 RDEPEND="
 	>=dev-libs/glib-2.64.2:2
-	>=net-libs/gssdp-1.2:=
-	>=net-libs/gupnp-1.2:=
+	net-libs/gssdp:1.2=
+	net-libs/gupnp:1.2=
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
