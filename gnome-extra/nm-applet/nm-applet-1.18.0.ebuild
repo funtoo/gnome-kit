@@ -30,7 +30,7 @@ RDEPEND="
 	ayatana? (
 		dev-libs/libappindicator:3
 		>=dev-libs/libdbusmenu-16.04.0 )
-	>=dev-libs/gobject-introspection-2.38:=
+	dev-libs/gobject-introspection:=
 	virtual/freedesktop-icon-theme
 	virtual/libgudev:=
 	>=app-crypt/gcr-3.14:=[gtk]
