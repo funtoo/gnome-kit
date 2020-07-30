@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="gcr gtk4 +introspection +vala"
 
 RDEPEND="
-	!<=gnome-extra/nm-applet-1.8.25
+	!<=gnome-extra/nm-applet-1.8.24
 	app-text/iso-codes
 	net-misc/mobile-broadband-provider-info
 	>=dev-libs/glib-2.62.2:2[dbus]
@@ -40,7 +40,5 @@ src_configure() {
 		$(meson_use introspection)
 		$(meson_use vala vapi)
 	)
-
 	meson_src_configure
 }
-

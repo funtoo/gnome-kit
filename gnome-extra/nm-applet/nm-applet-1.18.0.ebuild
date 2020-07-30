@@ -4,17 +4,18 @@ EAPI=6
 GNOME2_LA_PUNT="yes"
 GNOME_ORG_MODULE="network-manager-applet"
 
-inherit gnome2
+inherit gnome3
 
 DESCRIPTION="GNOME applet for NetworkManager"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE="ayatana +introspection +gcr +gnome-keyring +modemmanager +policykit selinux teamd"
+IUSE="ayatana +introspection +gnome-keyring +modemmanager +policykit selinux teamd"
 KEYWORDS="*"
 
 RDEPEND="
+	>=gui-libs/libnma-1.8.27
 	>=app-crypt/libsecret-0.18
 	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/dbus-glib-0.88
@@ -29,10 +30,10 @@ RDEPEND="
 	ayatana? (
 		dev-libs/libappindicator:3
 		>=dev-libs/libdbusmenu-16.04.0 )
-	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
+	>=dev-libs/gobject-introspection-2.38:=
 	virtual/freedesktop-icon-theme
 	virtual/libgudev:=
-	gcr? ( >=app-crypt/gcr-3.14:=[gtk] )
+	>=app-crypt/gcr-3.14:=[gtk]
 	gnome-keyring? ( >=app-crypt/libsecret-0.18 )
 	modemmanager? ( net-misc/modemmanager )
 	policykit? ( >=sys-auth/polkit-0.96-r1 )
@@ -50,17 +51,14 @@ PDEPEND="virtual/notification-daemon" #546134
 src_configure() {
 	local myconf=(
 		--with-appindicator=$(usex ayatana ubuntu no)
-		--with-libnm-gtk
 		--disable-lto
 		--disable-ld-gc
 		--disable-more-warnings
 		--disable-static
 		--localstatedir=/var
-		$(use_enable introspection)
-		$(use_with gcr)
 		$(use_with modemmanager wwan)
 		$(use_with selinux)
 		$(use_with teamd team)
 	)
-	gnome2_src_configure "${myconf[@]}"
+	gnome3_src_configure "${myconf[@]}"
 }
