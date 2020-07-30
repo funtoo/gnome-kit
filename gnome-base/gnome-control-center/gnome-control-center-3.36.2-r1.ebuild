@@ -112,6 +112,10 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	"${FILESDIR}/${PV}-temporarily-revert-alt-char-key.patch"
+)
+
 
 src_configure() {
 	local emesonargs=(
