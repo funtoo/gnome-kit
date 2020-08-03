@@ -52,7 +52,7 @@ COMMON_DEPEND="
 	sys-apps/keyutils:=
 	>=sys-auth/elogind-239.3[pam]
 
-	sys-auth/pambase[elogind]
+	sys-auth/pambase
 
 	audit? ( sys-process/audit )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
