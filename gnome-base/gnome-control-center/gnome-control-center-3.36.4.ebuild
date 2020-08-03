@@ -113,7 +113,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}/${PV}-temporarily-revert-alt-char-key.patch"
+	"${FILESDIR}/3.36.2-temporarily-revert-alt-char-key.patch"
 )
 
 
