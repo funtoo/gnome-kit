@@ -1,0 +1,15 @@
+BDEPEND=>=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 app-arch/xz-utils
+DEFINED_PHASES=configure postinst postrm preinst prepare
+DEPEND=>=dev-libs/glib-2.64.2:2 net-libs/gssdp:1.2= net-libs/gupnp:1.2= introspection? ( >=dev-libs/gobject-introspection-1.62.0:= ) dev-util/glib-utils >=dev-util/gtk-doc-am-1.10 sys-devel/gettext >=virtual/pkgconfig-0-r1 dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=Library to handle UPnP IGD port mapping for GUPnP
+EAPI=7
+HOMEPAGE=http://gupnp.org
+IUSE=+introspection
+KEYWORDS=*
+LICENSE=LGPL-2.1+
+RDEPEND=>=dev-libs/glib-2.64.2:2 net-libs/gssdp:1.2= net-libs/gupnp:1.2= introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
+RESTRICT=test
+SLOT=0/1.2
+SRC_URI=mirror://gnome/sources/gupnp-igd/0.2/gupnp-igd-0.2.5.tar.xz
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	gnome.org	532d56d07b9eace4831aaa817d2b756a	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=b9e40baf4002d73c96c99bde8deeadf4

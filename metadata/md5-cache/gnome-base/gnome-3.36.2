@@ -1,0 +1,12 @@
+DEFINED_PHASES=-
+DESCRIPTION=Meta package for GNOME 3, merge this package to install
+EAPI=6
+HOMEPAGE=https://www.gnome.org/
+IUSE=accessibility +bluetooth +classic +cdr cups +extras
+KEYWORDS=*
+LICENSE=metapackage
+PDEPEND=>=gnome-base/gvfs-1.44.0[udisks]
+RDEPEND=!<=gnome-base/gnome-3.36.2 >=gnome-base/gnome-core-libs-3.36[cups?] >=gnome-base/gnome-core-apps-3.36[cups?,bluetooth?,cdr?] >=gnome-base/gdm-3.34 >=x11-wm/mutter-3.36.2 >=gnome-base/gnome-shell-3.36.2[bluetooth?] gnome-base/gnome-shell-common >=x11-themes/gnome-backgrounds-3.36 x11-themes/sound-theme-freedesktop accessibility? ( >=app-accessibility/at-spi2-atk-2.34 >=app-accessibility/at-spi2-core-2.36 >=app-accessibility/caribou-0.4.21 >=app-accessibility/orca-3.36.2 >=gnome-extra/mousetweaks-3.32.0 ) classic? ( >=gnome-extra/gnome-shell-extensions-3.36.2 ) extras? ( >=gnome-base/gnome-extra-apps-3.36 ) >=gnome-extra/gnome-color-manager-3.36 >=gnome-extra/gnome-weather-3.36
+SLOT=0
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	versionator	2352c3fc97241f6a02042773c8287748
+_md5_=c5e5a2d83edfade0c5d7f993690f4080

@@ -1,0 +1,13 @@
+BDEPEND=app-arch/xz-utils
+DEFINED_PHASES=-
+DEPEND=>=dev-libs/libxml2-2.6.12:= >=dev-libs/libxslt-1.1.8:= >=dev-util/intltool-0.40 >=dev-util/itstool-1.2.0 sys-devel/gettext virtual/awk virtual/pkgconfig
+DESCRIPTION=XSL stylesheets for yelp
+EAPI=7
+HOMEPAGE=https://git.gnome.org/browse/yelp-xsl
+KEYWORDS=*
+LICENSE=GPL-2+ LGPL-2.1+ MIT FDL-1.1+
+RDEPEND=>=dev-libs/libxml2-2.6.12:= >=dev-libs/libxslt-1.1.8:=
+SLOT=0
+SRC_URI=mirror://gnome/sources/yelp-xsl/3.36/yelp-xsl-3.36.0.tar.xz
+_eclasses_=gnome.org	532d56d07b9eace4831aaa817d2b756a
+_md5_=4382a5b621b67e3aa0f0753a63b85a6b

@@ -1,0 +1,14 @@
+BDEPEND=>=app-portage/elt-patches-20170815 app-arch/xz-utils
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare
+DEPEND=>=dev-libs/glib-2.62.2:2 introspection? ( >=dev-libs/gobject-introspection-1.62.0:= ) >=dev-util/intltool-0.40 sys-devel/gettext virtual/pkgconfig test? ( dev-libs/gjs ) dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=Library for the Desktop Menu fd.o specification
+EAPI=7
+HOMEPAGE=https://git.gnome.org/browse/gnome-menus
+IUSE=+introspection test
+KEYWORDS=*
+LICENSE=GPL-2+ LGPL-2+
+RDEPEND=>=dev-libs/glib-2.62.2:2 introspection? ( >=dev-libs/gobject-introspection-1.62.0:= ) !<gnome-base/gnome-menus-3.0.1-r1:0
+SLOT=3
+SRC_URI=mirror://gnome/sources/gnome-menus/3.36/gnome-menus-3.36.0.tar.xz
+_eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	89d6825160e1bbbc31a51278a9dd69d8	gnome3-utils	3b4a1f5a07afc71461c0314cba6ffbd4	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=459e0c3bf6f55dd4b8934a4cea2acccf

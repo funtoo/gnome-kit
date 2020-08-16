@@ -1,0 +1,15 @@
+BDEPEND=>=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEFINED_PHASES=compile configure install postinst prepare setup
+DEPEND=dev-lang/spidermonkey:60[-debug] >=dev-libs/glib-2.62.2:2 dev-libs/expat elogind? ( sys-auth/elogind ) introspection? ( >=dev-libs/gobject-introspection-1.62.0:= ) pam? ( sys-auth/pambase virtual/pam ) app-text/docbook-xml-dtd:4.1.2 app-text/docbook-xsl-stylesheets dev-libs/gobject-introspection-common dev-libs/libxslt dev-util/glib-utils dev-util/gtk-doc-am dev-util/intltool sys-devel/gettext virtual/pkgconfig
+DESCRIPTION=Policy framework for controlling privileges for system-wide services
+EAPI=7
+HOMEPAGE=https://www.freedesktop.org/wiki/Software/polkit
+IUSE=elogind examples gtk +introspection jit kde nls pam selinux test
+KEYWORDS=*
+LICENSE=LGPL-2
+PDEPEND=gtk? ( >=gnome-extra/polkit-gnome-0.105 ) kde? ( kde-plasma/polkit-kde-agent ) !elogind? ( sys-auth/consolekit[policykit] )
+RDEPEND=dev-lang/spidermonkey:60[-debug] >=dev-libs/glib-2.62.2:2 dev-libs/expat elogind? ( sys-auth/elogind ) introspection? ( >=dev-libs/gobject-introspection-1.62.0:= ) pam? ( sys-auth/pambase virtual/pam ) selinux? ( sec-policy/selinux-policykit )
+SLOT=0
+SRC_URI=https://www.freedesktop.org/software/polkit/releases/polkit-0.115.tar.gz
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	pam	756a09f72c4cdbb55f2694c95f1e0860	pax-utils	db85a3c508cf82c45f24b2723791cc93	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	user	e68863263b1e8611dacf381bec5c8b2b	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=2b6a1366ad73d1233a560dde582b9758

@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure
+DEPEND=>=dev-libs/glib-2.62.2:2 >=dev-libs/vala-common-0.36.18 >=media-gfx/graphviz-2.16 >=dev-libs/gobject-introspection-1.62.0:= dev-libs/libxslt sys-devel/flex virtual/pkgconfig virtual/yacc test? ( dev-libs/dbus-glib ) app-arch/xz-utils
+DESCRIPTION=Compiler for the GObject type system
+EAPI=6
+HOMEPAGE=https://wiki.gnome.org/Projects/Vala
+IUSE=test
+KEYWORDS=*
+LICENSE=LGPL-2.1
+RDEPEND=>=dev-libs/glib-2.62.2:2 >=dev-libs/vala-common-0.36.18 >=media-gfx/graphviz-2.16 >=dev-libs/gobject-introspection-1.62.0:= !dev-lang/vala:0
+SLOT=0.36
+SRC_URI=mirror://gnome/sources/vala/0.36/vala-0.36.18.tar.xz
+_eclasses_=eapi7-ver	756b3f27d8e46131d5cf3c51bd876446	estack	43ddf5aaffa7a8d0482df54d25a66a1f	gnome.org	532d56d07b9eace4831aaa817d2b756a	versionator	2352c3fc97241f6a02042773c8287748
+_md5_=1e50ad98dfe66e2b39d7b381d1066951

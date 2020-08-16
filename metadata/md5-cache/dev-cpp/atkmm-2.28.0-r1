@@ -1,0 +1,14 @@
+BDEPEND=app-arch/xz-utils
+DEFINED_PHASES=configure
+DEPEND=>=dev-cpp/glibmm-2.62.0[doc?] >=dev-libs/atk-2.18.0 >=dev-libs/libsigc++-2.3.2:2 virtual/pkgconfig
+DESCRIPTION=C++ interface for the ATK library
+EAPI=7
+HOMEPAGE=https://www.gtkmm.org
+IUSE=doc
+KEYWORDS=*
+LICENSE=LGPL-2.1+
+RDEPEND=>=dev-cpp/glibmm-2.62.0[doc?] >=dev-libs/atk-2.18.0 >=dev-libs/libsigc++-2.3.2:2 !<dev-cpp/gtkmm-2.22.0
+SLOT=0
+SRC_URI=mirror://gnome/sources/atkmm/2.28/atkmm-2.28.0.tar.xz
+_eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	gnome.org	532d56d07b9eace4831aaa817d2b756a	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
+_md5_=e17c86ba51323ed754c8ca715962622c
