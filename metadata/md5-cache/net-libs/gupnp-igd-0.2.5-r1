@@ -1,0 +1,15 @@
+BDEPEND=app-arch/xz-utils
+DEFINED_PHASES=configure
+DEPEND=>=dev-libs/glib-2.62.2:2 net-libs/gssdp:0 net-libs/gupnp:0 introspection? ( >=dev-libs/gobject-introspection-1.62.0:= ) >=dev-util/gtk-doc-am-1.10 sys-devel/gettext >=virtual/pkgconfig-0-r1
+DESCRIPTION=Library to handle UPnP IGD port mapping for GUPnP
+EAPI=7
+HOMEPAGE=http://gupnp.org
+IUSE=+introspection
+KEYWORDS=*
+LICENSE=LGPL-2.1+
+RDEPEND=>=dev-libs/glib-2.62.2:2 net-libs/gssdp:0 net-libs/gupnp:0 introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://gnome/sources/gupnp-igd/0.2/gupnp-igd-0.2.5.tar.xz
+_eclasses_=gnome.org	532d56d07b9eace4831aaa817d2b756a	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=1e90befffe1a5dc1ee6a7debb07c6b2a
