@@ -13,6 +13,7 @@ LICENSE="GPL-2+ LGPL-2+"
 SLOT="0/1" # subslot = suffix of libgcr-3
 
 IUSE="doc gtk +introspection +vala"
+REQUIRED_USE="vala? ( introspection )"
 
 KEYWORDS="*"
 
@@ -39,15 +40,19 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
 	virtual/pkgconfig
-	$(vala_depend)
+	vala? ( $(vala_depend) )
 "
+
+PATCHES=(
+	"${FILESDIR}/${P}-vala.patch"
+)
 
 pkg_setup() {
 	python-any-r1_pkg_setup
 }
 
 src_prepare() {
-	vala_src_prepare
+	use vala && vala_src_prepare
 	gnome3_src_prepare
 }
 
@@ -56,6 +61,7 @@ src_configure() {
 		$(meson_use gtk)
 		$(meson_use doc gtk_doc)
 		$(meson_use introspection)
+		$(meson_use vala vapi)
 	)
 
 	meson_src_configure
