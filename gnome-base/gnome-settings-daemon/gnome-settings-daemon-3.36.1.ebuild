@@ -11,11 +11,10 @@ HOMEPAGE="https://git.gnome.org/browse/gnome-settings-daemon"
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE="+cups debug elogind +networkmanager smartcard +udev wayland"
+IUSE="+cups debug +networkmanager smartcard +udev wayland"
 KEYWORDS="*"
 
 REQUIRED_USE="
-	elogind
 	smartcard? ( udev )
 	wayland? ( udev )
 "
@@ -62,7 +61,6 @@ COMMON_DEPEND="
 
 RDEPEND="${COMMON_DEPEND}
 	gnome-base/dconf
-	sys-auth/elogind
 "
 
 DEPEND="${COMMON_DEPEND}
