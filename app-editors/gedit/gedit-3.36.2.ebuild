@@ -14,32 +14,29 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Gedit"
 LICENSE="GPL-2+ CC-BY-SA-3.0"
 SLOT="0"
 
-IUSE="+introspection +python spell vala"
-REQUIRED_USE="python? ( introspection ${PYTHON_REQUIRED_USE} )"
+IUSE="+introspection vala"
 
 KEYWORDS="*"
 
-# X libs are not needed for OSX (aqua)
 COMMON_DEPEND="
-	>=dev-libs/libxml2-2.5.0:2
+	>=app-text/gspell-1.8.1
 	>=dev-libs/glib-2.62.2:2[dbus]
-	>=x11-libs/gtk+-3.24.12:3[introspection?]
-	>=x11-libs/gtksourceview-4[introspection?]
 	>=dev-libs/libpeas-1.14.1[gtk]
-	>=gui-libs/tepl-4.4.0
-
+	>=dev-libs/libxml2-2.5.0:2
 	gnome-base/gsettings-desktop-schemas
 	gnome-base/gvfs
 
+	>=gui-libs/tepl-4.4.0
+	>=x11-libs/gtksourceview-4[introspection?]
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
 	x11-libs/libX11
 
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
-	python? (
-		${PYTHON_DEPS}
-		dev-python/pycairo[${PYTHON_USEDEP}]
-		>=dev-python/pygobject-3:3[cairo,${PYTHON_USEDEP}]
-		dev-libs/libpeas[python,${PYTHON_USEDEP}] )
-	spell? ( >=app-text/gspell-1.8.1 )
+
+	${PYTHON_DEPS}
+	dev-python/pycairo[${PYTHON_USEDEP}]
+	>=dev-python/pygobject-3:3[cairo,${PYTHON_USEDEP}]
+	dev-libs/libpeas[python,${PYTHON_USEDEP}]
 "
 RDEPEND="${COMMON_DEPEND}
 	x11-themes/adwaita-icon-theme
@@ -53,10 +50,6 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-devel/gettext-0.18
 	virtual/pkgconfig
 "
-
-pkg_setup() {
-	use python && [[ ${MERGE_TYPE} != binary ]] && python-single-r1_pkg_setup
-}
 
 src_prepare() {
 	vala_src_prepare
