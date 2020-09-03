@@ -15,7 +15,7 @@ IUSE="ayatana +introspection +gnome-keyring +modemmanager +policykit selinux tea
 KEYWORDS="*"
 
 RDEPEND="
-	>=gui-libs/libnma-1.8.27
+	>=net-libs/libnma-1.8.27
 	>=app-crypt/libsecret-0.18
 	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/dbus-glib-0.88

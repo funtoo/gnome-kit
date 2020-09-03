@@ -11,7 +11,7 @@ LICENSE="LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="afp archive bluray cdda elogind fuse google gnome-keyring gnome-online-accounts gphoto2 +http ios nfs policykit +sftp systemd test +udev udisks zeroconf samba +mtp"
+IUSE="afp archive bluray cdda elogind fuse google gnome-keyring gnome-online-accounts gphoto2 +http ios nfs policykit +sftp systemd test +udev +udisks zeroconf samba +mtp"
 REQUIRED_USE="
 	cdda? ( udev )
 	elogind? ( !systemd udisks )
