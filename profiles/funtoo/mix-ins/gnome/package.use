@@ -7,7 +7,9 @@ x11-libs/gtk+ cloudprint
 
 # needed by simple-scan
 dev-libs/libgusb vala
-
+# This resolves a circular dep. For everything else we want introspection enabled
+# via make.defaults USE.
+net-dns/avahi -introspection
 # disable zeroconf USE for cups, this workarounds cir.dep between avahi, cups and gtk+
 net-print/cups -zeroconf
 
