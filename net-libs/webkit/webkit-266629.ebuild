@@ -25,7 +25,7 @@ LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
 KEYWORDS=""
 
-IUSE="debug +introspection wayland +X"
+IUSE="debug +introspection +memsaver wayland +X"
 
 # "strip" is needed in RESTRICT for debugging...
 RESTRICT="test userpriv"
@@ -149,6 +149,33 @@ src_configure() {
 }
 
 src_compile() {
+	if use memsaver; then
+
+		# limit number of jobs based on available memory:
+
+		mem=$(grep ^MemTotal /proc/meminfo | awk '{print $2}')
+		jobs=$((mem/1750000))
+
+		# don't use more jobs than physical cores:
+
+		physical_cores=$(lscpu | sed -n 8p | cut -c34-)
+		cpus=$(lscpu | sed -n 9p | cut -c34-)
+		max_parallelism=$(( $physical_cores * $cpus ))
+
+		if [ ${jobs} -lt 1 ]; then
+			einfo "Using jobs setting of 1 (limited by memory)"
+			jobs=-j1
+		elif [ ${jobs} -gt ${max_parallelism} ]; then
+			einfo "Using jobs setting of ${max_parallelism} (limited by physical cores)"
+			jobs=-j${max_parallelism}
+		else
+			einfo "Using jobs setting of ${jobs} (limited by memory)"
+			jobs=-j${jobs}
+		fi
+	else
+		jobs=""
+		einfo "Using default Portage jobs setting."
+	fi
 	# see https://www.mail-archive.com/webkit-dev@lists.webkit.org/msg29308.html
 
 	# Ruby situation is a bit complicated. See bug 513888
