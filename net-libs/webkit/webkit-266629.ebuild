@@ -23,7 +23,7 @@ src_unpack() {
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS=""
+KEYWORDS="*"
 
 IUSE="debug +introspection +memsaver wayland +X"
 

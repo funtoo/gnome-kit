@@ -7,7 +7,7 @@ HOMEPAGE="https://www.webkit.org"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS=""
+KEYWORDS="*"
 
 IUSE="+introspection wayland +X"
 RDEPEND="=net-libs/webkit-266629*[introspection?,wayland?,X?]"
