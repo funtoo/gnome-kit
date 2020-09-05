@@ -173,7 +173,7 @@ src_compile() {
 			jobs=-j${jobs}
 		fi
 	else
-		jobs=""
+		jobs="$MAKEOPTS"
 		einfo "Using default Portage jobs setting."
 	fi
 	# see https://www.mail-archive.com/webkit-dev@lists.webkit.org/msg29308.html
@@ -199,9 +199,9 @@ src_compile() {
 	)
 	${S}/Tools/Scripts/set-webkit-configuration --force-optimization-level=none || die
 	if use debug; then
-		${S}/Tools/Scripts/build-webkit --gtk --debug --prefix=/usr --only-webkit --makeargs="${MAKEOPTS}" --cmakeargs="${mycmakeargs[*]}" || die
+		${S}/Tools/Scripts/build-webkit --gtk --debug --prefix=/usr --only-webkit --makeargs="${jobs}" --cmakeargs="${mycmakeargs[*]}" || die
 	else
-		${S}/Tools/Scripts/build-webkit --gtk --release --prefix=/usr --only-webkit --makeargs="${MAKEOPTS}" --cmakeargs="${mycmakeargs[*]}" || die
+		${S}/Tools/Scripts/build-webkit --gtk --release --prefix=/usr --only-webkit --makeargs="${jobs}" --cmakeargs="${mycmakeargs[*]}" || die
 	fi
 }
 
