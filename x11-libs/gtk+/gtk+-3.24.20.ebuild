@@ -217,7 +217,24 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome3_pkg_postinst
-	gnome3_query_immodules_gtk3 || die "Update immodules cache failed"
+
+	local updater=${EPREFIX}/usr/bin/${CHOST}-gtk-query-immodules-3.0
+	[[ ! -x ${updater} ]] && updater=${EPREFIX}/usr/bin/gtk-query-immodules-3.0
+
+	ebegin "Updating gtk3 input method module cache"
+	GTK_IM_MODULE_FILE="${EROOT}usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+	einfo "updater: ${updater}"
+	einfo "GTK_IM_MODULE_FILE: $GTK_IM_MODULE_FILE"
+	echo "Directory contents: "
+	ls -l "${EROOT}/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules"
+	"${updater}" --update-cache
+	if [ $? -ne 0 ]; then
+		ewarn "Immodules cache failure."
+		ldd ${updater}
+		die "failcakes"
+	else
+		einfo "Immodules cache update success."
+	fi
 
 	if ! has_version "app-text/evince"; then
 		elog "Please install app-text/evince for print preview functionality."
