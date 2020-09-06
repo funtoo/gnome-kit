@@ -157,10 +157,13 @@ src_compile() {
 		jobs=$((mem/1750000))
 
 		# don't use more jobs than physical cores:
-
-		physical_cores=$(lscpu | sed -n 8p | cut -c34-)
-		cpus=$(lscpu | sed -n 9p | cut -c34-)
-		max_parallelism=$(( $physical_cores * $cpus ))
+		if [ -e /sys/devices/system/cpu/possible ]; then
+			physical_cores=$(lscpu | sed -n 8p | cut -c34-)
+			cpus=$(lscpu | sed -n 9p | cut -c34-)
+			max_parallelism=$(( $physical_cores * $cpus ))
+		else
+			max_parallelism=999
+		fi
 
 		if [ ${jobs} -lt 1 ]; then
 			einfo "Using jobs setting of 1 (limited by memory)"
