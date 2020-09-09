@@ -1,10 +1,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit autotools gnome2 pax-utils virtualx
+inherit autotools gnome3 pax-utils virtualx
 
 DESCRIPTION="Linux Mint's fork of gjs for Cinnamon"
-HOMEPAGE="http://cinnamon.linuxmint.com/"
+HOMEPAGE="https://projects.linuxmint.com/cinnamon/"
 SRC_URI="https://github.com/linuxmint/cjs/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT || ( MPL-1.1 LGPL-2+ GPL-2+ )"
@@ -13,16 +13,15 @@ IUSE="+cairo examples gtk test"
 KEYWORDS="*"
 
 RDEPEND="
-	dev-lang/spidermonkey:38
-	>=dev-libs/glib-2.62.2:2
-	>=dev-libs/gobject-introspection-1.62.0:=
-	sys-libs/readline:0
-	virtual/libffi
+	dev-lang/spidermonkey:52
+	>=dev-libs/glib-2.42:2
+	>=dev-libs/gobject-introspection-1.41.4:=
+	sys-libs/readline:0=
+	dev-libs/libffi:0=
 	cairo? ( x11-libs/cairo[X,glib] )
 	gtk? ( x11-libs/gtk+:3 )
 "
 DEPEND="${RDEPEND}
-	gnome-base/gnome-common
 	sys-devel/gettext
 	virtual/pkgconfig
 	test? ( sys-apps/dbus )
@@ -33,15 +32,29 @@ RDEPEND="${RDEPEND}
 	!<gnome-extra/cinnamon-2.4
 "
 
+RESTRICT="test"
+
 src_prepare() {
 	eautoreconf
-	gnome2_src_prepare
+	gnome3_src_prepare
+
+	# Fixed in 4.6.0
+	sed -ie "s/Gjs-WARNING/Cjs-WARNING/g" \
+		"${S}"/installed-tests/scripts/testCommandLine.sh || die
+
+	# Fixed in 4.6.0
+	sed -ie "s/40000/50000/g" \
+		"${S}"/installed-tests/js/testSystem.js || die
+
+	sed -ie "s/'Gjs'/'Cjs'/g" \
+		"${S}"/installed-tests/js/testExceptions.js \
+		"${S}"/installed-tests/js/testEverythingBasic.js || die
 }
 
 src_configure() {
 	# FIXME: add systemtap/dtrace support, like in glib:2
 	# FIXME: --enable-systemtap installs files in ${D}/${D} for some reason
-	gnome2_src_configure \
+	gnome3_src_configure \
 		--disable-systemtap \
 		--disable-dtrace \
 		$(use_with cairo) \
@@ -54,11 +67,11 @@ src_test() {
 
 src_install() {
 	# installation sometimes fails in parallel
-	gnome2_src_install -j1
+	gnome3_src_install -j1
 
 	if use examples; then
-		insinto /usr/share/doc/"${PF}"/examples
-		doins "${S}"/examples/*
+		docinto examples
+		dodoc "${S}"/examples/*
 	fi
 
 	# Required for cjs-console to run correctly on PaX systems
