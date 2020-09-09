@@ -1,37 +1,35 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit autotools gnome2
+EAPI=7
+inherit meson xdg
 
 DESCRIPTION="Cinnamon's library for the Desktop Menu fd.o specification"
-HOMEPAGE="http://cinnamon.linuxmint.com/"
+HOMEPAGE="https://projects.linuxmint.com/cinnamon/"
 SRC_URI="https://github.com/linuxmint/cinnamon-menus/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
 KEYWORDS="*"
-IUSE="debug +introspection"
+IUSE="debug gtk-doc"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2:2
-	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
+	>=dev-libs/glib-2.29.15:2
+	>=dev-libs/gobject-introspection-0.9.12:=
 "
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
-	>=dev-util/intltool-0.40
-	gnome-base/gnome-common
+"
+BDEPEND="
+	>=dev-util/intltool-0.40.6
 	sys-devel/gettext
 	virtual/pkgconfig
+	gtk-doc? ( dev-util/gtk-doc )
 "
 
-src_prepare() {
-	eautoreconf
-	gnome2_src_prepare
-}
-
 src_configure() {
-	gnome2_src_configure \
-		$(usex debug --enable-debug=yes ' ') \
-		$(use_enable introspection) \
-		--disable-static
+	local emesonargs=(
+		$(meson_use debug enable_debug)
+		$(meson_use gtk-doc enable_docs)
+	)
+	meson_src_configure
 }

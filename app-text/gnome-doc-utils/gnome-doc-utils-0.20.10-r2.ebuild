@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3+ )
 
 inherit gnome2 multibuild python-r1
 
@@ -35,6 +35,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	# Stop build from relying on installed package
 	eapply "${FILESDIR}"/${P}-fix-out-of-tree-build.patch
+	eapply "${FILESDIR}"/${P}-python3.patch
 
 	gnome2_src_prepare
 
@@ -62,5 +63,6 @@ src_test() {
 
 src_install() {
 	python_foreach_impl run_in_build_dir gnome2_src_install
+	python_foreach_impl run_in_build_dir python_optimize
 	python_replicate_script "${ED}"/usr/bin/xml2po
 }
