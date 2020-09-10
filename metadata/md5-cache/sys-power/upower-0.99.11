@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=configure install prepare
+DEPEND=>=dev-libs/glib-2.38:2 sys-apps/dbus:= introspection? ( dev-libs/gobject-introspection:= ) kernel_linux? ( dev-libs/libgudev:= virtual/libusb:1 virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) doc? ( dev-util/gtk-doc ) dev-libs/libxslt app-text/docbook-xsl-stylesheets >=sys-devel/gettext-0.19.8 virtual/pkgconfig
+DESCRIPTION=D-Bus abstraction for enumerating power devices, querying history and statistics
+EAPI=7
+HOMEPAGE=https://upower.freedesktop.org/
+IUSE=doc +introspection ios kernel_FreeBSD kernel_linux selinux
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=>=dev-libs/glib-2.38:2 sys-apps/dbus:= introspection? ( dev-libs/gobject-introspection:= ) kernel_linux? ( dev-libs/libgudev:= virtual/libusb:1 virtual/udev ios? ( >=app-pda/libimobiledevice-1:= >=app-pda/libplist-1:= ) ) selinux? ( sec-policy/selinux-devicekit )
+SLOT=0/3
+SRC_URI=https://gitlab.freedesktop.org/upower/upower/uploads/93cfe7c8d66ed486001c4f3f55399b7a/upower-0.99.11.tar.xz
+_eclasses_=multilib	1d91b03d42ab6308b5f4f6b598ed110e	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=d6e16a9fd60cbf183bc92fb221925dae

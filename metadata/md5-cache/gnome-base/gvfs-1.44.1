@@ -4,7 +4,7 @@ DEPEND=app-crypt/gcr:= >=dev-libs/glib-2.62.2:2 sys-apps/dbus dev-libs/libxml2:2
 DESCRIPTION=Virtual filesystem implementation for gio
 EAPI=7
 HOMEPAGE=https://wiki.gnome.org/Projects/gvfs
-IUSE=afp archive bluray cdda elogind fuse google gnome-keyring gnome-online-accounts gphoto2 +http ios nfs policykit +sftp systemd test +udev udisks zeroconf samba +mtp
+IUSE=afp archive bluray cdda elogind fuse google gnome-keyring gnome-online-accounts gphoto2 +http ios nfs policykit +sftp systemd test +udev +udisks zeroconf samba +mtp
 KEYWORDS=*
 LICENSE=LGPL-2+
 RDEPEND=app-crypt/gcr:= >=dev-libs/glib-2.62.2:2 sys-apps/dbus dev-libs/libxml2:2 afp? ( >=dev-libs/libgcrypt-1.2.2:0= ) archive? ( app-arch/libarchive:= ) bluray? ( media-libs/libbluray ) fuse? ( >=sys-fs/fuse-2.8.0 ) elogind? ( >=sys-auth/elogind-229:0= ) gnome-keyring? ( app-crypt/libsecret ) gnome-online-accounts? ( >=net-libs/gnome-online-accounts-3.36:= ) google? ( >=dev-libs/libgdata-0.17.3:=[crypt,gnome-online-accounts] >=net-libs/gnome-online-accounts-3.36:= ) gphoto2? ( >=media-libs/libgphoto2-2.5.0:= ) http? ( >=net-libs/libsoup-2.42:2.4 ) ios? ( >=app-pda/libimobiledevice-1.2:= >=app-pda/libplist-1:= ) mtp? ( >=media-libs/libmtp-1.1.12 ) nfs? ( >=net-fs/libnfs-1.9.7 ) policykit? ( >=sys-auth/polkit-0.114 sys-libs/libcap ) samba? ( >=net-fs/samba-4.5.10[client] ) sftp? ( net-misc/openssh ) systemd? ( >=sys-apps/systemd-206:0= ) udev? ( cdda? ( dev-libs/libcdio-paranoia ) virtual/libgudev:= ) udisks? ( >=sys-fs/udisks-1.97:2 ) zeroconf? ( >=net-dns/avahi-0.6 )
@@ -13,4 +13,4 @@ RESTRICT=test
 SLOT=0
 SRC_URI=mirror://gnome/sources/gvfs/1.44/gvfs-1.44.1.tar.xz
 _eclasses_=bash-completion-r1	47a7402d95930413ce25ba8d857339bb	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	89d6825160e1bbbc31a51278a9dd69d8	gnome3-utils	3b4a1f5a07afc71461c0314cba6ffbd4	libtool	f143db5a74ccd9ca28c1234deffede96	meson	2fbe03e3b496f82fd941bcdb9d351c91	multilib	1d91b03d42ab6308b5f4f6b598ed110e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	python-utils-r1	8914c9c220fed51dbc06d700c5ce75bc	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
-_md5_=74f1a96356bfadc5a6865e79b90d4ae4
+_md5_=171b26cd84e7496ec39347234475f5b5

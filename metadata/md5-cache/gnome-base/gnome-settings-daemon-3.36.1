@@ -4,12 +4,12 @@ DEPEND=>=dev-libs/libgweather-3.36:= >=dev-libs/glib-2.62.2:2[dbus] >=x11-libs/g
 DESCRIPTION=Gnome Settings Daemon
 EAPI=7
 HOMEPAGE=https://git.gnome.org/browse/gnome-settings-daemon
-IUSE=+cups debug elogind +networkmanager smartcard +udev wayland test
+IUSE=+cups debug +networkmanager smartcard +udev wayland test
 KEYWORDS=*
 LICENSE=GPL-2+
-RDEPEND=>=dev-libs/libgweather-3.36:= >=dev-libs/glib-2.62.2:2[dbus] >=x11-libs/gtk+-3.24.12:3[X,wayland?] >=gnome-base/gsettings-desktop-schemas-3.36 >=gnome-base/librsvg-2.36.2:2 media-fonts/cantarell media-libs/alsa-lib media-libs/fontconfig media-libs/libcanberra[gtk3] >=media-sound/pulseaudio-2 >=sys-power/upower-0.99:= x11-libs/cairo x11-libs/gdk-pixbuf:2 >=x11-libs/libnotify-0.7.3:= x11-libs/libX11 x11-libs/libxkbfile x11-libs/libXi x11-libs/libXext x11-libs/libXfixes x11-libs/libXtst x11-libs/libXxf86misc x11-misc/xkeyboard-config >=app-misc/geoclue-2.3.1:2.0 >=sci-geosciences/geocode-glib-3.10 >=sys-auth/polkit-0.113-r5 >=media-libs/lcms-2.2:2 >=x11-misc/colord-1.0.2:= cups? ( >=net-print/cups-1.4[dbus] ) >=dev-libs/libwacom-0.7 >=x11-libs/pango-1.44.7 x11-drivers/xf86-input-wacom virtual/libgudev:= networkmanager? ( >=net-misc/networkmanager-1.0 ) smartcard? ( >=dev-libs/nss-3.11.2 ) udev? ( virtual/libgudev:= ) wayland? ( dev-libs/wayland ) gnome-base/dconf sys-auth/elogind
-REQUIRED_USE=elogind smartcard? ( udev ) wayland? ( udev )
+RDEPEND=>=dev-libs/libgweather-3.36:= >=dev-libs/glib-2.62.2:2[dbus] >=x11-libs/gtk+-3.24.12:3[X,wayland?] >=gnome-base/gsettings-desktop-schemas-3.36 >=gnome-base/librsvg-2.36.2:2 media-fonts/cantarell media-libs/alsa-lib media-libs/fontconfig media-libs/libcanberra[gtk3] >=media-sound/pulseaudio-2 >=sys-power/upower-0.99:= x11-libs/cairo x11-libs/gdk-pixbuf:2 >=x11-libs/libnotify-0.7.3:= x11-libs/libX11 x11-libs/libxkbfile x11-libs/libXi x11-libs/libXext x11-libs/libXfixes x11-libs/libXtst x11-libs/libXxf86misc x11-misc/xkeyboard-config >=app-misc/geoclue-2.3.1:2.0 >=sci-geosciences/geocode-glib-3.10 >=sys-auth/polkit-0.113-r5 >=media-libs/lcms-2.2:2 >=x11-misc/colord-1.0.2:= cups? ( >=net-print/cups-1.4[dbus] ) >=dev-libs/libwacom-0.7 >=x11-libs/pango-1.44.7 x11-drivers/xf86-input-wacom virtual/libgudev:= networkmanager? ( >=net-misc/networkmanager-1.0 ) smartcard? ( >=dev-libs/nss-3.11.2 ) udev? ( virtual/libgudev:= ) wayland? ( dev-libs/wayland ) gnome-base/dconf
+REQUIRED_USE=smartcard? ( udev ) wayland? ( udev )
 SLOT=0
 SRC_URI=mirror://gnome/sources/gnome-settings-daemon/3.36/gnome-settings-daemon-3.36.1.tar.xz
 _eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	89d6825160e1bbbc31a51278a9dd69d8	gnome3-utils	3b4a1f5a07afc71461c0314cba6ffbd4	libtool	f143db5a74ccd9ca28c1234deffede96	meson	2fbe03e3b496f82fd941bcdb9d351c91	multilib	1d91b03d42ab6308b5f4f6b598ed110e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	python-any-r1	4900ae970f827a22d33d41bd8b8f9ace	python-utils-r1	8914c9c220fed51dbc06d700c5ce75bc	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	udev	7752f306eec7b286d00bdb47b763e7ac	virtualx	401b718cc14d43a5a7fbe062c4851ba5	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
-_md5_=73bc6b49cb2e817ac4d7fbd1b6d1edad
+_md5_=13114073a183b2e6be57aa66cb8fcb49
