@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 inherit autotools gnome3 pax-utils virtualx
 
 DESCRIPTION="Linux Mint's fork of gjs for Cinnamon"
@@ -11,6 +11,7 @@ LICENSE="MIT || ( MPL-1.1 LGPL-2+ GPL-2+ )"
 SLOT="0"
 IUSE="+cairo examples gtk test"
 KEYWORDS="*"
+RESTRICT="test"
 
 RDEPEND="
 	dev-lang/spidermonkey:52
@@ -22,29 +23,17 @@ RDEPEND="
 	gtk? ( x11-libs/gtk+:3 )
 "
 DEPEND="${RDEPEND}
+	sys-devel/autoconf-archive
+	test? ( sys-apps/dbus )
+"
+BDEPEND="
 	sys-devel/gettext
 	virtual/pkgconfig
-	test? ( sys-apps/dbus )
-	sys-devel/autoconf-archive
 "
-# Cinnamon 2.2 does not work with this release.
-RDEPEND="${RDEPEND}
-	!<gnome-extra/cinnamon-2.4
-"
-
-RESTRICT="test"
 
 src_prepare() {
-	eautoreconf
 	gnome3_src_prepare
-
-	# Fixed in 4.6.0
-	sed -ie "s/Gjs-WARNING/Cjs-WARNING/g" \
-		"${S}"/installed-tests/scripts/testCommandLine.sh || die
-
-	# Fixed in 4.6.0
-	sed -ie "s/40000/50000/g" \
-		"${S}"/installed-tests/js/testSystem.js || die
+	eautoreconf
 
 	sed -ie "s/'Gjs'/'Cjs'/g" \
 		"${S}"/installed-tests/js/testExceptions.js \
@@ -55,6 +44,8 @@ src_configure() {
 	# FIXME: add systemtap/dtrace support, like in glib:2
 	# FIXME: --enable-systemtap installs files in ${D}/${D} for some reason
 	gnome3_src_configure \
+		--disable-maintainer-mode \
+		--enable-compile-warnings=minimum \
 		--disable-systemtap \
 		--disable-dtrace \
 		$(use_with cairo) \

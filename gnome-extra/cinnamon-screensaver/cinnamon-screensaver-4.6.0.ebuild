@@ -51,13 +51,18 @@ DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 "
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-4.6.0-python-build.patch
+	"${FILESDIR}"/${PN}-4.6.0-xinerama.patch
+)
+
 pkg_setup() {
 	python_setup
 }
 
 src_prepare() {
-	python_fix_shebang src
 	xdg_src_prepare
+	python_fix_shebang src
 }
 
 src_configure() {
@@ -66,6 +71,11 @@ src_configure() {
 		$(meson_use xinerama)
 	)
 	meson_src_configure
+}
+
+src_install() {
+	meson_src_install
+	python_optimize "${ED}"/usr/share/cinnamon-screensaver/
 }
 
 pkg_postinst() {

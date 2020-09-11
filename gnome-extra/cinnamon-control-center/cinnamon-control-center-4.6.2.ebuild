@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 GNOME3_LA_PUNT="yes" # gmodule is used, which uses dlopen
 GNOME3_EAUTORECONF="yes"
 
@@ -24,7 +24,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.31:2
 	dev-libs/libxml2:2
 	>=gnome-base/libgnomekbd-2.91.91:0=
-	>=gnome-extra/cinnamon-desktop-4.4:0=
+	>=gnome-extra/cinnamon-desktop-4.6:0=
 	>=gnome-extra/cinnamon-menus-4.4:0=
 	>=gnome-extra/cinnamon-settings-daemon-4.4:0=
 	media-libs/fontconfig
@@ -53,27 +53,24 @@ RDEPEND="${COMMON_DEPEND}
 	colord? ( >=gnome-extra/gnome-color-manager-3 )
 	input_devices_wacom? ( gnome-extra/cinnamon-settings-daemon[input_devices_wacom] )
 "
-
 DEPEND="${COMMON_DEPEND}
 	app-text/iso-codes
+	sys-devel/autoconf-archive
+	x11-base/xorg-proto
+"
+BDEPEND="
 	dev-util/glib-utils
 	>=dev-util/intltool-0.40.1
-	sys-devel/autoconf-archive
 	>=sys-devel/gettext-0.17
 	virtual/pkgconfig
-	x11-base/xorg-proto
 "
 
 src_configure() {
-	# cups, documentation, and systemd don't do anything
-	# and have been removed in the next release. So 
-	# disable them for now.
 	gnome3_src_configure \
+		--disable-maintainer-mode \
+		--enable-compile-warnings=minimum \
 		--disable-static \
 		--disable-onlineaccounts \
-		--disable-cups \
-		--disable-documentation \
-		--disable-systemd \
 		$(use_enable colord color) \
 		$(usex debug --enable-debug=yes ' ') \
 		$(use_enable input_devices_wacom wacom) \
