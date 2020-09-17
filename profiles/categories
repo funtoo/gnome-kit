@@ -7,8 +7,8 @@ app-dicts
 app-editors
 app-emulation
 app-i18n
-app-office
 app-misc
+app-office
 app-text
 dev-cpp
 dev-lang
@@ -38,8 +38,8 @@ net-nntp
 net-voip
 net-wireless
 sci-geosciences
-sys-auth
 sys-apps
+sys-auth
 sys-fs
 sys-libs
 sys-power
