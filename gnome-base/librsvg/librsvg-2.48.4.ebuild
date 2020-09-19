@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
 	dev-libs/vala-common
 	>=dev-util/gtk-doc-am-1.13
-	virtual/cargo
+	virtual/rust
 	vala? ( $(vala_depend) )
 	>=virtual/pkgconfig-0-r1
 "
