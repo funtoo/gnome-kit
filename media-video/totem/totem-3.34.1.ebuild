@@ -51,7 +51,7 @@ COMMON_DEPEND="
 	nautilus? ( >=gnome-base/nautilus-2.91.3 )
 	python? (
 		${PYTHON_DEPS}
-		>=dev-python/pygobject-2.90.3:3[${PYTHON_USEDEP}] )
+		$(python_gen_cond_dep '>=dev-python/pygobject-2.90.3:3[${PYTHON_USEDEP}]') )
 "
 RDEPEND="${COMMON_DEPEND}
 	media-plugins/grilo-plugins:0.3
@@ -59,9 +59,11 @@ RDEPEND="${COMMON_DEPEND}
 	media-plugins/gst-plugins-taglib:1.0
 	x11-themes/adwaita-icon-theme
 	python? (
+		$(python_gen_cond_dep '
 		>=dev-libs/libpeas-1.1.0[python,${PYTHON_USEDEP}]
 		dev-python/pyxdg[${PYTHON_USEDEP}]
 		dev-python/dbus-python[${PYTHON_USEDEP}]
+		')
 		>=x11-libs/gtk+-3.24.12:3[introspection] )
 "
 # libxml2+gdk-pixbuf required for glib-compile-resources

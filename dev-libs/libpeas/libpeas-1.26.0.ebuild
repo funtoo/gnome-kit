@@ -26,7 +26,7 @@ RDEPEND="
 		=dev-lang/lua-5.1*:0 )
 	python? (
 		${PYTHON_DEPS}
-		>=dev-python/pygobject-3.2:3[${PYTHON_USEDEP}] )
+		$(python_gen_cond_dep '>=dev-python/pygobject-3.2:3[${PYTHON_USEDEP}]') )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.11
