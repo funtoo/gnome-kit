@@ -25,9 +25,10 @@ RDEPEND="
 	>=dev-libs/gobject-introspection-common-${PV}
 	>=dev-libs/glib-2.64.0:2
 	virtual/libffi:=
-	doctool? (
+	doctool? ( $(python_gen_cond_dep '
 		dev-python/mako[${PYTHON_USEDEP}]
 		dev-python/markdown[${PYTHON_USEDEP}]
+		')
 	)
 	virtual/pkgconfig
 	${PYTHON_DEPS}
