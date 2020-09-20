@@ -34,9 +34,10 @@ COMMON_DEPEND="
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 
 	${PYTHON_DEPS}
-	dev-python/pycairo[${PYTHON_USEDEP}]
+	$(python_gen_cond_dep
+	'dev-python/pycairo[${PYTHON_USEDEP}]
 	>=dev-python/pygobject-3:3[cairo,${PYTHON_USEDEP}]
-	dev-libs/libpeas[python,${PYTHON_USEDEP}]
+	dev-libs/libpeas[python,${PYTHON_USEDEP}]')
 "
 RDEPEND="${COMMON_DEPEND}
 	x11-themes/adwaita-icon-theme
