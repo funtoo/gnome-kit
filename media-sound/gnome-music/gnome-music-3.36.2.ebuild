@@ -19,7 +19,9 @@ COMMON_DEPEND="
 	${PYTHON_DEPS}
 	>=net-libs/gnome-online-accounts-${PV%.*}
 	>=app-misc/tracker-2:=
+	$(python_gen_cond_dep '
 	>=dev-python/pygobject-3.21.1:3[cairo,${PYTHON_USEDEP}]
+	')
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/gobject-introspection-1.62.0:=
 	>=media-libs/grilo-0.3.9:0.3[introspection]
@@ -31,8 +33,10 @@ COMMON_DEPEND="
 # https://bugzilla.gnome.org/show_bug.cgi?id=731613
 RDEPEND="${COMMON_DEPEND}
 	x11-libs/libnotify[introspection]
+	$(python_gen_cond_dep '
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
+	')
 	media-libs/gstreamer:1.0[introspection]
 	media-libs/gst-plugins-base:1.0[introspection]
 	media-plugins/gst-plugins-meta:1.0
