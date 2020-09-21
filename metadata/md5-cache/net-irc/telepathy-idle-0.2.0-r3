@@ -1,0 +1,16 @@
+BDEPEND=virtual/pkgconfig test? ( dev-python/twisted-words )
+DEFINED_PHASES=prepare setup
+DEPEND=>=dev-libs/dbus-glib-0.51 >=dev-libs/glib-2.32:2 >=net-libs/telepathy-glib-0.21 sys-apps/dbus python_single_target_python3_7? ( dev-lang/python:3.7 >=dev-lang/python-exec-2:=[python_targets_python3_7] ) python_single_target_python3_9? ( dev-lang/python:3.9 >=dev-lang/python-exec-2:=[python_targets_python3_9] ) python_single_target_python3_8? ( dev-lang/python:3.8 >=dev-lang/python-exec-2:=[python_targets_python3_8] )
+DESCRIPTION=Full-featured IRC connection manager for Telepathy
+EAPI=7
+HOMEPAGE=https://cgit.freedesktop.org/telepathy/telepathy-idle
+IUSE=test python_single_target_python3_7 python_single_target_python3_9 python_single_target_python3_8 python_targets_python3_7 python_targets_python3_9 python_targets_python3_8
+KEYWORDS=*
+LICENSE=LGPL-2.1+
+RDEPEND=>=dev-libs/dbus-glib-0.51 >=dev-libs/glib-2.32:2 >=net-libs/telepathy-glib-0.21 sys-apps/dbus python_single_target_python3_7? ( dev-lang/python:3.7 >=dev-lang/python-exec-2:=[python_targets_python3_7] ) python_single_target_python3_9? ( dev-lang/python:3.9 >=dev-lang/python-exec-2:=[python_targets_python3_9] ) python_single_target_python3_8? ( dev-lang/python:3.8 >=dev-lang/python-exec-2:=[python_targets_python3_8] )
+REQUIRED_USE=^^ ( python_single_target_python3_7 python_single_target_python3_9 python_single_target_python3_8 )
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=https://telepathy.freedesktop.org/releases/telepathy-idle/telepathy-idle-0.2.0.tar.gz https://src.fedoraproject.org/rpms/telepathy-idle/raw/93c37581c570200c3f646d0872a9c1327d3b3cb1/f/0001-tools-Fix-errors-running-glib-ginterface-gen-under-P.patch -> telepathy-idle-0.2.0-py3-1.patch https://src.fedoraproject.org/rpms/telepathy-idle/raw/93c37581c570200c3f646d0872a9c1327d3b3cb1/f/0002-tools-Remove-outdated-is-unicode-checks.patch -> telepathy-idle-0.2.0-py3-2.patch
+_eclasses_=multilib	1d91b03d42ab6308b5f4f6b598ed110e	python-single-r1	ce99dfba1cad0514af51a32b2b6964af	python-utils-r1	263e4bbfa6a84be6dc6272a6702aedca	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
+_md5_=742f930f67fe98cf27fc8e68bd456eae
