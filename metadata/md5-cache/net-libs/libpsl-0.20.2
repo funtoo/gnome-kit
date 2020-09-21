@@ -1,12 +1,12 @@
 DEFINED_PHASES=configure install prepare setup
 DEPEND=python_single_target_python3_7? ( dev-lang/python:3.7 >=dev-lang/python-exec-2:=[python_targets_python3_7] ) python_single_target_python3_9? ( dev-lang/python:3.9 >=dev-lang/python-exec-2:=[python_targets_python3_9] ) python_single_target_python3_8? ( dev-lang/python:3.8 >=dev-lang/python-exec-2:=[python_targets_python3_8] ) sys-devel/gettext virtual/pkgconfig sys-devel/libtool doc? ( dev-util/gtk-doc ) man? ( dev-libs/libxslt ) idn2? ( net-dns/libidn2[static-libs?] ) idn? ( net-dns/libidn[static-libs?] ) icu? ( dev-libs/icu[static-libs?] ) >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 EAPI=6
-IUSE=doc man nls static-libs rpath +icu -idn -idn2 python_targets_python3_7 python_targets_python3_9 python_targets_python3_8
+IUSE=doc man nls static-libs rpath +icu -idn -idn2 python_single_target_python3_7 python_single_target_python3_9 python_single_target_python3_8 python_targets_python3_7 python_targets_python3_9 python_targets_python3_8
 KEYWORDS=*
 LICENSE=MIT
 RDEPEND=python_single_target_python3_7? ( dev-lang/python:3.7 >=dev-lang/python-exec-2:=[python_targets_python3_7] ) python_single_target_python3_9? ( dev-lang/python:3.9 >=dev-lang/python-exec-2:=[python_targets_python3_9] ) python_single_target_python3_8? ( dev-lang/python:3.8 >=dev-lang/python-exec-2:=[python_targets_python3_8] ) sys-devel/gettext virtual/pkgconfig sys-devel/libtool doc? ( dev-util/gtk-doc ) man? ( dev-libs/libxslt ) idn2? ( net-dns/libidn2[static-libs?] ) idn? ( net-dns/libidn[static-libs?] ) icu? ( dev-libs/icu[static-libs?] )
 REQUIRED_USE=^^ ( idn2 icu idn )
 SLOT=0
 SRC_URI=https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.20.2/libpsl-0.20.2.tar.gz
-_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	1d91b03d42ab6308b5f4f6b598ed110e	python-single-r1	a811e2c445a5fb40db1a1eba728dca7f	python-utils-r1	263e4bbfa6a84be6dc6272a6702aedca	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	1d91b03d42ab6308b5f4f6b598ed110e	python-single-r1	ce99dfba1cad0514af51a32b2b6964af	python-utils-r1	263e4bbfa6a84be6dc6272a6702aedca	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
 _md5_=1301ab764f7e50ccf42e45beee112bc2
