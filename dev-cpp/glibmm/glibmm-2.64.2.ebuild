@@ -1,65 +1,60 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=7
 
-inherit gnome2
+inherit gnome.org meson
 
 DESCRIPTION="C++ interface for glib2"
 HOMEPAGE="https://www.gtkmm.org"
 
-LICENSE="LGPL-2.1+ GPL-2+" # GPL-2+ applies only to the build system
+LICENSE="LGPL-2.1+"
 SLOT="2"
 KEYWORDS="*"
-
 IUSE="doc debug test"
+RESTRICT="!test? ( test )"
 
 RDEPEND="
-	>=dev-libs/libsigc++-2.99.0:3
+	>=dev-libs/libsigc++-2.9.1:2
 	>=dev-libs/glib-2.62.2:2
 "
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	virtual/pkgconfig
-	doc? ( app-doc/doxygen )
+	sys-devel/m4
+	dev-lang/perl
+	doc? (
+		app-doc/doxygen
+		dev-libs/libxslt
+		media-gfx/graphviz
+	)
 "
-# dev-cpp/mm-common needed for eautoreconf
-
-pkg_setup() {
-	export CFLAGS="-std=c++17 $CFLAGS"
-	export CXXFLAGS="-std=c++17 $CXXFLAGS"
-}
+#	>=dev-cpp/mm-common-1.0.0
 
 src_prepare() {
+	default
+
+	# giomm_tls_client requires FEATURES=-network-sandbox and glib-networking rdep
+	sed -i -e '/giomm_tls_client/d' tests/meson.build || die
+
 	if ! use test; then
-		# don't waste time building tests
-		sed 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' \
-			-i Makefile.am Makefile.in || die "sed 1 failed"
+		sed -i -e "/^subdir('tests')/d" meson.build || die
 	fi
-
-	# don't build examples - we want to install example sources, not binaries
-	sed 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' \
-		-i Makefile.am Makefile.in || die "sed 2 failed"
-
-	gnome2_src_prepare
 }
 
 src_configure() {
-	ECONF_SOURCE="${S}" gnome2_src_configure \
-		$(use_enable debug debug-refcounting) \
-		$(use_enable doc documentation) \
-		--enable-deprecated-api
-}
-
-src_test() {
-	cd tests
-	default
-
-	for i in */test; do
-		${i} || die "Running tests failed at ${i}"
-	done
+	local emesonargs=(
+		-Dmaintainer-mode=true # Set false and drop mm-common dep once tarballs are made with meson/ninja
+		-Dwarnings=min
+		-Dbuild-deprecated-api=true
+		-Dbuild-documentation=$(usex doc true false)
+		-Ddebug-refcounting=$(usex debug true false)
+		-Dbuild-examples=false
+	)
+	meson_src_configure
 }
 
 src_install() {
-	gnome2_src_install
+	meson_src_install
 
 	einstalldocs
 
