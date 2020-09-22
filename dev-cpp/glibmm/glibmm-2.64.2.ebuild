@@ -20,6 +20,7 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 BDEPEND="
 	virtual/pkgconfig
+	>=dev-cpp/mm-common-1.0.0
 	sys-devel/m4
 	dev-lang/perl
 	doc? (
@@ -28,7 +29,6 @@ BDEPEND="
 		media-gfx/graphviz
 	)
 "
-#	>=dev-cpp/mm-common-1.0.0
 
 src_prepare() {
 	default
