@@ -1,7 +1,5 @@
 =dev-python/pygobject-2.28.7 python_single_target_python2_7
 =media-gfx/gnome-photos-3.34.1 python_single_target_python2_7
-=net-im/telepathy-mission-control-5.16.4 python_single_target_python2_7
-=net-irc/telepathy-idle-0.2.0 python_single_target_python2_7
 =net-libs/telepathy-glib-0.24.1 python_single_target_python2_7
 dev-python/pygtk python_single_target_python2_7
 dev-util/anjuta python_single_target_python2_7
