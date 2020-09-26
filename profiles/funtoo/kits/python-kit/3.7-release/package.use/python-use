@@ -13,6 +13,4 @@ gnome-extra/nautilus-dropbox python_single_target_python2_7
 gnome-extra/zeitgeist python_single_target_python2_7
 gnome-extra/zeitgeist-datasources python_single_target_python2_7
 net-im/telepathy-logger python_single_target_python2_7
-net-im/telepathy-mission-control python_single_target_python2_7
-net-irc/telepathy-idle python_single_target_python2_7
 net-voip/telepathy-gabble python_single_target_python2_7
