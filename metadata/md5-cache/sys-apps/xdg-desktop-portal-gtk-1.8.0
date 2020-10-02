@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure
+DEPEND=gnome-base/gnome-desktop:3 gnome-base/gsettings-desktop-schemas media-libs/fontconfig >=dev-libs/glib-2.44:2[dbus] >=x11-libs/gtk+-3.14:3 wayland? ( >=x11-libs/gtk+-3.21.5:3[wayland] ) X? ( >=x11-libs/gtk+-3.14:3[X] ) >=sys-apps/xdg-desktop-portal-1.5 virtual/pkgconfig >=sys-devel/gettext-0.18.3 virtual/pkgconfig
+DESCRIPTION=GTK/GNOME backend for xdg-desktop-portal
+EAPI=6
+HOMEPAGE=https://github.com/flatpak/xdg-desktop-portal-gtk
+IUSE=wayland X
+KEYWORDS=~amd64
+LICENSE=LGPL-2.1
+RDEPEND=gnome-base/gnome-desktop:3 gnome-base/gsettings-desktop-schemas media-libs/fontconfig >=dev-libs/glib-2.44:2[dbus] >=x11-libs/gtk+-3.14:3 wayland? ( >=x11-libs/gtk+-3.21.5:3[wayland] ) X? ( >=x11-libs/gtk+-3.14:3[X] ) >=sys-apps/xdg-desktop-portal-1.5
+SLOT=0
+SRC_URI=https://github.com/flatpak/xdg-desktop-portal-gtk/releases/download/1.8.0/xdg-desktop-portal-gtk-1.8.0.tar.xz
+_eclasses_=multilib	1d91b03d42ab6308b5f4f6b598ed110e	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
+_md5_=7e39d15603cee0d9ecffbf731b95a666
