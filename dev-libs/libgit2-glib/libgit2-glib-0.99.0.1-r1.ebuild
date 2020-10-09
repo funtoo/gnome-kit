@@ -18,7 +18,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 RDEPEND="
 	>=dev-libs/gobject-introspection-1.62.0:=
 	>=dev-libs/glib-2.62.2:2
-	<dev-libs/libgit2-1:0=[ssh?]
+	<dev-libs/libgit2-1.1:0=[ssh?]
 	>=dev-libs/libgit2-0.26.0:0
 	python? (
 		${PYTHON_DEPS}
@@ -32,11 +32,8 @@ DEPEND="${RDEPEND}
 	vala? ( $(vala_depend) )
 "
 
-PATCHES=(
-	"${FILESDIR}"/libgit2-glib-0.99.0.1-vapilink.patch
-)
-
 src_prepare() {
+	sed -i "s:join_paths(libgit2_glib_prefix, get_option('datadir')):get_option('datadir'):" meson.build
 	xdg_src_prepare
 	use vala && vala_src_prepare
 }
