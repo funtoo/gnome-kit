@@ -43,6 +43,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	sed -i "s@subdir('introspection')@generate_gir ? subdir('introspection') :@" tests/libpeas/meson.build
 	gnome3_src_prepare
 }
 
