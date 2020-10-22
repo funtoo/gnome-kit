@@ -9,29 +9,26 @@ DESCRIPTION="Library providing a virtual terminal emulator widget"
 HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Terminal/VTE"
 SRC_URI="https://gitlab.gnome.org/GNOME/vte/-/archive/${PV}/vte-${PV}.tar.gz"
 
-LICENSE="LGPL-2+"
+LICENSE="LGPL-2.1+"
 SLOT="2.91"
 KEYWORDS="*"
 
-IUSE="+crypt doc debug elogind glade +gtk3 gtk4 +introspection bidi +vala"
+IUSE="+crypt doc debug elogind glade +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/libpcre2-10.21
-	gtk3? ( >=x11-libs/gtk+-3.24.12:3[introspection?] )
-	gtk4? ( >=x11-libs/gtk-3.96.0:0[introspection?] )
+	>=x11-libs/gtk+-3.24.12:3[introspection?]
+	>=dev-libs/fribidi-1.0.0
 	>=x11-libs/pango-1.44.7
-
-	sys-libs/ncurses:0=
 	sys-libs/zlib
 
 	elogind? ( >=sys-auth/elogind-241.3 )
-	!elogind? ( >=sys-apps/systemd-220 )
-
 	crypt?  ( >=net-libs/gnutls-3.2.7:0= )
 	glade? ( >=dev-util/glade-3.9:3.10 )
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
+	x11-libs/pango[introspection?]
 "
 DEPEND="${RDEPEND}
 	dev-util/gperf
@@ -48,27 +45,32 @@ RDEPEND="${RDEPEND}
 	!x11-libs/vte:2.90[glade]
 "
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.60.3-elogind-support.patch
+	# Adds OSC 777 support for desktop notifications in gnome-terminal or elsewhere
+	"${FILESDIR}"/${PN}-0.60.3-command-notify.patch
+)
+
 src_prepare() {
-	sed -i -e "s/4.0.0/3.96.0/" meson.build
-	sed -i -e "s/gtk+-4.0/gtk4/" meson.build
+	# -Ddebugg option enables various debug support via VTE_DEBUG, but also ggdb3; strip the latter
+	sed -e '/ggdb3/d' -i meson.build || die
 
 	use vala && vala_src_prepare
-
-	eapply "${FILESDIR}"/${PN}-0.60.0-elogind-support.patch
-
 	gnome3_src_prepare
 }
 
 src_configure() {
 	local emesonargs=(
+		-Da11y=true
 		$(meson_use debug debugg)
 		$(meson_use doc docs)
 		$(meson_use introspection gir)
-		$(meson_use bidi fribidi)
+		-Dfribidi=true # pulled in by pango anyhow
 		$(meson_use crypt gnutls)
-		$(meson_use gtk3)
-		$(meson_use gtk4)
+		-Dgtk3=true
+		-Dgtk4=false
 		$(meson_use elogind)
+		-D_systemd=false
 		-Dicu=true
 		$(meson_use vala vapi)
 	)
