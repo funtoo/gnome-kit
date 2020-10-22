@@ -8,21 +8,25 @@
  
  # API
  
-@@ -440,8 +441,12 @@
+@@ -440,10 +441,14 @@
    icu_dep = dependency('', required: false)
  endif
  
 -if host_machine.system() == 'linux' and get_option('_systemd')
 -  systemd_dep = dependency('libsystemd', version: '>=' + systemd_req_version)
+-else
+-  systemd_dep = dependency('', required: false)
 +if host_machine.system() == 'linux'
 +  if get_option('elogind')
 +    systemd_dep = dependency('libelogind', version: '>=' + elogind_req_version)
-+  else
++  elif get_option('_systemd')
 +    systemd_dep = dependency('libsystemd', version: '>=' + systemd_req_version)
++  else
++    systemd_dep = dependency('', required: false)
 +  endif
- else
-   systemd_dep = dependency('', required: false)
  endif
+
+ config_h.set('WITH_SYSTEMD', systemd_dep.found())
 --- a/meson_options.txt	2020-02-15 13:39:42.000000000 -0600
 +++ b/meson_options.txt	2020-02-15 21:36:33.438362900 -0600
 @@ -91,3 +91,10 @@
