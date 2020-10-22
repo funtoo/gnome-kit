@@ -2,6 +2,7 @@
 
 EAPI=7
 VALA_USE_DEPEND="vapigen"
+VALA_MIN_API_VERSION="0.48"
 
 inherit autotools gnome3 meson vala
 
