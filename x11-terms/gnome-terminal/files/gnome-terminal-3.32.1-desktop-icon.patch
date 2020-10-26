@@ -10,4 +10,3 @@ diff '--exclude=.git' -urN a/org.gnome.Terminal.desktop.in.in b/org.gnome.Termin
  Type=Application
  Categories=GNOME;GTK;System;TerminalEmulator;
  StartupNotify=true
-

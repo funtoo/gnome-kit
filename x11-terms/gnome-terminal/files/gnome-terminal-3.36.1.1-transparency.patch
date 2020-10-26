@@ -1,6 +1,6 @@
 diff '--exclude=.git' -urN a/po/am.po b/po/am.po
 --- a/po/am.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/am.po	2020-03-22 05:29:57.867676599 -0500
++++ b/po/am.po	2020-04-08 20:40:52.043491641 -0500
 @@ -214,8 +214,8 @@
  msgstr "<b>መደብ</b>"
  
@@ -25,7 +25,7 @@ diff '--exclude=.git' -urN a/po/am.po b/po/am.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/an.po b/po/an.po
 --- a/po/an.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/an.po	2020-03-22 05:29:57.867676599 -0500
++++ b/po/an.po	2020-04-08 20:40:52.043491641 -0500
 @@ -2241,8 +2241,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "Emplegar grandaria predeterminada presonali_zada de terminal"
@@ -61,7 +61,7 @@ diff '--exclude=.git' -urN a/po/an.po b/po/an.po
  #~ msgstr "Alcorces de teclau"
 diff '--exclude=.git' -urN a/po/ar.po b/po/ar.po
 --- a/po/ar.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ar.po	2020-03-22 05:29:57.868676594 -0500
++++ b/po/ar.po	2020-04-08 20:40:52.043491641 -0500
 @@ -2574,11 +2574,11 @@
  #~ msgid "Default size:"
  #~ msgstr "الحجم المبدئي:"
@@ -102,7 +102,7 @@ diff '--exclude=.git' -urN a/po/ar.po b/po/ar.po
  #~ msgstr "_ظلل شفافية أو صورة الخلفية:"
 diff '--exclude=.git' -urN a/po/as.po b/po/as.po
 --- a/po/as.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/as.po	2020-03-22 05:29:57.868676594 -0500
++++ b/po/as.po	2020-04-08 20:40:52.043491641 -0500
 @@ -2163,11 +2163,11 @@
  #~ msgid "Default size:"
  #~ msgstr "অবিকল্পিত আকাৰ:"
@@ -143,7 +143,7 @@ diff '--exclude=.git' -urN a/po/as.po b/po/as.po
  #~ msgstr "স্বচ্ছ বা ছবিৰ সৈতে পটভূমি ছায়া আচ্ছন্ন কৰক (_h):"
 diff '--exclude=.git' -urN a/po/ast.po b/po/ast.po
 --- a/po/ast.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ast.po	2020-03-22 05:29:57.868676594 -0500
++++ b/po/ast.po	2020-04-08 20:40:52.043491641 -0500
 @@ -1304,8 +1304,8 @@
  msgstr "_Basáu en:"
  
@@ -168,7 +168,7 @@ diff '--exclude=.git' -urN a/po/ast.po b/po/ast.po
  msgid "_Underline color:"
 diff '--exclude=.git' -urN a/po/az.po b/po/az.po
 --- a/po/az.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/az.po	2020-03-22 05:29:57.868676594 -0500
++++ b/po/az.po	2020-04-08 20:40:52.044491637 -0500
 @@ -218,8 +218,8 @@
  msgstr "<b>Arxa plan</b>"
  
@@ -193,7 +193,7 @@ diff '--exclude=.git' -urN a/po/az.po b/po/az.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/be.po b/po/be.po
 --- a/po/be.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/be.po	2020-03-22 05:29:57.868676594 -0500
++++ b/po/be.po	2020-04-08 20:40:52.044491637 -0500
 @@ -2635,3 +2635,6 @@
  
  #~ msgid "Current Locale"
@@ -203,7 +203,7 @@ diff '--exclude=.git' -urN a/po/be.po b/po/be.po
 +msgstr "Празрысты фон"
 diff '--exclude=.git' -urN a/po/be@latin.po b/po/be@latin.po
 --- a/po/be@latin.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/be@latin.po	2020-03-22 05:29:57.869676589 -0500
++++ b/po/be@latin.po	2020-04-08 20:40:52.044491637 -0500
 @@ -1146,8 +1146,8 @@
  msgstr "Na _bazie:"
  
@@ -228,7 +228,7 @@ diff '--exclude=.git' -urN a/po/be@latin.po b/po/be@latin.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/bg.po b/po/bg.po
 --- a/po/bg.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/bg.po	2020-03-22 05:29:57.869676589 -0500
++++ b/po/bg.po	2020-04-08 20:40:52.044491637 -0500
 @@ -2305,3 +2305,12 @@
  #: ../src/terminal-window.c:3953
  msgid "C_lose Window"
@@ -244,7 +244,7 @@ diff '--exclude=.git' -urN a/po/bg.po b/po/bg.po
 +msgstr "Задаване на заглавие"
 diff '--exclude=.git' -urN a/po/bn.po b/po/bn.po
 --- a/po/bn.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/bn.po	2020-03-22 05:29:57.869676589 -0500
++++ b/po/bn.po	2020-04-08 20:40:52.044491637 -0500
 @@ -1217,8 +1217,8 @@
  msgstr "চিহ্নিত বস্তুর উপর ভিত্তি করে: (_B)"
  
@@ -269,7 +269,7 @@ diff '--exclude=.git' -urN a/po/bn.po b/po/bn.po
  msgid "_Unlimited"
 diff '--exclude=.git' -urN a/po/bn_IN.po b/po/bn_IN.po
 --- a/po/bn_IN.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/bn_IN.po	2020-03-22 05:29:57.869676589 -0500
++++ b/po/bn_IN.po	2020-04-08 20:40:52.045491633 -0500
 @@ -2296,8 +2296,8 @@
  #~ msgid "Close Window"
  #~ msgstr "উইন্ডো বন্ধ করুন"
@@ -294,7 +294,7 @@ diff '--exclude=.git' -urN a/po/bn_IN.po b/po/bn_IN.po
 +msgstr "স্বচ্চ পটভূমি "
 diff '--exclude=.git' -urN a/po/br.po b/po/br.po
 --- a/po/br.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/br.po	2020-03-22 05:29:57.869676589 -0500
++++ b/po/br.po	2020-04-08 20:40:52.045491633 -0500
 @@ -958,8 +958,8 @@
  msgstr ""
  
@@ -317,7 +317,7 @@ diff '--exclude=.git' -urN a/po/br.po b/po/br.po
  #: ../src/profile-preferences.glade.h:74
 diff '--exclude=.git' -urN a/po/bs.po b/po/bs.po
 --- a/po/bs.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/bs.po	2020-03-22 05:29:57.869676589 -0500
++++ b/po/bs.po	2020-04-08 20:40:52.045491633 -0500
 @@ -680,6 +680,10 @@
  msgid "Keyboard shortcut to make font smaller"
  msgstr "Kratica tastature za smanjivanje fonta"
@@ -341,7 +341,7 @@ diff '--exclude=.git' -urN a/po/bs.po b/po/bs.po
 +msgstr "Postavi naslov"
 diff '--exclude=.git' -urN a/po/ca.po b/po/ca.po
 --- a/po/ca.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ca.po	2020-03-22 05:29:57.870676584 -0500
++++ b/po/ca.po	2020-04-08 20:40:52.045491633 -0500
 @@ -2454,3 +2454,15 @@
  
  #~ msgid "_Detach Tab"
@@ -360,7 +360,7 @@ diff '--exclude=.git' -urN a/po/ca.po b/po/ca.po
 +msgstr "Estableix el títol"
 diff '--exclude=.git' -urN a/po/ca@valencia.po b/po/ca@valencia.po
 --- a/po/ca@valencia.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ca@valencia.po	2020-03-22 05:29:57.870676584 -0500
++++ b/po/ca@valencia.po	2020-04-08 20:40:52.045491633 -0500
 @@ -2357,3 +2357,15 @@
  
  #~ msgid "Whether to use a dark theme variant"
@@ -378,8 +378,8 @@ diff '--exclude=.git' -urN a/po/ca@valencia.po b/po/ca@valencia.po
 +msgid "Set Title"
 +msgstr "Estableix el títol"
 diff '--exclude=.git' -urN a/po/cs.po b/po/cs.po
---- a/po/cs.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/cs.po	2020-03-22 05:29:57.870676584 -0500
+--- a/po/cs.po	2020-03-15 14:40:38.000000000 -0500
++++ b/po/cs.po	2020-04-08 20:40:52.045491633 -0500
 @@ -2297,3 +2297,15 @@
  #: ../src/terminal-window.c:3225
  msgid "C_lose Window"
@@ -398,7 +398,7 @@ diff '--exclude=.git' -urN a/po/cs.po b/po/cs.po
 +msgstr "Nastavit záhlaví"
 diff '--exclude=.git' -urN a/po/cy.po b/po/cy.po
 --- a/po/cy.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/cy.po	2020-03-22 05:29:57.870676584 -0500
++++ b/po/cy.po	2020-04-08 20:40:52.046491628 -0500
 @@ -1167,8 +1167,8 @@
  msgstr "Ei _seilio ar:"
  
@@ -423,7 +423,7 @@ diff '--exclude=.git' -urN a/po/cy.po b/po/cy.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/da.po b/po/da.po
 --- a/po/da.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/da.po	2020-03-22 05:29:57.870676584 -0500
++++ b/po/da.po	2020-04-08 20:40:52.046491628 -0500
 @@ -2434,3 +2434,15 @@
  
  #~ msgid "_Detach Tab"
@@ -441,9 +441,9 @@ diff '--exclude=.git' -urN a/po/da.po b/po/da.po
 +msgid "Transparent background"
 +msgstr "Gennemsigtig baggrund"
 diff '--exclude=.git' -urN a/po/de.po b/po/de.po
---- a/po/de.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/de.po	2020-03-22 05:29:57.870676584 -0500
-@@ -2384,3 +2384,15 @@
+--- a/po/de.po	2020-03-15 14:40:38.000000000 -0500
++++ b/po/de.po	2020-04-08 20:40:52.046491628 -0500
+@@ -2507,3 +2507,15 @@
  
  #~ msgid "_Quit"
  #~ msgstr "_Beenden"
@@ -461,7 +461,7 @@ diff '--exclude=.git' -urN a/po/de.po b/po/de.po
 +msgstr "Transparenter Hintergrund"
 diff '--exclude=.git' -urN a/po/dz.po b/po/dz.po
 --- a/po/dz.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/dz.po	2020-03-22 05:29:57.871676580 -0500
++++ b/po/dz.po	2020-04-08 20:40:52.046491628 -0500
 @@ -1255,8 +1255,8 @@
  msgstr "གཞི་བཞག་སྟེ་:(_B)"
  
@@ -486,7 +486,7 @@ diff '--exclude=.git' -urN a/po/dz.po b/po/dz.po
  #, fuzzy
 diff '--exclude=.git' -urN a/po/el.po b/po/el.po
 --- a/po/el.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/el.po	2020-03-22 05:29:57.871676580 -0500
++++ b/po/el.po	2020-04-08 20:40:52.046491628 -0500
 @@ -2735,17 +2735,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Προεπιλεγμένο μέγεθος:"
@@ -520,7 +520,7 @@ diff '--exclude=.git' -urN a/po/el.po b/po/el.po
 +msgstr "Διάφανο παρασκήνιο"
 diff '--exclude=.git' -urN a/po/en@shaw.po b/po/en@shaw.po
 --- a/po/en@shaw.po	2020-03-05 16:09:14.000000000 -0600
-+++ b/po/en@shaw.po	2020-03-22 05:29:57.871676580 -0500
++++ b/po/en@shaw.po	2020-04-08 20:40:52.047491624 -0500
 @@ -1212,8 +1212,8 @@
  msgstr "_𐑚𐑱𐑕 𐑪𐑯:"
  
@@ -545,7 +545,7 @@ diff '--exclude=.git' -urN a/po/en@shaw.po b/po/en@shaw.po
  msgid "_Underline color:"
 diff '--exclude=.git' -urN a/po/en_CA.po b/po/en_CA.po
 --- a/po/en_CA.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/en_CA.po	2020-03-22 05:29:57.871676580 -0500
++++ b/po/en_CA.po	2020-04-08 20:40:52.047491624 -0500
 @@ -219,8 +219,8 @@
  msgstr "<b>Background</b>"
  
@@ -570,7 +570,7 @@ diff '--exclude=.git' -urN a/po/en_CA.po b/po/en_CA.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/en_GB.po b/po/en_GB.po
 --- a/po/en_GB.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/en_GB.po	2020-03-22 05:29:57.872676575 -0500
++++ b/po/en_GB.po	2020-04-08 20:40:52.047491624 -0500
 @@ -2807,8 +2807,8 @@
  #~ msgid "Default size:"
  #~ msgstr "Default size:"
@@ -617,7 +617,7 @@ diff '--exclude=.git' -urN a/po/en_GB.po b/po/en_GB.po
  #~ msgstr "S_hade transparent or image background:"
 diff '--exclude=.git' -urN a/po/eo.po b/po/eo.po
 --- a/po/eo.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/eo.po	2020-03-22 05:29:57.872676575 -0500
++++ b/po/eo.po	2020-04-08 20:40:52.047491624 -0500
 @@ -2663,8 +2663,8 @@
  #~ msgid "_Font:"
  #~ msgstr "_Tiparo:"
@@ -642,7 +642,7 @@ diff '--exclude=.git' -urN a/po/eo.po b/po/eo.po
  #~ msgstr "Maldekstre"
 diff '--exclude=.git' -urN a/po/es.po b/po/es.po
 --- a/po/es.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/es.po	2020-03-22 05:29:57.872676575 -0500
++++ b/po/es.po	2020-04-08 20:40:52.048491620 -0500
 @@ -2864,17 +2864,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Tamaño predeterminado:"
@@ -680,7 +680,7 @@ diff '--exclude=.git' -urN a/po/es.po b/po/es.po
  #~ msgstr "No existe el perfil «%s», usando el perfil predeterminado\n"
 diff '--exclude=.git' -urN a/po/et.po b/po/et.po
 --- a/po/et.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/et.po	2020-03-22 05:29:57.872676575 -0500
++++ b/po/et.po	2020-04-08 20:40:52.048491620 -0500
 @@ -1747,3 +1747,6 @@
  
  #~ msgid "Choose base profile"
@@ -690,7 +690,7 @@ diff '--exclude=.git' -urN a/po/et.po b/po/et.po
 +msgstr "Läbipaistev taust"
 diff '--exclude=.git' -urN a/po/eu.po b/po/eu.po
 --- a/po/eu.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/eu.po	2020-03-22 05:29:57.872676575 -0500
++++ b/po/eu.po	2020-04-08 20:40:52.048491620 -0500
 @@ -2306,3 +2306,15 @@
  
  #~ msgid "_Detach Tab"
@@ -709,7 +709,7 @@ diff '--exclude=.git' -urN a/po/eu.po b/po/eu.po
 +msgstr "Atzeko plano gardena"
 diff '--exclude=.git' -urN a/po/fa.po b/po/fa.po
 --- a/po/fa.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/fa.po	2020-03-22 05:29:57.873676570 -0500
++++ b/po/fa.po	2020-04-08 20:40:52.048491620 -0500
 @@ -2716,8 +2716,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "استفاده از اندازه‌ی _سفارشی پایانه‌ی پیش‌فرض"
@@ -745,7 +745,7 @@ diff '--exclude=.git' -urN a/po/fa.po b/po/fa.po
 +msgstr "پس‌زمینه‌ی شفاف"
 diff '--exclude=.git' -urN a/po/fi.po b/po/fi.po
 --- a/po/fi.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/fi.po	2020-03-22 05:29:57.873676570 -0500
++++ b/po/fi.po	2020-04-08 20:40:52.048491620 -0500
 @@ -2724,9 +2724,21 @@
  #~ msgid "_Update login records when command is launched"
  #~ msgstr "_Päivitä kirjautumistallenne kun komento käynnistetään"
@@ -770,7 +770,7 @@ diff '--exclude=.git' -urN a/po/fi.po b/po/fi.po
 +msgstr "Aseta otsikko"
 diff '--exclude=.git' -urN a/po/fr.po b/po/fr.po
 --- a/po/fr.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/fr.po	2020-03-22 05:29:57.873676570 -0500
++++ b/po/fr.po	2020-04-08 20:40:52.048491620 -0500
 @@ -2485,3 +2485,15 @@
  
  #~ msgid "_Detach Tab"
@@ -789,7 +789,7 @@ diff '--exclude=.git' -urN a/po/fr.po b/po/fr.po
 +msgstr "Définir le titre"
 diff '--exclude=.git' -urN a/po/fur.po b/po/fur.po
 --- a/po/fur.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/fur.po	2020-03-22 05:29:57.873676570 -0500
++++ b/po/fur.po	2020-04-08 20:40:52.049491615 -0500
 @@ -466,6 +466,10 @@
  msgid "Which encoding to use"
  msgstr "Codifiche di doprâ"
@@ -824,7 +824,7 @@ diff '--exclude=.git' -urN a/po/fur.po b/po/fur.po
  #~ "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
 diff '--exclude=.git' -urN a/po/ga.po b/po/ga.po
 --- a/po/ga.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ga.po	2020-03-22 05:29:57.873676570 -0500
++++ b/po/ga.po	2020-04-08 20:40:52.049491615 -0500
 @@ -1925,3 +1925,6 @@
  #: ../src/terminal-window.c:3582
  msgid "C_lose Terminal"
@@ -834,7 +834,7 @@ diff '--exclude=.git' -urN a/po/ga.po b/po/ga.po
 +msgstr "Cúlra trédhearcach"
 diff '--exclude=.git' -urN a/po/gl.po b/po/gl.po
 --- a/po/gl.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/gl.po	2020-03-22 05:29:57.873676570 -0500
++++ b/po/gl.po	2020-04-08 20:40:52.049491615 -0500
 @@ -2418,3 +2418,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -853,7 +853,7 @@ diff '--exclude=.git' -urN a/po/gl.po b/po/gl.po
 +msgstr "Fondo transparente"
 diff '--exclude=.git' -urN a/po/gu.po b/po/gu.po
 --- a/po/gu.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/gu.po	2020-03-22 05:29:57.874676566 -0500
++++ b/po/gu.po	2020-04-08 20:40:52.049491615 -0500
 @@ -2155,8 +2155,8 @@
  #~ msgid "Default size:"
  #~ msgstr "મૂળભૂત માપ:"
@@ -900,7 +900,7 @@ diff '--exclude=.git' -urN a/po/gu.po b/po/gu.po
  #~ msgstr "\"%s\" જેવી કોઈ રૂપરેખા નથી, મૂળભૂત રૂપરેખા વાપરી રહ્યા છે\n"
 diff '--exclude=.git' -urN a/po/he.po b/po/he.po
 --- a/po/he.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/he.po	2020-03-22 05:29:57.874676566 -0500
++++ b/po/he.po	2020-04-08 20:40:52.049491615 -0500
 @@ -2333,17 +2333,17 @@
  #~ msgid "Default size:"
  #~ msgstr "גודל בררת מחדל:"
@@ -938,7 +938,7 @@ diff '--exclude=.git' -urN a/po/he.po b/po/he.po
  #~ msgstr "No such profile \"%s\", using default profile\n"
 diff '--exclude=.git' -urN a/po/hi.po b/po/hi.po
 --- a/po/hi.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/hi.po	2020-03-22 05:29:57.874676566 -0500
++++ b/po/hi.po	2020-04-08 20:40:52.050491611 -0500
 @@ -2267,9 +2267,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "कस्टम डिफ़ॉल्ट टर्मिनल आकार का उपयोग करें (_z)"
@@ -985,8 +985,8 @@ diff '--exclude=.git' -urN a/po/hi.po b/po/hi.po
  #~ msgid "S/Key Challenge Response"
  #~ msgstr "एस/कुंजी चैलेंज प्रतिक्रिया"
 diff '--exclude=.git' -urN a/po/hr.po b/po/hr.po
---- a/po/hr.po	2020-03-05 16:08:12.000000000 -0600
-+++ b/po/hr.po	2020-03-22 05:29:57.874676566 -0500
+--- a/po/hr.po	2020-03-10 16:41:55.000000000 -0500
++++ b/po/hr.po	2020-04-08 20:40:52.050491611 -0500
 @@ -2710,3 +2710,13 @@
  
  #~ msgid "Use transparency from system theme"
@@ -1003,7 +1003,7 @@ diff '--exclude=.git' -urN a/po/hr.po b/po/hr.po
 +msgstr "Postavi naslov"
 diff '--exclude=.git' -urN a/po/hu.po b/po/hu.po
 --- a/po/hu.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/hu.po	2020-03-22 05:29:57.874676566 -0500
++++ b/po/hu.po	2020-04-08 20:40:52.050491611 -0500
 @@ -2410,3 +2410,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -1022,7 +1022,7 @@ diff '--exclude=.git' -urN a/po/hu.po b/po/hu.po
 +msgstr "Áttetsző háttér"
 diff '--exclude=.git' -urN a/po/hy.po b/po/hy.po
 --- a/po/hy.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/hy.po	2020-03-22 05:29:57.875676561 -0500
++++ b/po/hy.po	2020-04-08 20:40:52.050491611 -0500
 @@ -757,8 +757,8 @@
  msgstr ""
  
@@ -1047,7 +1047,7 @@ diff '--exclude=.git' -urN a/po/hy.po b/po/hy.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/id.po b/po/id.po
 --- a/po/id.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/id.po	2020-03-22 05:29:57.875676561 -0500
++++ b/po/id.po	2020-04-08 20:40:52.050491611 -0500
 @@ -2415,3 +2415,15 @@
  
  #~ msgid "_Detach Tab"
@@ -1066,7 +1066,7 @@ diff '--exclude=.git' -urN a/po/id.po b/po/id.po
 +msgstr "Atur Judul"
 diff '--exclude=.git' -urN a/po/it.po b/po/it.po
 --- a/po/it.po	2020-03-05 16:08:12.000000000 -0600
-+++ b/po/it.po	2020-03-22 05:29:57.875676561 -0500
++++ b/po/it.po	2020-04-08 20:40:52.051491607 -0500
 @@ -2434,3 +2434,15 @@
  #: src/terminal-window.c:3224
  msgid "C_lose Window"
@@ -1085,7 +1085,7 @@ diff '--exclude=.git' -urN a/po/it.po b/po/it.po
 +msgstr "Imposta titolo"
 diff '--exclude=.git' -urN a/po/ja.po b/po/ja.po
 --- a/po/ja.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ja.po	2020-03-22 05:29:57.875676561 -0500
++++ b/po/ja.po	2020-04-08 20:40:52.051491607 -0500
 @@ -2481,3 +2481,15 @@
  
  #~ msgid "_Incremental Search…"
@@ -1103,10 +1103,10 @@ diff '--exclude=.git' -urN a/po/ja.po b/po/ja.po
 +msgid "Set Title"
 +msgstr "タイトルを設定する"
 diff '--exclude=.git' -urN a/po/ka.po b/po/ka.po
---- a/po/ka.po	2020-03-05 16:09:14.000000000 -0600
-+++ b/po/ka.po	2020-03-22 05:29:57.875676561 -0500
+--- a/po/ka.po	2020-03-15 14:40:38.000000000 -0500
++++ b/po/ka.po	2020-04-08 20:40:52.051491607 -0500
 @@ -219,8 +219,8 @@
- msgstr "b>ფონი</b>"
+ msgstr "<b>ფონი</b>"
  
  #: ../src/gnome-terminal.glade2.h:3
 -msgid "<b>Command</b>"
@@ -1127,7 +1127,7 @@ diff '--exclude=.git' -urN a/po/ka.po b/po/ka.po
  #: ../src/gnome-terminal.glade2.h:87
 diff '--exclude=.git' -urN a/po/kk.po b/po/kk.po
 --- a/po/kk.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/kk.po	2020-03-22 05:29:57.876676556 -0500
++++ b/po/kk.po	2020-04-08 20:40:52.051491607 -0500
 @@ -2557,3 +2557,15 @@
  
  #~ msgid "Be quiet"
@@ -1146,7 +1146,7 @@ diff '--exclude=.git' -urN a/po/kk.po b/po/kk.po
 +msgstr "Атауын орнату"
 diff '--exclude=.git' -urN a/po/km.po b/po/km.po
 --- a/po/km.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/km.po	2020-03-22 05:29:57.876676556 -0500
++++ b/po/km.po	2020-04-08 20:40:52.051491607 -0500
 @@ -2909,8 +2909,8 @@
  #~ msgid "Background image _scrolls"
  #~ msgstr "រមូរ​រូបភាព​ផ្ទៃខាងក្រោយ"
@@ -1160,7 +1160,7 @@ diff '--exclude=.git' -urN a/po/km.po b/po/km.po
  #~ msgstr "ដាក់​ស្រមោល​ផ្ទៃខាងក្រោយ​ថ្លា ឬ​ផ្ទៃខាងក្រោយ​​រូបភាព ៖"
 diff '--exclude=.git' -urN a/po/kn.po b/po/kn.po
 --- a/po/kn.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/kn.po	2020-03-22 05:29:57.876676556 -0500
++++ b/po/kn.po	2020-04-08 20:40:52.052491603 -0500
 @@ -2261,8 +2261,8 @@
  #~ msgid "Use custom default terminal si_ze"
  #~ msgstr "ಅಗತ್ಯಾನುಗುಣ ಆದೇಶತೆರೆ ಗಾತ್ರವನ್ನು ಬಳಸು (_z)"
@@ -1196,7 +1196,7 @@ diff '--exclude=.git' -urN a/po/kn.po b/po/kn.po
 +msgstr "ಪಾರದರ್ಶಕ ಹಿನ್ನಲೆ"
 diff '--exclude=.git' -urN a/po/ko.po b/po/ko.po
 --- a/po/ko.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ko.po	2020-03-22 05:29:57.876676556 -0500
++++ b/po/ko.po	2020-04-08 20:40:52.052491603 -0500
 @@ -2445,3 +2445,15 @@
  
  #~ msgid "Verbose output"
@@ -1215,7 +1215,7 @@ diff '--exclude=.git' -urN a/po/ko.po b/po/ko.po
 +msgstr "제목 설정"
 diff '--exclude=.git' -urN a/po/ku.po b/po/ku.po
 --- a/po/ku.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ku.po	2020-03-22 05:29:57.876676556 -0500
++++ b/po/ku.po	2020-04-08 20:40:52.052491603 -0500
 @@ -223,8 +223,8 @@
  msgstr "<b>Zemîn</b>"
  
@@ -1240,7 +1240,7 @@ diff '--exclude=.git' -urN a/po/ku.po b/po/ku.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/lt.po b/po/lt.po
 --- a/po/lt.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/lt.po	2020-03-22 05:29:57.876676556 -0500
++++ b/po/lt.po	2020-04-08 20:40:52.052491603 -0500
 @@ -2715,3 +2715,15 @@
  
  #~ msgid "Whether to use a dark theme variant"
@@ -1259,7 +1259,7 @@ diff '--exclude=.git' -urN a/po/lt.po b/po/lt.po
 +msgstr "Nustatyti pavadinimą"
 diff '--exclude=.git' -urN a/po/lv.po b/po/lv.po
 --- a/po/lv.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/lv.po	2020-03-22 05:29:57.877676552 -0500
++++ b/po/lv.po	2020-04-08 20:40:52.052491603 -0500
 @@ -2539,3 +2539,19 @@
  
  #~ msgid "_Add or Remove…"
@@ -1282,7 +1282,7 @@ diff '--exclude=.git' -urN a/po/lv.po b/po/lv.po
 +msgstr "Iestatīt nosaukumu"
 diff '--exclude=.git' -urN a/po/mai.po b/po/mai.po
 --- a/po/mai.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/mai.po	2020-03-22 05:29:57.877676552 -0500
++++ b/po/mai.po	2020-04-08 20:40:52.052491603 -0500
 @@ -1044,8 +1044,8 @@
  msgstr "आधार पर: (_B)"
  
@@ -1307,7 +1307,7 @@ diff '--exclude=.git' -urN a/po/mai.po b/po/mai.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/mg.po b/po/mg.po
 --- a/po/mg.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/mg.po	2020-03-22 05:29:57.877676552 -0500
++++ b/po/mg.po	2020-04-08 20:40:52.053491598 -0500
 @@ -220,8 +220,8 @@
  msgstr "<b>Afara</b>"
  
@@ -1332,7 +1332,7 @@ diff '--exclude=.git' -urN a/po/mg.po b/po/mg.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/mk.po b/po/mk.po
 --- a/po/mk.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/mk.po	2020-03-22 05:29:57.877676552 -0500
++++ b/po/mk.po	2020-04-08 20:40:52.053491598 -0500
 @@ -863,8 +863,8 @@
  msgstr "_Базирано на:"
  
@@ -1357,7 +1357,7 @@ diff '--exclude=.git' -urN a/po/mk.po b/po/mk.po
  #| msgid "_Text color:"
 diff '--exclude=.git' -urN a/po/ml.po b/po/ml.po
 --- a/po/ml.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ml.po	2020-03-22 05:29:57.877676552 -0500
++++ b/po/ml.po	2020-04-08 20:40:52.053491598 -0500
 @@ -2577,3 +2577,6 @@
  
  #~ msgid "_Unlimited"
@@ -1367,7 +1367,7 @@ diff '--exclude=.git' -urN a/po/ml.po b/po/ml.po
 +msgstr "പുറകിലുള്ളവ കാണാവുന്ന പശ്ചാത്തലം"
 diff '--exclude=.git' -urN a/po/mn.po b/po/mn.po
 --- a/po/mn.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/mn.po	2020-03-22 05:29:57.878676547 -0500
++++ b/po/mn.po	2020-04-08 20:40:52.053491598 -0500
 @@ -217,8 +217,8 @@
  msgstr "<b>Дэвсгэр</b>"
  
@@ -1392,7 +1392,7 @@ diff '--exclude=.git' -urN a/po/mn.po b/po/mn.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/mr.po b/po/mr.po
 --- a/po/mr.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/mr.po	2020-03-22 05:29:57.878676547 -0500
++++ b/po/mr.po	2020-04-08 20:40:52.054491594 -0500
 @@ -2219,8 +2219,8 @@
  #~ msgid "Default size:"
  #~ msgstr "पूर्वनिर्धारीत आकार:"
@@ -1439,7 +1439,7 @@ diff '--exclude=.git' -urN a/po/mr.po b/po/mr.po
  #~ msgstr "अकार्यान्वीतित"
 diff '--exclude=.git' -urN a/po/ms.po b/po/ms.po
 --- a/po/ms.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ms.po	2020-03-22 05:29:57.878676547 -0500
++++ b/po/ms.po	2020-04-08 20:40:52.054491594 -0500
 @@ -2717,8 +2717,8 @@
  #~ msgid "_Profile name:"
  #~ msgstr "_Nama profil: "
@@ -1453,7 +1453,7 @@ diff '--exclude=.git' -urN a/po/ms.po b/po/ms.po
  #~ msgstr "_Kemaskini rekod logmasuk bila arahan dilancarkan"
 diff '--exclude=.git' -urN a/po/nb.po b/po/nb.po
 --- a/po/nb.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/nb.po	2020-03-22 05:29:57.878676547 -0500
++++ b/po/nb.po	2020-04-08 20:40:52.054491594 -0500
 @@ -2261,3 +2261,15 @@
  #: ../src/terminal-window.c:3210
  msgid "C_lose Window"
@@ -1472,7 +1472,7 @@ diff '--exclude=.git' -urN a/po/nb.po b/po/nb.po
 +msgstr "Sett tittel"
 diff '--exclude=.git' -urN a/po/nds.po b/po/nds.po
 --- a/po/nds.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/nds.po	2020-03-22 05:29:57.878676547 -0500
++++ b/po/nds.po	2020-04-08 20:40:52.054491594 -0500
 @@ -748,8 +748,8 @@
  msgstr "_Steiht op:"
  
@@ -1497,7 +1497,7 @@ diff '--exclude=.git' -urN a/po/nds.po b/po/nds.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/ne.po b/po/ne.po
 --- a/po/ne.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ne.po	2020-03-22 05:29:57.879676542 -0500
++++ b/po/ne.po	2020-04-08 20:40:52.054491594 -0500
 @@ -2398,8 +2398,8 @@
  #~ msgid "_None (use solid color)"
  #~ msgstr "कुनै पनि होइन (एउटै रङ प्रयोग गर्नुहोस्)"
@@ -1533,7 +1533,7 @@ diff '--exclude=.git' -urN a/po/ne.po b/po/ne.po
  #~ "text/plain dropped on terminal had wrong format (%d) or length (%d)\n"
 diff '--exclude=.git' -urN a/po/nl.po b/po/nl.po
 --- a/po/nl.po	2020-03-05 16:09:14.000000000 -0600
-+++ b/po/nl.po	2020-03-22 05:29:57.879676542 -0500
++++ b/po/nl.po	2020-04-08 20:40:52.055491590 -0500
 @@ -2747,3 +2747,15 @@
  
  #~ msgid "_Add or Remove…"
@@ -1552,7 +1552,7 @@ diff '--exclude=.git' -urN a/po/nl.po b/po/nl.po
 +msgstr "Transparante achtergrond"
 diff '--exclude=.git' -urN a/po/nn.po b/po/nn.po
 --- a/po/nn.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/nn.po	2020-03-22 05:29:57.879676542 -0500
++++ b/po/nn.po	2020-04-08 20:40:52.055491590 -0500
 @@ -1149,8 +1149,8 @@
  msgstr "_Tuft på:"
  
@@ -1577,7 +1577,7 @@ diff '--exclude=.git' -urN a/po/nn.po b/po/nn.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/oc.po b/po/oc.po
 --- a/po/oc.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/oc.po	2020-03-22 05:29:57.879676542 -0500
++++ b/po/oc.po	2020-04-08 20:40:52.055491590 -0500
 @@ -2944,8 +2944,8 @@
  #~ msgid "Save as..."
  #~ msgstr "Enregistrar jos..."
@@ -1613,7 +1613,7 @@ diff '--exclude=.git' -urN a/po/oc.po b/po/oc.po
  #~ "A subset of possible encodings are presented in the Encoding submenu. "
 diff '--exclude=.git' -urN a/po/or.po b/po/or.po
 --- a/po/or.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/or.po	2020-03-22 05:29:57.880676538 -0500
++++ b/po/or.po	2020-04-08 20:40:52.055491590 -0500
 @@ -2705,8 +2705,8 @@
  #~ msgid "Background image _scrolls"
  #~ msgstr "ପୃଷ୍ଠଭୂମି ଚିତ୍ର ସ୍କ୍ରୋଲଗୁଡିକ (_s)"
@@ -1627,7 +1627,7 @@ diff '--exclude=.git' -urN a/po/or.po b/po/or.po
  #~ msgstr "ଛାୟା ସ୍ବଚ୍ଛ କିମ୍ବା ଚିତ୍ର ପୃଷ୍ଠଭୂମି (_h):"
 diff '--exclude=.git' -urN a/po/pa.po b/po/pa.po
 --- a/po/pa.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/pa.po	2020-03-22 05:29:57.880676538 -0500
++++ b/po/pa.po	2020-04-08 20:40:52.055491590 -0500
 @@ -2718,10 +2718,9 @@
  #~ msgid "GNOME Terminal Client"
  #~ msgstr "ਗਨੋਮ ਟਰਮੀਨਲ ਕਲਾਇਟ"
@@ -1682,7 +1682,7 @@ diff '--exclude=.git' -urN a/po/pa.po b/po/pa.po
  #~ msgstr "S/ਸਵਿੱਚ ਚੈਲੰਜ਼ ਜਵਾਬ"
 diff '--exclude=.git' -urN a/po/ps.po b/po/ps.po
 --- a/po/ps.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ps.po	2020-03-22 05:29:57.880676538 -0500
++++ b/po/ps.po	2020-04-08 20:40:52.056491586 -0500
 @@ -810,8 +810,8 @@
  msgstr ":پر بنسټ د_"
  
@@ -1707,7 +1707,7 @@ diff '--exclude=.git' -urN a/po/ps.po b/po/ps.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/pt.po b/po/pt.po
 --- a/po/pt.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/pt.po	2020-03-22 05:29:57.880676538 -0500
++++ b/po/pt.po	2020-04-08 20:40:52.056491586 -0500
 @@ -2360,11 +2360,11 @@
  #~ msgid "Default size:"
  #~ msgstr "Tamanho predefinido:"
@@ -1748,7 +1748,7 @@ diff '--exclude=.git' -urN a/po/pt.po b/po/pt.po
  #~ msgstr "Transparente som_breado ou imagem de fundo:"
 diff '--exclude=.git' -urN a/po/pt_BR.po b/po/pt_BR.po
 --- a/po/pt_BR.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/pt_BR.po	2020-03-22 05:29:57.880676538 -0500
++++ b/po/pt_BR.po	2020-04-08 20:40:52.056491586 -0500
 @@ -2831,17 +2831,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Tamanho padrão:"
@@ -1781,9 +1781,9 @@ diff '--exclude=.git' -urN a/po/pt_BR.po b/po/pt_BR.po
 +msgid "Transparent background"
 +msgstr "Fundo transparente"
 diff '--exclude=.git' -urN a/po/ro.po b/po/ro.po
---- a/po/ro.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ro.po	2020-03-22 05:29:57.881676533 -0500
-@@ -3376,8 +3376,8 @@
+--- a/po/ro.po	2020-03-27 14:44:24.000000000 -0500
++++ b/po/ro.po	2020-04-08 20:40:52.056491586 -0500
+@@ -3484,8 +3484,8 @@
  #~ msgid "_Solid color"
  #~ msgstr "Culoare _solidă"
  
@@ -1796,7 +1796,7 @@ diff '--exclude=.git' -urN a/po/ro.po b/po/ro.po
  #~ msgstr "_Neliminat"
 diff '--exclude=.git' -urN a/po/ru.po b/po/ru.po
 --- a/po/ru.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ru.po	2020-03-22 05:29:57.881676533 -0500
++++ b/po/ru.po	2020-04-08 20:40:52.057491581 -0500
 @@ -2552,3 +2552,19 @@
  
  #~ msgid "_Add or Remove…"
@@ -1819,7 +1819,7 @@ diff '--exclude=.git' -urN a/po/ru.po b/po/ru.po
 +msgstr "Установить заголовок"
 diff '--exclude=.git' -urN a/po/rw.po b/po/rw.po
 --- a/po/rw.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/rw.po	2020-03-22 05:29:57.881676533 -0500
++++ b/po/rw.po	2020-04-08 20:40:52.057491581 -0500
 @@ -749,7 +749,7 @@
  
  #: ../src/gnome-terminal.glade2.h:102
@@ -1839,7 +1839,7 @@ diff '--exclude=.git' -urN a/po/rw.po b/po/rw.po
  
 diff '--exclude=.git' -urN a/po/si.po b/po/si.po
 --- a/po/si.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/si.po	2020-03-22 05:29:57.881676533 -0500
++++ b/po/si.po	2020-04-08 20:40:52.057491581 -0500
 @@ -218,8 +218,8 @@
  msgstr "<b>පසුබිම</b>"
  
@@ -1863,9 +1863,9 @@ diff '--exclude=.git' -urN a/po/si.po b/po/si.po
  #: ../src/gnome-terminal.glade2.h:87
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/sk.po b/po/sk.po
---- a/po/sk.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/sk.po	2020-03-22 05:29:57.881676533 -0500
-@@ -2959,3 +2959,15 @@
+--- a/po/sk.po	2020-03-27 14:44:24.000000000 -0500
++++ b/po/sk.po	2020-04-08 20:40:52.057491581 -0500
+@@ -3048,3 +3048,15 @@
  #~ "\n"
  #~ "Viac informácii o jednotlivých príkazoch získate pomocou „%s PRÍKAZ --"
  #~ "help“.\n"
@@ -1883,7 +1883,7 @@ diff '--exclude=.git' -urN a/po/sk.po b/po/sk.po
 +msgstr "Nastaviť titulok"
 diff '--exclude=.git' -urN a/po/sl.po b/po/sl.po
 --- a/po/sl.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/sl.po	2020-03-22 05:29:57.882676528 -0500
++++ b/po/sl.po	2020-04-08 20:40:52.057491581 -0500
 @@ -2699,17 +2699,17 @@
  #~ msgid "Default size:"
  #~ msgstr "Privzeta velikost:"
@@ -1917,7 +1917,7 @@ diff '--exclude=.git' -urN a/po/sl.po b/po/sl.po
 +msgstr "Prosojno ozadje"
 diff '--exclude=.git' -urN a/po/sq.po b/po/sq.po
 --- a/po/sq.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/sq.po	2020-03-22 05:29:57.882676528 -0500
++++ b/po/sq.po	2020-04-08 20:40:52.058491577 -0500
 @@ -225,8 +225,8 @@
  msgstr "<b>Sfondi</b>"
  
@@ -1942,7 +1942,7 @@ diff '--exclude=.git' -urN a/po/sq.po b/po/sq.po
  msgid "_Update login records when command is launched"
 diff '--exclude=.git' -urN a/po/sr.po b/po/sr.po
 --- a/po/sr.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/sr.po	2020-03-22 05:29:57.882676528 -0500
++++ b/po/sr.po	2020-04-08 20:40:52.058491577 -0500
 @@ -2719,10 +2719,9 @@
  #~ msgid "GNOME Terminal Client"
  #~ msgstr "Клијент Гномовог терминала"
@@ -1993,7 +1993,7 @@ diff '--exclude=.git' -urN a/po/sr.po b/po/sr.po
 +msgstr "Провидна позадина"
 diff '--exclude=.git' -urN a/po/sr@latin.po b/po/sr@latin.po
 --- a/po/sr@latin.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/sr@latin.po	2020-03-22 05:29:57.882676528 -0500
++++ b/po/sr@latin.po	2020-04-08 20:40:52.058491577 -0500
 @@ -2576,10 +2576,9 @@
  #~ msgid "GNOME Terminal Client"
  #~ msgstr "Klijent Gnomovog terminala"
@@ -2044,7 +2044,7 @@ diff '--exclude=.git' -urN a/po/sr@latin.po b/po/sr@latin.po
 +msgstr "Providna pozadina"
 diff '--exclude=.git' -urN a/po/sv.po b/po/sv.po
 --- a/po/sv.po	2020-03-05 16:08:12.000000000 -0600
-+++ b/po/sv.po	2020-03-22 05:29:57.882676528 -0500
++++ b/po/sv.po	2020-04-08 20:40:52.058491577 -0500
 @@ -2710,5 +2710,17 @@
  #~ msgid "Unknown completion request for \"%s\""
  #~ msgstr "Okänd kompletteringsbegäran för \"%s\""
@@ -2065,7 +2065,7 @@ diff '--exclude=.git' -urN a/po/sv.po b/po/sv.po
 +msgstr "A_nge titel..."
 diff '--exclude=.git' -urN a/po/ta.po b/po/ta.po
 --- a/po/ta.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ta.po	2020-03-22 05:29:57.883676524 -0500
++++ b/po/ta.po	2020-04-08 20:40:52.058491577 -0500
 @@ -2171,10 +2171,9 @@
  #~ msgid "Show server options"
  #~ msgstr "சேவையக தேர்வுகளை காட்டுக"
@@ -2131,7 +2131,7 @@ diff '--exclude=.git' -urN a/po/ta.po b/po/ta.po
  #~ msgstr "\"%s\" என்ற வரியுரு கிடையாது, முன்னிருப்பு வரியுரு பயன்படுத்தப்படும்\n"
 diff '--exclude=.git' -urN a/po/te.po b/po/te.po
 --- a/po/te.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/te.po	2020-03-22 05:29:57.883676524 -0500
++++ b/po/te.po	2020-04-08 20:40:52.059491573 -0500
 @@ -2055,10 +2055,9 @@
  #~ msgid "Show server options"
  #~ msgstr "సేవకము ఐచ్చికాలను చూపించు"
@@ -2194,7 +2194,7 @@ diff '--exclude=.git' -urN a/po/te.po b/po/te.po
  #~ msgstr "పారదర్శకంగా మారు లేదా చిత్రము బ్యాక్‌గ్రౌండ్ కు మారు(_h):"
 diff '--exclude=.git' -urN a/po/tg.po b/po/tg.po
 --- a/po/tg.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/tg.po	2020-03-22 05:29:57.883676524 -0500
++++ b/po/tg.po	2020-04-08 20:40:52.059491573 -0500
 @@ -2158,23 +2158,23 @@
  #~ msgid "Default size:"
  #~ msgstr "Андозаи пешфарз:"
@@ -2229,7 +2229,7 @@ diff '--exclude=.git' -urN a/po/tg.po b/po/tg.po
  #~ msgstr "_Варақаи навбатӣ"
 diff '--exclude=.git' -urN a/po/th.po b/po/th.po
 --- a/po/th.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/th.po	2020-03-22 05:29:57.883676524 -0500
++++ b/po/th.po	2020-04-08 20:40:52.059491573 -0500
 @@ -2308,23 +2308,23 @@
  #~ msgid "Default size:"
  #~ msgstr "ขนาดปริยาย:"
@@ -2275,7 +2275,7 @@ diff '--exclude=.git' -urN a/po/th.po b/po/th.po
  #~ "You already have a profile called “%s”. Do you want to create another "
 diff '--exclude=.git' -urN a/po/tr.po b/po/tr.po
 --- a/po/tr.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/tr.po	2020-03-22 05:29:57.884676519 -0500
++++ b/po/tr.po	2020-04-08 20:40:52.059491573 -0500
 @@ -2703,3 +2703,15 @@
  
  #~ msgid "_Same as text color"
@@ -2294,7 +2294,7 @@ diff '--exclude=.git' -urN a/po/tr.po b/po/tr.po
 +msgstr "_Başlığı Ata..."
 diff '--exclude=.git' -urN a/po/ug.po b/po/ug.po
 --- a/po/ug.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/ug.po	2020-03-22 05:29:57.884676519 -0500
++++ b/po/ug.po	2020-04-08 20:40:52.059491573 -0500
 @@ -2616,8 +2616,8 @@
  #~ msgid "_Solid color"
  #~ msgstr "ساپ رەڭ(_S)"
@@ -2307,56 +2307,30 @@ diff '--exclude=.git' -urN a/po/ug.po b/po/ug.po
  #~ msgid ""
  #~ "You already have a profile called “%s”. Do you want to create another "
 diff '--exclude=.git' -urN a/po/uk.po b/po/uk.po
---- a/po/uk.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/uk.po	2020-03-22 05:29:57.884676519 -0500
-@@ -2647,11 +2647,11 @@
- #~ msgid "Default size:"
- #~ msgstr "Типовий розмір:"
- 
--#~ msgid "Title"
--#~ msgstr "Заголовок"
+--- a/po/uk.po	2020-03-15 14:40:38.000000000 -0500
++++ b/po/uk.po	2020-04-08 20:40:52.060491569 -0500
+@@ -2399,3 +2399,18 @@
+ #: src/terminal-window.c:3224
+ msgid "C_lose Window"
+ msgstr "Закр_ити вікно"
++
 +msgid "Title"
 +msgstr "Заголовок"
- 
--#~ msgid "_Title:"
--#~ msgstr "За_головок:"
++
 +msgid "_Title:"
 +msgstr "За_головок:"
- 
- #~ msgid "Title and Command"
- #~ msgstr "Заголовок та команда"
-@@ -2659,12 +2659,15 @@
- #~ msgid "_Unlimited"
- #~ msgstr "_Нескінченно"
- 
--#~ msgid "Set Title"
--#~ msgstr "Встановлення заголовка"
++
 +msgid "Set Title"
 +msgstr "Встановлення заголовка"
- 
- #~ msgid "Current Locale"
- #~ msgstr "Теперішня локаль"
- 
++
 +msgid "_Set Title…"
 +msgstr "_Встановити заголовок…"
 +
- #~ msgid "What to do with dynamic title"
- #~ msgstr "Що робити з динамічним заголовком"
- 
-@@ -3398,8 +3401,8 @@
- #~ msgid "_Solid color"
- #~ msgstr "_Суцільний колір"
- 
--#~ msgid "_Transparent background"
--#~ msgstr "П_розоре тло"
 +msgid "Transparent background"
 +msgstr "Прозоре тло"
- 
- #~ msgid "Switch to Tab 3"
- #~ msgstr "До вкладки 3"
 diff '--exclude=.git' -urN a/po/vi.po b/po/vi.po
 --- a/po/vi.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/vi.po	2020-03-22 05:29:57.884676519 -0500
++++ b/po/vi.po	2020-04-08 20:40:52.060491569 -0500
 @@ -2703,8 +2703,8 @@
  #~ msgid "Default size:"
  #~ msgstr "Cỡ mặc định:"
@@ -2398,8 +2372,8 @@ diff '--exclude=.git' -urN a/po/vi.po b/po/vi.po
 +msgid "Transparent background"
 +msgstr "Nền trong suốt"
 diff '--exclude=.git' -urN a/po/wa.po b/po/wa.po
---- a/po/wa.po	2020-03-05 16:09:14.000000000 -0600
-+++ b/po/wa.po	2020-03-22 05:29:57.884676519 -0500
+--- a/po/wa.po	2020-03-15 14:40:38.000000000 -0500
++++ b/po/wa.po	2020-04-08 20:40:52.060491569 -0500
 @@ -224,8 +224,8 @@
  msgstr "<b>Fond</b>"
  
@@ -2434,8 +2408,8 @@ diff '--exclude=.git' -urN a/po/wa.po b/po/wa.po
  #: ../src/terminal-window.c:1020
  msgid "Set _Character Encoding"
 diff '--exclude=.git' -urN a/po/xh.po b/po/xh.po
---- a/po/xh.po	2020-03-05 16:09:14.000000000 -0600
-+++ b/po/xh.po	2020-03-22 05:29:57.885676514 -0500
+--- a/po/xh.po	2020-03-15 14:40:38.000000000 -0500
++++ b/po/xh.po	2020-04-08 20:40:52.060491569 -0500
 @@ -217,8 +217,8 @@
  msgstr "<b>Okungasemva</b>"
  
@@ -2471,7 +2445,7 @@ diff '--exclude=.git' -urN a/po/xh.po b/po/xh.po
  msgid "Set _Character Encoding"
 diff '--exclude=.git' -urN a/po/zh_CN.po b/po/zh_CN.po
 --- a/po/zh_CN.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/zh_CN.po	2020-03-22 05:29:57.885676514 -0500
++++ b/po/zh_CN.po	2020-04-08 20:40:52.061491564 -0500
 @@ -2599,17 +2599,17 @@
  #~ msgid "Default size:"
  #~ msgstr "默认大小："
@@ -2505,7 +2479,7 @@ diff '--exclude=.git' -urN a/po/zh_CN.po b/po/zh_CN.po
 +msgstr "透明背景"
 diff '--exclude=.git' -urN a/po/zh_HK.po b/po/zh_HK.po
 --- a/po/zh_HK.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/zh_HK.po	2020-03-22 05:29:57.885676514 -0500
++++ b/po/zh_HK.po	2020-04-08 20:40:52.061491564 -0500
 @@ -2114,17 +2114,17 @@
  #~ msgid "Default size:"
  #~ msgstr "預設大小："
@@ -2539,7 +2513,7 @@ diff '--exclude=.git' -urN a/po/zh_HK.po b/po/zh_HK.po
 +msgstr "透明背景"
 diff '--exclude=.git' -urN a/po/zh_TW.po b/po/zh_TW.po
 --- a/po/zh_TW.po	2020-03-05 15:43:40.000000000 -0600
-+++ b/po/zh_TW.po	2020-03-22 05:29:57.885676514 -0500
++++ b/po/zh_TW.po	2020-04-08 20:40:52.061491564 -0500
 @@ -2710,17 +2710,17 @@
  #~ msgid "Default size:"
  #~ msgstr "預設大小："
@@ -2573,51 +2547,8 @@ diff '--exclude=.git' -urN a/po/zh_TW.po b/po/zh_TW.po
 +msgstr "透明背景"
 diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.Terminal.gschema.xml
 --- a/src/org.gnome.Terminal.gschema.xml	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/org.gnome.Terminal.gschema.xml	2020-03-22 05:29:57.888676500 -0500
-@@ -24,6 +24,13 @@
- -->
- <schemalist gettext-domain="gnome-terminal">
- 
-+  <enum id='org.gnome.Terminal.TitleMode'>
-+    <value nick='replace' value='0'/>
-+    <value nick='before' value='1'/>
-+    <value nick='after' value='2'/>
-+    <value nick='ignore' value='3'/>
-+  </enum>
-+
-    <enum id='org.gnome.Terminal.NewTerminalMode'>
-     <value nick='window' value='0'/>
-     <value nick='tab' value='1'/>
-@@ -204,6 +211,16 @@
-       <summary>Whether to perform Arabic shaping</summary>
-       <description>If true, shape Arabic text.</description>
-     </key>
-+    <key name="title-mode" enum="org.gnome.Terminal.TitleMode">
-+      <default>'replace'</default>
-+      <summary>What to do with dynamic title</summary>
-+      <description>If the application in the terminal sets the title (most typically people have their shell set up to do this), the dynamically-set title can erase the configured title, go before it, go after it, or replace it. The possible values are "replace", "before", "after", and "ignore".</description>
-+    </key>
-+    <key name="title" type="s">
-+      <default l10n="messages" context="title">'Terminal'</default>
-+      <summary>Title for terminal</summary>
-+      <description>Title to display for the terminal window or tab. This title may be replaced by or combined with the title set by the application inside the terminal, depending on the title_mode setting.</description>
-+    </key>
-     <key name="bold-is-bright" type="b">
-       <default>false</default>
-       <summary>Whether bold is also bright</summary>
-@@ -253,6 +270,11 @@
-       <summary>Whether to scroll to the bottom when there’s new output</summary>
-       <description>If true, whenever there’s new output the terminal will scroll to the bottom.</description>
-     </key>
-+    <key name="show-foreground-process-in-title" type="b">
-+      <default>true</default>
-+      <summary>Whether to show the current foreground process in the title</summary>
-+      <description>If true, the current foreground process will be shown in the window and tab titles.</description>
-+    </key>
-     <key name="exit-action" enum="org.gnome.Terminal.ExitAction">
-       <default>'close'</default>
-       <summary>What to do with the terminal when the child command exits</summary>
-@@ -344,6 +366,16 @@
++++ b/src/org.gnome.Terminal.gschema.xml	2020-04-08 20:40:52.041491649 -0500
+@@ -344,6 +344,16 @@
        <default>'narrow'</default>
        <summary>Whether ambiguous-width characters are narrow or wide when using UTF-8 encoding</summary>
      </key>
@@ -2634,20 +2565,9 @@ diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.
    </schema>
  
    <!-- Keybinding settings -->
-@@ -409,6 +441,10 @@
-       <default>'disabled'</default>
-       <summary>Keyboard shortcut to toggle the read-only state</summary>
-     </key>
-+    <key name="set-terminal-title" type="s">
-+      <default>'disabled'</default>
-+      <summary>Keyboard shortcut to set the terminal title</summary>
-+    </key>
-     <key name="reset" type="s">
-       <default>'disabled'</default>
-       <summary>Keyboard shortcut to reset the terminal</summary>
 diff '--exclude=.git' -urN a/src/preferences.ui b/src/preferences.ui
 --- a/src/preferences.ui	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/preferences.ui	2020-03-22 05:29:57.887676505 -0500
++++ b/src/preferences.ui	2020-04-08 20:40:52.041491649 -0500
 @@ -95,6 +95,11 @@
      <property name="step_increment">0.05</property>
      <property name="page_increment">0.25</property>
@@ -2709,415 +2629,10 @@ diff '--exclude=.git' -urN a/src/preferences.ui b/src/preferences.ui
                                        </object>
                                      </child>
                                    </object>
-@@ -1915,129 +1962,277 @@
-                             <property name="visible">True</property>
-                             <property name="can_focus">False</property>
-                             <property name="border_width">12</property>
--                            <property name="column_spacing">12</property>
--                            <property name="row_spacing">6</property>
--                            <child>
--                              <object class="GtkCheckButton" id="login-shell-checkbutton">
--                                <property name="label" translatable="yes">_Run command as a login shell</property>
--                                <property name="visible">True</property>
--                                <property name="can_focus">True</property>
--                                <property name="receives_default">False</property>
--                                <property name="use_underline">True</property>
--                                <property name="draw_indicator">True</property>
--                              </object>
--                              <packing>
--                                <property name="top_attach">0</property>
--                                <property name="left_attach">0</property>
--                                <property name="width">2</property>
--                              </packing>
--                            </child>
--                            <child>
--                              <object class="GtkCheckButton" id="use-custom-command-checkbutton">
--                                <property name="label" translatable="yes">Ru_n a custom command instead of my shell</property>
--                                <property name="visible">True</property>
--                                <property name="can_focus">True</property>
--                                <property name="receives_default">False</property>
--                                <property name="use_underline">True</property>
--                                <property name="draw_indicator">True</property>
--                              </object>
--                              <packing>
--                                <property name="top_attach">1</property>
--                                <property name="left_attach">0</property>
--                                <property name="width">2</property>
--                              </packing>
--                            </child>
--                            <child>
--                              <object class="GtkLabel" id="custom-command-entry-label">
--                                <property name="visible">True</property>
--                                <property name="can_focus">False</property>
--                                <property name="label" translatable="yes">Custom co_mmand:</property>
--                                <property name="use_underline">True</property>
--                                <property name="mnemonic_widget">custom-command-entry</property>
--                                <property name="xalign">0</property>
--                              </object>
--                              <packing>
--                                <property name="top_attach">2</property>
--                                <property name="left_attach">0</property>
--                              </packing>
--                            </child>
--                            <child>
--                              <object class="GtkEntry" id="custom-command-entry">
--                                <property name="visible">True</property>
--                                <property name="can_focus">True</property>
--                                <property name="hexpand">True</property>
--                                <property name="input_hints">GTK_INPUT_HINT_NO_EMOJI</property>
--                              </object>
--                              <packing>
--                                <property name="top_attach">2</property>
--                                <property name="left_attach">1</property>
--                              </packing>
--                            </child>
--                            <child>
--                              <object class="GtkLabel" id="preserve-working-directory-checkbutton-label">
--                                <property name="visible">True</property>
--                                <property name="can_focus">False</property>
--                                <property name="label" translatable="yes">_Preserve working directory:</property>
--                                <property name="use_underline">True</property>
--                                <property name="justify">center</property>
--                                <property name="mnemonic_widget">preserve-working-directory-combobox</property>
--                                <property name="xalign">0</property>
--                              </object>
--                              <packing>
--                                <property name="top_attach">3</property>
--                                <property name="left_attach">0</property>
--                              </packing>
--                            </child>
-+                            <property name="row_spacing">18</property>
-                             <child>
--                              <object class="GtkComboBox" id="preserve-working-directory-combobox">
-+                              <object class="GtkGrid">
-                                 <property name="visible">True</property>
-                                 <property name="can_focus">False</property>
--                                <property name="model">preserve-working-directory-model</property>
--                                <property name="focus_on_click">False</property>
--                                <property name="halign">start</property>
-+                                <property name="row_spacing">6</property>
-                                 <child>
--                                  <object class="GtkCellRendererText" id="preserve-working-directory-renderer"/>
--                                  <attributes>
--                                    <attribute name="text">0</attribute>
--                                  </attributes>
-+                                  <object class="GtkLabel">
-+                                    <property name="visible">True</property>
-+                                    <property name="can_focus">False</property>
-+                                    <property name="xalign">0</property>
-+                                    <property name="label" translatable="yes">Title</property>
-+                                    <attributes>
-+                                      <attribute name="weight" value="bold"/>
-+                                    </attributes>
-+                                  </object>
-+                                  <packing>
-+                                    <property name="top_attach">0</property>
-+                                    <property name="left_attach">0</property>
-+                                  </packing>
-+                                </child>
-+                                <child>
-+                                  <object class="GtkAlignment">
-+                                    <property name="visible">True</property>
-+                                    <property name="can_focus">False</property>
-+                                    <property name="left_padding">12</property>
-+                                    <child>
-+                                      <object class="GtkGrid">
-+                                        <property name="visible">True</property>
-+                                        <property name="can_focus">False</property>
-+                                        <property name="column_spacing">12</property>
-+                                        <property name="row_spacing">6</property>
-+                                        <child>
-+                                          <object class="GtkLabel" id="title-entry-label">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="xalign">0</property>
-+                                            <property name="label" translatable="yes">Initial _title:</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="mnemonic_widget">title-entry</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">0</property>
-+                                            <property name="left_attach">0</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkEntry" id="title-entry">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">True</property>
-+                                            <property name="hexpand">True</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">0</property>
-+                                            <property name="left_attach">1</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkLabel" id="title-mode-combobox-label">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="xalign">0</property>
-+                                            <property name="label" translatable="yes">When terminal commands set their o_wn titles:</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="mnemonic_widget">title-mode-combobox</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">1</property>
-+                                            <property name="left_attach">0</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkComboBox" id="title-mode-combobox">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="model">model2</property>
-+                                            <child>
-+                                              <object class="GtkCellRendererText"/>
-+                                              <attributes>
-+                                                <attribute name="text">0</attribute>
-+                                              </attributes>
-+                                            </child>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">1</property>
-+                                            <property name="left_attach">1</property>
-+                                          </packing>
-+                                        </child>
-+                                      </object>
-+                                    </child>
-+                                  </object>
-+                                  <packing>
-+                                    <property name="top_attach">1</property>
-+                                    <property name="left_attach">0</property>
-+                                    <property name="width">3</property>
-+                                  </packing>
-                                 </child>
-                               </object>
-                               <packing>
--                                <property name="top_attach">3</property>
--                                <property name="left_attach">1</property>
--                              </packing>
--                            </child>
--                            <child>
--                              <object class="GtkLabel" id="exit-action-combobox-label">
--                                <property name="visible">True</property>
--                                <property name="can_focus">False</property>
--                                <property name="label" translatable="yes">When command _exits:</property>
--                                <property name="use_underline">True</property>
--                                <property name="mnemonic_widget">exit-action-combobox</property>
--                                <property name="xalign">0</property>
--                              </object>
--                              <packing>
--                                <property name="top_attach">4</property>
-+                                <property name="top_attach">0</property>
-                                 <property name="left_attach">0</property>
-                               </packing>
-                             </child>
-                             <child>
--                              <object class="GtkComboBox" id="exit-action-combobox">
-+                              <object class="GtkGrid">
-                                 <property name="visible">True</property>
-                                 <property name="can_focus">False</property>
--                                <property name="model">model3</property>
--                                <property name="focus_on_click">False</property>
--                                <property name="halign">start</property>
-+                                <property name="column_spacing">12</property>
-+                                <property name="row_spacing">6</property>
-                                 <child>
--                                  <object class="GtkCellRendererText" id="renderer3"/>
--                                  <attributes>
--                                    <attribute name="text">0</attribute>
--                                  </attributes>
-+                                  <object class="GtkLabel">
-+                                    <property name="visible">True</property>
-+                                    <property name="can_focus">False</property>
-+                                    <property name="xalign">0</property>
-+                                    <property name="label" translatable="yes">Command</property>
-+                                    <attributes>
-+                                      <attribute name="weight" value="bold"/>
-+                                    </attributes>
-+                                  </object>
-+                                  <packing>
-+                                    <property name="top_attach">0</property>
-+                                    <property name="left_attach">0</property>
-+                                  </packing>
-+                                </child>
-+                                <child>
-+                                  <object class="GtkAlignment">
-+                                    <property name="visible">True</property>
-+                                    <property name="can_focus">False</property>
-+                                    <property name="left_padding">12</property>
-+                                    <child>
-+                                      <object class="GtkGrid">
-+                                        <property name="visible">True</property>
-+                                        <property name="can_focus">False</property>
-+                                        <property name="column_spacing">12</property>
-+                                        <property name="row_spacing">6</property>
-+                                        <child>
-+                                          <object class="GtkCheckButton" id="login-shell-checkbutton">
-+                                            <property name="label" translatable="yes">_Run command as a login shell</property>
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">True</property>
-+                                            <property name="receives_default">False</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="draw_indicator">True</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">0</property>
-+                                            <property name="left_attach">0</property>
-+                                            <property name="width">2</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkCheckButton" id="use-custom-command-checkbutton">
-+                                            <property name="label" translatable="yes">Ru_n a custom command instead of my shell</property>
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">True</property>
-+                                            <property name="receives_default">False</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="draw_indicator">True</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">1</property>
-+                                            <property name="left_attach">0</property>
-+                                            <property name="width">2</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkLabel" id="custom-command-entry-label">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="label" translatable="yes">Custom co_mmand:</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="mnemonic_widget">custom-command-entry</property>
-+                                            <property name="xalign">0</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">2</property>
-+                                            <property name="left_attach">0</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkEntry" id="custom-command-entry">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">True</property>
-+                                            <property name="hexpand">True</property>
-+                                            <property name="input_hints">GTK_INPUT_HINT_NO_EMOJI</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">2</property>
-+                                            <property name="left_attach">1</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkLabel" id="preserve-working-directory-checkbutton-label">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="label" translatable="yes">_Preserve working directory:</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="justify">center</property>
-+                                            <property name="mnemonic_widget">preserve-working-directory-combobox</property>
-+                                            <property name="xalign">0</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">3</property>
-+                                            <property name="left_attach">0</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkComboBox" id="preserve-working-directory-combobox">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="model">preserve-working-directory-model</property>
-+                                            <property name="focus_on_click">False</property>
-+                                            <property name="halign">start</property>
-+                                            <child>
-+                                              <object class="GtkCellRendererText" id="preserve-working-directory-renderer"/>
-+                                              <attributes>
-+                                                <attribute name="text">0</attribute>
-+                                              </attributes>
-+                                            </child>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">3</property>
-+                                            <property name="left_attach">1</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkLabel" id="exit-action-combobox-label">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="label" translatable="yes">When command _exits:</property>
-+                                            <property name="use_underline">True</property>
-+                                            <property name="mnemonic_widget">exit-action-combobox</property>
-+                                            <property name="xalign">0</property>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">4</property>
-+                                            <property name="left_attach">0</property>
-+                                          </packing>
-+                                        </child>
-+                                        <child>
-+                                          <object class="GtkComboBox" id="exit-action-combobox">
-+                                            <property name="visible">True</property>
-+                                            <property name="can_focus">False</property>
-+                                            <property name="model">model3</property>
-+                                            <property name="focus_on_click">False</property>
-+                                            <property name="halign">start</property>
-+                                            <child>
-+                                              <object class="GtkCellRendererText" id="renderer3"/>
-+                                              <attributes>
-+                                                <attribute name="text">0</attribute>
-+                                              </attributes>
-+                                            </child>
-+                                          </object>
-+                                          <packing>
-+                                            <property name="top_attach">4</property>
-+                                            <property name="left_attach">1</property>
-+                                          </packing>
-+                                        </child>
-+                                      </object>
-+                                    </child>
-+                                  </object>
-+                                  <packing>
-+                                    <property name="top_attach">1</property>
-+                                    <property name="left_attach">0</property>
-+                                    <property name="width">3</property>
-+                                  </packing>
-                                 </child>
-                               </object>
-                               <packing>
--                                <property name="top_attach">4</property>
--                                <property name="left_attach">1</property>
-+                                <property name="top_attach">1</property>
-+                                <property name="left_attach">0</property>
-                               </packing>
-                             </child>
-                           </object>
 diff '--exclude=.git' -urN a/src/profile-editor.c b/src/profile-editor.c
 --- a/src/profile-editor.c	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/profile-editor.c	2020-03-22 05:29:57.887676505 -0500
-@@ -1331,6 +1331,20 @@
-                                             (GSettingsBindSetMapping) enum_to_string,
-                                             terminal_preserve_working_directory_get_type, NULL);
- 
-+  profile_prefs_settings_bind (profile,
-+                               TERMINAL_PROFILE_TITLE_KEY,
-+                               gtk_builder_get_object (builder, "title-entry"),
-+                               "text",
-+                               G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
-+  profile_prefs_settings_bind_with_mapping (profile,
-+                                            TERMINAL_PROFILE_TITLE_MODE_KEY,
-+                                            gtk_builder_get_object (builder,
-+                                                                    "title-mode-combobox"),
-+                                            "active",
-+                                            G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET,
-+                                            (GSettingsBindGetMapping) string_to_enum,
-+                                            (GSettingsBindSetMapping) enum_to_string,
-+                                            terminal_title_mode_get_type, NULL);
-   profile_prefs_settings_bind (profile, TERMINAL_PROFILE_USE_CUSTOM_COMMAND_KEY,
-                                gtk_builder_get_object (builder,
-                                                        "use-custom-command-checkbutton"),
-@@ -1389,6 +1403,22 @@
++++ b/src/profile-editor.c	2020-04-08 20:40:52.041491649 -0500
+@@ -1389,6 +1389,22 @@
                                 w,
                                 "active-id",
                                 G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
@@ -3140,82 +2655,10 @@ diff '--exclude=.git' -urN a/src/profile-editor.c b/src/profile-editor.c
  }
  
  /* Called once per Preferences window, to destroy stuff that doesn't depend on the profile being edited */
-diff '--exclude=.git' -urN a/src/terminal-accels.c b/src/terminal-accels.c
---- a/src/terminal-accels.c	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-accels.c	2020-03-22 05:29:57.885676514 -0500
-@@ -76,6 +76,7 @@
- #define KEY_RESET               "reset"
- #define KEY_SAVE_CONTENTS       "save-contents"
- #define KEY_SELECT_ALL          "select-all"
-+#define KEY_SET_TERMINAL_TITLE  "set-terminal-title"
- #define KEY_TOGGLE_MENUBAR      "toggle-menubar"
- #define KEY_ZOOM_IN             "zoom-in"
- #define KEY_ZOOM_NORMAL         "zoom-normal"
-@@ -165,6 +166,7 @@
-   ENTRY (N_("Read-Only"),       KEY_READ_ONLY,          "read-only", NULL, NULL   ),
-   ENTRY (N_("Reset"),           KEY_RESET,              "reset",     "b",  "false"),
-   ENTRY (N_("Reset and Clear"), KEY_RESET_AND_CLEAR,    "reset",     "b",  "true" ),
-+  ENTRY (N_("Set Title"),       KEY_SET_TERMINAL_TITLE, "set-title", NULL, NULL   ),
- };
- 
- static KeyEntry tabs_entries[] = {
-diff '--exclude=.git' -urN a/src/terminal-debug.c b/src/terminal-debug.c
---- a/src/terminal-debug.c	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-debug.c	2020-03-22 05:29:57.865676608 -0500
-@@ -38,6 +38,7 @@
-     { "profile",       TERMINAL_DEBUG_PROFILE       },
-     { "settings-list", TERMINAL_DEBUG_SETTINGS_LIST },
-     { "search",        TERMINAL_DEBUG_SEARCH        },
-+    { "shell-command", TERMINAL_DEBUG_SHELL_COMMAND },
-   };
- 
-   _terminal_debug_flags = g_parse_debug_string (g_getenv ("GNOME_TERMINAL_DEBUG"),
-diff '--exclude=.git' -urN a/src/terminal-debug.h b/src/terminal-debug.h
---- a/src/terminal-debug.h	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-debug.h	2020-03-22 05:29:57.865676608 -0500
-@@ -34,7 +34,8 @@
-   TERMINAL_DEBUG_PROCESSES     = 1 << 6,
-   TERMINAL_DEBUG_PROFILE       = 1 << 7,
-   TERMINAL_DEBUG_SETTINGS_LIST = 1 << 8,
--  TERMINAL_DEBUG_SEARCH        = 1 << 9
-+  TERMINAL_DEBUG_SEARCH        = 1 << 9,
-+  TERMINAL_DEBUG_SHELL_COMMAND = 1 << 10,
- } TerminalDebugFlags;
- 
- void _terminal_debug_init(void);
-diff '--exclude=.git' -urN a/src/terminal-enums.h b/src/terminal-enums.h
---- a/src/terminal-enums.h	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-enums.h	2020-03-22 05:29:57.887676505 -0500
-@@ -36,6 +36,14 @@
- 
- typedef enum
- {
-+  TERMINAL_TITLE_REPLACE,
-+  TERMINAL_TITLE_BEFORE,
-+  TERMINAL_TITLE_AFTER,
-+  TERMINAL_TITLE_IGNORE
-+} TerminalTitleMode;
-+
-+typedef enum
-+{
-   TERMINAL_EXIT_CLOSE,
-   TERMINAL_EXIT_RESTART,
-   TERMINAL_EXIT_HOLD
 diff '--exclude=.git' -urN a/src/terminal-schemas.h b/src/terminal-schemas.h
 --- a/src/terminal-schemas.h	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-schemas.h	2020-03-22 05:29:57.888676500 -0500
-@@ -67,7 +67,10 @@
- #define TERMINAL_PROFILE_SCROLLBAR_POLICY_KEY           "scrollbar-policy"
- #define TERMINAL_PROFILE_SCROLL_ON_KEYSTROKE_KEY        "scroll-on-keystroke"
- #define TERMINAL_PROFILE_SCROLL_ON_OUTPUT_KEY           "scroll-on-output"
-+#define TERMINAL_PROFILE_SHOW_FOREGROUND_PROCESS_IN_TITLE "show-foreground-process-in-title"
- #define TERMINAL_PROFILE_TEXT_BLINK_MODE_KEY            "text-blink-mode"
-+#define TERMINAL_PROFILE_TITLE_MODE_KEY                 "title-mode"
-+#define TERMINAL_PROFILE_TITLE_KEY                      "title"
- #define TERMINAL_PROFILE_USE_CUSTOM_COMMAND_KEY         "use-custom-command"
- #define TERMINAL_PROFILE_USE_SKEY_KEY                   "use-skey"
- #define TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY            "use-system-font"
-@@ -75,6 +78,9 @@
++++ b/src/terminal-schemas.h	2020-04-08 20:40:52.041491649 -0500
+@@ -75,6 +75,9 @@
  #define TERMINAL_PROFILE_VISIBLE_NAME_KEY               "visible-name"
  #define TERMINAL_PROFILE_WORD_CHAR_EXCEPTIONS_KEY       "word-char-exceptions"
  
@@ -3226,36 +2669,9 @@ diff '--exclude=.git' -urN a/src/terminal-schemas.h b/src/terminal-schemas.h
  #define TERMINAL_SETTING_DEFAULT_SHOW_MENUBAR_KEY       "default-show-menubar"
  #define TERMINAL_SETTING_ENABLE_MENU_BAR_ACCEL_KEY      "menu-accelerator-enabled"
 diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
---- a/src/terminal-screen.c	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-screen.c	2020-03-22 05:29:57.889676495 -0500
-@@ -110,6 +110,17 @@
-   gboolean exec_on_realize;
-   guint idle_exec_source;
-   ExecData *exec_data;
-+
-+  gboolean application_title; /* title was set by an application */
-+  gboolean between_preexec_and_precmd;
-+  gboolean show_foreground_process;
-+  gboolean user_title; /* title was manually set */
-+  char *current_cmdline;
-+  char *raw_title;
-+  char *cooked_title;
-+  char *override_title;
-+  guint contents_changed_source_id;
-+  guint shell_preexec_source_id;
- };
- 
- enum
-@@ -124,7 +135,7 @@
- enum {
-   PROP_0,
-   PROP_PROFILE,
--  PROP_TITLE,
-+  PROP_TITLE
- };
- 
- enum
-@@ -154,16 +165,29 @@
+--- a/src/terminal-screen.c	2020-03-27 17:49:21.000000000 -0500
++++ b/src/terminal-screen.c	2020-04-08 20:40:52.042491645 -0500
+@@ -154,6 +154,8 @@
  static gboolean terminal_screen_popup_menu (GtkWidget *widget);
  static gboolean terminal_screen_button_press (GtkWidget *widget,
                                                GdkEventButton *event);
@@ -3264,322 +2680,15 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  static void terminal_screen_child_exited  (VteTerminal *terminal,
                                             int status);
  
-+static void terminal_screen_contents_changed (VteTerminal *terminal);
-+
-+static void terminal_screen_shell_precmd (VteTerminal *terminal);
-+
-+static void terminal_screen_shell_preexec (VteTerminal *terminal);
-+
- static void terminal_screen_window_title_changed      (VteTerminal *vte_terminal,
-                                                        TerminalScreen *screen);
- 
- static void update_color_scheme                      (TerminalScreen *screen);
- 
-+static gboolean terminal_screen_format_title (TerminalScreen *screen, const char *raw_title, char **old_cooked_title);
-+
-+static void terminal_screen_cook_title      (TerminalScreen *screen);
-+
- static char* terminal_screen_check_hyperlink   (TerminalScreen            *screen,
-                                                 GdkEvent                  *event);
-+
- static void terminal_screen_check_extra (TerminalScreen *screen,
-                                          GdkEvent       *event,
-                                          char           **number_info);
-@@ -541,6 +565,9 @@
-   gtk_target_table_free (targets, n_targets);
-   gtk_target_list_unref (target_list);
- 
-+  priv->override_title = NULL;
-+  priv->user_title = FALSE;
-+
-   g_signal_connect (screen, "window-title-changed",
-                     G_CALLBACK (terminal_screen_window_title_changed),
-                     screen);
-@@ -620,8 +647,12 @@
+@@ -620,6 +622,7 @@
    widget_class->drag_data_received = terminal_screen_drag_data_received;
    widget_class->button_press_event = terminal_screen_button_press;
    widget_class->popup_menu = terminal_screen_popup_menu;
 +  widget_class->hierarchy_changed = terminal_screen_hierarchy_changed;
  
    terminal_class->child_exited = terminal_screen_child_exited;
-+  terminal_class->contents_changed = terminal_screen_contents_changed;
-+  terminal_class->shell_precmd = terminal_screen_shell_precmd;
-+  terminal_class->shell_preexec = terminal_screen_shell_preexec;
  
-   signals[PROFILE_SET] =
-     g_signal_new (I_("profile-set"),
-@@ -721,6 +752,18 @@
-                                         0, 0, NULL, NULL,
-                                         screen);
- 
-+  if (priv->contents_changed_source_id != 0)
-+    {
-+      g_source_remove (priv->contents_changed_source_id);
-+      priv->contents_changed_source_id = 0;
-+    }
-+
-+  if (priv->shell_preexec_source_id != 0)
-+    {
-+      g_source_remove (priv->shell_preexec_source_id);
-+      priv->shell_preexec_source_id = 0;
-+    }
-+
-   if (priv->idle_exec_source != 0)
-     {
-       g_source_remove (priv->idle_exec_source);
-@@ -757,6 +800,10 @@
-   g_slist_free_full (priv->match_tags, (GDestroyNotify) free_tag_data);
- 
-   g_free (priv->uuid);
-+  g_free (priv->current_cmdline);
-+  g_free (priv->raw_title);
-+  g_free (priv->cooked_title);
-+  g_free (priv->override_title);
- 
-   G_OBJECT_CLASS (terminal_screen_parent_class)->finalize (object);
- }
-@@ -776,28 +823,8 @@
-                          g_settings_get_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_COLUMNS_KEY),
-                          g_settings_get_int (profile, TERMINAL_PROFILE_DEFAULT_SIZE_ROWS_KEY));
- 
--  /* If given an initial title, strip it of control characters and
--   * feed it to the terminal.
--   */
--  if (title != NULL) {
--    GString *seq;
--    const char *p;
--
--    seq = g_string_new ("\033]0;");
--    for (p = title; *p; p = g_utf8_next_char (p)) {
--      gunichar c = g_utf8_get_char (p);
--      if (c < 0x20 || (c >= 0x7f && c <= 0x9f))
--        continue;
--      else if (c == ';')
--        break;
--
--      g_string_append_unichar (seq, c);
--    }
--    g_string_append (seq, "\033\\");
--
--    vte_terminal_feed (VTE_TERMINAL (screen), seq->str, seq->len);
--    g_string_free (seq, TRUE);
--  }
-+  if (title)
-+    terminal_screen_set_override_title (screen, title);
- 
-   vte_terminal_set_font_scale (VTE_TERMINAL (screen), zoom);
-   terminal_screen_set_font (screen);
-@@ -840,6 +867,20 @@
-                                     GCancellable *cancellable,
-                                     GError **error)
- {
-+  return terminal_screen_reexec_from_screen_with_override_title (screen,
-+                                                                 parent_screen,
-+                                                                 NULL,
-+                                                                 cancellable,
-+                                                                 error);
-+}
-+
-+gboolean
-+terminal_screen_reexec_from_screen_with_override_title (TerminalScreen *screen,
-+                                                        TerminalScreen *parent_screen,
-+                                                        char **override_title,
-+                                                        GCancellable *cancellable,
-+                                                        GError **error)
-+{
-   g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), FALSE);
- 
-   if (parent_screen == NULL)
-@@ -848,6 +889,12 @@
-   g_return_val_if_fail (TERMINAL_IS_SCREEN (parent_screen), FALSE);
- 
-   terminal_unref_exec_data ExecData* data = exec_data_clone (parent_screen->priv->exec_data);
-+  if (override_title != NULL)
-+    {
-+      g_strfreev (data->argv);
-+      data->argv = g_strdupv (override_title);
-+    }
-+
-   gs_free char* cwd = terminal_screen_get_current_dir (parent_screen);
- 
-   _terminal_debug_print (TERMINAL_DEBUG_PROCESSES,
-@@ -995,9 +1042,152 @@
- }
- 
- const char*
-+terminal_screen_get_raw_title (TerminalScreen *screen)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  if (priv->raw_title)
-+    return priv->raw_title;
-+
-+  return "";
-+}
-+
-+const char*
- terminal_screen_get_title (TerminalScreen *screen)
- {
--  return vte_terminal_get_window_title (VTE_TERMINAL (screen));
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  if (priv->cooked_title == NULL)
-+    terminal_screen_cook_title (screen);
-+
-+  /* cooked_title may still be NULL */
-+  if (priv->cooked_title != NULL)
-+    return priv->cooked_title;
-+  else
-+    return "";
-+}
-+
-+/* Supported format specifiers:
-+ * %S = static title
-+ * %D = dynamic title
-+ * %A = dynamic title, falling back to static title if empty
-+ * %- = separator, if not at start or end of string (excluding whitespace)
-+ */
-+static const char *
-+terminal_screen_get_title_format (TerminalScreen *screen)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+  static const char *formats[] = {
-+    "%A"      /* TERMINAL_TITLE_REPLACE */,
-+    "%D%-%S"  /* TERMINAL_TITLE_BEFORE  */,
-+    "%S%-%D"  /* TERMINAL_TITLE_AFTER   */,
-+    "%S"      /* TERMINAL_TITLE_IGNORE  */
-+  };
-+
-+  return formats[g_settings_get_enum (priv->profile, TERMINAL_PROFILE_TITLE_MODE_KEY)];
-+}
-+
-+/**
-+ * terminal_screen_format_title::
-+ * @screen:
-+ * @raw_title: main ingredient
-+ * @titleptr <inout>: pointer of the current title string
-+ *
-+ * Format title according @format, and stores it in <literal>*titleptr</literal>.
-+ * Always ensures that *titleptr will be non-NULL.
-+ *
-+ * Returns: %TRUE iff the title changed
-+ */
-+static gboolean
-+terminal_screen_format_title (TerminalScreen *screen,
-+                              const char *raw_title,
-+                              char **titleptr)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+  gs_free char *static_title_string = NULL;
-+  const char *format, *arg;
-+  const char *static_title = NULL;
-+  GString *title;
-+  gboolean add_sep = FALSE;
-+
-+  g_assert (titleptr);
-+
-+  /* use --title argument if one was supplied, otherwise ask the profile */
-+  if (priv->override_title)
-+    static_title = priv->override_title;
-+  else
-+    static_title = static_title_string = g_settings_get_string (priv->profile, TERMINAL_PROFILE_TITLE_KEY);
-+
-+  title = g_string_sized_new (128);
-+
-+  format = terminal_screen_get_title_format (screen);
-+  for (arg = format; *arg; arg += 2)
-+    {
-+      const char *text_to_append = NULL;
-+
-+      g_assert (arg[0] == '%');
-+
-+      switch (arg[1])
-+        {
-+          case 'A':
-+            text_to_append = raw_title ? raw_title : static_title;
-+            break;
-+          case 'D':
-+            text_to_append = raw_title;
-+            break;
-+          case 'S':
-+            text_to_append = static_title;
-+            break;
-+          case '-':
-+            text_to_append = NULL;
-+            add_sep = TRUE;
-+            break;
-+          default:
-+            g_assert_not_reached ();
-+        }
-+
-+      if (!text_to_append || !text_to_append[0])
-+        continue;
-+
-+      if (add_sep && title->len > 0)
-+        g_string_append (title, " — ");
-+
-+      g_string_append (title, text_to_append);
-+      add_sep = FALSE;
-+    }
-+
-+  if (priv->show_foreground_process &&
-+      !priv->application_title &&
-+      !priv->user_title &&
-+      priv->current_cmdline != NULL &&
-+      priv->current_cmdline[0] != '\0')
-+    {
-+      gs_free char *current_cmdline_truncated = NULL;
-+      gs_free char *current_cmdline_valid = NULL;
-+
-+      current_cmdline_valid = g_utf8_make_valid (priv->current_cmdline, -1);
-+      current_cmdline_truncated = g_utf8_substring (current_cmdline_valid, 0, 1024);
-+      g_string_append_printf (title, " — %s", current_cmdline_truncated);
-+    }
-+
-+  if (*titleptr == NULL || strcmp (title->str, *titleptr) != 0)
-+    {
-+      g_free (*titleptr);
-+      *titleptr = g_string_free (title, FALSE);
-+      return TRUE;
-+    }
-+
-+  g_string_free (title, TRUE);
-+  return FALSE;
-+}
-+
-+static void
-+terminal_screen_cook_title (TerminalScreen *screen)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  if (terminal_screen_format_title (screen, priv->raw_title, &priv->cooked_title))
-+    g_object_notify (G_OBJECT (screen), "title");
- }
- 
- static void
-@@ -1009,6 +1199,7 @@
-   GObject *object = G_OBJECT (screen);
-   VteTerminal *vte_terminal = VTE_TERMINAL (screen);
-   TerminalWindow *window;
-+  gboolean cook_title = FALSE;
- 
-   g_object_freeze_notify (object);
- 
-@@ -1039,6 +1230,13 @@
-       vte_terminal_set_cjk_ambiguous_width (vte_terminal, (int) width);
-     }
- 
-+  if (!prop_name ||
-+      prop_name == I_(TERMINAL_PROFILE_TITLE_MODE_KEY) ||
-+      prop_name == I_(TERMINAL_PROFILE_TITLE_KEY))
-+    {
-+      cook_title = TRUE;
-+    }
-+
-   if (gtk_widget_get_realized (GTK_WIDGET (screen)) &&
-       (!prop_name ||
-        prop_name == I_(TERMINAL_PROFILE_USE_SYSTEM_FONT_KEY) ||
-@@ -1059,9 +1257,18 @@
+@@ -1058,7 +1061,9 @@
        prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_COLORS_SET_KEY) ||
        prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_BACKGROUND_COLOR_KEY) ||
        prop_name == I_(TERMINAL_PROFILE_HIGHLIGHT_FOREGROUND_COLOR_KEY) ||
@@ -3589,24 +2698,8 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
 +      prop_name == I_(TERMINAL_PROFILE_BACKGROUND_TRANSPARENCY_PERCENT))
      update_color_scheme (screen);
  
-+  if (!prop_name || prop_name == I_(TERMINAL_PROFILE_SHOW_FOREGROUND_PROCESS_IN_TITLE))
-+    {
-+      priv->show_foreground_process = g_settings_get_boolean (profile,
-+                                                              TERMINAL_PROFILE_SHOW_FOREGROUND_PROCESS_IN_TITLE);
-+      cook_title = TRUE;
-+    }
-+
    if (!prop_name || prop_name == I_(TERMINAL_PROFILE_AUDIBLE_BELL_KEY))
-       vte_terminal_set_audible_bell (vte_terminal, g_settings_get_boolean (profile, TERMINAL_PROFILE_AUDIBLE_BELL_KEY));
- 
-@@ -1122,10 +1329,39 @@
-       vte_terminal_set_word_char_exceptions (vte_terminal, word_char_exceptions);
-     }
- 
-+  if (cook_title)
-+    terminal_screen_cook_title (screen);
-+
-   g_object_thaw_notify (object);
+@@ -1125,6 +1130,32 @@
  }
  
  static void
@@ -3639,7 +2732,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  update_color_scheme (TerminalScreen *screen)
  {
    GtkWidget *widget = GTK_WIDGET (screen);
-@@ -1140,6 +1376,7 @@
+@@ -1139,6 +1170,7 @@
    GdkRGBA *cursor_bgp = NULL, *cursor_fgp = NULL;
    GdkRGBA *highlight_bgp = NULL, *highlight_fgp = NULL;
    GtkStyleContext *context;
@@ -3647,7 +2740,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    gboolean use_theme_colors;
  
    context = gtk_widget_get_style_context (widget);
-@@ -1183,6 +1420,18 @@
+@@ -1182,6 +1214,18 @@
      }
  
    colors = terminal_g_settings_get_rgba_palette (priv->profile, TERMINAL_PROFILE_PALETTE_KEY, &n_colors);
@@ -3666,7 +2759,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
    vte_terminal_set_colors (VTE_TERMINAL (screen), &fg, &bg,
                             colors, n_colors);
    vte_terminal_set_color_bold (VTE_TERMINAL (screen), boldp);
-@@ -1190,6 +1439,8 @@
+@@ -1189,6 +1233,8 @@
    vte_terminal_set_color_cursor_foreground (VTE_TERMINAL (screen), cursor_fgp);
    vte_terminal_set_color_highlight (VTE_TERMINAL (screen), highlight_bgp);
    vte_terminal_set_color_highlight_foreground (VTE_TERMINAL (screen), highlight_fgp);
@@ -3675,7 +2768,7 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  }
  
  static void
-@@ -1771,6 +2022,13 @@
+@@ -1771,6 +1817,13 @@
    terminal_screen_popup_info_unref (info);
  }
  
@@ -3689,417 +2782,10 @@ diff '--exclude=.git' -urN a/src/terminal-screen.c b/src/terminal-screen.c
  static gboolean
  terminal_screen_button_press (GtkWidget      *widget,
                                GdkEventButton *event)
-@@ -1853,6 +2111,47 @@
-   return FALSE;
- }
- 
-+static void
-+terminal_screen_set_dynamic_title (TerminalScreen *screen,
-+                                   const char     *title,
-+				   gboolean	  userset)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  g_assert (TERMINAL_IS_SCREEN (screen));
-+
-+  if ((priv->user_title && !userset) ||
-+      (priv->raw_title && title &&
-+       strcmp (priv->raw_title, title) == 0))
-+    return;
-+
-+  g_free (priv->raw_title);
-+  priv->raw_title = g_strdup (title);
-+  terminal_screen_cook_title (screen);
-+}
-+
-+void
-+terminal_screen_set_override_title (TerminalScreen *screen,
-+                                    const char     *title)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+  char *old_title;
-+
-+  old_title = priv->override_title;
-+  priv->override_title = g_strdup (title);
-+  g_free (old_title);
-+
-+  terminal_screen_set_dynamic_title (screen, title, FALSE);
-+}
-+
-+const char*
-+terminal_screen_get_dynamic_title (TerminalScreen *screen)
-+{
-+  g_return_val_if_fail (TERMINAL_IS_SCREEN (screen), NULL);
-+
-+  return screen->priv->raw_title;
-+}
-+
- /**
-  * terminal_screen_get_current_dir:
-  * @screen:
-@@ -1883,7 +2182,12 @@
- terminal_screen_window_title_changed (VteTerminal *vte_terminal,
-                                       TerminalScreen *screen)
- {
--  g_object_notify (G_OBJECT (screen), "title");
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  priv->application_title = priv->between_preexec_and_precmd;
-+  terminal_screen_set_dynamic_title (screen,
-+                                     vte_terminal_get_window_title (vte_terminal),
-+				     FALSE);
- }
- 
- static void
-@@ -1949,6 +2253,147 @@
-     }
- }
- 
-+void
-+terminal_screen_set_user_title (TerminalScreen *screen,
-+                                const char *text)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  /* The user set the title to nothing, let's understand that as a
-+     request to revert to dynamically setting the title again. */
-+  if (!text || !text[0])
-+    priv->user_title = FALSE;
-+  else
-+    {
-+      priv->user_title = TRUE;
-+      terminal_screen_set_dynamic_title (screen, text, TRUE);
-+    }
-+}
-+
-+static gboolean
-+terminal_screen_contents_changed_cb (TerminalScreen *screen)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+  gs_free char *cmdline = NULL;
-+
-+  g_return_val_if_fail (priv->between_preexec_and_precmd, G_SOURCE_REMOVE);
-+  g_return_val_if_fail (priv->shell_preexec_source_id == 0, G_SOURCE_REMOVE);
-+
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Contents changed [timeout]\n");
-+
-+  if (!terminal_screen_has_foreground_process (screen, NULL, &cmdline))
-+    goto out;
-+
-+  if (g_strcmp0 (priv->current_cmdline, cmdline) == 0)
-+    goto out;
-+
-+  g_free (priv->current_cmdline);
-+  priv->current_cmdline = g_steal_pointer (&cmdline);
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Current foreground command-line: %s\n", priv->current_cmdline);
-+
-+  terminal_screen_cook_title (screen);
-+
-+ out:
-+  priv->contents_changed_source_id = 0;
-+  return G_SOURCE_REMOVE;
-+}
-+
-+static void
-+terminal_screen_contents_changed (VteTerminal *terminal)
-+{
-+  TerminalScreen *screen = TERMINAL_SCREEN (terminal);
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Contents changed\n");
-+
-+  if (!priv->between_preexec_and_precmd)
-+    return;
-+
-+  if (priv->shell_preexec_source_id != 0)
-+    return;
-+
-+  if (priv->contents_changed_source_id != 0)
-+    return;
-+
-+  priv->contents_changed_source_id = g_timeout_add (500,
-+                                                    (GSourceFunc) terminal_screen_contents_changed_cb,
-+                                                    screen);
-+}
-+
-+static void
-+terminal_screen_shell_precmd (VteTerminal *terminal)
-+{
-+  TerminalScreen *screen = TERMINAL_SCREEN (terminal);
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Shell precmd\n");
-+
-+  priv->application_title = FALSE;
-+  priv->between_preexec_and_precmd = FALSE;
-+
-+  if (priv->contents_changed_source_id != 0)
-+    {
-+      g_source_remove (priv->contents_changed_source_id);
-+      priv->contents_changed_source_id = 0;
-+    }
-+
-+  if (priv->shell_preexec_source_id != 0)
-+    {
-+      g_source_remove (priv->shell_preexec_source_id);
-+      priv->shell_preexec_source_id = 0;
-+    }
-+
-+  g_clear_pointer (&priv->current_cmdline, g_free);
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Current foreground command-line: (none)\n");
-+
-+  terminal_screen_cook_title (screen);
-+}
-+
-+static gboolean
-+terminal_screen_shell_preexec_cb (TerminalScreen *screen)
-+{
-+  TerminalScreenPrivate *priv = screen->priv;
-+  gboolean retval = G_SOURCE_CONTINUE;
-+  gs_free char *cmdline = NULL;
-+
-+  g_return_val_if_fail (priv->between_preexec_and_precmd, G_SOURCE_REMOVE);
-+  g_return_val_if_fail (priv->current_cmdline == NULL, G_SOURCE_REMOVE);
-+
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Shell preexec [timeout]\n");
-+
-+  if (!terminal_screen_has_foreground_process (screen, NULL, &cmdline))
-+    goto out;
-+
-+  priv->current_cmdline = g_steal_pointer (&cmdline);
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Current foreground command-line: %s\n", priv->current_cmdline);
-+
-+  terminal_screen_cook_title (screen);
-+
-+  priv->shell_preexec_source_id = 0;
-+  retval = G_SOURCE_REMOVE;
-+
-+ out:
-+  return retval;
-+}
-+
-+static void
-+terminal_screen_shell_preexec (VteTerminal *terminal)
-+{
-+  TerminalScreen *screen = TERMINAL_SCREEN (terminal);
-+  TerminalScreenPrivate *priv = screen->priv;
-+
-+  g_return_if_fail (!priv->between_preexec_and_precmd);
-+  g_return_if_fail (priv->contents_changed_source_id == 0);
-+  g_return_if_fail (priv->current_cmdline == NULL);
-+  g_return_if_fail (priv->shell_preexec_source_id == 0);
-+
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Shell preexec\n");
-+
-+  priv->between_preexec_and_precmd = TRUE;
-+
-+  priv->shell_preexec_source_id = g_timeout_add (200, (GSourceFunc) terminal_screen_shell_preexec_cb, screen);
-+}
-+
- static void
- terminal_screen_drag_data_received (GtkWidget        *widget,
-                                     GdkDragContext   *context,
-@@ -2294,7 +2739,11 @@
-   if (fd == -1)
-     return FALSE;
- 
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Child PID: %d\n", priv->child_pid);
-+
-   fgpid = tcgetpgrp (fd);
-+  _terminal_debug_print (TERMINAL_DEBUG_SHELL_COMMAND, "Current foreground process group [tcgetpgrp]: %d\n", fgpid);
-+
-   if (fgpid == -1 || fgpid == priv->child_pid)
-     return FALSE;
- 
-@@ -2325,7 +2774,35 @@
- #else
-   g_snprintf (filename, sizeof (filename), "/proc/%d/cmdline", fgpid);
-   if (!g_file_get_contents (filename, &data_buf, &len, NULL))
--    return TRUE;
-+    {
-+      int j;
-+
-+      for (j = 0; j < 20; j++)
-+        {
-+          pid_t pgid;
-+          pid_t pid;
-+
-+          pid = (pid_t) (fgpid + 1 + j);
-+          pgid = getpgid (pid);
-+          if (pgid != fgpid)
-+            {
-+              pid = (pid_t) (2 + j);
-+              pgid = getpgid (pid);
-+              if (pgid != fgpid)
-+                continue;
-+            }
-+
-+          g_snprintf (filename, sizeof (filename), "/proc/%d/cmdline", (int) pid);
-+
-+          g_clear_pointer (&data_buf, g_free);
-+          if (g_file_get_contents (filename, &data_buf, &len, NULL))
-+            break;
-+        }
-+
-+      if (j == 20)
-+        return TRUE;
-+    }
-+
-   data = data_buf;
- #endif
- 
-diff '--exclude=.git' -urN a/src/terminal-screen.h b/src/terminal-screen.h
---- a/src/terminal-screen.h	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-screen.h	2020-03-22 05:29:57.889676495 -0500
-@@ -108,13 +108,28 @@
-                                              GCancellable *cancellable,
-                                              GError **error);
- 
-+gboolean terminal_screen_reexec_from_screen_with_override_title (TerminalScreen *screen,
-+                                                                 TerminalScreen *parent_screen,
-+                                                                 char **override_title,
-+                                                                 GCancellable *cancellable,
-+                                                                 GError **error);
-+
- void terminal_screen_set_profile (TerminalScreen *screen,
-                                   GSettings      *profile);
- GSettings* terminal_screen_get_profile (TerminalScreen *screen);
- GSettings* terminal_screen_ref_profile (TerminalScreen *screen);
- 
-+const char* terminal_screen_get_raw_title      (TerminalScreen *screen);
- const char* terminal_screen_get_title          (TerminalScreen *screen);
- 
-+void terminal_screen_set_user_title (TerminalScreen *screen,
-+                                     const char *text);
-+
-+void        terminal_screen_set_override_title     (TerminalScreen *screen,
-+                                                    const char     *title);
-+
-+const char *terminal_screen_get_dynamic_title      (TerminalScreen *screen);
-+
- char *terminal_screen_get_current_dir (TerminalScreen *screen);
- 
- void       terminal_screen_get_size (TerminalScreen *screen,
 diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
 --- a/src/terminal-window.c	2020-03-05 15:43:41.000000000 -0600
-+++ b/src/terminal-window.c	2020-03-22 05:29:57.889676495 -0500
-@@ -405,8 +405,26 @@
-   terminal_window_switch_screen (window, screen);
-   gtk_widget_grab_focus (GTK_WIDGET (screen));
- 
--  /* Start child process, if possible by using the same args as the parent screen */
--  terminal_screen_reexec_from_screen (screen, parent_screen, NULL, NULL);
-+  const char *container_name = vte_terminal_get_current_container_name (VTE_TERMINAL (parent_screen));
-+  const char *container_runtime = vte_terminal_get_current_container_runtime (VTE_TERMINAL (parent_screen));
-+  if (g_strcmp0 (container_runtime, "toolbox") == 0 && container_name != NULL && container_name[0] != '\0')
-+    {
-+      gs_free_error GError *error = NULL;
-+      gs_free char *override_command_str = NULL;
-+      gs_strfreev char **override_command = NULL;
-+
-+      override_command_str = g_strdup_printf ("toolbox enter --container %s", container_name);
-+      if (!g_shell_parse_argv (override_command_str, NULL, &override_command, &error))
-+        g_printerr ("Failed to parse '%s': %s\n", override_command_str, error->message);
-+
-+      /* Start child process, if possible by using the same args as the parent screen */
-+      terminal_screen_reexec_from_screen_with_override_title (screen, parent_screen, override_command, NULL, NULL);
-+    }
-+  else
-+    {
-+      /* Start child process, if possible by using the same args as the parent screen */
-+      terminal_screen_reexec_from_screen (screen, parent_screen, NULL, NULL);
-+    }
- 
-   if (mode == TERMINAL_NEW_TERMINAL_MODE_WINDOW)
-     gtk_window_present (GTK_WINDOW (window));
-@@ -750,6 +768,86 @@
- }
- 
- static void
-+terminal_set_title_dialog_response_cb (GtkWidget *dialog,
-+                                       int response,
-+                                       TerminalScreen *screen)
-+{
-+  if (response == GTK_RESPONSE_OK)
-+    {
-+      GtkEntry *entry;
-+      const char *text;
-+
-+      entry = GTK_ENTRY (g_object_get_data (G_OBJECT (dialog), "title-entry"));
-+      text = gtk_entry_get_text (entry);
-+      terminal_screen_set_user_title (screen, text);
-+    }
-+
-+  gtk_widget_destroy (dialog);
-+}
-+
-+static const char *
-+terminal_screen_get_user_title (TerminalScreen *screen)
-+{
-+  return terminal_screen_get_raw_title (screen);
-+}
-+
-+static void
-+action_set_title_cb (GSimpleAction *action,
-+                     GVariant *parameter,
-+                     gpointer user_data)
-+{
-+  TerminalWindow *window = user_data;
-+  TerminalWindowPrivate *priv = window->priv;
-+  GtkWidget *dialog, *message_area, *hbox, *label, *entry;
-+
-+  if (priv->active_screen == NULL)
-+    return;
-+
-+  /* FIXME: hook the screen up so this dialogue closes if the terminal screen closes */
-+
-+  dialog = gtk_message_dialog_new (GTK_WINDOW (window),
-+                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-+                                   GTK_MESSAGE_OTHER,
-+                                   GTK_BUTTONS_OK_CANCEL,
-+                                   "%s", "");
-+
-+  gtk_window_set_title (GTK_WINDOW (dialog), _("Set Title"));
-+  gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-+  gtk_window_set_role (GTK_WINDOW (dialog), "gnome-terminal-change-title");
-+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
-+  /* Alternative button order was set automatically by GtkMessageDialog */
-+
-+  g_signal_connect (dialog, "response",
-+                    G_CALLBACK (terminal_set_title_dialog_response_cb), priv->active_screen);
-+  g_signal_connect (dialog, "delete-event",
-+                    G_CALLBACK (terminal_util_dialog_response_on_delete), NULL);
-+
-+  message_area = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
-+  gtk_container_foreach (GTK_CONTAINER (message_area), (GtkCallback) gtk_widget_hide, NULL);
-+
-+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
-+  gtk_box_pack_start (GTK_BOX (message_area), hbox, FALSE, FALSE, 0);
-+
-+  label = gtk_label_new_with_mnemonic (_("_Title:"));
-+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-+
-+  entry = gtk_entry_new ();
-+  gtk_entry_set_width_chars (GTK_ENTRY (entry), 32);
-+  gtk_entry_set_activates_default (GTK_ENTRY (entry), TRUE);
-+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-+  gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
-+  gtk_widget_show_all (hbox);
-+
-+  gtk_widget_grab_focus (entry);
-+  gtk_entry_set_text (GTK_ENTRY (entry), terminal_screen_get_user_title (priv->active_screen));
-+  gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
-+  g_object_set_data (G_OBJECT (dialog), "title-entry", entry);
-+
-+  gtk_window_present (GTK_WINDOW (dialog));
-+}
-+
-+static void
- action_reset_cb (GSimpleAction *action,
-                  GVariant *parameter,
-                  gpointer user_data)
-@@ -1954,6 +2052,32 @@
++++ b/src/terminal-window.c	2020-04-08 20:40:52.042491645 -0500
+@@ -1954,6 +1954,32 @@
  }
  
  static gboolean
@@ -4132,15 +2818,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
  terminal_window_state_event (GtkWidget            *widget,
                               GdkEventWindowState  *event)
  {
-@@ -2060,6 +2184,7 @@
-     { "paste-uris",          action_paste_uris_cb,       NULL,   NULL, NULL },
-     { "reset",               action_reset_cb,            "b",    NULL, NULL },
-     { "select-all",          action_select_all_cb,       NULL,   NULL, NULL },
-+    { "set-title",           action_set_title_cb,        NULL,   NULL, NULL },
-     { "size-to",             action_size_to_cb,          "(uu)", NULL, NULL },
-     { "tab-detach",          action_tab_detach_cb,       NULL,   NULL, NULL },
-     { "tab-move-left",       action_tab_move_left_cb,    NULL,   NULL, NULL },
-@@ -2094,6 +2219,8 @@
+@@ -2094,6 +2120,8 @@
    };
    TerminalWindowPrivate *priv;
    TerminalApp *app;
@@ -4149,7 +2827,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
    GSettings *gtk_debug_settings;
    GtkWindowGroup *window_group;
    //  GtkAccelGroup *accel_group;
-@@ -2109,6 +2236,11 @@
+@@ -2109,6 +2137,11 @@
  
    gtk_widget_init_template (GTK_WIDGET (window));
  
@@ -4161,7 +2839,7 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
    uuid_generate (u);
    uuid_unparse (u, uuidstr);
    priv->uuid = g_strdup (uuidstr);
-@@ -2263,6 +2395,7 @@
+@@ -2263,6 +2296,7 @@
  
    widget_class->show = terminal_window_show;
    widget_class->realize = terminal_window_realize;
@@ -4169,13 +2847,3 @@ diff '--exclude=.git' -urN a/src/terminal-window.c b/src/terminal-window.c
    widget_class->window_state_event = terminal_window_state_event;
    widget_class->screen_changed = terminal_window_screen_changed;
    widget_class->style_updated = terminal_window_style_updated;
-@@ -2412,8 +2545,7 @@
-     return;
- 
-   title = terminal_screen_get_title (screen);
--  gtk_window_set_title (GTK_WINDOW (window),
--                        title && title[0] ? title : _("Terminal"));
-+  gtk_window_set_title (GTK_WINDOW (window), title);
- }
- 
- static void

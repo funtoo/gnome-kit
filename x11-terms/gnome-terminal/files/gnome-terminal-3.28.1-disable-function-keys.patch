@@ -19,4 +19,3 @@ diff '--exclude=.git' -urN a/src/org.gnome.Terminal.gschema.xml b/src/org.gnome.
        <summary>Whether the standard GTK shortcut for menubar access is enabled</summary>
        <description>
          Normally you can access the menubar with F10. This can also
-
