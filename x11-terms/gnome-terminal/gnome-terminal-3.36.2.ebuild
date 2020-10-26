@@ -41,11 +41,11 @@ DOC_CONTENTS="To get previous working directory inherited in new opened
 	. /etc/profile.d/vte.sh"
 
 PATCHES=(
-	${FILESDIR}/gnome-terminal-3.14.3-fix-broken-transparency-on-startup.patch
-	${FILESDIR}/gnome-terminal-3.28.1-build-dont-treat-warnings-as-errors.patch
-	${FILESDIR}/gnome-terminal-3.28.1-disable-function-keys.patch
-	${FILESDIR}/gnome-terminal-3.32.1-desktop-icon.patch
-# 	${FILESDIR}/gnome-terminal-3.36.0-open-title-transparency.patch
+	"${FILESDIR}"/gnome-terminal-3.14.3-fix-broken-transparency-on-startup.patch
+	"${FILESDIR}"/gnome-terminal-3.28.1-build-dont-treat-warnings-as-errors.patch
+	"${FILESDIR}"/gnome-terminal-3.28.1-disable-function-keys.patch
+	"${FILESDIR}"/gnome-terminal-3.36.2-revert-screen-take-a-ref-to-the-fd-list.patch
+	"${FILESDIR}"/gnome-terminal-3.36.1.1-transparency.patch
 )
 
 src_prepare() {

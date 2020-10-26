@@ -9,4 +9,3 @@ diff '--exclude=.git' -urN b/src/terminal-screen.c c/src/terminal-screen.c
  }
  
  void
-
