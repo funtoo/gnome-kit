@@ -3,7 +3,7 @@
 EAPI=6
 PYTHON_COMPAT=( python3+ )
 
-inherit eutils elisp-common gnome2 python-single-r1 readme.gentoo-r1
+inherit eutils elisp-common gnome3 python-single-r1 readme.gentoo-r1
 
 DESCRIPTION="GTK+ Documentation Generator"
 HOMEPAGE="https://www.gtk.org/gtk-doc/"
@@ -45,22 +45,22 @@ src_prepare() {
 	# Remove global Emacs keybindings, bug #184588
 	eapply "${FILESDIR}"/${PN}-1.32-emacs-keybindings.patch
 
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
-	gnome2_src_configure \
+	gnome3_src_configure \
 		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
 		$(use_enable debug)
 }
 
 src_compile() {
-	gnome2_src_compile
+	gnome3_src_compile
 	use emacs && elisp-compile tools/gtk-doc.el
 }
 
 src_install() {
-	gnome2_src_install
+	gnome3_src_install
 	python_fix_shebang "${ED}"/usr/bin/gtkdoc-depscan
 
 	if use doc; then
@@ -82,7 +82,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome3_pkg_postinst
 	if use emacs; then
 		elisp-site-regen
 		readme.gentoo_print_elog
@@ -90,6 +90,6 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome2_pkg_postrm
+	gnome3_pkg_postrm
 	use emacs && elisp-site-regen
 }
