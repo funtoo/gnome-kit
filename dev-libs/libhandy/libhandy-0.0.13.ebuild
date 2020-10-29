@@ -2,13 +2,16 @@
 
 EAPI=7
 
-inherit gnome.org meson xdg vala virtualx
+inherit meson xdg vala virtualx
 
+MY_P="${PN}-v${PV}"
 DESCRIPTION="Building blocks for modern adaptive GNOME apps"
 HOMEPAGE="https://gitlab.gnome.org/GNOME/libhandy"
+SRC_URI="https://source.puri.sm/Librem5/libhandy/-/archive/v${PV}/${MY_P}.tar.bz2"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="LGPL-2.1+"
-SLOT="${PV}/2"
+SLOT="${PV}/1"
 KEYWORDS="*"
 
 IUSE="examples glade gtk-doc +introspection test +vala"
