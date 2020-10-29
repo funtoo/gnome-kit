@@ -2,13 +2,12 @@
 
 EAPI=7
 
-inherit meson xdg vala virtualx
+inherit gnome.org meson xdg vala virtualx
 
-MY_P="${PN}-v${PV}"
-DESCRIPTION="Library with GTK widgets for mobile phones"
-HOMEPAGE="https://source.puri.sm/Librem5/libhandy/"
-SRC_URI="https://source.puri.sm/Librem5/libhandy/-/archive/v${PV}/${MY_P}.tar.bz2"
-S="${WORKDIR}/${MY_P}"
+#MY_P="${PN}-v${PV}"
+DESCRIPTION="Building blocks for modern adaptive GNOME apps"
+HOMEPAGE="https://gitlab.gnome.org/GNOME/libhandy"
+#S="${WORKDIR}/${MY_P}"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
