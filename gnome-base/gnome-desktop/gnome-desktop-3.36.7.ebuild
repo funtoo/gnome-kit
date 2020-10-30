@@ -11,7 +11,7 @@ LICENSE="GPL-2+ FDL-1.1+ LGPL-2+"
 SLOT="3/17" # subslot = libgnome-desktop-3 soname version
 KEYWORDS="*"
 
-IUSE="debug +introspection udev"
+IUSE="debug +introspection udev gtk-doc"
 
 # cairo[X] needed for gnome-bg
 COMMON_DEPEND="
@@ -41,12 +41,18 @@ DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 	virtual/pkgconfig
 "
+src_prepare() {
+	eapply "${FILESDIR}"/${PN}-3.36.6-dont-sandbox-thumbnailers-on-linux.patch
+
+	gnome3_src_prepare
+}
 
 src_configure() {
 	local emesonargs=(
-		-Dgnome_distributor=Funtoo
+		-Dgnome_distributor=Funtoo_Linux
 		$(meson_use debug debug_tools)
-		-Dudev=$(usex udev enabled disabled)
+		$(meson_feature udev)
+		$(meson_use gtk-doc gtk_doc)
 	)
 
 	meson_src_configure

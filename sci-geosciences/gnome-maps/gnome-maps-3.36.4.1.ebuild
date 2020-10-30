@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	media-libs/clutter-gtk:1.0[introspection]
 	media-libs/clutter:1.0[introspection]
 	media-libs/cogl:1.0[introspection]
-	>=net-libs/gnome-online-accounts-${PV%.*}:=[introspection]
+	>=net-libs/gnome-online-accounts-3.36:=[introspection]
 	net-libs/libgfbgraph[introspection]
 	net-libs/libsoup:2.4[introspection]
 	net-libs/webkit-gtk:4[introspection]

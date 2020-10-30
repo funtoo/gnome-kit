@@ -21,6 +21,7 @@ RDEPEND="
 	>=media-libs/gsound-0.98[vala]
 	>=sci-geosciences/geocode-glib-0.99.4
 	>=x11-libs/gtk+-3.24.12:3
+	<dev-libs/libhandy-1.0.0
 "
 DEPEND="${RDEPEND}
 	$(vala_depend)

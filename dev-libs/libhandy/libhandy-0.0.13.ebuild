@@ -5,13 +5,13 @@ EAPI=7
 inherit meson xdg vala virtualx
 
 MY_P="${PN}-v${PV}"
-DESCRIPTION="Library with GTK widgets for mobile phones"
-HOMEPAGE="https://source.puri.sm/Librem5/libhandy/"
+DESCRIPTION="Building blocks for modern adaptive GNOME apps"
+HOMEPAGE="https://gitlab.gnome.org/GNOME/libhandy"
 SRC_URI="https://source.puri.sm/Librem5/libhandy/-/archive/v${PV}/${MY_P}.tar.bz2"
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="LGPL-2.1+"
-SLOT="0"
+SLOT="${PV}/1"
 KEYWORDS="*"
 
 IUSE="examples glade gtk-doc +introspection test +vala"
@@ -42,8 +42,7 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		-Dprofiling=false # -pg passing
-		-Dstatic=false
+		-Dprofiling=false
 		$(meson_feature introspection)
 		$(meson_use vala vapi)
 		$(meson_use gtk-doc gtk_doc)
