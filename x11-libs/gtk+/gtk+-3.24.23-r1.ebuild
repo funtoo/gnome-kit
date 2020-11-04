@@ -1,6 +1,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 GNOME3_LA_PUNT="yes"
 GNOME3_EAUTORECONF="yes"
 
@@ -95,10 +95,6 @@ PDEPEND="
 	vim-syntax? ( app-vim/gtk-syntax )
 "
 
-MULTILIB_CHOST_TOOLS=(
-	/usr/bin/gtk-query-immodules-3.0$(get_exeext)
-)
-
 strip_builddir() {
 	local rule=$1
 	shift
@@ -188,7 +184,7 @@ src_configure() {
 }
 
 src_test() {
-	"${EROOT}${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/gtk" || die
+	"${EROOT}/${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/gtk" || die
 	GSETTINGS_SCHEMA_DIR="${S}/gtk" virtx emake check
 }
 
@@ -202,50 +198,13 @@ src_install() {
 	einstalldocs
 }
 
-pkg_preinst() {
-	gnome3_pkg_preinst
-
-	# Make immodules.cache belongs to gtk+ alone
-	local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
-
-	if [[ -e ${EROOT}${cache} ]]; then
-		cp "${EROOT}"${cache} "${ED}"/${cache} || die
-	else
-		touch "${ED}"/${cache} || die
-	fi
-}
-
 pkg_postinst() {
 	gnome3_pkg_postinst
-
-	local updater=${EPREFIX}/usr/bin/${CHOST}-gtk-query-immodules-3.0
-	[[ ! -x ${updater} ]] && updater=${EPREFIX}/usr/bin/gtk-query-immodules-3.0
-
-	ebegin "Updating gtk3 input method module cache"
-	GTK_IM_MODULE_FILE="${EROOT}usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
-	einfo "updater: ${updater}"
-	einfo "GTK_IM_MODULE_FILE: $GTK_IM_MODULE_FILE"
-	echo "Directory contents: "
-	ls -l "${EROOT}/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules"
-	"${updater}" --update-cache
-	if [ $? -ne 0 ]; then
-		ewarn "Immodules cache failure."
-		ldd ${updater}
-		die "failcakes"
-	else
-		einfo "Immodules cache update success."
-	fi
+	gnome3_update_immodules_cache_gtk3 || die "Unable to update immodules cache."
 
 	if ! has_version "app-text/evince"; then
 		elog "Please install app-text/evince for print preview functionality."
 		elog "Alternatively, check \"gtk-print-preview-command\" documentation and"
 		elog "add it to your settings.ini file."
-	fi
-}
-
-pkg_postrm() {
-	gnome3_pkg_postrm
-	if [[ -z ${REPLACED_BY_VERSION} ]]; then
-		rm -f "${EROOT}"usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache
 	fi
 }
