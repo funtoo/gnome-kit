@@ -159,8 +159,9 @@ src_compile() {
 
 		# don't use more jobs than physical cores:
 		if [ -e /sys/devices/system/cpu/possible ]; then
-			physical_cores=$(lscpu | sed -n 8p | cut -c34-)
-			cpus=$(lscpu | sed -n 9p | cut -c34-)
+			physical_cores=$(lscpu | grep 'Core(s) per socket:' | awk '{ print $NF }')
+			cpus=$(lscpu | grep '^Socket(s):' | awk '{ print $NF }')
+			# actual physical cores, without considering hyperthreading:
 			max_parallelism=$(( $physical_cores * $cpus ))
 		else
 			max_parallelism=999
