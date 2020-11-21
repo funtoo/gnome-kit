@@ -11,5 +11,5 @@ RDEPEND=>=dev-libs/glib-2.29.15:2 introspection? ( >=dev-libs/gobject-introspect
 RESTRICT=!test? ( test )
 SLOT=3
 SRC_URI=mirror://gnome/sources/gnome-menus/3.36/gnome-menus-3.36.0.tar.xz
-_eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	fe2aa61bf7cc35d026458d06f875ef53	gnome3-utils	be79473848f023644b6450a33290ead8	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	fe2aa61bf7cc35d026458d06f875ef53	gnome3-utils	2f3d0409b97e36d3c12f0eee11e755e7	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
 _md5_=bd1a0d40d590e862386acd81536ad538
