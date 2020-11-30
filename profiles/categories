@@ -8,6 +8,7 @@ app-editors
 app-emulation
 app-i18n
 app-misc
+app-office
 app-text
 dev-cpp
 dev-lang
@@ -20,6 +21,7 @@ games-board
 games-puzzle
 gnome-base
 gnome-extra
+gui-libs
 mail-client
 media-fonts
 media-gfx
@@ -32,11 +34,12 @@ net-im
 net-irc
 net-libs
 net-misc
+net-nntp
 net-voip
 net-wireless
 sci-geosciences
-sys-auth
 sys-apps
+sys-auth
 sys-fs
 sys-libs
 sys-power
