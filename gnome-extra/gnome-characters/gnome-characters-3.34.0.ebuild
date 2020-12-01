@@ -24,7 +24,6 @@ RDEPEND="
 	>=x11-libs/pango-1.44.7[introspection]
 "
 DEPEND="${RDEPEND}
-	$(vala_depend)
 	dev-libs/appstream-glib
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
