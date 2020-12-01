@@ -1,8 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit gnome2 bash-completion-r1 virtualx meson vala
+inherit gnome3 bash-completion-r1 virtualx meson vala
 
 DESCRIPTION="Simple low-level configuration system"
 HOMEPAGE="https://wiki.gnome.org/action/show/Projects/dconf"
@@ -33,6 +33,14 @@ src_prepare() {
 	default
 }
 
+src_configure() {
+	local emesonargs=(
+		-Denable-man=true
+	)
+
+	meson_src_configure
+}
+
 src_test() {
 	virtx emake check
 }
@@ -49,7 +57,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_pkg_postinst
+	gnome3_pkg_postinst
 	# Kill existing dconf-service processes as recommended by upstream due to
 	# possible changes in the dconf private dbus API.
 	# dconf-service will be dbus-activated on next use.
