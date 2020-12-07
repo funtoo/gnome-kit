@@ -4,7 +4,7 @@ EAPI=6
 GNOME2_LA_PUNT="yes"
 GNOME_ORG_MODULE="network-manager-applet"
 
-inherit gnome2
+inherit gnome3
 
 DESCRIPTION="GNOME applet for NetworkManager"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -15,6 +15,7 @@ IUSE="ayatana +introspection +gcr +gnome-keyring +modemmanager +policykit selinu
 KEYWORDS="*"
 
 RDEPEND="
+	>=net-libs/libnma-1.8.27
 	>=app-crypt/libsecret-0.18
 	>=dev-libs/glib-2.62.2:2[dbus]
 	>=dev-libs/dbus-glib-0.88
@@ -62,5 +63,5 @@ src_configure() {
 		$(use_with selinux)
 		$(use_with teamd team)
 	)
-	gnome2_src_configure "${myconf[@]}"
+	gnome3_src_configure "${myconf[@]}"
 }

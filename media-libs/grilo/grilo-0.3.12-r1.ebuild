@@ -45,7 +45,10 @@ pkg_setup() {
 }
 
 src_prepare() {
-	use vala && vala_src_prepare
+	if use vala ; then
+		sed -i -e "s#'vapigen'#'vapigen-0.46'#g" meson.build
+		vala_src_prepare
+	fi
 	gnome3_src_prepare
 }
 

@@ -3,7 +3,7 @@
 EAPI="6"
 PYTHON_COMPAT=( python2+ )
 
-inherit gnome-meson python-any-r1 virtualx
+inherit gnome2 meson python-any-r1 virtualx
 
 DESCRIPTION="A weather application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Design/Apps/Weather"

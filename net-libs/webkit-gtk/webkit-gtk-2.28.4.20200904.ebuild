@@ -10,5 +10,5 @@ SLOT="4/37" # soname version of libwebkit2gtk-4.0
 KEYWORDS="*"
 
 IUSE="+introspection wayland +X"
-RDEPEND="=net-libs/webkit-255475*[introspection?,wayland?,X?]"
+RDEPEND="=net-libs/webkit-266629*[introspection?,wayland?,X?]"
 

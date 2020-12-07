@@ -1,10 +1,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
-GCONF_DEBUG="no"
+EAPI="7"
 GNOME_ORG_MODULE="gfbgraph"
 
-inherit gnome2
+inherit autotools gnome3
 
 DESCRIPTION="A GObject library for Facebook Graph API"
 HOMEPAGE="https://git.gnome.org/browse/libgfbgraph/"
@@ -30,14 +29,19 @@ DEPEND="${RDEPEND}
 # FIXME: most tests seem to fail
 RESTRICT="test"
 
+src_prepare() {
+	eautoreconf
+	default
+}
+
 src_configure() {
-	gnome2_src_configure \
+	gnome3_src_configure \
 		--disable-static \
 		$(use_enable introspection)
 }
 
 src_install() {
-	gnome2_src_install
+	gnome3_src_install
 	# Remove files installed in the wrong place
 	# Also, already done by portage
 	# https://bugzilla.gnome.org/show_bug.cgi?id=752581

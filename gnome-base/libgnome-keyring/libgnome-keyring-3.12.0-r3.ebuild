@@ -30,11 +30,18 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	sys-devel/gettext
 	virtual/pkgconfig
-	test? ( ${PYTHON_DEPS} )
+	test? ( ${PYTHON_DEPS}
+			dev-python/pygobject:2
+			dev-python/dbus-python )
 	vala? ( $(vala_depend) )
 "
 
+pkg_setup() {
+	use test && python-any-r1_pkg_setup
+}
+
 src_prepare() {
+	epatch "${FILESDIR}"/${PV}-vala-0.42-compat.patch
 	use vala && vala_src_prepare
 	gnome2_src_prepare
 

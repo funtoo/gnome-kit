@@ -2,7 +2,7 @@
 
 EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
-PYTHON_COMPAT=( python2+ )
+PYTHON_COMPAT=( python3+ )
 USE_RUBY="ruby24 ruby25 ruby26"
 CMAKE_MIN_VERSION=3.10
 
@@ -13,7 +13,7 @@ HOMEPAGE="https://www.webkit.org"
 
 GITHUB_REPO="webkit"
 GITHUB_USER="funtoo"
-GITHUB_TAG="1c0fa7838f79e444a62e62da747fd81c16e6e97e"
+GITHUB_TAG="c48c7d7af56c0540f5c257200d1170beafc90f46"
 SRC_URI="https://www.github.com/${GITHUB_USER}/${GITHUB_REPO}/tarball/${GITHUB_TAG} -> ${P}-${GITHUB_TAG}.tar.gz"
 
 src_unpack() {
@@ -25,7 +25,7 @@ LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
 KEYWORDS="*"
 
-IUSE="debug +introspection wayland +X"
+IUSE="debug +introspection +memsaver wayland +X"
 
 # "strip" is needed in RESTRICT for debugging...
 RESTRICT="test userpriv"
@@ -141,6 +141,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	sed -i 's:PythonInterp 2.7.0:PythonInterp:' Source/cmake/WebKitCommon.cmake
 	cmake-utils_src_prepare
 }
 
@@ -149,6 +150,37 @@ src_configure() {
 }
 
 src_compile() {
+	if use memsaver; then
+
+		# limit number of jobs based on available memory:
+
+		mem=$(grep ^MemTotal /proc/meminfo | awk '{print $2}')
+		jobs=$((mem/1750000))
+
+		# don't use more jobs than physical cores:
+		if [ -e /sys/devices/system/cpu/possible ]; then
+			physical_cores=$(lscpu | grep 'Core(s) per socket:' | awk '{ print $NF }')
+			cpus=$(lscpu | grep '^Socket(s):' | awk '{ print $NF }')
+			# actual physical cores, without considering hyperthreading:
+			max_parallelism=$(( $physical_cores * $cpus ))
+		else
+			max_parallelism=999
+		fi
+
+		if [ ${jobs} -lt 1 ]; then
+			einfo "Using jobs setting of 1 (limited by memory)"
+			jobs=-j1
+		elif [ ${jobs} -gt ${max_parallelism} ]; then
+			einfo "Using jobs setting of ${max_parallelism} (limited by physical cores)"
+			jobs=-j${max_parallelism}
+		else
+			einfo "Using jobs setting of ${jobs} (limited by memory)"
+			jobs=-j${jobs}
+		fi
+	else
+		jobs="$MAKEOPTS"
+		einfo "Using default Portage jobs setting."
+	fi
 	# see https://www.mail-archive.com/webkit-dev@lists.webkit.org/msg29308.html
 
 	# Ruby situation is a bit complicated. See bug 513888
@@ -165,15 +197,16 @@ src_compile() {
 
 	local mycmakeargs=(
 		${ruby_interpreter}
+		-DUSE_SYSTEMD=OFF
 		-DENABLE_INTROSPECTION=$(usex introspection)
 		-DENABLE_X11_TARGET=$(usex X)
 		-DENABLE_WAYLAND_TARGET=$(usex wayland)
 	)
 	${S}/Tools/Scripts/set-webkit-configuration --force-optimization-level=none || die
 	if use debug; then
-		${S}/Tools/Scripts/build-webkit --gtk --debug --prefix=/usr --only-webkit --makeargs="${MAKEOPTS}" --cmakeargs="${mycmakeargs[*]}" || die
+		${S}/Tools/Scripts/build-webkit --gtk --debug --prefix=/usr --only-webkit --makeargs="${jobs}" --cmakeargs="${mycmakeargs[*]}" || die
 	else
-		${S}/Tools/Scripts/build-webkit --gtk --release --prefix=/usr --only-webkit --makeargs="${MAKEOPTS}" --cmakeargs="${mycmakeargs[*]}" || die
+		${S}/Tools/Scripts/build-webkit --gtk --release --prefix=/usr --only-webkit --makeargs="${jobs}" --cmakeargs="${mycmakeargs[*]}" || die
 	fi
 }
 

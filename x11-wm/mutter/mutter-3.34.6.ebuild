@@ -1,16 +1,16 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=7
 inherit gnome3 virtualx meson
 
 DESCRIPTION="GNOME 3 compositing window manager based on Clutter"
-HOMEPAGE="https://git.gnome.org/browse/mutter/"
+HOMEPAGE="https://gitlab.gnome.org/GNOME/mutter"
 
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="elogind +gles2 input_devices_wacom +introspection nvidia -profiler -test udev wayland"
+IUSE="elogind +gles2 input_devices_wacom +introspection -profiler -test udev wayland"
 REQUIRED_USE="
 	wayland? ( elogind )
 	test? ( wayland )
@@ -33,6 +33,8 @@ COMMON_DEPEND="
 	gnome-base/gnome-desktop:3=
 	gnome-base/gnome-settings-daemon:0=
 	>sys-power/upower-0.99:=
+	>=dev-libs/fribidi-1.0.0
+	>=media-libs/graphene-1.9.3
 
 	x11-libs/libICE
 	x11-libs/libSM
@@ -61,13 +63,12 @@ COMMON_DEPEND="
 	wayland? (
 		>=dev-libs/libinput-1.4
 		>=dev-libs/wayland-1.6.90
-		>=dev-libs/wayland-protocols-1.16
+		>=dev-libs/wayland-protocols-1.19
 		>=media-libs/mesa-10.3[egl,gbm,wayland]
 		|| ( sys-auth/elogind sys-apps/systemd )
 		>=virtual/libudev-232:=
 		x11-base/xorg-server[wayland]
 		x11-libs/libdrm:=
-		nvidia? ( dev-libs/egl-wayland )
 	)
 	=media-video/pipewire-0.2*
 	profiler? ( >=dev-util/sysprof-3.34.0 )
@@ -81,12 +82,12 @@ DEPEND="${COMMON_DEPEND}
 	wayland? ( >=sys-kernel/linux-headers-4.4 )
 "
 RDEPEND="${COMMON_DEPEND}
-	!x11-misc/expocity
 "
 
-PATCHES=(	"${FILESDIR}/${PN}-3.34.2-add-get-color-info.patch"
-			"${FILESDIR}/${PN}-3.34.2-support-eudev.patch"
-			"${FILESDIR}/gdk-wayland-fix.patch" )
+PATCHES=(
+	"${FILESDIR}/${PN}-3.34.2-add-get-color-info.patch"
+	"${FILESDIR}/${PN}-3.34.2-support-eudev.patch"
+)
 
 src_configure() {
 	sed -i "/'-Werror=redundant-decls',/d" "${S}"/meson.build || die "sed failed"
@@ -96,17 +97,20 @@ src_configure() {
 		-Degl=true
 		-Dglx=true
 		-Dsm=true
+		-Dnative_backend=true
+		-Dwayland_eglstream=false
 		-Dremote_desktop=true
 		$(meson_use gles2)
 		$(meson_use introspection)
 		$(meson_use wayland)
 		$(meson_use wayland egl_device)
-		$(meson_use nvidia wayland_eglstream)
-		$(meson_use gles2 native_backend)
 		$(meson_use udev)
 		$(meson_use profiler)
 		$(meson_use input_devices_wacom libwacom)
+		$(meson_use test cogl_tests)
+		$(meson_use test clutter_tests)
 		$(meson_use test tests)
+		$(meson_use test installed_tests)
 	)
 
 	meson_src_configure
