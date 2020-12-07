@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit gnome2
+EAPI=7
+inherit gnome3
 
 DESCRIPTION="C++ interface for pango"
 HOMEPAGE="https://www.gtkmm.org"
@@ -13,7 +13,7 @@ IUSE="doc"
 
 COMMON_DEPEND="
 	>=x11-libs/pango-1.44.7
-	=dev-cpp/glibmm-2.62.0*
+	>=dev-cpp/glibmm-2.62.0
 	>=dev-cpp/cairomm-1.12.0:0
 	>=dev-libs/libsigc++-2.3.2:2
 "
@@ -34,10 +34,10 @@ pkg_setup() {
 }
 
 src_configure() {
-	ECONF_SOURCE="${S}" gnome2_src_configure \
+	ECONF_SOURCE="${S}" gnome3_src_configure \
 		$(use_enable doc documentation)
 }
 
 src_install() {
-	gnome2_src_install
+	gnome3_src_install
 }

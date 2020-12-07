@@ -1,10 +1,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-GNOME2_LA_PUNT="yes"
+EAPI=7
+GNOME3_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 
-inherit gnome2 vala virtualx meson
+inherit gnome3 vala virtualx meson
 
 DESCRIPTION="Library for aggregating people from multiple sources"
 HOMEPAGE="https://wiki.gnome.org/Projects/Folks"
@@ -49,7 +49,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/meson-0.51.0
 	sys-devel/gettext
 	virtual/pkgconfig
-
+	bluetooth? ( dev-python/dbusmock )
 	test? (
 		sys-apps/dbus
 		bluetooth? (
@@ -59,7 +59,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	vala_src_prepare
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {

@@ -21,7 +21,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.24.12:3
 	extra? (
 		games-board/pysolfc
-		kde-base/libkdegames
+		kde-apps/libkdegames
 	)
 	gnome? ( >=gnome-base/gconf-2.0:2 )
 	sound? ( >=media-libs/libcanberra-0.26[gtk3] )
