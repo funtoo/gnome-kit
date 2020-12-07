@@ -25,8 +25,9 @@ REQUIRED_USE="doc? ( api )
 	ocaml? ( api )
 	python? ( api ${PYTHON_REQUIRED_USE} )
 	tcl? ( api )"
-
+# Portage patch required to allow some files in /lib.
 DEPEND="
+	>=sys-apps/portage-2.3.78-r4
 	app-accessibility/at-spi2-core:2
 	dev-libs/libpcre2[pcre32]
 	sys-apps/dbus
