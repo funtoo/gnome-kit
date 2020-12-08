@@ -55,7 +55,7 @@ RDEPEND="
 
 	bijiben? ( >=app-misc/bijiben-${PV} )
 	boxes? ( >=gnome-extra/gnome-boxes-${PV} )
-	builder? ( >=gnome-extra/gnome-builder-${PV} )
+	builder? ( >=dev-util/gnome-builder-${PV} )
 	empathy? ( >=net-im/empathy-3.12.13 )
 	epiphany? ( >=www-client/epiphany-${PV} )
 	evolution? ( >=mail-client/evolution-${PV} )

@@ -1,31 +1,31 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python3+ )
+PYTHON_COMPAT=( python2+ )
 
-inherit gnome2 python-any-r1 vala virtualx meson
+inherit gnome2 meson python-any-r1 virtualx
 
-DESCRIPTION="Unicode character map viewer and library"
-HOMEPAGE="https://wiki.gnome.org/Design/Apps/CharacterMap"
+DESCRIPTION="A weather application for GNOME"
+HOMEPAGE="https://wiki.gnome.org/Design/Apps/Weather"
 
-LICENSE="GPL-2 BSD"
+LICENSE="GPL-2+ LGPL-2+ MIT CC-BY-3.0 CC-BY-SA-3.0"
 SLOT="0"
 KEYWORDS="*"
 
 IUSE="test"
 
 RDEPEND="
+	>=app-misc/geoclue-2.3.1:2.0
 	>=dev-libs/gjs-1.43.3
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/gobject-introspection-1.62.0:=
-	>=dev-libs/libunistring-0.9.5
-	>=x11-libs/gtk+-3.24.12:3[introspection]
-	>=x11-libs/pango-1.44.7[introspection]
+	>=dev-libs/libgweather-3.17.2:=
+	gnome-base/gsettings-desktop-schemas
+	>=x11-libs/gtk+-3.24.12:3
 "
 DEPEND="${RDEPEND}
 	dev-libs/appstream-glib
-	>=sys-devel/gettext-0.19.8
+	>=dev-util/intltool-0.26
 	virtual/pkgconfig
 	test? (
 		${PYTHON_DEPS}
@@ -40,13 +40,6 @@ pkg_setup() {
 	use test && python-any-r1_pkg_setup
 }
 
-src_prepare() {
-	sed 's/print \(.*\)/print(\1)/' -i "${S}"/tests/smoke_test.py || die
-
-	gnome2_src_prepare
-	vala_src_prepare
-}
-
 src_test() {
-	virtx emake check
+	virtx emake check TESTS_ENVIRONMENT="dbus-run-session"
 }
