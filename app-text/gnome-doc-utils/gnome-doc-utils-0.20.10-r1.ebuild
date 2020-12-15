@@ -16,7 +16,7 @@ IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
-	>=dev-libs/libxml2-2.6.12:2[python,${PYTHON_USEDEP}]
+	>=dev-libs/libxml2-2.6.12:2[python,python_targets_python2_7]
 	>=dev-libs/libxslt-1.1.8
 "
 DEPEND="${RDEPEND}
