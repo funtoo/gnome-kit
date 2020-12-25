@@ -154,6 +154,7 @@ src_configure() {
 }
 
 src_install() {
+	meson_src_install
 	gnome3_src_install
 	python_optimize "${ED}"usr/share/cinnamon/
 
