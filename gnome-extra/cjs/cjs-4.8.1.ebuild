@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit gnome3 meson pax-utils virtualx
+inherit meson pax-utils virtualx
 
 DESCRIPTION="Linux Mint's fork of gjs for Cinnamon"
 HOMEPAGE="https://projects.linuxmint.com/cinnamon/"
@@ -46,10 +46,7 @@ src_test() {
 	virtx emake check
 }
 
-src_install() {
-	# installation sometimes fails in parallel
-	gnome3_src_install -j1
-
+post_src_install() {
 	if use examples; then
 		docinto examples
 		dodoc "${S}"/examples/*
