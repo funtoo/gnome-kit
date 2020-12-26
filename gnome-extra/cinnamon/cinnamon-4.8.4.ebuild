@@ -18,7 +18,7 @@ SRC_URI="https://github.com/linuxmint/cinnamon/archive/${MY_PV}.tar.gz -> ${MY_P
 LICENSE="GPL-2+"
 SLOT="0"
 
-IUSE="gtk-doc +networkmanager +nls"
+IUSE="gtk-doc +networkmanager +nls +bluetooth"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 KEYWORDS="*"
@@ -65,6 +65,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 # 12. polkit-gnome - explicitly autostarted by us
 # TODO(lxnay): fix error: libgnome-desktop/gnome-rr-labeler.h: No such file or directory
 RDEPEND="${COMMON_DEPEND}
+	bluetooth? ( net-wireless/blueberry )
 	>=gnome-base/dconf-0.4.1
 	>=gnome-base/libgnomekbd-2.91.4
 	sys-power/upower[introspection]
