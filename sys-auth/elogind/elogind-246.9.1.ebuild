@@ -2,35 +2,36 @@
 
 EAPI=7
 
+SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+KEYWORDS="*"
+
 inherit linux-info meson pam udev xdg-utils
 
 DESCRIPTION="The systemd project's logind, extracted to a standalone package"
 HOMEPAGE="https://github.com/elogind/elogind"
-SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="CC0-1.0 LGPL-2.1+ public-domain"
 SLOT="0"
-KEYWORDS="*"
-IUSE="+acl debug doc +pam +policykit selinux"
+IUSE="+acl audit debug doc +pam +policykit selinux"
 
-COMMON_DEPEND="
-	sys-apps/util-linux
-	sys-libs/libcap
-	virtual/libudev:=
-	acl? ( sys-apps/acl )
-	pam? ( virtual/pam )
-	selinux? ( sys-libs/libselinux )
-"
-DEPEND="${COMMON_DEPEND}
+BDEPEND="
 	app-text/docbook-xml-dtd:4.2
 	app-text/docbook-xml-dtd:4.5
 	app-text/docbook-xsl-stylesheets
 	dev-util/gperf
 	dev-util/intltool
-	sys-devel/libtool
 	virtual/pkgconfig
 "
-RDEPEND="${COMMON_DEPEND}
+DEPEND="
+	audit? ( sys-process/audit )
+	sys-apps/util-linux
+	sys-libs/libcap
+	virtual/libudev:=
+	acl? ( sys-apps/acl )
+	pam? ( sys-libs/pam )
+	selinux? ( sys-libs/libselinux )
+"
+RDEPEND="${DEPEND}
 	!sys-apps/systemd
 "
 PDEPEND="
@@ -38,9 +39,12 @@ PDEPEND="
 	policykit? ( sys-auth/polkit )
 "
 
-DOCS=( src/libelogind/sd-bus/GVARIANT-SERIALIZATION )
+DOCS=( README.md src/libelogind/sd-bus/GVARIANT-SERIALIZATION )
 
-PATCHES=( "${FILESDIR}/${PN}-241.1-docs.patch" )
+PATCHES=(
+	"${FILESDIR}/elogind-243.7-nodocs.patch"
+	"${FILESDIR}/elogind-241.4-broken-test.patch" # bug 699116
+)
 
 pkg_setup() {
 	local CONFIG_CHECK="~CGROUPS ~EPOLL ~INOTIFY_USER ~SIGNALFD ~TIMERFD"
@@ -54,7 +58,7 @@ src_prepare() {
 }
 
 src_configure() {
-	local rccgroupmode="$(grep rc_cgroup_mode /etc/rc.conf | cut -d '"' -f 2)"
+	local rccgroupmode="$(grep rc_cgroup_mode ${EPREFIX}/etc/rc.conf | cut -d '"' -f 2)"
 	local cgroupmode="legacy"
 
 	if [[ "xhybrid" = "x${rccgroupmode}" ]] ; then
@@ -67,7 +71,7 @@ src_configure() {
 		-Ddocdir="${EPREFIX}/usr/share/doc/${PF}"
 		-Dhtmldir="${EPREFIX}/usr/share/doc/${PF}/html"
 		-Dpamlibdir=$(getpam_mod_dir)
-		-Dudevrulesdir="$(get_udevdir)"/rules.d
+		-Dudevrulesdir="${EPREFIX}$(get_udevdir)"/rules.d
 		--libdir="${EPREFIX}"/usr/$(get_libdir)
 		-Drootlibdir="${EPREFIX}"/$(get_libdir)
 		-Drootlibexecdir="${EPREFIX}"/$(get_libdir)/elogind
@@ -79,6 +83,7 @@ src_configure() {
 		-Ddefault-hierarchy=${cgroupmode}
 		-Ddefault-kill-user-processes=false
 		-Dacl=$(usex acl true false)
+		-Daudit=$(usex audit true false)
 		--buildtype $(usex debug debug release)
 		-Dhtml=$(usex doc auto false)
 		-Dpam=$(usex pam true false)
@@ -101,6 +106,16 @@ src_install() {
 }
 
 pkg_postinst() {
+	if ! use pam; then
+		ewarn "${PN} will not be managing user logins/seats without USE=\"pam\"!"
+		ewarn "In other words, it will be useless for most applications."
+		ewarn
+	fi
+	if ! use policykit; then
+		ewarn "loginctl will not be able to perform privileged operations without"
+		ewarn "USE=\"policykit\"! That means e.g. no suspend or hibernate."
+		ewarn
+	fi
 	if [[ "$(rc-config list boot | grep elogind)" != "" ]]; then
 		elog "elogind is currently started from boot runlevel."
 	elif [[ "$(rc-config list default | grep elogind)" != "" ]]; then
