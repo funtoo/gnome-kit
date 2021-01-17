@@ -114,8 +114,8 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	"${FILESDIR}/3.36.2-temporarily-revert-alt-char-key.patch"
+	"${FILESDIR}/funtoo-logo.patch"
 )
-
 
 src_configure() {
 	local emesonargs=(
