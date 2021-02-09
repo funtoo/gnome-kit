@@ -68,14 +68,16 @@ RDEPEND="${COMMON_DEPEND}
 	>=gnome-base/gnome-session-3.6
 	>=gnome-base/gnome-shell-3.1.90
 	x11-apps/xhost
-
 	accessibility? (
 		>=app-accessibility/orca-3.10
 		gnome-extra/mousetweaks )
 	fprint? (
 		sys-auth/fprintd
 		sys-auth/pam_fprint )
-"
+	gnome-base/adrien-gdm-keyboard"
+
+# FL-7755: for adrien-gdm-keyboard
+
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	dev-util/gdbus-codegen
