@@ -1,0 +1,8 @@
+#! /bin/bash
+
+kbd=$(echo $LANG | cut -c 4-5 | tr '[:upper:]' '[:lower:]')
+isok=$(/usr/bin/setxkbmap -query | egrep ^layout | egrep -c "\ $kbd" )
+if [ "$isok" -ne "1" ]
+then
+	/usr/bin/setxkbmap -display $DISPLAY $kbd
+fi
