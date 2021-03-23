@@ -11,5 +11,5 @@ RDEPEND=>=dev-libs/glib-2.64.2:2 net-libs/gssdp:1.2= net-libs/gupnp:1.2= introsp
 RESTRICT=test
 SLOT=0/1.2
 SRC_URI=mirror://gnome/sources/gupnp-igd/0.2/gupnp-igd-0.2.5.tar.xz
-_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	gnome.org	532d56d07b9eace4831aaa817d2b756a	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	gnome.org	532d56d07b9eace4831aaa817d2b756a	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
 _md5_=b9e40baf4002d73c96c99bde8deeadf4
