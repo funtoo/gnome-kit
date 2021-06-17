@@ -1,4 +1,3 @@
-# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -12,7 +11,7 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="*"
-IUSE="elogind examples gtk +introspection kde nls pam selinux test"
+IUSE="elogind examples gtk +introspection jit kde nls pam selinux +spidermonkey test"
 RESTRICT="!test? ( test )"
 
 BDEPEND="
@@ -29,7 +28,8 @@ BDEPEND="
 	introspection? ( dev-libs/gobject-introspection )
 "
 DEPEND="
-	dev-lang/spidermonkey:78[-debug]
+	spidermonkey? ( dev-lang/spidermonkey:78[-debug] )
+	!spidermonkey? ( dev-lang/duktape )
 	dev-libs/glib:2
 	dev-libs/expat
 	elogind? ( sys-auth/elogind )
@@ -47,12 +47,15 @@ PDEPEND="
 		>=lxde-base/lxsession-0.5.2
 	) )
 	kde? ( kde-plasma/polkit-kde-agent )
+	!elogind? ( sys-auth/consolekit[policykit] )
 "
 
 DOCS=( docs/TODO HACKING NEWS README )
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-0.119-elogind.patch # bug 660880
+	# bug 660880
+	"${FILESDIR}"/polkit-0.119-elogind.patch
+	"${FILESDIR}"/polkit-0.118-duktape.patch
 )
 
 QA_MULTILIB_PATHS="
@@ -96,6 +99,7 @@ src_configure() {
 		--enable-man-pages
 		--disable-gtk-doc
 		--disable-examples
+		$(usex spidermonkey '' "--with-duktape")
 		$(use_enable elogind libelogind)
 		$(use_enable introspection)
 		$(use_enable nls)
@@ -118,17 +122,17 @@ src_compile() {
 src_install() {
 	default
 
-	if use examples; then
-		docinto examples
-		dodoc src/examples/{*.c,*.policy*}
-	fi
-
 	fowners -R polkitd:root /{etc,usr/share}/polkit-1/rules.d
 
 	diropts -m 0700 -o polkitd
 	keepdir /usr/share/polkit-1/rules.d
 
-# allow "plugdev" group to access and manipulate removable media by default:
+	if use examples; then
+		docinto examples
+		dodoc src/examples/{*.c,*.policy*}
+	fi
+
+	# allow "plugdev" group to access and manipulate removable media by default:
 	insopts -m0660 -o polkitd -g root
 	insinto /etc/polkit-1/rules.d
 	doins $FILESDIR/50-udisks.rules
@@ -138,6 +142,6 @@ src_install() {
 
 pkg_postinst() {
 	chmod 0700 "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
-	chown polkitd:root "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
+	chown -R polkitd:root "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 	chown -R polkitd:polkitd "${EROOT}"/var/lib/polkit-1
 }
