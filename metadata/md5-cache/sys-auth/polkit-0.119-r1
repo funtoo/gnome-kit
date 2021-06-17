@@ -1,16 +1,16 @@
 BDEPEND=app-text/docbook-xml-dtd:4.1.2 app-text/docbook-xsl-stylesheets dev-libs/glib dev-libs/gobject-introspection-common dev-libs/libxslt dev-util/glib-utils dev-util/gtk-doc-am dev-util/intltool sys-devel/gettext virtual/pkgconfig introspection? ( dev-libs/gobject-introspection ) >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DEFINED_PHASES=compile configure install postinst prepare setup
-DEPEND=dev-lang/spidermonkey:78[-debug] dev-libs/glib:2 dev-libs/expat elogind? ( sys-auth/elogind ) pam? ( sys-auth/pambase sys-libs/pam )
+DEPEND=spidermonkey? ( dev-lang/spidermonkey:78[-debug] ) !spidermonkey? ( dev-lang/duktape ) dev-libs/glib:2 dev-libs/expat elogind? ( sys-auth/elogind ) pam? ( sys-auth/pambase sys-libs/pam )
 DESCRIPTION=Policy framework for controlling privileges for system-wide services
 EAPI=7
 HOMEPAGE=https://www.freedesktop.org/wiki/Software/polkit https://gitlab.freedesktop.org/polkit/polkit
-IUSE=elogind examples gtk +introspection kde nls pam selinux test
+IUSE=elogind examples gtk +introspection jit kde nls pam selinux +spidermonkey test
 KEYWORDS=*
 LICENSE=LGPL-2
-PDEPEND=gtk? ( || ( >=gnome-extra/polkit-gnome-0.105 >=lxde-base/lxsession-0.5.2 ) ) kde? ( kde-plasma/polkit-kde-agent )
-RDEPEND=dev-lang/spidermonkey:78[-debug] dev-libs/glib:2 dev-libs/expat elogind? ( sys-auth/elogind ) pam? ( sys-auth/pambase sys-libs/pam ) selinux? ( sec-policy/selinux-policykit )
+PDEPEND=gtk? ( || ( >=gnome-extra/polkit-gnome-0.105 >=lxde-base/lxsession-0.5.2 ) ) kde? ( kde-plasma/polkit-kde-agent ) !elogind? ( sys-auth/consolekit[policykit] )
+RDEPEND=spidermonkey? ( dev-lang/spidermonkey:78[-debug] ) !spidermonkey? ( dev-lang/duktape ) dev-libs/glib:2 dev-libs/expat elogind? ( sys-auth/elogind ) pam? ( sys-auth/pambase sys-libs/pam ) selinux? ( sec-policy/selinux-policykit )
 RESTRICT=!test? ( test )
 SLOT=0
 SRC_URI=https://www.freedesktop.org/software/polkit/releases/polkit-0.119.tar.gz
 _eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	pam	756a09f72c4cdbb55f2694c95f1e0860	pax-utils	db85a3c508cf82c45f24b2723791cc93	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	user	e68863263b1e8611dacf381bec5c8b2b	xdg-utils	14d00d009167652b1fa363e55effe213
-_md5_=e99a63f36846676109734ca1c2fcf3bc
+_md5_=2d7efb8ef7c95238f141197ef1f48f92
