@@ -25,6 +25,7 @@ COMMON_DEPEND="
 	>=x11-libs/gtk+-3.24.12:3
 	x11-misc/shared-mime-info
 	net-nds/openldap:=
+	dev-libs/libpwquality
 	zeroconf? ( >=net-dns/avahi-0.6:= )
 "
 DEPEND="${COMMON_DEPEND}

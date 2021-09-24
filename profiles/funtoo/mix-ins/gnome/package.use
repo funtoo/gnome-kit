@@ -157,3 +157,6 @@ net-libs/gnutls pkcs11
 # Relatively sane GNOME defaults app-editors/emacs.
 # Also, see the workstation profile.
 app-editors/emacs gsettings lcms
+
+# Required by dev-vcs/gitg
+app-text/gtkspell vala 
