@@ -37,6 +37,7 @@ RDEPEND="!gnome-base/gnome
 	>=x11-themes/gnome-backgrounds-${PV}
 
 	>=x11-terms/gnome-terminal-${PV}
+	media-fonts/croscorefonts
 "
 DEPEND=""
 PDEPEND=">=gnome-base/gvfs-1.40.0"

@@ -11,15 +11,12 @@ SLOT="3.0"
 # double check none of the deps are still masked !
 KEYWORDS="*"
 
-IUSE="+bijiben boxes builder california empathy epiphany +evolution flashback +fonts +games geary gnote latexila +recipes +share +shotwell simple-scan +todo +tracker"
+IUSE="+bijiben boxes builder california empathy epiphany +evolution flashback +games geary gnote latexila +recipes +share +shotwell simple-scan +todo +tracker"
 
 # Note to developers:
 #
 # This is a wrapper for the extra apps integrated with GNOME 3
 #
-# cantarell upstream relies on noto, unifont and symbola fonts for
-# the fonts they cannot handle due to lack of enough manpower:
-# https://bugzilla.gnome.org/show_bug.cgi?id=762890
 RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}
 
@@ -60,10 +57,6 @@ RDEPEND="
 	epiphany? ( >=www-client/epiphany-${PV} )
 	evolution? ( >=mail-client/evolution-${PV} )
 	flashback? ( >=gnome-base/gnome-flashback-3.32.0 )
-	fonts? (
-		>=media-fonts/noto-20190524
-		>=media-fonts/symbola-11.00
-		>=media-fonts/unifont-11.0.02 )
 	games? (
 		>=games-arcade/gnome-nibbles-${PV}
 		>=games-arcade/gnome-robots-${PV}

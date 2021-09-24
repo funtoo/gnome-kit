@@ -59,8 +59,15 @@ COMMON_DEPEND="
 		>=net-misc/networkmanager-1.10.4:=[introspection] )
 	nsplugin? ( >=dev-libs/json-glib-0.13.2 )
 "
-
+# Earlier versions of media-fonts/noto contains Arimo which is in media-fonts/croscorefonts. Thus the noto blocker.
 RDEPEND="${COMMON_DEPEND}
+	!<media-fonts/noto-2020
+	media-fonts/cantarell
+	media-fonts/croscorefonts
+	media-fonts/dejavu
+	media-fonts/source-pro
+	media-fonts/symbola
+	media-fonts/unifont
 	app-accessibility/at-spi2-core:2[introspection]
 	>=app-accessibility/caribou-0.4.8
 	dev-libs/libgweather:2=
@@ -72,7 +79,6 @@ RDEPEND="${COMMON_DEPEND}
 	systemd? ( >=sys-apps/systemd-186:0= )
 	elogind? ( sys-auth/elogind )
 	x11-misc/xdg-utils
-	media-fonts/dejavu
 	>=x11-themes/adwaita-icon-theme-3.30.0
 	networkmanager? (
 		net-misc/mobile-broadband-provider-info
