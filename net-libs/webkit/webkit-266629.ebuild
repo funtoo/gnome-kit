@@ -122,10 +122,6 @@ pkg_pretend() {
 		if ! test-flag-CXX -std=c++11 ; then
 			die "You need at least GCC 4.9.x or Clang >= 3.3 for C++11-specific compiler flags"
 		fi
-
-		if tc-is-gcc && [[ $(gcc-version) < 4.9 ]] ; then
-			die 'The active compiler needs to be gcc 4.9 (or newer)'
-		fi
 	fi
 }
 
