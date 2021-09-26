@@ -2,8 +2,10 @@
 
 EAPI=7
 VALA_USE_DEPEND="vapigen"
+VALA_MIN_API_VERSION="0.32"
+PYTHON_COMPAT=( python3+ )
 
-inherit autotools gnome3 meson vala
+inherit autotools gnome3 meson python-any-r1 vala
 
 DESCRIPTION="Library providing a virtual terminal emulator widget"
 HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Terminal/VTE"
@@ -11,7 +13,8 @@ SRC_URI="https://gitlab.gnome.org/GNOME/vte/-/archive/${PV}/vte-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1+"
 SLOT="2.91"
-KEYWORDS="*"
+# -std=gnu++20 required (gcc-11)
+KEYWORDS="next"
 
 IUSE="+crypt doc debug elogind glade +introspection +vala"
 REQUIRED_USE="vala? ( introspection )"
@@ -46,9 +49,8 @@ RDEPEND="${RDEPEND}
 "
 
 PATCHES=(
+	"${FILESDIR}"/${PN}-0.64.1-meson-Find-python-explicitly-to-honor-downstream-pyt.patch
 	"${FILESDIR}"/${PN}-0.60.3-elogind-support.patch
-	# Adds OSC 777 support for desktop notifications in gnome-terminal or elsewhere
-	"${FILESDIR}"/${PN}-0.60.3-command-notify.patch
 )
 
 src_prepare() {
