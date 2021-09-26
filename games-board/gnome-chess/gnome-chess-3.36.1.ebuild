@@ -12,7 +12,7 @@ LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="+engines"
+IUSE="engines"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
