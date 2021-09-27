@@ -1,25 +1,24 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python3+ )
-
-inherit eutils python-r1
+inherit python-r1 systemd
 
 DESCRIPTION="Speech synthesis interface"
-HOMEPAGE="http://www.freebsoft.org/speechd"
-SRC_URI="http://www.freebsoft.org/pub/projects/speechd/${P}.tar.gz"
+HOMEPAGE="https://freebsoft.org/speechd"
+SRC_URI="https://github.com/brailcom/speechd/releases/download/${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="*"
-IUSE="alsa ao +espeak flite nas pulseaudio python static-libs"
+IUSE="alsa ao +espeak flite nas pulseaudio python"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-COMMON_DEPEND="python? ( ${PYTHON_DEPS} )
+DEPEND="python? ( ${PYTHON_DEPS} )
 	>=dev-libs/dotconf-1.3
-	>=dev-libs/glib-2.62.2:2
+	>=dev-libs/glib-2.36:2
 	dev-libs/libltdl:0
 	>=media-libs/libsndfile-1.0.2
 	alsa? ( media-libs/alsa-lib )
@@ -28,24 +27,31 @@ COMMON_DEPEND="python? ( ${PYTHON_DEPS} )
 	flite? ( app-accessibility/flite )
 	nas? ( media-libs/nas )
 	pulseaudio? ( media-sound/pulseaudio )"
-DEPEND="${COMMON_DEPEND}
-	>=dev-util/intltool-0.40.0
+RDEPEND="${DEPEND}
+	python? ( dev-python/pyxdg[${PYTHON_USEDEP}] )"
+BDEPEND="
+	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig"
-RDEPEND="${COMMON_DEPEND}
-	dev-python/pyxdg"
 
 src_configure() {
+	# bug 573732
+	export GIT_CEILING_DIRECTORIES="${WORKDIR}"
+
 	local myeconfargs=(
 		--disable-python
-		$(use_enable static-libs static)
+		--disable-static
+		--with-baratinoo=no
+		--with-ibmtts=no
+		--with-kali=no
 		$(use_with alsa)
 		$(use_with ao libao)
 		$(use_with espeak)
 		$(use_with flite)
-		$(use_with pulseaudio pulse)
 		$(use_with nas)
+		$(use_with pulseaudio pulse)
+		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
 	)
-	econf ${myeconfargs[@]}
+	econf "${myeconfargs[@]}"
 }
 
 src_compile() {
@@ -65,10 +71,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
-	dodoc ANNOUNCE AUTHORS BUGS FAQ NEWS README*
-
-	prune_libtool_files --all
+	default
 
 	if use python; then
 		installation() {
@@ -81,7 +84,10 @@ src_install() {
 		}
 		python_foreach_impl run_in_build_dir installation
 		python_replicate_script "${ED}"/usr/bin/spd-conf
+		python_foreach_impl python_optimize
 	fi
+
+	find "${D}" -name '*.la' -type f -delete || die
 }
 
 pkg_postinst() {
@@ -99,7 +105,7 @@ pkg_postinst() {
 		editconfig="y"
 	fi
 	if [[ "${editconfig}" == "y" ]]; then
-		ewarn "You must edit ${EROOT}etc/speech-dispatcher/speechd.conf"
+		ewarn "You must edit ${EROOT}/etc/speech-dispatcher/speechd.conf"
 		ewarn "and make sure the settings there match your system."
 		ewarn
 	fi
