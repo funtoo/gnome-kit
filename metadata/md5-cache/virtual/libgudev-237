@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DESCRIPTION=Virtual for libgudev providers
+EAPI=7
+IUSE=introspection
+KEYWORDS=*
+RDEPEND=>=dev-libs/libgudev-237:0/0[introspection?]
+SLOT=0/0
+_md5_=fff4aa94a9749495492028467f07f598
