@@ -7,15 +7,14 @@ DESCRIPTION="Compiler for the GObject type system"
 HOMEPAGE="https://wiki.gnome.org/Projects/Vala"
 
 LICENSE="LGPL-2.1"
-SLOT="0.48"
+SLOT="0.54"
 KEYWORDS="*"
-IUSE="test"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=dev-libs/vala-common-${PV}
 	>=media-gfx/graphviz-2.40.1
-	>=dev-libs/gobject-introspection-1.62.0:=
+	>=dev-libs/gobject-introspection-1.66.0:=
 "
 
 RDEPEND="
@@ -29,7 +28,6 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/flex
 	virtual/pkgconfig
 	virtual/yacc
-	test? ( dev-libs/dbus-glib )
 "
 
 src_configure() {

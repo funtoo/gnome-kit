@@ -1,7 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-VALA_MAX_API_VERSION="0.44"
+VALA_MIN_API_VERSION="0.54"
+VALA_MAX_API_VERSION="0.54"
 VALA_USE_DEPEND="vapigen"
 
 inherit gnome3 vala virtualx meson
