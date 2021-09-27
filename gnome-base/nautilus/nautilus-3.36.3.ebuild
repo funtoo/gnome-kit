@@ -61,6 +61,11 @@ PDEPEND="
 "
 # Need gvfs[gtk] for recent:/// support
 
+post_src_unpack() {
+	# new glib fix:
+	sed -i -e 's/volatile //' ${S}/src/nautilus-enum-types.c.template || die
+}
+
 src_prepare() {
 	if use previewer; then
 		DOC_CONTENTS="nautilus uses gnome-extra/sushi to preview media files.
