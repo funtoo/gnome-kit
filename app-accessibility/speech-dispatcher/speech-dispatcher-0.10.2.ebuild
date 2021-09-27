@@ -43,6 +43,7 @@ src_configure() {
 		--with-baratinoo=no
 		--with-ibmtts=no
 		--with-kali=no
+		--with-voxin=no
 		$(use_with alsa)
 		$(use_with ao libao)
 		$(use_with espeak)
