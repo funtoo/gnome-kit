@@ -13,10 +13,9 @@ LICENSE="LGPL-2+ GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="cairo doc doctool test"
+IUSE="cairo doc doctool"
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
-	test? ( cairo )
 "
 
 # virtual/pkgconfig needed at runtime, bug #505408
@@ -35,6 +34,7 @@ RDEPEND="
 "
 # Wants real bison, not virtual/yacc
 DEPEND="${RDEPEND}
+	>=dev-util/meson-0.55.3
 	doc? ( >=dev-util/gtk-doc-1.19
 		app-text/docbook-xml-dtd:4.3
 		app-text/docbook-xml-dtd:4.5
@@ -58,14 +58,6 @@ src_prepare() {
 }
 
 src_configure() {
-	if ! has_version "x11-libs/cairo[glib]"; then
-		# Bug #391213: enable cairo-gobject support even if it's not installed
-		# We only PDEPEND on cairo to avoid circular dependencies
-		export CAIRO_LIBS="-lcairo -lcairo-gobject"
-		export CAIRO_CFLAGS="-I${EPREFIX}/usr/include/cairo"
-	fi
-
-	# To prevent crosscompiling problems, bug #414105
 	local mesonargs=(
 		$(meson_use cairo) \
 		$(meson_use doc gtk_doc) \
