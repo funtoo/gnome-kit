@@ -17,7 +17,7 @@ SRC_URI="${SRC_URI}
 	https://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz" # pkg.m4 for eautoreconf
 
 LICENSE="LGPL-2.1+"
-SLOT="2"
+SLOT="2/${PV}"
 IUSE="dbus fam gtk-doc kernel_linux +mime selinux static-libs systemtap test xattr"
 KEYWORDS="*"
 
