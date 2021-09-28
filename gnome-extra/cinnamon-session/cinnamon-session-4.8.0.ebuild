@@ -13,7 +13,7 @@ KEYWORDS="*"
 IUSE="doc ipv6"
 
 COMMON_DEPEND="
-	>=dev-libs/glib-2.37.3:2
+	>=dev-libs/glib-2.70.0-r1:2=
 	media-libs/libcanberra
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/gtk+-3:3
