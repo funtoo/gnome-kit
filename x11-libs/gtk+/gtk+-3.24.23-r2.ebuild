@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	sys-apps/dbus
 	>=dev-libs/atk-2.15[introspection?]
 	>=dev-libs/fribidi-0.19.7
-	>=dev-libs/glib-2.62.2:2
+	>=dev-libs/glib-2.70.0-r1:2=
 	media-libs/fontconfig
 	>=media-libs/libepoxy-1.4[X(+)?]
 	>=x11-libs/cairo-1.16.0[aqua?,glib,svg,X?]
