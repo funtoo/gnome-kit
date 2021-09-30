@@ -60,14 +60,15 @@ src_configure() {
 }
 
 src_test() {
-	 "${EROOT}${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/schema" || die
-	 GSETTINGS_SCHEMA_DIR="${S}/schema" virtx emake check
+	"${EROOT}${GLIB_COMPILE_SCHEMAS}" --allow-any-name "${S}/schema" || die
+	GSETTINGS_SCHEMA_DIR="${S}/schema" virtx emake check
 }
 
 pkg_postinst() {
-	# cap_ipc_lock only needed if building --with-libcap-ng
 	# Never install as suid root, this breaks dbus activation, see bug #513870
-	use caps && fcaps -m 755 cap_ipc_lock usr/bin/gnome-keyring-daemon
+	# See FL-8892: disabling caps entirely allows connections to keyring with glib-2.67.2+.
+	# So we want this ALWAYS disabled now:
+	#use caps && fcaps -m 755 cap_ipc_lock usr/bin/gnome-keyring-daemon
 	gnome3_pkg_postinst
 
 	if ! [[ $(eselect pinentry show | grep "pinentry-gnome3") ]] ; then
