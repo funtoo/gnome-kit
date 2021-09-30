@@ -10,7 +10,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/Gjs"
 LICENSE="MIT || ( MPL-1.1 LGPL-2+ GPL-2+ )"
 SLOT="0"
 IUSE="+cairo examples gtk readline"
-KEYWORDS="*"
+KEYWORDS="next"
 
 RDEPEND="
 	>=dev-libs/glib-2.66.0
