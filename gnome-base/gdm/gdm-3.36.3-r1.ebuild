@@ -27,7 +27,7 @@ KEYWORDS="*"
 
 COMMON_DEPEND="
 	app-text/iso-codes
-	>=dev-libs/glib-2.44:2
+	>=dev-libs/glib-2.70.0-r1:2=
 	dev-libs/libgudev
 	>=x11-libs/gtk+-2.91.1:3
 	>=gnome-base/dconf-0.20
