@@ -20,7 +20,7 @@ RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	app-misc/ca-certificates
 	>=dev-libs/libgcrypt-1.2.2:0=
-	caps? ( sys-libs/libcap-ng )
+	sys-libs/libcap-ng
 	pam? ( virtual/pam )
 	selinux? ( sec-policy/selinux-gnome )
 	>=app-crypt/gnupg-2.0.28:=
@@ -64,11 +64,16 @@ src_test() {
 	GSETTINGS_SCHEMA_DIR="${S}/schema" virtx emake check
 }
 
-pkg_postinst() {
-	# Never install as suid root, this breaks dbus activation, see bug #513870
+src_install() {
+	default
 	# See FL-8892: disabling caps entirely allows connections to keyring with glib-2.67.2+.
-	# So we want this ALWAYS disabled now:
-	#use caps && fcaps -m 755 cap_ipc_lock usr/bin/gnome-keyring-daemon
+	fcaps -r ${D}/usr/bin/gnome-keyring-daemon
+}
+
+pkg_postinst() {
+	if [ "$(/sbin/getcap $ROOT/usr/bin/gnome-keyring-daemon)" != "" ]; then
+		warn "gnome-keyring-daemon has enhanced capabilities and this will prevent it from connecting to dbus!"
+	fi
 	gnome3_pkg_postinst
 
 	if ! [[ $(eselect pinentry show | grep "pinentry-gnome3") ]] ; then
