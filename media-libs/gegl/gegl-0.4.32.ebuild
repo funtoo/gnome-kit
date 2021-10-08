@@ -6,15 +6,16 @@ PYTHON_COMPAT=( python3+ )
 # vala and introspection support is broken, bug #468208
 VALA_USE_DEPEND=vapigen
 
-inherit meson gnome2-utils python-any-r1 vala
+inherit meson python-any-r1 vala
+
+SRC_URI="https://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
+KEYWORDS="*"
 
 DESCRIPTION="A graph based image processing framework"
-HOMEPAGE="http://www.gegl.org/"
-SRC_URI="http://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
+HOMEPAGE="https://gegl.org/"
 
 LICENSE="|| ( GPL-3+ LGPL-3 )"
 SLOT="0.4"
-KEYWORDS="*"
 
 IUSE="cairo debug ffmpeg introspection lcms lensfun openexr pdf raw sdl svg test tiff umfpack vala v4l webp"
 REQUIRED_USE="
@@ -29,7 +30,7 @@ RESTRICT="!test? ( test )"
 #       so there is no chance to support libav right now (Gentoo bug #567638)
 #       If it returns, please check prior GEGL ebuilds for how libav was integrated.  Thanks!
 RDEPEND="
-	>=dev-libs/glib-2.44:2
+	>=dev-libs/glib-2.70.0-r1:2=
 	>=dev-libs/json-glib-1.2.6
 	>=media-libs/babl-0.1.78[introspection?,lcms?,vala?]
 	media-libs/libnsgif
@@ -55,6 +56,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
+	${PYTHON_DEPS}
 	dev-lang/perl
 	>=dev-util/gtk-doc-am-1
 	>=sys-devel/gettext-0.19.8
@@ -64,24 +66,22 @@ BDEPEND="
 	vala? ( $(vala_depend) )
 "
 
-DOCS=( AUTHORS docs/ChangeLog docs/NEWS.txt )
-
-PATCHES=(
-	"${FILESDIR}"/${PN}-0.4.18-drop-failing-tests.patch
-	"${FILESDIR}"/${PN}-0.4.18-program-suffix.patch
-	"${FILESDIR}"/${P}-130cd583.patch
-)
+DOCS=( AUTHORS docs/ChangeLog docs/NEWS.adoc )
 
 python_check_deps() {
+	use test || return 0
 	has_version -b ">=dev-python/pygobject-3.2:3[${PYTHON_USEDEP}]"
-}
-
-pkg_setup() {
-	use test && python-any-r1_pkg_setup
 }
 
 src_prepare() {
 	default
+	# patch executables suffix
+	sed -i -e "s/'gegl'/'gegl-0.4'/" bin/meson.build || die
+	sed -i -e "s/'gegl-imgcmp'/'gegl-imgcmp-0.4'/" tools/meson.build || die
+	sed -i -e "s/gegl-imgcmp/gegl-imgcmp-0.4/" tests/simple/test-exp-combine.sh || die
+	# skip UNEXPECTED PASSED 'matting-levin' test
+	sed -i -e "s/composition_tests += 'matting-levin'//" \
+		-e "s/composition_tests_fail += 'matting-levin'//" tests/compositions/meson.build || die
 
 	# don't require Apple's OpenCL on versions of OSX that don't have it
 	if [[ ${CHOST} == *-darwin* && ${CHOST#*-darwin} -le 9 ]] ; then
@@ -93,13 +93,14 @@ src_prepare() {
 		-e '/composite-transform.xml/d' \
 		-i tests/compositions/meson.build || die
 
-	# fix skipping mipmap tests due to executable not found
-	for item in "invert-crop.sh" "invert.sh" "rotate-crop.sh" "rotate.sh" "unsharp-crop.sh" "unsharp.sh"; do
-		sed -i "s:/bin/gegl:/bin/gegl-0.4:g" "${S}/tests/mipmap/${item}" || die
-		sed -i "s:/tools/gegl-imgcmp:/tools/gegl-imgcmp-0.4:g" "${S}/tests/mipmap/${item}" || die
+	# fix 'build'headers from *.cl on gentoo-hardened, bug 739816
+	pushd "${S}/opencl/" || die
+	for file in *.cl; do
+		if [[ -f ${file} ]]; then
+			"${EPYTHON}" cltostring.py "${file}" || die
+		fi
 	done
-
-	gnome2_environment_reset
+	popd || die
 
 	use vala && vala_src_prepare
 }
@@ -111,13 +112,7 @@ src_configure() {
 		-Ddocs=false
 		-Dexiv2=disabled
 		-Dgdk-pixbuf=enabled
-		-Dgexiv2=disabled
-		#  - There are two checks for dot, one controllable by --with(out)-graphviz
-		#    which toggles HAVE_GRAPHVIZ that is not used anywhere.  Yes.
-		-Dgraphviz=disabled
 		-Djasper=disabled
-		-Dlibjpeg=enabled
-		-Dlibpng=enabled
 		#  - libspiro: not in portage main tree
 		-Dlibspiro=disabled
 		-Dlua=disabled
