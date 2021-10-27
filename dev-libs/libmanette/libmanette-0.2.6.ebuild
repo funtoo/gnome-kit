@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit gnome.org gnome2-utils meson vala xdg
+inherit gnome.org gnome3-utils meson vala xdg
 
 DESCRIPTION="Simple GObject game controller library"
 HOMEPAGE="https://gitlab.gnome.org/aplazas/libmanette"
@@ -22,11 +22,6 @@ DEPEND="${DEPEND}
 	vala? ( $(vala_depend) )
 	virtual/pkgconfig
 "
-
-PATCHES=(
-	# https://gitlab.gnome.org/aplazas/libmanette/merge_requests/18
-	"${FILESDIR}"/${PV}-optional-introspection-vapi.patch
-)
 
 src_prepare() {
 	xdg_src_prepare
