@@ -40,6 +40,7 @@ wpe_depend="
 "
 # TODO: gst-plugins-base[X] is only needed when build configuration ends up with GLX set, but that's a bit automagic too to fix
 RDEPEND="
+	!net-libs/webkit
 	>=x11-libs/cairo-1.16.0:=[X?]
 	>=media-libs/fontconfig-2.13.0:1.0
 	>=media-libs/freetype-2.9.0:2
