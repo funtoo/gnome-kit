@@ -98,7 +98,10 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-PATCHES=(	"${FILESDIR}/${PN}-3.36.0-improve-motd-handling.patch" )
+PATCHES=(
+	"${FILESDIR}/${PN}-3.36.0-improve-motd-handling.patch"
+	"${FILESDIR}/${PN}-3.36.7-fix-modal-wifi-lockup.patch"
+)
 
 src_prepare() {
 	gnome3_src_prepare
