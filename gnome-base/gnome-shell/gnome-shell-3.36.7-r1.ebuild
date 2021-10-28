@@ -173,12 +173,4 @@ pkg_postinst() {
 		ewarn "properly. Please follow this guide to migrate:"
 		ewarn "https://wiki.gentoo.org/wiki/Systemd"
 	fi
-
-	if use elogind; then
-		ewarn "You are enabling 'elogind' USE flag to skip systemd requirement,"
-		ewarn "this can lead to unexpected problems and is not supported neither by"
-		ewarn "upstream neither by Gnome Gentoo maintainers. If you suffer any problem,"
-		ewarn "you will need to disable this USE flag system wide and retest before"
-		ewarn "opening any bug report."
-	fi
 }
