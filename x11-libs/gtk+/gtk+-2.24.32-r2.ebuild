@@ -238,9 +238,8 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome3_pkg_postinst
-
 	gnome3_query_immodules_gtk2 \
-		|| die "Update immodules cache failed (for ${ABI})"
+		|| ewarn "Update immodules cache had some problems (for ${ABI}) (this may be transient)"
 
 	set_gtk2_confdir
 

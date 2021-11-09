@@ -201,7 +201,6 @@ src_install() {
 
 pkg_postinst() {
 	gnome3_pkg_postinst
-	gnome3_update_immodules_cache_gtk3 || die "Unable to update immodules cache."
 
 	if ! has_version "app-text/evince"; then
 		elog "Please install app-text/evince for print preview functionality."
