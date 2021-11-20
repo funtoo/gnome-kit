@@ -19,6 +19,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}
 KEYWORDS="*"
 
 COMMON_DEPEND="
+	app-arch/gnome-autoar
 	>=dev-util/meson-0.46.1
 	>=app-accessibility/at-spi2-atk-2.5.3
 	>=dev-libs/atk-2[introspection]
