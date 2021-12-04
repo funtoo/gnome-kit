@@ -10,7 +10,7 @@ HOMEPAGE="https://wiki.gnome.org/Apps/Software"
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
-IUSE="+firmware flatpak gnome gtk-doc packagekit spell udev"
+IUSE="+firmware +flatpak gnome gtk-doc packagekit spell udev"
 RESTRICT="test" # writes to and deletes files in /var/tmp/self-test/
 
 RDEPEND="
