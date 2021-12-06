@@ -18,7 +18,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.62.2:2[dbus]
 	>=x11-libs/gtk+-3.24.12:3
 	>=net-libs/webkit-gtk-2.20:4
-	>=gui-libs/amtk-5.0.0
+	>=x11-libs/amtk-5.0.0
 "
 RDEPEND="${COMMON_DEPEND}
 	${PYTHON_DEPS}
