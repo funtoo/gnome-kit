@@ -63,7 +63,7 @@ RDEPEND="
 	gnome-keyring? ( app-crypt/libsecret )
 	introspection? ( >=dev-libs/gobject-introspection-1.59.1:= )
 	dev-libs/libtasn1:=
-	spell? ( >=app-text/enchant-0.22:2 )
+	spell? ( >=app-text/enchant-0.22 )
 	gstreamer? (
 		>=media-libs/gstreamer-1.14:1.0
 		>=media-libs/gst-plugins-base-1.14:1.0[egl?,opengl?,X?]
@@ -97,7 +97,7 @@ RDEPEND="
 	seccomp? (
 		>=sys-apps/bubblewrap-0.3.1
 		sys-libs/libseccomp
-		sys-apps/xdg-dbus-proxy
+		dev-util/xdg-dbus-proxy
 	)
 
 	systemd? ( sys-apps/systemd:= )
