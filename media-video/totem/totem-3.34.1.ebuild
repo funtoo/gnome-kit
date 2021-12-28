@@ -99,6 +99,10 @@ src_configure() {
 		addpredict "${render}"
 	done
 
+	for vid in /dev/video* ; do
+		addpredict "${vid}"
+	done
+
 	# pylint is checked unconditionally, but is only used for make check
 	# appstream-util overriding necessary until upstream fixes their macro
 	# to respect configure switch
