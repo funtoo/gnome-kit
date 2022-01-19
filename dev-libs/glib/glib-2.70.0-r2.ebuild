@@ -235,18 +235,9 @@ pkg_preinst() {
 
 pkg_postinst() {
 	# force (re)generation of gschemas.compiled
-	GNOME2_ECLASS_GLIB_SCHEMAS="force"
+	GNOME3_ECLASS_GLIB_SCHEMAS="force"
 
 	gnome3_pkg_postinst
-
-	if ! tc-is-cross-compiler ; then
-		gnome3_giomodule_cache_update || die "Update GIO modules cache failed"
-	else
-		ewarn "Updating of GIO modules cache skipped due to cross-compilation."
-		ewarn "You might want to run gio-querymodules manually on the target for"
-		ewarn "your final image for performance reasons and re-run it when packages"
-		ewarn "installing GIO modules get upgraded or added to the image."
-	fi
 }
 
 pkg_postrm() {
