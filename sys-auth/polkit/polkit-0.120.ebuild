@@ -2,7 +2,7 @@
 
 EAPI=7
 
-inherit autotools pam pax-utils user xdg-utils
+inherit meson pam pax-utils systemd user xdg-utils
 
 DESCRIPTION="Policy framework for controlling privileges for system-wide services"
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/polkit https://gitlab.freedesktop.org/polkit/polkit"
@@ -11,8 +11,7 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="*"
-IUSE="elogind examples gtk +introspection jit kde nls pam selinux +spidermonkey test"
-RESTRICT="!test? ( test )"
+IUSE="elogind examples gtk +introspection kde pam selinux +spidermonkey test"
 
 BDEPEND="
 	app-text/docbook-xml-dtd:4.1.2
@@ -21,8 +20,6 @@ BDEPEND="
 	dev-libs/gobject-introspection-common
 	dev-libs/libxslt
 	dev-util/glib-utils
-	dev-util/gtk-doc-am
-	dev-util/intltool
 	sys-devel/gettext
 	virtual/pkgconfig
 	introspection? ( dev-libs/gobject-introspection )
@@ -53,9 +50,10 @@ PDEPEND="
 DOCS=( docs/TODO HACKING NEWS README )
 
 PATCHES=(
-	# bug 660880
-	"${FILESDIR}"/polkit-0.119-elogind.patch
-	"${FILESDIR}"/polkit-0.118-duktape.patch
+	"${FILESDIR}/polkit-0.119-elogind.patch"
+	"${FILESDIR}/polkit-0.120-meson.patch"
+	"${FILESDIR}/polkit-0.120-duktape.patch"
+	"${FILESDIR}/polkit-0.120-CVE-2021-4043.patch"
 )
 
 QA_MULTILIB_PATHS="
@@ -76,72 +74,54 @@ src_prepare() {
 	default
 
 	sed -i -e 's|unix-group:wheel|unix-user:0|' src/polkitbackend/*-default.rules || die #401513
-
-	# Workaround upstream hack around standard gtk-doc behavior, bug #552170
-	sed -i -e 's/@ENABLE_GTK_DOC_TRUE@\(TARGET_DIR\)/\1/' \
-		-e '/install-data-local:/,/uninstall-local:/ s/@ENABLE_GTK_DOC_TRUE@//' \
-		-e 's/@ENABLE_GTK_DOC_FALSE@install-data-local://' \
-		docs/polkit/Makefile.in || die
-
-	# disable broken test - bug #624022
-	sed -i -e "/^SUBDIRS/s/polkitbackend//" test/Makefile.am || die
-
-	# Fix cross-building, bug #590764, elogind patch, bug #598615
-	eautoreconf
 }
 
 src_configure() {
 	xdg_environment_reset
 
-	local myeconfargs=(
+	local emesonargs=(
 		--localstatedir="${EPREFIX}"/var
-		--disable-static
-		--enable-man-pages
-		--disable-gtk-doc
-		--disable-examples
-		$(usex spidermonkey '' "--with-duktape")
-		$(use_enable elogind libelogind)
-		$(use_enable introspection)
-		$(use_enable nls)
-		$(usex pam "--with-pam-module-dir=$(getpam_mod_dir)" '')
-		--with-authfw=$(usex pam pam shadow)
-		--disable-libsystemd-login
-		$(use_enable test)
-		--with-os-type=gentoo
+		-Dauthfw="$(usex pam pam shadow)"
+		-Dexamples=false
+		-Dgtk_doc=false
+		-Dman=true
+		-Dsession_tracking="$(usex elogind 'libelogind' 'ConsoleKit')"
+		-Dsystemdsystemunitdir="$(systemd_get_systemunitdir)"
+		-Djs_engine="$(usex spidermonkey 'mozjs' 'duktape')"
+		$(meson_use introspection)
+		$(meson_use test tests)
+		$(usex pam "-Dpam_module_dir=$(getpam_mod_dir)" '')
 	)
-	econf "${myeconfargs[@]}"
+	meson_src_configure
 }
 
 src_compile() {
-	default
+	meson_src_compile
 
 	# Required for polkitd on hardened/PaX due to spidermonkey's JIT
 	pax-mark mr src/polkitbackend/.libs/polkitd test/polkitbackend/.libs/polkitbackendjsauthoritytest
 }
 
 src_install() {
-	default
+	meson_src_install
 
-	fowners -R polkitd:root /{etc,usr/share}/polkit-1/rules.d
-
-	diropts -m0700 -o polkitd -g polkitd
-	keepdir /var/lib/polkit-1
-
-	if use examples; then
+	if use examples ; then
 		docinto examples
 		dodoc src/examples/{*.c,*.policy*}
 	fi
 
-	# allow "plugdev" group to access and manipulate removable media by default:
-	insopts -m0660 -o polkitd -g root
-	insinto /etc/polkit-1/rules.d
-	doins $FILESDIR/50-udisks.rules
+	diropts -m 0700 -o polkitd
+	keepdir /usr/share/polkit-1/rules.d
 
-	find "${ED}" -name '*.la' -delete || die
+	# meson does not install required files with SUID bit. See
+	#  https://bugs.gentoo.org/816393
+	# Remove the following lines once this has been fixed by upstream
+	# (should be fixed in next release: https://gitlab.freedesktop.org/polkit/polkit/-/commit/4ff1abe4a4c1f8c8378b9eaddb0346ac6448abd8)
+	fperms u+s /usr/bin/pkexec
+	fperms u+s /usr/lib/polkit-1/polkit-agent-helper-1
 }
 
 pkg_postinst() {
 	chmod 0700 "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
-	chown -R polkitd:root "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
-	chown -R polkitd:polkitd "${EROOT}"/var/lib/polkit-1
+	chown polkitd "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 }
