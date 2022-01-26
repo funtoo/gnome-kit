@@ -11,7 +11,7 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="*"
-IUSE="elogind examples gtk +introspection kde pam selinux test"
+IUSE="elogind examples gtk +introspection kde pam selinux +spidermonkey test"
 
 BDEPEND="
 	app-text/docbook-xml-dtd:4.1.2
@@ -25,7 +25,8 @@ BDEPEND="
 	introspection? ( dev-libs/gobject-introspection )
 "
 DEPEND="
-	dev-lang/spidermonkey:78[-debug]
+	spidermonkey? ( dev-lang/spidermonkey:78[-debug] )
+	!spidermonkey? ( dev-lang/duktape )
 	dev-libs/glib:2
 	dev-libs/expat
 	elogind? ( sys-auth/elogind )
@@ -49,6 +50,7 @@ PDEPEND="
 DOCS=( docs/TODO HACKING NEWS README )
 
 PATCHES=(
+	"${FILESDIR}/polkit-0.118-duktape.patch"
 	"${FILESDIR}/polkit-0.119-elogind.patch"
 	"${FILESDIR}/polkit-0.120-meson.patch"
 	"${FILESDIR}/polkit-0.120-CVE-2021-4043.patch"
