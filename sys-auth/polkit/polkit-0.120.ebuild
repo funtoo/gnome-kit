@@ -50,9 +50,9 @@ PDEPEND="
 DOCS=( docs/TODO HACKING NEWS README )
 
 PATCHES=(
-	"${FILESDIR}/polkit-0.118-duktape.patch"
 	"${FILESDIR}/polkit-0.119-elogind.patch"
 	"${FILESDIR}/polkit-0.120-meson.patch"
+	"${FILESDIR}/polkit-0.120-duktape.patch"
 	"${FILESDIR}/polkit-0.120-CVE-2021-4043.patch"
 )
 
@@ -87,6 +87,7 @@ src_configure() {
 		-Dman=true
 		-Dsession_tracking="$(usex elogind 'libelogind' 'ConsoleKit')"
 		-Dsystemdsystemunitdir="$(systemd_get_systemunitdir)"
+		-Djs_engine="$(usex spidermonkey 'mozjs' 'duktape')"
 		$(meson_use introspection)
 		$(meson_use test tests)
 		$(usex pam "-Dpam_module_dir=$(getpam_mod_dir)" '')
