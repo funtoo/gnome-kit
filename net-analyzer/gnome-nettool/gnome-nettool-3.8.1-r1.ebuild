@@ -39,6 +39,10 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext
 "
 
+src_prepare() {
+    epatch "${FILESDIR}/${P}-fix-svg-icon.patch"
+}
+
 src_configure() {
 	gnome2_src_configure $(use_enable debug)
 }
