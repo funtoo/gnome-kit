@@ -85,10 +85,6 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
-# TODO: Consider use cases where pipewire is not used for driving audio
-# Doing so with WirePlumber currently involves editing Lua scripts
-PDEPEND="media-video/wireplumber"
-
 DOCS=( {README,INSTALL}.md NEWS )
 
 PATCHES=(
