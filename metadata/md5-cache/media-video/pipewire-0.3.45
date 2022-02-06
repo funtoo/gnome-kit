@@ -7,11 +7,10 @@ HOMEPAGE=http://pipewire.org/
 IUSE=bluetooth doc echo-cancel extra gstreamer jack-client jack-sdk lv2 pipewire-alsa ssl systemd test v4l X zeroconf examples
 KEYWORDS=*
 LICENSE=MIT LGPL-2.1+ GPL-2
-PDEPEND=media-video/wireplumber
 RDEPEND=media-libs/alsa-lib sys-apps/dbus sys-libs/readline:= sys-libs/ncurses:=[unicode(+)] virtual/libintl virtual/libudev bluetooth? ( media-libs/fdk-aac media-libs/libldac media-libs/libfreeaptx media-libs/sbc >=net-wireless/bluez-4.101:= virtual/libusb:1 ) echo-cancel? ( media-libs/webrtc-audio-processing:0 ) extra? ( >=media-libs/libsndfile-1.0.20 ) gstreamer? ( >=dev-libs/glib-2.32.0:2 >=media-libs/gstreamer-1.10.0:1.0 media-libs/gst-plugins-base:1.0 ) jack-client? ( >=media-sound/jack2-1.9.10:2[dbus] ) jack-sdk? ( !media-sound/jack-audio-connection-kit !media-sound/jack2 ) lv2? ( media-libs/lilv ) pipewire-alsa? ( >=media-libs/alsa-lib-1.1.7 !media-plugins/alsa-plugins[pulseaudio] ) !pipewire-alsa? ( media-plugins/alsa-plugins[pulseaudio] ) ssl? ( dev-libs/openssl:= ) systemd? ( sys-apps/systemd ) v4l? ( media-libs/libv4l ) X? ( media-libs/libcanberra x11-libs/libX11 ) zeroconf? ( net-dns/avahi )
 REQUIRED_USE=jack-sdk? ( !jack-client )
 RESTRICT=!test? ( test )
 SLOT=0
 SRC_URI=https://api.github.com/repos/PipeWire/pipewire/tarball/refs/tags/0.3.45 -> pipewire-0.3.45-bdd407fe66cc9e46d4bc4dcc989d50679000482b.tar.gz
 _eclasses_=meson	2fbe03e3b496f82fd941bcdb9d351c91	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	python-any-r1	54a3178500786b0a7ede4a23b7f2a6ad	python-utils-r1	263e4bbfa6a84be6dc6272a6702aedca	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	udev	7752f306eec7b286d00bdb47b763e7ac
-_md5_=55975d1c38945552982ddb886ab4f90b
+_md5_=99819d8d8bd69d548ace7d74a73d5fc7
