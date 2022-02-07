@@ -1,0 +1,15 @@
+BDEPEND=app-arch/xz-utils
+DEFINED_PHASES=configure install prepare setup
+DEPEND=asn1? ( >=dev-libs/libtasn1-3.4 ) libffi? ( >=dev-libs/libffi-3.0.0 ) trust? ( app-misc/ca-certificates ) virtual/pkgconfig dev-util/gtk-doc
+DESCRIPTION=Provides a standard configuration setup for installing PKCS#11
+EAPI=7
+HOMEPAGE=https://p11-glue.github.io/p11-glue/p11-kit.html https://github.com/p11-glue/p11-kit
+IUSE=+asn1 debug +libffi +trust
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=asn1? ( >=dev-libs/libtasn1-3.4 ) libffi? ( >=dev-libs/libffi-3.0.0 ) trust? ( app-misc/ca-certificates )
+REQUIRED_USE=trust? ( asn1 )
+SLOT=0
+SRC_URI=https://github.com/p11-glue/p11-kit/releases/download/0.24.1/p11-kit-0.24.1.tar.xz
+_eclasses_=gnome.org	532d56d07b9eace4831aaa817d2b756a	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_md5_=09f47072982545b8afed87b95adf59ce
