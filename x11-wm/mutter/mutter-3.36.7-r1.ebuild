@@ -10,7 +10,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="*"
 
-IUSE="elogind +gles2 input_devices_wacom +introspection -profiler -test udev wayland"
+IUSE="elogind +gles2 input_devices_wacom +introspection -profiler remote-desktop -test udev wayland"
 REQUIRED_USE="
 	wayland? ( elogind )
 	test? ( wayland )
@@ -70,7 +70,7 @@ COMMON_DEPEND="
 		x11-base/xorg-server[wayland]
 		x11-libs/libdrm:=
 	)
-	>=media-video/pipewire-0.3.0
+	remote-desktop? ( >=media-video/pipewire-0.3.0 )
 	profiler? ( >=dev-util/sysprof-3.34.0 )
 "
 
@@ -98,10 +98,10 @@ src_configure() {
 		-Dsm=true
 		-Dnative_backend=true
 		-Dwayland_eglstream=false
-		-Dremote_desktop=true
 		$(meson_use gles2)
 		$(meson_use introspection)
 		$(meson_use wayland)
+		$(meson_use remote-desktop remote_desktop)
 		$(meson_use wayland egl_device)
 		$(meson_use udev)
 		$(meson_use profiler)
