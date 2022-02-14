@@ -72,6 +72,10 @@ src_configure() {
 		addpredict "${render}"
 	done
 
+	for video in /dev/video* ; do
+		addpredict "${video}"
+	done
+
 	local emesonargs=(
 		$(meson_use introspection)
 		$(meson_use test tests)
