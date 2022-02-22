@@ -4,7 +4,7 @@ EAPI="5"
 GCONF_DEBUG="yes"
 GNOME_ORG_MODULE="GConf"
 GNOME2_LA_PUNT="yes"
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE="xml"
 
 inherit eutils gnome2 python-r1
@@ -29,6 +29,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	dev-libs/libxslt
+	dev-util/glib-utils
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.35
 	>=virtual/pkgconfig-0-r1
@@ -57,6 +58,9 @@ src_prepare() {
 
 	# gsettings-data-convert: Warn (and fix) invalid schema paths
 	epatch "${FILESDIR}/${P}-gsettings-data-convert-paths.patch"
+
+	# gsettings-data-convert: Migrate from Python 2 to 3.
+	epatch "${FILESDIR}/${P}-python3.patch"
 
 	gnome2_src_prepare
 }
