@@ -1,6 +1,4 @@
 =dev-python/pygobject-2.28.7 python_single_target_python2_7
-=gnome-base/gconf-3.2.6-r4 python_single_target_python2_7
-=gnome-base/gconf-3.2.6-r6 python_single_target_python2_7
 =media-gfx/gnome-photos-3.34.1 python_single_target_python2_7
 =net-libs/telepathy-glib-0.24.1 python_single_target_python2_7
 dev-python/pygtk python_single_target_python2_7
