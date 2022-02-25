@@ -141,6 +141,7 @@ src_install() {
 }
 
 pkg_postinst() {
+	chmod 0755 "${EROOT}"/usr/bin/pkexec
 	chmod 0700 "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 	chown -R polkitd:root "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 	chown -R polkitd:polkitd "${EROOT}"/var/lib/polkit-1
