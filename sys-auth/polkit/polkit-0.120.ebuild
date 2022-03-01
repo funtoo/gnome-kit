@@ -10,7 +10,8 @@ SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.gz"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="*"
+# Causing some breakages -- see FL-9355
+KEYWORDS="-*"
 IUSE="elogind examples gtk +introspection kde pam selinux +spidermonkey test"
 
 BDEPEND="
