@@ -43,6 +43,8 @@ MULTILIB_CHOST_TOOLS=(
 PATCHES=(
 	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
 	"${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
+	"${FILESDIR}"/${PN}-CVE-2020-29385.patch
+	"${FILESDIR}"/${PN}-CVE-2021-20240.patch
 )
 
 src_configure() {
