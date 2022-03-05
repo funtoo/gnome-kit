@@ -51,6 +51,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-respect-fontconfig.patch
 	"${FILESDIR}"/${P}-pdf-add-missing-flush.patch
 	"${FILESDIR}"/${P}-ft-Use-FT_Done_MM_Var-instead-of-free-when-available.patch
+	"${FILESDIR}"/${PN}-CVE-2019-6462.patch
+	"${FILESDIR}"/${PN}-CVE-2020-35492.patch
 )
 
 src_prepare() {

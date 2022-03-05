@@ -53,9 +53,9 @@ PDEPEND="
 DOCS=( docs/TODO HACKING NEWS README )
 
 PATCHES=(
-	# bug 660880
 	"${FILESDIR}"/polkit-0.119-elogind.patch
 	"${FILESDIR}"/polkit-0.118-duktape.patch
+	"${FILESDIR}/polkit-0.120-CVE-2021-4115.patch"
 )
 
 QA_MULTILIB_PATHS="
@@ -141,7 +141,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	chmod 0755 "${EROOT}"/usr/bin/pkexec
+	chmod 0755 "${EROOT}"/usr/bin/pkexec # FL-9339 CVE-2021-4034 "temporary mitigation"
 	chmod 0700 "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 	chown -R polkitd:root "${EROOT}"/{etc,usr/share}/polkit-1/rules.d
 	chown -R polkitd:polkitd "${EROOT}"/var/lib/polkit-1

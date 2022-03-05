@@ -55,6 +55,7 @@ PATCHES=(
 	"${FILESDIR}/polkit-0.120-meson.patch"
 	"${FILESDIR}/polkit-0.120-duktape.patch"
 	"${FILESDIR}/polkit-0.120-CVE-2021-4043.patch"
+	"${FILESDIR}/polkit-0.120-CVE-2021-4115.patch"
 )
 
 QA_MULTILIB_PATHS="
