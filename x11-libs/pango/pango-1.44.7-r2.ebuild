@@ -36,10 +36,6 @@ DEPEND="${RDEPEND}
 	!<=sys-devel/autoconf-2.63:2.5
 "
 
-src_prepare() {
-	default
-}
-
 src_configure() {
 	tc-export CXX
 

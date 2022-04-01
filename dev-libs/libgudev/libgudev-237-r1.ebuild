@@ -2,7 +2,7 @@
 
 EAPI=7
 
-inherit meson
+inherit gnome2 meson
 
 DESCRIPTION="GObject bindings for libudev"
 HOMEPAGE="https://wiki.gnome.org/Projects/libgudev"
