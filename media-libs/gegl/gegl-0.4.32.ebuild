@@ -6,7 +6,7 @@ PYTHON_COMPAT=( python3+ )
 # vala and introspection support is broken, bug #468208
 VALA_USE_DEPEND=vapigen
 
-inherit meson python-any-r1 vala
+inherit meson python-any-r1 vala xdg-utils
 
 SRC_URI="https://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
 KEYWORDS="*"
@@ -74,6 +74,7 @@ python_check_deps() {
 }
 
 src_prepare() {
+	xdg_environment_reset
 	default
 	# patch executables suffix
 	sed -i -e "s/'gegl'/'gegl-0.4'/" bin/meson.build || die
