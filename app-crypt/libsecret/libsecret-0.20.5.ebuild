@@ -41,10 +41,6 @@ BDEPEND="
 	vala? ( $(vala_depend) )
 "
 
-PATCHES=(
-	"${FILESDIR}"/${P}-meson-build-test-vala-unstable-with-DSECRET_WITH_UNS.patch
-)
-
 python_check_deps() {
 	if use introspection; then
 		has_version -b "dev-python/pygobject:3[${PYTHON_USEDEP}]" || return
@@ -59,7 +55,7 @@ pkg_setup() {
 
 src_prepare() {
 	use vala && vala_src_prepare
-	default
+	gnome3_src_prepare
 
 	# Remove @filename@ from the header template that would otherwise cause
 	# differences dependent on the ABI
