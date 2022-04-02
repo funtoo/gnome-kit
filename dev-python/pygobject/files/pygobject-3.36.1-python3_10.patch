@@ -1,0 +1,11 @@
+--- a/gi/pygi-python-compat.h	2022-02-17 18:01:43.228948156 -0300
++++ b/gi/pygi-python-compat.h	2022-02-17 18:02:49.724989887 -0300
+@@ -150,7 +150,7 @@
+ #define PYGLIB_PyUnicode_Check PyUnicode_Check
+ #define PYGLIB_PyUnicode_AsString _PyUnicode_AsString
+ #define PYGLIB_PyUnicode_AsStringAndSize(obj, buf, size) \
+-    (((*(buf) = _PyUnicode_AsStringAndSize(obj, size)) != NULL) ? 0 : -1) 
++    (((*(buf) = PyUnicode_AsUTF8AndSize(obj, size)) != NULL) ? 0 : -1) 
+ #define PYGLIB_PyUnicode_FromString PyUnicode_FromString
+ #define PYGLIB_PyUnicode_FromStringAndSize PyUnicode_FromStringAndSize
+ #define PYGLIB_PyUnicode_FromFormat PyUnicode_FromFormat
