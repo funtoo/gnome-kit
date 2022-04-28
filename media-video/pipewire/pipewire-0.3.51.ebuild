@@ -10,7 +10,7 @@ RESTRICT="mirror"
 
 DESCRIPTION="Multimedia processing graphs"
 HOMEPAGE="http://pipewire.org/"
-SRC_URI="https://api.github.com/repos/PipeWire/pipewire/tarball/refs/tags/0.3.50 -> pipewire-0.3.50-64cf5e80e6240284e6b757907b900507fe56f1b5.tar.gz"
+SRC_URI="https://api.github.com/repos/PipeWire/pipewire/tarball/refs/tags/0.3.51 -> pipewire-0.3.51-ebc775674a0cf254cebd6d4694944006405807e3.tar.gz"
 
 LICENSE="MIT LGPL-2.1+ GPL-2"
 SLOT="0"
