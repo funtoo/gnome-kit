@@ -198,8 +198,8 @@ multilib_src_configure() {
 	if use elogind && multilib_is_native_abi; then
 		myconf+=(
 			--enable-systemd-login
-			SYSTEMDLOGIN_CFLAGS=`pkg-config --cflags "libelogind" 2>/dev/null`
-			SYSTEMDLOGIN_LIBS=`pkg-config --libs "libelogind" 2>/dev/null`
+			SYSTEMDLOGIN_CFLAGS="`pkg-config --cflags "libelogind" 2>/dev/null`"
+			SYSTEMDLOGIN_LIBS="`pkg-config --libs "libelogind" 2>/dev/null`"
 		)
 	fi
 
