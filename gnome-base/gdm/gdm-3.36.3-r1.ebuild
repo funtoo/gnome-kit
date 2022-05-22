@@ -165,8 +165,8 @@ src_configure() {
 
 	myconf+=(
 		--with-initial-vt=7 # TODO: Revisit together with startDM.sh and other xinit talks; also ignores plymouth possibility
-		SYSTEMD_CFLAGS=`pkg-config --cflags "libelogind" 2>/dev/null`
-		SYSTEMD_LIBS=`pkg-config --libs "libelogind" 2>/dev/null`
+		SYSTEMD_CFLAGS="`pkg-config --cflags "libelogind" 2>/dev/null`"
+		SYSTEMD_LIBS="`pkg-config --libs "libelogind" 2>/dev/null`"
 	)
 	gnome3_src_configure "${myconf[@]}"
 }
