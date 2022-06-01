@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm preinst unpack
+DEPEND=dev-libs/glib:2
+DESCRIPTION=A GNOME Shell extension for providing Dynamic Panel Transparency
+EAPI=7
+HOMEPAGE=https://github.com/ewlsh/dynamic-panel-transparency/
+KEYWORDS=*
+LICENSE=GPL-3
+RDEPEND=dev-libs/glib:2 app-eselect/eselect-gnome-shell-extensions >=gnome-base/gnome-shell-3.30.0 >=gnome-base/nautilus-3.30.4
+SLOT=0
+SRC_URI=https://extensions.gnome.org/extension-data/dynamic-panel-transparencyrockon999.github.io.v34.shell-extension.zip -> gnome-shell-extension-dynamic-panel-transparency-34.zip
+_eclasses_=gnome3-utils	2e056188c1b3f3d82982454b3b2f1810	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=86a5692fcaf5344f8e3f900497ff90f4
