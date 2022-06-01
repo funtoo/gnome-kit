@@ -1,0 +1,13 @@
+BDEPEND=dev-util/intltool sys-devel/gettext
+DEFINED_PHASES=postinst postrm preinst prepare
+DEPEND=dev-libs/glib:2
+DESCRIPTION=An icon taskbar for the Gnome Shell
+EAPI=7
+HOMEPAGE=https://github.com/micheleg/dash-to-dock/
+KEYWORDS=amd64
+LICENSE=GPL-2+
+RDEPEND=dev-libs/glib:2 app-eselect/eselect-gnome-shell-extensions >=gnome-base/gnome-shell-3.18.0
+SLOT=0
+SRC_URI=https://github.com/micheleg/dash-to-dock/archive/extensions.gnome.org-v69.tar.gz -> gnome-shell-extension-dash-to-dock-69.tar.gz
+_eclasses_=gnome3-utils	2e056188c1b3f3d82982454b3b2f1810	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=8e85ba10931a6919346586bc1cee0658
