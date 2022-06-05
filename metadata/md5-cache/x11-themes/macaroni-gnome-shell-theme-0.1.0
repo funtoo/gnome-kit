@@ -1,0 +1,9 @@
+DEFINED_PHASES=compile install unpack
+DESCRIPTION=Macaroni Gnome Shell Theme
+EAPI=7
+HOMEPAGE=https://code.funtoo.org/bitbucket/projects/MOS/repos/macaroni-gnome-shell-themes/
+KEYWORDS=*
+LICENSE=GPL-3
+SLOT=0
+SRC_URI=https://code.funtoo.org/bitbucket/rest/api/latest/projects/MOS/repos/macaroni-gnome-shell-themes/archive?at=refs%2Ftags%2Fv0.1.0&format=zip -> macaroni-gnome-shell-theme-0.1.0.zip
+_md5_=cbb2d47473ee4636a737bc7f56bc88b5
