@@ -1,0 +1,9 @@
+DEFINED_PHASES=compile install unpack
+DESCRIPTION=Funtoo Gnome Shell Theme
+EAPI=7
+HOMEPAGE=https://code.funtoo.org/bitbucket/projects/MOS/repos/funtoo-gnome-shell-theme/
+KEYWORDS=*
+LICENSE=GPL-3
+SLOT=0
+SRC_URI=https://code.funtoo.org/bitbucket/rest/api/latest/projects/MOS/repos/funtoo-gnome-shell-theme/archive?at=refs%2Ftags%2Fv0.1.0&format=zip -> funtoo-gnome-shell-theme-0.1.0.zip
+_md5_=de5019137b02112b7025037d88c8e684
