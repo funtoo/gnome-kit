@@ -11,6 +11,6 @@ RDEPEND=media-libs/alsa-lib sys-apps/dbus sys-libs/readline:= sys-libs/ncurses:=
 REQUIRED_USE=jack-sdk? ( !jack-client )
 RESTRICT=!test? ( test )
 SLOT=0
-SRC_URI=https://github.com/PipeWire/pipewire/tarball/3853eba32f1a354b7287f7990ba467679749532a -> pipewire-0.3.53-3853eba.tar.gz
-_eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	meson	2fbe03e3b496f82fd941bcdb9d351c91	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	python-any-r1	54a3178500786b0a7ede4a23b7f2a6ad	python-utils-r1	c6ddaeb7a3e68d2564fa886420d0ae41	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	udev	7752f306eec7b286d00bdb47b763e7ac
-_md5_=4ff41e8584fd84a16dba2b3d4a6840e4
+SRC_URI=https://github.com/PipeWire/pipewire/tarball/752afa06a279a1975c00f3f9c0175a8c6c615c75 -> pipewire-0.3.54-752afa0.tar.gz
+_eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	meson	2fbe03e3b496f82fd941bcdb9d351c91	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	python-any-r1	54a3178500786b0a7ede4a23b7f2a6ad	python-utils-r1	116c0e643beeb6fc359101546f38b362	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	udev	7752f306eec7b286d00bdb47b763e7ac
+_md5_=6919866468dcedfb2f066c2a15d80777
