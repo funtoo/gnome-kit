@@ -12,5 +12,5 @@ REQUIRED_USE=^^ ( python_single_target_python3_7 python_single_target_python3_9 
 RESTRICT=!test? ( test )
 SLOT=0
 SRC_URI=https://telepathy.freedesktop.org/releases/telepathy-idle/telepathy-idle-0.2.0.tar.gz https://src.fedoraproject.org/rpms/telepathy-idle/raw/93c37581c570200c3f646d0872a9c1327d3b3cb1/f/0001-tools-Fix-errors-running-glib-ginterface-gen-under-P.patch -> telepathy-idle-0.2.0-py3-1.patch https://src.fedoraproject.org/rpms/telepathy-idle/raw/93c37581c570200c3f646d0872a9c1327d3b3cb1/f/0002-tools-Remove-outdated-is-unicode-checks.patch -> telepathy-idle-0.2.0-py3-2.patch
-_eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	python-single-r1	ce99dfba1cad0514af51a32b2b6964af	python-utils-r1	62a980ca9c5f570cad01b65ab90228ca	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	multilib	d410501a125f99ffb560b0c523cd3d1e	multiprocessing	cac3169468f893670dac3e7cb940e045	python-single-r1	ce99dfba1cad0514af51a32b2b6964af	python-utils-r1	32393cac272daca4c136cc44e6005b67	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
 _md5_=742f930f67fe98cf27fc8e68bd456eae
