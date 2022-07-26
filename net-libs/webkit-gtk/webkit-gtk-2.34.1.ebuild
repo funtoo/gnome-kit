@@ -2,7 +2,7 @@
 
 EAPI=7
 PYTHON_COMPAT=( python3+ )
-USE_RUBY="ruby26 ruby27 ruby30"
+USE_RUBY="ruby26 ruby27 ruby30 ruby31"
 
 inherit check-reqs cmake flag-o-matic gnome3 pax-utils python-any-r1 ruby-single toolchain-funcs virtualx
 
