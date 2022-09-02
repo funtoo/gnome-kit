@@ -158,7 +158,6 @@ src_configure() {
 	local emesonargs=(
 		-Dc_args="${CFLAGS}"
 		-Dman=true
-		-Dinternal_pcre=false
 		-Ddefault_library=$(usex static-libs both shared)
 		$(meson_use xattr)
 		$(meson_use fam)
