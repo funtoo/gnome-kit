@@ -31,6 +31,8 @@ src_prepare() {
 	default
 	gnome2_environment_reset
 	use vala && vala_src_prepare
+	# Fix to work with newer meson:
+	sed -ie 's/Description/description/' ${S}/meson.build || die
 }
 
 src_configure() {
