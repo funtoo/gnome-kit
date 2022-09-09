@@ -34,7 +34,7 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		$(meson_use doc)
+		$(meson_use doc docs)
 		$(meson_use introspection)
 	)
 
