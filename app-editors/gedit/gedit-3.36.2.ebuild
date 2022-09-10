@@ -58,6 +58,7 @@ PATCHES=(
 	# Make gspell and python optional
 	"${FILESDIR}"/3.36-make-gspell-optional.patch
 	"${FILESDIR}"/3.36-make-python-optional.patch
+	"${FILESDIR}"/gedit-meson36.patch
 )
 
 pkg_setup() {
