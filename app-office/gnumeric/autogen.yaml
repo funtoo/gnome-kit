@@ -1,0 +1,9 @@
+gnumeric:
+  packages:
+    - gnumeric:
+        python_compat: python3
+    - goffice:
+        cat: x11-libs
+    - libgsf:
+        cat: gnome-extra
+        subslot: True
