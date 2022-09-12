@@ -1,11 +1,11 @@
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI=7
 inherit gnome2
 
 DESCRIPTION="The GNOME Structured File Library"
 HOMEPAGE="https://developer.gnome.org/gsf/"
+SRC_URI="https://download.gnome.org/sources/libgsf/1.14/libgsf-1.14.50.tar.xz -> libgsf-1.14.50.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0/114" # libgsf-1.so version
@@ -17,10 +17,7 @@ RDEPEND="
 	>=dev-libs/libxml2-2.4.16:2
 	sys-libs/zlib
 	bzip2? ( app-arch/bzip2 )
-	gtk? (
-		x11-libs/gdk-pixbuf:2
-		virtual/imagemagick-tools
-		)
+	gtk? ( x11-libs/gdk-pixbuf:2 )
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
 "
 DEPEND="${RDEPEND}
