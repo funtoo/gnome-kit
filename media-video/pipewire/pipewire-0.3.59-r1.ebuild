@@ -83,7 +83,8 @@ RDEPEND="
 	zeroconf? ( net-dns/avahi )
 "
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	>=sys-kernel/linux-headers-4.19-r1"
 
 DOCS=( {README,INSTALL}.md NEWS )
 

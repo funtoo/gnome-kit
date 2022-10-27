@@ -6,3 +6,6 @@ pipewire:
         github:
           user: PipeWire
           query: tags
+        revision:
+          0.3.59: 1
+
