@@ -57,6 +57,8 @@ PATCHES=(
 	"${FILESDIR}"/${P}-fix-abrt-in-udev-configure-printer.patch
 )
 
+
+
 pkg_setup() {
 	python_setup
 }
@@ -70,10 +72,12 @@ src_configure() {
 
 src_compile() {
 	gnome2_src_compile
+	python_optimize cupshelpers
 }
 
 src_install() {
 	gnome2_src_install
 	python_fix_shebang "${ED}"
 	python_optimize
+	python_domodule cupshelpers
 }
