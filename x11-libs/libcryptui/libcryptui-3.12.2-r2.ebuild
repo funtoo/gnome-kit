@@ -51,6 +51,10 @@ PATCHES=(
 	# Support GnuPG 2.2
 	# https://bugs.gentoo.org/show_bug.cgi?id=629572
 	"${FILESDIR}"/${PN}-3.12.2-gnupg-2.2.patch
+	# Support GnuPG 2.3
+	# https://bugs.gentoo.org/820143
+	# https://bugs.funtoo.org/browse/FL-10660
+	"${FILESDIR}"/${PN}-3.12.2-gnupg-2.3.patch
 )
 
 src_prepare() {
