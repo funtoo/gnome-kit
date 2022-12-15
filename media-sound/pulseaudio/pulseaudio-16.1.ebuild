@@ -70,10 +70,12 @@ gstreamer_deps="
 	media-libs/gst-plugins-base
 	>=media-libs/gstreamer-1.14
 "
+# speexdsp dep has been tweaked to allow 1.2_rc release in Funtoo... but should work with later
+# versions as well:
 COMMON_DEPEND="
 	dev-libs/libatomic_ops
 	>=media-libs/libsndfile-1.0.20
-	>=media-libs/speexdsp-1.2
+	=media-libs/speexdsp-1.2*
 	alsa? ( >=media-libs/alsa-lib-1.0.24 )
 	aptx? ( ${gstreamer_deps} )
 	asyncns? ( >=net-libs/libasyncns-0.1 )
