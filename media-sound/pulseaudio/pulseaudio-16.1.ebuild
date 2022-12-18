@@ -8,7 +8,7 @@ DESCRIPTION="Daemon component of PulseAudio (networked sound server)"
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/PulseAudio/"
 
 SRC_URI="https://freedesktop.org/software/pulseaudio/releases/${P}.tar.xz"
-KEYWORDS=""
+KEYWORDS="*"
 
 LICENSE="LGPL-2.1"
 
@@ -70,8 +70,6 @@ gstreamer_deps="
 	media-libs/gst-plugins-base
 	>=media-libs/gstreamer-1.14
 "
-# speexdsp dep has been tweaked to allow 1.2_rc release in Funtoo... but should work with later
-# versions as well:
 COMMON_DEPEND="
 	dev-libs/libatomic_ops
 	>=media-libs/libsndfile-1.0.20
