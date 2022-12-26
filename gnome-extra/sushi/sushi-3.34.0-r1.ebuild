@@ -59,6 +59,10 @@ src_configure() {
 		addpredict "${render}"
 	done
 
+	for vid in /dev/video*; do
+		addpredict "${vid}"
+	done
+
 	meson_src_configure
 }
 
