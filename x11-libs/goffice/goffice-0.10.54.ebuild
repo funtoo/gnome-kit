@@ -7,7 +7,7 @@ inherit gnome3
 
 DESCRIPTION="A library of document-centric objects and utilities"
 HOMEPAGE="https://gitlab.gnome.org/GNOME/goffice/"
-SRC_URI="https://download.gnome.org/sources/goffice/0.10/goffice-0.10.53.tar.xz -> goffice-0.10.53.tar.xz"
+SRC_URI="https://download.gnome.org/sources/goffice/0.10/goffice-0.10.54.tar.xz -> goffice-0.10.54.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0.10"
