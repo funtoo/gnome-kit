@@ -8,7 +8,7 @@ inherit gnome3 flag-o-matic python-r1
 
 DESCRIPTION="The GNOME Spreadsheet"
 HOMEPAGE="http://www.gnumeric.org/"
-SRC_URI="https://download.gnome.org/sources/gnumeric/1.12/gnumeric-1.12.53.tar.xz -> gnumeric-1.12.53.tar.xz"
+SRC_URI="https://download.gnome.org/sources/gnumeric/1.12/gnumeric-1.12.54.tar.xz -> gnumeric-1.12.54.tar.xz"
 LICENSE="GPL-2"
 
 SLOT="0"
