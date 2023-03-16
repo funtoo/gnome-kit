@@ -5,7 +5,6 @@ PYTHON_COMPAT=( python3+ )
 
 inherit meson python-any-r1 udev
 
-
 RESTRICT="mirror"
 
 DESCRIPTION="Multimedia processing graphs"
@@ -42,7 +41,7 @@ RDEPEND="
 	media-libs/alsa-lib
 	sys-apps/dbus
 	sys-libs/readline:=
-	sys-libs/ncurses:=[unicode(+)]
+	sys-libs/ncurses:=
 	virtual/libintl
 	virtual/libudev
 	bluetooth? (
