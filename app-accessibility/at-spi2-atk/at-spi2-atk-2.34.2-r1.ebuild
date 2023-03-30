@@ -29,9 +29,6 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	# Upstream forgot to put this in tarball, upstream #770615
-	cp -n "${FILESDIR}"/${PN}-2.20.0-tests-data/*.xml "${S}"/tests/data/ || die
-
 	gnome2_src_prepare
 }
 
