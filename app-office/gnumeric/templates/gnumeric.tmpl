@@ -25,7 +25,7 @@ RDEPEND="
 	sys-libs/zlib
 	>=dev-libs/glib-2.40.0:2
 	>=gnome-extra/libgsf-1.14.33:=
-	>=x11-libs/goffice-0.10.42:0.10
+	>=x11-libs/goffice-0.10.53:0.10
 	>=dev-libs/libxml2-2.4.12:2
 	>=x11-libs/pango-1.24.0:=
 
