@@ -3,7 +3,7 @@
 EAPI=6
 GNOME3_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
-inherit autotools eutils gnome3 vala ltprune
+inherit autotools eutils gnome3 vala ltprune memsaver
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
@@ -35,15 +35,13 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	local build_dir
-
+	memsaver_src_prepare
 	eautoreconf
 	gnome3_src_prepare
 	use vala && vala_src_prepare
 }
 
 src_configure() {
-
 	ECONF_SOURCE=${S} \
 	gnome3_src_configure \
 		--disable-static \
@@ -59,10 +57,6 @@ src_compile() {
 	# causes segfault if set, see bug #411765
 	unset __GL_NO_DSO_FINALIZER
 	gnome3_src_compile
-}
-
-src_install() {
-	gnome3_src_install
 }
 
 pkg_postinst() {
