@@ -35,13 +35,13 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	memsaver_src_prepare
 	eautoreconf
 	gnome3_src_prepare
 	use vala && vala_src_prepare
 }
 
 src_configure() {
+	memsaver_src_configure
 	ECONF_SOURCE=${S} \
 	gnome3_src_configure \
 		--disable-static \
