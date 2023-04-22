@@ -4,18 +4,20 @@ EAPI=7
 PYTHON_COMPAT=( python3+ )
 USE_RUBY="ruby26 ruby27 ruby30 ruby31"
 
-inherit check-reqs cmake flag-o-matic gnome3 pax-utils python-any-r1 ruby-single toolchain-funcs virtualx
+inherit check-reqs cmake flag-o-matic gnome3 memsaver pax-utils python-any-r1 ruby-single toolchain-funcs virtualx
 
 MY_P="webkitgtk-${PV}"
+S="${WORKDIR}/${MY_P}"
+
 DESCRIPTION="Open source web browser engine"
 HOMEPAGE="https://www.webkitgtk.org"
-SRC_URI="https://www.webkitgtk.org/releases/${MY_P}.tar.xz"
+SRC_URI="https://www.webkitgtk.org/releases/webkitgtk-2.38.6.tar.xz -> webkitgtk-2.38.6.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
 KEYWORDS="*"
 
-IUSE="aqua avif +egl examples gamepad +geolocation gles2-only gnome-keyring +gstreamer gtk-doc +introspection +jpeg2k +jumbo-build lcms libnotify +opengl seccomp spell systemd wayland +X"
+IUSE="aqua avif +egl examples gamepad +geolocation gles2-only gnome-keyring +gstreamer gtk-doc +introspection +jpeg2k +jumbo-build lcms libnotify memsaver +opengl seccomp spell systemd wayland +X"
 
 # gstreamer with opengl/gles2 needs egl
 REQUIRED_USE="
@@ -61,11 +63,13 @@ RDEPEND="
 	>=dev-libs/libxslt-1.1.7
 	media-libs/woff2
 	gnome-keyring? ( app-crypt/libsecret )
-	introspection? ( >=dev-libs/gobject-introspection-1.59.1:= )
+	introspection? (
+		>=dev-libs/gobject-introspection-1.59.1:=
+	)
 	dev-libs/libtasn1:=
 	spell? ( >=app-text/enchant-0.22 )
 	gstreamer? (
-		>=media-libs/gstreamer-1.14:1.0
+		>=media-libs/gstreamer-1.16:1.0
 		>=media-libs/gst-plugins-base-1.14:1.0[egl?,opengl?,X?]
 		gles2-only? ( media-libs/gst-plugins-base:1.0[gles2] )
 		>=media-plugins/gst-plugins-opus-1.14.4-r1:1.0
@@ -135,8 +139,6 @@ RDEPEND="${RDEPEND}
 	geolocation? ( >=app-misc/geoclue-2.1.5:2.0 )
 "
 
-S="${WORKDIR}/${MY_P}"
-
 CHECKREQS_DISK_BUILD="18G" # and even this might not be enough, bug #417307
 
 pkg_pretend() {
@@ -171,7 +173,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	eapply "${FILESDIR}"/2.34.1-opengl-without-X-fixes.patch
 	cmake_src_prepare
 	gnome3_src_prepare
 }
@@ -180,24 +181,7 @@ src_configure() {
 	# Respect CC, otherwise fails on prefix #395875
 	tc-export CC
 
-	# It does not compile on alpha without this in LDFLAGS
-	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=648761
-	use alpha && append-ldflags "-Wl,--no-relax"
-
-	# ld segfaults on ia64 with LDFLAGS --as-needed, bug #555504
-	use ia64 && append-ldflags "-Wl,--no-as-needed"
-
-	# Sigbuses on SPARC with mcpu and co., bug #???
-	use sparc && filter-flags "-mvis"
-
-	# https://bugs.webkit.org/show_bug.cgi?id=42070 , #301634
-	use ppc64 && append-flags "-mminimal-toc"
-
-	# Try to use less memory, bug #469942 (see Fedora .spec for reference)
-	# --no-keep-memory doesn't work on ia64, bug #502492
-	if ! use ia64; then
-		append-ldflags "-Wl,--no-keep-memory"
-	fi
+	append-ldflags "-Wl,--no-keep-memory"
 
 	# Ruby situation is a bit complicated. See bug 513888
 	local rubyimpl
@@ -263,7 +247,7 @@ src_configure() {
 		-DUSE_OPENGL_OR_ES=${opengl_enabled}
 		-DUSE_OPENJPEG=$(usex jpeg2k)
 		-DUSE_SOUP2=ON
-		-DUSE_SYSTEMD=$(usex systemd) # Whether to enable journald logging
+		-DENABLE_JOURNALD_LOG=$(usex systemd)
 		-DUSE_WOFF2=ON
 		-DUSE_WPE_RENDERER=${use_wpe_renderer} # WPE renderer is used to implement accelerated compositing under wayland
 	)
@@ -271,6 +255,7 @@ src_configure() {
 	# https://bugs.gentoo.org/761238
 	append-cppflags -DNDEBUG
 
+	memsaver_src_configure
 	WK_USE_CCACHE=NO cmake_src_configure
 }
 
