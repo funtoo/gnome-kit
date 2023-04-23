@@ -65,6 +65,7 @@ RDEPEND="
 	gnome-keyring? ( app-crypt/libsecret )
 	introspection? (
 		>=dev-libs/gobject-introspection-1.59.1:=
+		dev-util/gi-docgen
 	)
 	dev-libs/libtasn1:=
 	spell? ( >=app-text/enchant-0.22 )
