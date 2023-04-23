@@ -130,6 +130,8 @@ BDEPEND="
 
 	gtk-doc? ( >=dev-util/gtk-doc-1.32 )
 	geolocation? ( dev-util/gdbus-codegen )
+	introspection? ( dev-util/gi-docgen )
+
 	>=dev-util/cmake-3.10
 "
 #	test? (
