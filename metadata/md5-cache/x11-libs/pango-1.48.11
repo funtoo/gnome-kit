@@ -1,0 +1,14 @@
+BDEPEND=dev-util/glib-utils sys-apps/help2man virtual/pkgconfig >=dev-util/meson-0.48.2 >=dev-util/ninja-1.7.2
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
+DEPEND=>=dev-libs/glib-2.62.2:2[-mgorny(-)] >=dev-libs/fribidi-1.0.6[-mgorny(-)] >=media-libs/harfbuzz-2.2.0:=[glib(+),introspection?,truetype(+),-mgorny(-)] >=media-libs/fontconfig-2.12.92:1.0=[-mgorny(-)] >=x11-libs/cairo-1.12.10:=[X?,-mgorny(-)] >=media-libs/freetype-2.5.0.1:2=[-mgorny(-)] introspection? ( >=dev-libs/gobject-introspection-0.9.5:= ) X? ( >=x11-libs/libX11-1.6.2[-mgorny(-)] >=x11-libs/libXft-2.3.1-r1[-mgorny(-)] >=x11-libs/libXrender-0.9.8[-mgorny(-)] ) sysprof? ( >=dev-util/sysprof-capture-3.40.1:4[-mgorny(-)] ) X? ( x11-base/xorg-proto ) dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=Internationalized text layout and rendering library
+EAPI=7
+HOMEPAGE=https://www.pango.org/ https://gitlab.gnome.org/GNOME/pango
+IUSE=debug doc +introspection sysprof X abi_x86_32 abi_x86_64 abi_x86_x32 abi_mips_n32 abi_mips_n64 abi_mips_o32 abi_s390_32 abi_s390_64
+KEYWORDS=*
+LICENSE=LGPL-2+
+RDEPEND=>=dev-libs/glib-2.62.2:2[-mgorny(-)] >=dev-libs/fribidi-1.0.6[-mgorny(-)] >=media-libs/harfbuzz-2.2.0:=[glib(+),introspection?,truetype(+),-mgorny(-)] >=media-libs/fontconfig-2.12.92:1.0=[-mgorny(-)] >=x11-libs/cairo-1.12.10:=[X?,-mgorny(-)] >=media-libs/freetype-2.5.0.1:2=[-mgorny(-)] introspection? ( >=dev-libs/gobject-introspection-0.9.5:= ) X? ( >=x11-libs/libX11-1.6.2[-mgorny(-)] >=x11-libs/libXft-2.3.1-r1[-mgorny(-)] >=x11-libs/libXrender-0.9.8[-mgorny(-)] )
+SLOT=0
+SRC_URI=https://download.gnome.org/sources/pango/1.48/pango-1.48.11.tar.xz -> pango-1.48.11.tar.xz
+_eclasses_=eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	gnome2-utils	532371cfcba45b2ab0d2950547c97d95	meson	2fbe03e3b496f82fd941bcdb9d351c91	multibuild	b2c915190b051f55a23b9354b9849847	multilib	d410501a125f99ffb560b0c523cd3d1e	multilib-build	dbed54cab0d2fac962c6342aeae40ef9	multilib-minimal	8bddda43703ba94d8341f4e247f97566	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	python-utils-r1	d3f9ec72badd0291b655682d67876adc	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_md5_=e56cab6c4d9820337bdee1ecf7daab14
