@@ -1,0 +1,4 @@
+json_glib:
+  packages:
+    - json-glib:
+        stable: even
