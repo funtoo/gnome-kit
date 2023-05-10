@@ -39,8 +39,6 @@ COMMON_DEPEND="
 RDEPEND="${COMMON_DEPEND}
 	net-im/telepathy-mission-control
 "
-# FIXME:
-# test? ( bluetooth? ( dbusmock is missing in the tree ) )
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.0
 	>=dev-util/meson-0.51.0
@@ -50,7 +48,11 @@ DEPEND="${COMMON_DEPEND}
 		sys-apps/dbus
 		bluetooth? (
 			>=gnome-extra/evolution-data-server-3.9.1
-			>=dev-libs/glib-2.62.2:2 ) )
+			>=dev-libs/glib-2.62.2:2 )
+	)
+	bluetooth? (
+		dev-python/dbusmock
+	)
 "
 
 src_prepare() {
