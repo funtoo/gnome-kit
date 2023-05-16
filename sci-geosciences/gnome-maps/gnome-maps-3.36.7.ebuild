@@ -41,3 +41,9 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	# Patch ready for meson upgrade to v0.63.
+	#sed -i -e '/\tappdata,/d' data/meson.build
+	gnome3_src_prepare
+}
