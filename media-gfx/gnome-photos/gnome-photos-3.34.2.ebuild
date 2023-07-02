@@ -67,6 +67,7 @@ pkg_setup() {
 
 src_prepare() {
 	xdg_src_prepare
+	sed -i -e "/  desktop,/d" -e "/  appdata,/d" data/meson.build
 	sed -i -e "/photos_docdir.*=.*join_paths/s/meson.project_name()/'${PF}'/" meson.build
 }
 

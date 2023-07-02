@@ -10,7 +10,7 @@ HOMEPAGE="https://wiki.gnome.org/action/show/Projects/dconf"
 LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="*"
-IUSE=""
+IUSE="+man"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
@@ -35,7 +35,7 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		-Denable-man=true
+		$(meson_use man)
 	)
 
 	meson_src_configure

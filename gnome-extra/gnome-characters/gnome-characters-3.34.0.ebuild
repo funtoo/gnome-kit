@@ -4,7 +4,7 @@ EAPI="6"
 VALA_USE_DEPEND="vapigen"
 PYTHON_COMPAT=( python3+ )
 
-inherit gnome2 python-any-r1 vala virtualx meson
+inherit gnome3 python-any-r1 vala virtualx meson
 
 DESCRIPTION="Unicode character map viewer and library"
 HOMEPAGE="https://wiki.gnome.org/Design/Apps/CharacterMap"
@@ -32,21 +32,10 @@ DEPEND="${RDEPEND}
 		$(python_gen_any_dep 'dev-util/dogtail[${PYTHON_USEDEP}]') )
 "
 
-python_check_deps() {
-	use test && has_version "dev-util/dogtail[${PYTHON_USEDEP}]"
-}
-
-pkg_setup() {
-	use test && python-any-r1_pkg_setup
-}
-
 src_prepare() {
 	sed 's/print \(.*\)/print(\1)/' -i "${S}"/tests/smoke_test.py || die
+	sed -i -e "/'desktop-file',/d" -e "/'appdata-file',/d" data/meson.build
 
-	gnome2_src_prepare
+	gnome3_src_prepare
 	vala_src_prepare
-}
-
-src_test() {
-	virtx emake check
 }

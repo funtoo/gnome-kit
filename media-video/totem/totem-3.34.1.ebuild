@@ -19,6 +19,10 @@ REQUIRED_USE="
 
 KEYWORDS="*"
 
+PATCHES=(
+	"${FILESDIR}"/totem-meson36.patch
+)
+
 # FIXME:
 # Runtime dependency on gnome-session-2.91
 COMMON_DEPEND="

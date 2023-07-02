@@ -2,7 +2,7 @@
 
 EAPI=7
 
-inherit gnome3 readme.gentoo-r1 meson
+inherit gnome3 readme.gentoo-r1 meson xdg-utils
 
 DESCRIPTION="Screenshot utility for GNOME"
 HOMEPAGE="https://git.gnome.org/browse/gnome-screenshot"
@@ -36,19 +36,24 @@ DOC_CONTENTS="${P} saves screenshots in ~/Pictures/ and defaults to
 	non-interactive mode when launched from a terminal. If you want to choose
 	where to save the screenshot, run 'gnome-screenshot --interactive'"
 
+src_prepare() {
+	sed -i  -e "s|('desktop',|(|g" -e "s|('appdata',|(|g" src/meson.build
+	gnome3_src_prepare
+}
+
 src_install() {
 	meson_src_install
 	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
-	gnome3_pkg_postinst
-	gnome3_icon_cache_update
+	gnome3_pkg_postinsta
+	xdg_icon_cache_update
 	gnome3_schemas_update
 	readme.gentoo_print_elog
 }
 
 pkg_postrm() {
-	gnome3_icon_cache_update
+	xdg_icon_cache_update
 	gnome3_schemas_update
 }

@@ -27,5 +27,5 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	meson_src_configure \
-		$(meson_use introspection enable-introspection)
+		$(meson_use introspection introspection)
 }

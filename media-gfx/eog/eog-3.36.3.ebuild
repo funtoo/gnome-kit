@@ -43,6 +43,10 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	"${FILESDIR}"/eog-meson36.patch
+)
+
 src_configure() {
 	local emesonargs=(
 		$(meson_use introspection)

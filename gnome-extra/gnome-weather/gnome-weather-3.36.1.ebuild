@@ -32,6 +32,11 @@ DEPEND="${RDEPEND}
 		$(python_gen_any_dep 'dev-util/dogtail[${PYTHON_USEDEP}]') )
 "
 
+src_prepare() {
+	sed -i -e "/'appdata'\,/d" data/meson.build
+	gnome3_src_prepare
+}
+
 python_check_deps() {
 	use test && has_version "dev-util/dogtail[${PYTHON_USEDEP}]"
 }

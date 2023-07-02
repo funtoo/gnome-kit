@@ -75,6 +75,7 @@ PATCHES=(
 )
 
 src_prepare() {
+	sed -i -e '/policy,/d' daemon/meson.build
 	gnome3_src_prepare
 }
 

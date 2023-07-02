@@ -1,8 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-inherit gnome2 meson
+inherit gnome3 meson
 
 DESCRIPTION="A document manager application for GNOME"
 HOMEPAGE="https://wiki.gnome.org/Apps/Documents"
@@ -44,3 +44,12 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/itstool
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	sed -i -e "s|^libgd_src_path.*|libgd_src_path = './libgd/libgd'|g" \
+		-e '/   appdata,/d' -e '/   desktop,/d' \
+		data/meson.build
+	# Fix sandbox issue
+	cd data ; ln -s ../subprojects/libgd/ .; cd -
+	gnome3_src_prepare
+}

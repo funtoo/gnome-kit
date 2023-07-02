@@ -45,6 +45,7 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${P}-vala.patch"
+	"${FILESDIR}/${P}-meson-0.61-fix.patch"
 )
 
 pkg_setup() {

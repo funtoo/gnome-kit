@@ -18,3 +18,8 @@ DEPEND="
 	>=dev-util/intltool-0.40.0
 	sys-devel/gettext
 "
+
+src_prepare() {
+	sed -i -e 's|(metadata,|(|g' backgrounds/meson.build
+	gnome3_src_prepare
+}

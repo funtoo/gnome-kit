@@ -58,6 +58,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
+	sed -i -e '/  appdata,/d' -e '/  desktop,/d' data/meson.build
 	vala_src_prepare
 	gnome2_src_prepare
 }

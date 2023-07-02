@@ -59,6 +59,7 @@ src_configure() {
 		$(meson_use doc docbook)
 		$(meson_use introspection)
 	)
+	sed -i -e "/  policy,/d" data/meson.build
 	BUILD_DIR="${BUILD_DIR:-${WORKDIR}/${P}-build}"
 	install -d $BUILD_DIR
 	set -- meson "${mesonargs[@]}" "$@" \

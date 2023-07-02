@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit gnome.org meson
+EAPI=7
+inherit gnome3 meson
 
 DESCRIPTION="A nautilus extension for sending files to locations"
 HOMEPAGE="https://git.gnome.org/browse/nautilus-sendto/"
@@ -17,6 +17,11 @@ DEPEND="${RDEPEND}
 	dev-libs/appstream-glib
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	sed -i -e "s|('appdata',|(|g" src/meson.build
+	gnome3_src_prepare
+}
 
 pkg_postinst() {
 	if ! has_version "gnome-base/nautilus[sendto]"; then

@@ -1,8 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-inherit gnome2 meson vala
+inherit gnome3 meson vala
 
 DESCRIPTION="A GNOME application for managing encryption keys"
 HOMEPAGE="https://wiki.gnome.org/Apps/Seahorse"
@@ -43,17 +43,9 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	# https://bugs.funtoo.org/browse/FL-10709
-	# This is a hack to make app-crypt/seahorse-3.34 work with Funtoo's newer GNUPG Suite
-	# Specifically app-crypt/gnupg-2.3.7 and newer, which is currently an autogen kit-fixups core-kit package
-	# This workaround allows gnome-kit-sources/3.36-prime packages to be usable with Funtoo next and
-	# 1.4-prime stage3 builds.
-	# Eventually when gnome-base/gnome is fully upgraded, we should pull in app-crypt/seahorse 43.0 or newer
-	# These newer versions of app-crypt/seahorse support newer versions of app-crypt/gnupg respectively
-	# Upstream app-crypt/seahorse Change logs for reference: https://gitlab.gnome.org/GNOME/seahorse/-/tags
 	sed -i -e "s|'2.2.0'|'2.2.0', '2.3.7'|g"  meson.build
 	vala_src_prepare
-	gnome2_src_prepare
+	gnome3_src_prepare
 }
 
 src_configure() {
