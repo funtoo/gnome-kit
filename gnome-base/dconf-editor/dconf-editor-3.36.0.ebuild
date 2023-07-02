@@ -13,6 +13,10 @@ SLOT="0"
 
 KEYWORDS="*"
 
+PATCHES=(
+	"${FILESDIR}/dconf-editor-meson-0.63.patch"
+)
+
 COMMON_DEPEND="
 	dev-libs/appstream-glib
 	>=dev-libs/glib-2.62.2:2

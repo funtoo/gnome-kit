@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit gnome2 meson
+EAPI=7
+inherit gnome3 meson
 
 DESCRIPTION="Simple sound recorder"
 HOMEPAGE="https://wiki.gnome.org/Design/Apps/SoundRecorder"
@@ -33,5 +33,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	gnome2_src_prepare
+	sed -i -e "/'desktop',/d" data/meson.build
+	sed -i -e "/'appdata-file',/d" data/appdata/meson.build
+	gnome3_src_prepare
 }

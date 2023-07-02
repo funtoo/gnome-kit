@@ -38,6 +38,10 @@ DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 "
 
+PATCHES=(
+	"${FILESDIR}/gnome-bluetooth-meson-0.63.patch"
+)
+
 pkg_setup() {
 	enewgroup plugdev
 }

@@ -28,3 +28,8 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	sed -i -e "/  'appdata',/d" data/appdata/meson.build
+	gnome3_src_prepare
+}

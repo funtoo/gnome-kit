@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-VALA_MAX_API_VERSION=0.44
+VALA_MAX_API_VERSION=0.46
 
 inherit gnome3 vala meson
 
@@ -30,6 +30,7 @@ RDEPEND="${COMMON_DEPEND}
 	x11-themes/adwaita-icon-theme
 "
 DEPEND="${COMMON_DEPEND}
+	>=dev-util/meson-0.63.1
 	$(vala_depend)
 	app-text/yelp-tools
 	dev-libs/appstream-glib
@@ -38,6 +39,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
+	sed  -i -e "s|('desktop-file',|(|g" -e "s|('appdata-file',|(|g" data/meson.build
 	vala_src_prepare
 	gnome3_src_prepare
 }

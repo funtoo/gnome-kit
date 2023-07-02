@@ -1,8 +1,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-inherit gnome2 meson
+inherit gnome3 meson
 
 DESCRIPTION="Font viewer for GNOME"
 HOMEPAGE="https://git.gnome.org/browse/gnome-font-viewer"
@@ -25,3 +25,9 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	sed -i -e 's|(appdata_file,|(|g' data/meson.build
+	sed -i -e "s|(desktop_file,|(|g" src/meson.build
+	gnome3_src_prepare
+}

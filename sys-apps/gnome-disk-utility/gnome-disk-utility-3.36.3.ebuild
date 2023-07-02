@@ -53,5 +53,7 @@ src_configure() {
 		$(meson_use gnome gsd_plugin)
 	)
 
+	sed -i -e '/  desktop,/d'  -e '/  info,/d' data/meson.build
+
 	meson_src_configure
 }

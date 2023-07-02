@@ -15,6 +15,10 @@ KEYWORDS="*"
 IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
+PATCHES=(
+	"${FILESDIR}/gnome-music-meson36.patch"
+)
+
 COMMON_DEPEND="
 	${PYTHON_DEPS}
 	>=net-libs/gnome-online-accounts-${PV%.*}

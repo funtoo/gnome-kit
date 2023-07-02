@@ -16,6 +16,10 @@ REQUIRED_USE="
 	wayland? ( || ( elogind systemd ) )
 "
 
+PATCHES=(
+	"${FILESDIR}/gnome-session-meson-0.63.patch"
+)
+
 # x11-misc/xdg-user-dirs{,-gtk} are needed to create the various XDG_*_DIRs, and
 # create .config/user-dirs.dirs which is read by glib to get G_USER_DIRECTORY_*
 # xdg-user-dirs-update is run during login (see 10-user-dirs-update-gnome below).

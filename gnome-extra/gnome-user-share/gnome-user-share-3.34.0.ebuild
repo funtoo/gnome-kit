@@ -48,5 +48,6 @@ src_configure() {
 		$(meson_use nautilus nautilus_extension)
 	)
 
+	sed -i -e '/  desktop,/d' data/meson.build
 	meson_src_configure
 }

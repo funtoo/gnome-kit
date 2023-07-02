@@ -36,17 +36,20 @@ PATCHES=(
 
 src_configure() {
 	local emesonargs=(
-		-Denable-background-plugin=true
-		-Denable-dark-theme-plugin=true
-		-Denable-scheduled-panel-plugin=true
-		-Denable-score-plugin=true
-		-Denable-today-panel-plugin=true
-		-Denable-unscheduled-panel-plugin=true
-		-Denable-todo-txt-plugin=true
-		-Denable-todoist-plugin=true
-		$(meson_use doc enable-gtk-doc)
-		$(meson_use introspection instrospection)
+		-Dbackground_plugin=true
+		-Ddark_theme_plugin=true
+		-Dscheduled_panel_plugin=true
+		-Dscore_plugin=true
+		-Dtoday_panel_plugin=true
+		-Dunscheduled_panel_plugin=true
+		-Dtodo_txt_plugin=true
+		-Dtodoist_plugin=true
+		$(meson_use doc gtk_doc)
+		$(meson_use introspection introspection)
 	)
+
+	sed -i -e '/  autostart,/d' -e '/  desktop,/d' data/meson.build
+	sed -i -e '/  appdata,/d' data/appdata/meson.build
 
 	meson_src_configure
 }

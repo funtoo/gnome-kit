@@ -26,13 +26,14 @@ RDEPEND="
 	lcms? ( >=media-libs/lcms-2.8:2 )
 "
 DEPEND="${RDEPEND}"
+PATCHES=(
+	"${FILESDIR}"/babl-0.1.78_meson.patch
+)
 
 src_prepare() {
 	default
 	gnome2_environment_reset
 	use vala && vala_src_prepare
-	# Fix to work with newer meson:
-	sed -ie 's/Description/description/' ${S}/meson.build || die
 }
 
 src_configure() {

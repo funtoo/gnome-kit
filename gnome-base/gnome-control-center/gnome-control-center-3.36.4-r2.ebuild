@@ -124,6 +124,45 @@ src_configure() {
 		$(meson_use wayland)
 	)
 
+	sed -i -E '/^\s+desktop,/d' panels/applications/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/background/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/camera/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/color/meson.build
+	sed -i -E -e '/^\s+desktop,/d' \
+		-e '/^\s+polkit,/d' panels/datetime/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/default-apps/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/diagnostics/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/display/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/info-overview/meson.build
+	sed -i -E -e '/^\s+desktop,/d' \
+		-e '/^\s+file,/d' \
+		panels/keyboard/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/location/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/lock/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/microphone/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/mouse/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/notifications/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/online-accounts/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/power/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/printers/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/region/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/removable-media/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/search/meson.build
+	sed -i -E -e '/^\s+desktop,/d' \
+		-e '/^\s+polkit,/d' panels/sharing/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/sound/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/universal-access/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/usage/meson.build
+	sed -i -E -e '/^\s+desktop,/d' \
+		-e '/^\s+polkit,/d' panels/user-accounts/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/network/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/bluetooth/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/thunderbolt/meson.build
+	sed -i -E '/^\s+desktop,/d' panels/wacom/meson.build
+	sed -i -E '/^\s+appdata,/d' shell/appdata/meson.build
+	sed -i -E '/^\s+desktop,/d' shell/meson.build
+	sed -i -E '/^\s+desktop,/d' tests/interactive-panels/applications/meson.build
+
 	meson_src_configure
 }
 

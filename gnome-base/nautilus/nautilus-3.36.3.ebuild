@@ -72,7 +72,9 @@ src_prepare() {
 			To activate the previewer, select a file and press space; to
 			close the previewer, press space again."
 	fi
-
+	sed -i -e "s|'appdata',||g" -e "s|'desktop',||g" \
+		-e "s|'desktop-autorun-software',||g" \
+		data/meson.build
 	gnome3_src_prepare
 }
 

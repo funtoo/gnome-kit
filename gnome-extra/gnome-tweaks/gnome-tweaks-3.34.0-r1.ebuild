@@ -15,6 +15,10 @@ KEYWORDS="*"
 IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
+PATCHES=(
+	"${FILESDIR}"/gnome-tweaks-meson36.patch
+)
+
 COMMON_DEPEND="
 	${PYTHON_DEPS}
 	>=dev-libs/glib-2.62.2:2[dbus]

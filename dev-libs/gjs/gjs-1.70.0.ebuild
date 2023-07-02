@@ -26,11 +26,10 @@ BDEPEND="
 "
 
 src_configure() {
-	# FIXME: add systemtap/dtrace support, like in glib:2
 	local emesonargs=(
 		$(meson_feature cairo)
 		$(meson_feature readline)
-		-Dsysprof=false
+		-Dprofiler=disabled
 		-Dinstalled_tests=false
 		-Dskip_dbus_tests=true
 		-Dskip_gtk_tests=true

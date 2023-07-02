@@ -32,6 +32,7 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
+	sed -i -e "/'desktop-file',/d" -e "/'appdata-file',/d" data/meson.build
 	gnome3_src_prepare
 	vala_src_prepare
 }

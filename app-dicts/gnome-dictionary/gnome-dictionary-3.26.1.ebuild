@@ -35,8 +35,10 @@ DEPEND="${COMMON_DEPEND}
 
 src_configure() {
 	local emesonargs=(
-		-Denable-ipv6=$(usex ipv6 true false)
+		-Duse_ipv6=$(usex ipv6 true false)
 	)
+
+	sed -i -e "s|('desktop',|(|g" data/meson.build
 
 	meson_src_configure
 }

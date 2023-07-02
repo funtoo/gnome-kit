@@ -1,3 +1,4 @@
+# cat /tmp/gedit-meson36.patch 
 diff --git a/data/meson.build.orig b/data/meson.build
 index 657716c..24357d6 100644
 --- a/data/meson.build.orig

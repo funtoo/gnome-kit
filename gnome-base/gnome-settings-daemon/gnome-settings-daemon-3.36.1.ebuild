@@ -82,6 +82,9 @@ PATCHES=(
 )
 
 src_prepare() {
+	sed -i -e "s|get_option('b_ndebug') == true|get_option('b_ndebug') == 'true'|g" meson.build
+	sed -i -e '/    policy,/d'  plugins/power/meson.build
+	sed -i -e '/  policy,/d'  plugins/wacom/meson.build
 	gnome3_src_prepare
 }
 

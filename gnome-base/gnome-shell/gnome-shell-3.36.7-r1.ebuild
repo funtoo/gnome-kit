@@ -102,6 +102,7 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-3.36.0-improve-motd-handling.patch"
 	"${FILESDIR}/${PN}-3.36.7-fix-modal-wifi-lockup.patch"
+	"${FILESDIR}/${PN}-3.36.7-meson36.patch"
 )
 
 src_prepare() {
