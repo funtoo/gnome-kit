@@ -75,9 +75,9 @@ src_configure() {
 		-Duse_gudev=enabled
 		-Duse_polkit=enabled
 		$(meson_use debug)
-		$(meson_feature elogind logind)
-		$(meson_use colord color)
-		$(meson_feature cups)
+		$(meson_feature elogind use_logind)
+		$(meson_use colord use_color)
+		$(meson_feature cups use_cups)
 		$(meson_feature smartcard enable_smartcard)
 	)
 	meson_src_configure
