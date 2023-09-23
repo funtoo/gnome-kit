@@ -1,7 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit gnome.org meson multilib-minimal xdg-utils
+inherit gnome.org meson xdg-utils
 
 DESCRIPTION="Library providing GLib serialization and deserialization for the JSON format"
 HOMEPAGE="https://wiki.gnome.org/Projects/JsonGlib"
@@ -12,7 +12,7 @@ KEYWORDS="*"
 IUSE="gtk-doc +introspection"
 
 RDEPEND="
-	>=dev-libs/glib-2.54.0:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.54.0:2
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 "
 DEPEND="${RDEPEND}"
@@ -35,23 +35,18 @@ src_prepare() {
 	sed -e '/install_data/d' -i json-glib/tests/meson.build || die
 }
 
-multilib_src_configure() {
+configure() {
 	local emesonargs=(
 		# Never use gi-docgen subproject
 		--wrap-mode nofallback
-
-		$(multilib_native_use_feature introspection)
-		$(multilib_native_use_feature gtk-doc gtk_doc)
-		$(multilib_native_true man)
+		$(meson_feature introspection)
+		$(meson_feature gtk-doc gtk_doc)
+		-Dman=true
 	)
 	meson_src_configure
 }
 
-multilib_src_compile() {
-	meson_src_compile
-}
-
-multilib_src_install() {
+src_install() {
 	meson_src_install
 
 	einstalldocs
