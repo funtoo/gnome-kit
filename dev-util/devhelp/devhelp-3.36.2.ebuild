@@ -39,5 +39,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	sed -i -e '20d' -e '30d' "${S}"/data/meson.build || die
+	sed -i -e '10d' "${S}"/plugins/gedit-plugin/meson.build || die
 	gnome3_src_prepare
 }
