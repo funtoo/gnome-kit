@@ -1,0 +1,13 @@
+diff -urN gnome-shell-3.36.7/src/calendar-server/gnome-shell-calendar-server.c gnome-shell-3.36.7-fixed/src/calendar-server/gnome-shell-calendar-server.c
+--- gnome-shell-3.36.7/src/calendar-server/gnome-shell-calendar-server.c	2020-10-07 14:23:34.563694200 -0400
++++ gnome-shell-3.36.7-fixed/src/calendar-server/gnome-shell-calendar-server.c	2023-10-07 22:50:00.162735316 -0400
+@@ -405,8 +405,7 @@
+                                  (gboolean) appt->is_all_day,
+                                  (gint64) start_time,
+                                  (gint64) end_time,
+-                                 extras_builder);
+-          g_variant_builder_clear (&extras_builder);
++                                 &extras_builder);
+         }
+     }
+ 
