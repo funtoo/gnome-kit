@@ -21,7 +21,6 @@ RDEPEND="
 	engines? (
 		games-board/crafty
 		games-board/gnuchess
-		games-board/sjeng
 		games-board/stockfish
 	)
 "
