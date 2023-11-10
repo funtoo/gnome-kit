@@ -9,6 +9,7 @@ x11-libs/gtk+ cloudprint
 
 # needed by simple-scan
 dev-libs/libgusb vala
+x11-misc/colord vala #FL-11776
 # This resolves a circular dep. For everything else we want introspection enabled
 # via make.defaults USE.
 net-dns/avahi -introspection
