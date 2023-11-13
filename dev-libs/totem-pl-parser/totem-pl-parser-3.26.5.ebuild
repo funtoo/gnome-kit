@@ -10,7 +10,7 @@ LICENSE="LGPL-2+"
 SLOT="0/18"
 KEYWORDS="*"
 
-IUSE="archive crypt +introspection +quvi test"
+IUSE="archive crypt +introspection test"
 
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
@@ -18,7 +18,6 @@ RDEPEND="
 	archive? ( >=app-arch/libarchive-3 )
 	crypt? ( dev-libs/libgcrypt:0= )
 	introspection? ( >=dev-libs/gobject-introspection-1.62.0:= )
-	quvi? ( >=media-libs/libquvi-0.9.1:0= )
 "
 DEPEND="${RDEPEND}
 	!<media-video/totem-2.21
@@ -46,7 +45,7 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		-Denable-quvi=$(usex quvi yes no)
+		-Denable-quvi=no
 		-Denable-libarchive=$(usex archive yes no)
 		-Denable-libgcrypt=$(usex crypt yes no)
 		-Denable-gtk-doc=true
