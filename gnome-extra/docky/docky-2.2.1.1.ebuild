@@ -1,8 +1,7 @@
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=4
-inherit autotools eutils gnome2 mono-env
+EAPI=7
+inherit autotools eutils gnome3 mono-env
 
 DESCRIPTION="Elegant, powerful, clean dock"
 HOMEPAGE="https://wiki.go-docky.com"
@@ -31,17 +30,16 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig"
 
-pkg_setup() {
-	G2CONF="${G2CONF}
-		--enable-release
-		$(use_enable nls)"
-
-	DOCS="AUTHORS NEWS"
-
-	mono-env_pkg_setup
-}
+DOCS="AUTHORS NEWS"
 
 src_prepare() {
+	default
 	sed -i -e "/warnaserror/d" configure.ac || die
 	eautoreconf
+}
+
+src_configure() {
+	gnome3_src_configure \
+		--enable-release \
+		$(use_enable nls)
 }
