@@ -1,0 +1,8 @@
+libsecret:
+  generator:
+    github-1
+  packages:
+    - libsecret:
+        github:
+          user: GNOME
+          query: tags
