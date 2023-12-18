@@ -11,14 +11,17 @@ SRC_URI="https://github.com/GNOME/libsecret/tarball/39a3d141691af7353df9bb5bdd81
 LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="*"
-IUSE="bash-completion gtk-doc +introspection tpm +vala"
-REQUIRED_USE="vala? ( introspection )"
+IUSE="bash-completion +crypt gtk-doc +introspection tpm +vala"
+REQUIRED_USE="
+	gtk-doc? ( crypt )
+	vala? ( introspection )
+"
 
 S="${WORKDIR}/GNOME-libsecret-39a3d14"
 
 RDEPEND="
 	>=dev-libs/glib-2.44.0
-	>=dev-libs/libgcrypt-1.2.2
+	crypt? ( >=dev-libs/libgcrypt-1.2.2 )
 	bash-completion? ( app-shells/bash-completion )
 	tpm? ( >=app-crypt/tpm2-tss-3.0.3 )"
 DEPEND="${RDEPEND}
@@ -37,6 +40,7 @@ src_configure() {
 	local emesonargs=(
 		$(meson_feature bash-completion bash_completion) # meson_feature for enabled or disabled options
 		-Dbashcompdir="$(get_bashcompdir)"
+		-Dcrypto="libgcrypt"
 		$(meson_use gtk-doc gtk_doc) # meson_use for true or false options
 		$(meson_use introspection)
 		$(meson_use tpm tpm2)
