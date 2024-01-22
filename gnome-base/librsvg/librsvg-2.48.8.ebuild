@@ -7,7 +7,7 @@ inherit autotools eutils gnome3 vala ltprune memsaver
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
-SRC_URI="https://direct.funtoo.org/93/74/16/937416822697fbdf98e2ad3b48ac9ba688ec3e08ebc10325b3348d250cbe6e2baab79534a9eaf0feadf5ac44352d50a7ab7a6d31965f7f93966d4f593ea29cfd -> librsvg-2.48.8-update-1.tar.xz"
+SRC_URI="https://direct.funtoo.org/bd/06/6f/bd066f0ce01f1348471c612e16735fedaef2ea33018f92d9ea6490fdf1eb5165c8bdb9e3deab55097784f5ecfe229912738b2838fb0ff3a633bae519a03d0b82 -> librsvg-2.48.8.tar.xz"
 LICENSE="LGPL-2+"
 SLOT="2"
 KEYWORDS="*"

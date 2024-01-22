@@ -12,8 +12,7 @@ def do_cmd(hub, cmd):
 async def generate(hub, **pkginfo):
 	version = "2.48.8"
 	majmin = ".".join(version.split(".")[0:2])
-	custom = "update-1"
-	final_name = f"librsvg-{version}-{custom}.tar.xz"
+	final_name = f"librsvg-{version}.tar.xz"
 	src_uri = f"https://download.gnome.org/sources/librsvg/{majmin}/librsvg-{version}.tar.xz"
 	my_archive, metadata = hub.Archive.find_by_name(final_name)
 	if my_archive is None:
@@ -21,8 +20,6 @@ async def generate(hub, **pkginfo):
 		await upstream.ensure_fetched()
 		upstream.extract()
 		my_archive = hub.Archive(final_name)
-		my_archive.initialize(top_directory="")
-		do_cmd(hub, f"( cd {my_archive.extract_path} && cp -a {upstream.extract_path}/* . )")
 		src_path = f"{my_archive.extract_path}/librsvg-{version}"
 		cargo_path = f"{src_path}/rsvg_internals/Cargo.toml"
 		in_toml = toml.load(cargo_path)
