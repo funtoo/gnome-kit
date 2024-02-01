@@ -1,4 +1,4 @@
-BDEPEND=sys-devel/gettext virtual/pkgconfig >=app-portage/elt-patches-20170815 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 app-arch/xz-utils test? ( !prefix? ( x11-base/xorg-server[xvfb] ) x11-apps/xhost )
+BDEPEND=sys-devel/gettext virtual/pkgconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71 >=sys-devel/libtool-2.4 app-arch/xz-utils test? ( !prefix? ( x11-base/xorg-server[xvfb] ) x11-apps/xhost )
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
 DEPEND=dev-lang/spidermonkey:52 >=dev-libs/glib-2.42:2 >=dev-libs/gobject-introspection-1.41.4:= sys-libs/readline:0= dev-libs/libffi:0= cairo? ( x11-libs/cairo[X,glib] ) gtk? ( x11-libs/gtk+:3 ) sys-devel/autoconf-archive test? ( sys-apps/dbus ) dev-util/desktop-file-utils x11-misc/shared-mime-info
 DESCRIPTION=Linux Mint's fork of gjs for Cinnamon
@@ -11,5 +11,5 @@ RDEPEND=dev-lang/spidermonkey:52 >=dev-libs/glib-2.42:2 >=dev-libs/gobject-intro
 RESTRICT=test
 SLOT=0
 SRC_URI=https://github.com/linuxmint/cjs/archive/4.6.0.tar.gz -> cjs-4.6.0.tar.gz
-_eclasses_=autotools	5223f703a2e9c194fcda924f8c4b6baf	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	fe2aa61bf7cc35d026458d06f875ef53	gnome3-utils	2e056188c1b3f3d82982454b3b2f1810	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	pax-utils	db85a3c508cf82c45f24b2723791cc93	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
+_eclasses_=autotools	e9ade2787b2f54643c7cdffbfa1cca9c	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gnome.org	532d56d07b9eace4831aaa817d2b756a	gnome3	fe2aa61bf7cc35d026458d06f875ef53	gnome3-utils	2e056188c1b3f3d82982454b3b2f1810	libtool	f143db5a74ccd9ca28c1234deffede96	ltprune	22f9f14d105434e9c400ccac3bbb64ae	multilib	d410501a125f99ffb560b0c523cd3d1e	pax-utils	db85a3c508cf82c45f24b2723791cc93	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	virtualx	401b718cc14d43a5a7fbe062c4851ba5	xdg	c7ba313ea1eaf266f95cc6235f7d6a07	xdg-utils	14d00d009167652b1fa363e55effe213
 _md5_=1f4be2ca1af2bf67cd83b29624a6e3ef
