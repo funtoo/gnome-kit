@@ -67,7 +67,7 @@ COMMON_DEPEND="
 		>=media-libs/mesa-10.3[egl,gbm,wayland]
 		|| ( sys-auth/elogind sys-apps/systemd )
 		>=virtual/libudev-232:=
-		x11-base/xorg-server[wayland]
+		|| ( x11-base/xorg-server[wayland] x11-base/xwayland )
 		x11-libs/libdrm:=
 	)
 	remote-desktop? ( >=media-video/pipewire-0.3.0 )
