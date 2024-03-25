@@ -10,7 +10,7 @@ SRC_URI="https://github.com/p11-glue/${PN}/releases/download/${PV}/${P}.tar.xz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="*"
-IUSE="+asn1 debug +libffi +trust"
+IUSE="+asn1 debug doc +libffi +trust"
 REQUIRED_USE="trust? ( asn1 )"
 
 RDEPEND="asn1? ( >=dev-libs/libtasn1-3.4 )
@@ -18,7 +18,7 @@ RDEPEND="asn1? ( >=dev-libs/libtasn1-3.4 )
 	trust? ( app-misc/ca-certificates )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	dev-util/gtk-doc"
+	doc? ( dev-util/gtk-doc )"
 
 pkg_setup() {
 	# disable unsafe tests, bug#502088
@@ -44,6 +44,7 @@ src_configure() {
 		$(use_enable trust trust-module) \
 		$(use_with trust trust-paths ${EPREFIX}/etc/ssl/certs/ca-certificates.crt) \
 		$(use_enable debug) \
+		$(use_enable doc) \
 		$(use_with libffi) \
 		$(use_with asn1 libtasn1)
 
