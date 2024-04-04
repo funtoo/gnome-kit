@@ -1,0 +1,11 @@
+gegl_rule:
+  generator: dirlisting-1
+  packages:
+    - gegl:
+        cat: media-libs
+        desc: A graph based image processing framework
+        homepage: https://gegl.org/
+        dir:
+          url: https://download.gimp.org/pub/gegl/0.4/
+          order: asc
+          format: tar.xz

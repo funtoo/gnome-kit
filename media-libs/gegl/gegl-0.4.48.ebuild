@@ -8,12 +8,10 @@ VALA_USE_DEPEND=vapigen
 
 inherit meson python-any-r1 vala xdg-utils
 
-SRC_URI="https://download.gimp.org/pub/${PN}/${PV:0:3}/${P}.tar.xz"
-KEYWORDS="*"
-
 DESCRIPTION="A graph based image processing framework"
 HOMEPAGE="https://gegl.org/"
-
+SRC_URI="https://download.gimp.org/pub/gegl/0.4/gegl-0.4.48.tar.xz -> gegl-0.4.48.tar.xz"
+KEYWORDS="*"
 LICENSE="|| ( GPL-3+ LGPL-3 )"
 SLOT="0.4"
 
