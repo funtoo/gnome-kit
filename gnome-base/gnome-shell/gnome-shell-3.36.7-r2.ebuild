@@ -84,7 +84,7 @@ RDEPEND="${COMMON_DEPEND}
 	networkmanager? (
 		net-misc/mobile-broadband-provider-info
 		sys-libs/timezone-data )
-	>=app-i18n/ibus-1.5.2[dconf(+),gtk,introspection(+)]
+	>=app-i18n/ibus-1.5.2[gtk3,introspection(+)]
 "
 # avoid circular dependency, see bug #546134
 PDEPEND="
