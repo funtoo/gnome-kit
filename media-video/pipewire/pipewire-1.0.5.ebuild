@@ -38,7 +38,7 @@ BDEPEND="
 	)
 "
 RDEPEND="
-	media-libs/alsa-lib
+	>=media-libs/alsa-lib-1.2.5
 	sys-apps/dbus
 	sys-libs/readline:=
 	sys-libs/ncurses:=
