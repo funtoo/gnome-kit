@@ -1,0 +1,19 @@
+diff -Nuar epiphany-3.36.4/data/meson.build epiphany-3.36.4-fixed/data/meson.build
+--- epiphany-3.36.4/data/meson.build	2020-08-06 20:34:47.047683500 +0000
++++ epiphany-3.36.4-fixed/data/meson.build	2024-04-19 06:56:59.659665161 +0000
+@@ -16,7 +16,6 @@
+ desktop_conf = configuration_data()
+ desktop_conf.set('icon', application_id)
+ desktop = i18n.merge_file(
+-  'desktop',
+   input: configure_file(
+     input: files('org.gnome.Epiphany.desktop.in.in'),
+     output: 'org.gnome.Epiphany.desktop.in',
+@@ -32,7 +31,6 @@
+ appdata_conf = configuration_data()
+ appdata_conf.set('appid', application_id)
+ appdata = i18n.merge_file(
+-  'appdata',
+   input: configure_file(
+     input: files('org.gnome.Epiphany.appdata.xml.in.in'),
+     output: 'org.gnome.Epiphany.appdata.xml.in',

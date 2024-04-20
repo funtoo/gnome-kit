@@ -48,6 +48,11 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+src_prepare() {
+	default
+	eapply "${FILESDIR}"/${P}-meson.patch
+}
+
 src_configure() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=778495
 	#append-cflags -std=gnu11
@@ -55,7 +60,9 @@ src_configure() {
 	# firefox sync storage is not quite ready in 3.24; deps on hogweed/nettle
 	local emesonargs=(
 		-Ddeveloper_mode=false
-		-Dunit_tests=$(usex test enabled disabled)
+		-Dnetwork_tests=disabled
+		-Dtech_preview=false
+		$(meson_feature test unit_tests)
 	)
 
 	meson_src_configure
