@@ -29,7 +29,7 @@ RDEPEND="x11-libs/gtk+:3
 	x11-libs/libXrandr
 	x11-libs/libSM
 	x11-libs/libICE
-	media-libs/libcanberra[gtk]
+	media-libs/libcanberra[gtk3]
 	gnome-base/libgtop
 	gnome-extra/zenity
 	xinerama? ( x11-libs/libXinerama )
