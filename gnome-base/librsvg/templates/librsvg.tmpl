@@ -12,9 +12,8 @@ LICENSE="LGPL-2+"
 SLOT="2"
 KEYWORDS="*"
 
-IUSE="+introspection tools vala"
-REQUIRED_USE="vala? ( introspection )"
-
+IUSE="gtk-doc +introspection +vala"
+REQUIRED_USE="gtk-doc? ( introspection ) vala? ( introspection )"
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/cairo-1.16.0
@@ -28,12 +27,11 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
 	dev-libs/vala-common
-	>=dev-util/gtk-doc-am-1.13
+	gtk-doc? ( dev-util/gi-docgen )
 	virtual/rust
 	vala? ( $(vala_depend) )
 	>=virtual/pkgconfig-0-r1
 "
-
 src_prepare() {
 	eautoreconf
 	gnome3_src_prepare
@@ -44,9 +42,10 @@ src_configure() {
 	memsaver_src_configure
 	ECONF_SOURCE=${S} \
 	gnome3_src_configure \
+		--disable-debug \
 		--disable-static \
+		$(use_enable gtk-doc) \
 		$(use_enable introspection) \
-		$(use_enable tools) \
 		$(use_enable vala) \
 		--enable-pixbuf-loader
 

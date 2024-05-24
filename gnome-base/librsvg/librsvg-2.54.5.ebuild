@@ -7,14 +7,14 @@ inherit autotools eutils gnome3 vala ltprune memsaver
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
 HOMEPAGE="https://wiki.gnome.org/Projects/LibRsvg"
-SRC_URI="https://direct.funtoo.org/bd/06/6f/bd066f0ce01f1348471c612e16735fedaef2ea33018f92d9ea6490fdf1eb5165c8bdb9e3deab55097784f5ecfe229912738b2838fb0ff3a633bae519a03d0b82 -> librsvg-2.48.8.tar.xz"
+SRC_URI="https://direct.funtoo.org/18/d6/1f/18d61f6eb4c10496c565b4d780c74e75ae7f3cfe8d924b9d7377aa11b95be9ecdf7b9e3a24f6e7864f84bf8ead77af0197b808f9c27af64d293559ce13d7c727 -> librsvg-2.54.5.tar.xz
+https://download.gnome.org/sources/librsvg/2.54/librsvg-2.54.5.tar.xz -> librsvg-2.54.5.tar.xz"
 LICENSE="LGPL-2+"
 SLOT="2"
 KEYWORDS="*"
 
-IUSE="+introspection tools vala"
-REQUIRED_USE="vala? ( introspection )"
-
+IUSE="gtk-doc +introspection +vala"
+REQUIRED_USE="gtk-doc? ( introspection ) vala? ( introspection )"
 RDEPEND="
 	>=dev-libs/glib-2.62.2:2
 	>=x11-libs/cairo-1.16.0
@@ -28,12 +28,11 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-libs/gobject-introspection-common
 	dev-libs/vala-common
-	>=dev-util/gtk-doc-am-1.13
+	gtk-doc? ( dev-util/gi-docgen )
 	virtual/rust
 	vala? ( $(vala_depend) )
 	>=virtual/pkgconfig-0-r1
 "
-
 src_prepare() {
 	eautoreconf
 	gnome3_src_prepare
@@ -44,9 +43,10 @@ src_configure() {
 	memsaver_src_configure
 	ECONF_SOURCE=${S} \
 	gnome3_src_configure \
+		--disable-debug \
 		--disable-static \
+		$(use_enable gtk-doc) \
 		$(use_enable introspection) \
-		$(use_enable tools) \
 		$(use_enable vala) \
 		--enable-pixbuf-loader
 
