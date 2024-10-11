@@ -5,7 +5,7 @@ inherit gnome2
 
 DESCRIPTION="The GNOME Structured File Library"
 HOMEPAGE="https://developer.gnome.org/gsf/"
-SRC_URI="https://download.gnome.org/sources/libgsf/1.14/libgsf-1.14.52.tar.xz -> libgsf-1.14.52.tar.xz"
+SRC_URI="https://download.gnome.org/sources/libgsf/1.14/libgsf-1.14.53.tar.xz -> libgsf-1.14.53.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0/114" # libgsf-1.so version
