@@ -10,7 +10,7 @@ inherit meson python-any-r1 vala xdg-utils
 
 DESCRIPTION="A graph based image processing framework"
 HOMEPAGE="https://gegl.org/"
-SRC_URI="https://download.gimp.org/pub/gegl/0.4/gegl-0.4.50.tar.xz -> gegl-0.4.50.tar.xz
+SRC_URI="https://download.gimp.org/pub/gegl/0.4/gegl-0.4.52.tar.xz -> gegl-0.4.52.tar.xz
 "
 KEYWORDS="*"
 LICENSE="|| ( GPL-3+ LGPL-3 )"
