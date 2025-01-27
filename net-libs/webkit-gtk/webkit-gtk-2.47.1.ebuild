@@ -11,10 +11,10 @@ S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Open source web browser engine"
 HOMEPAGE="https://www.webkitgtk.org"
-SRC_URI="https://www.webkitgtk.org/releases/webkitgtk-2.38.6.tar.xz -> webkitgtk-2.38.6.tar.xz"
+SRC_URI="https://www.webkitgtk.org/releases/webkitgtk-${PV}.tar.xz -> webkitgtk-${PV}.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
-SLOT="4/37" # soname version of libwebkit2gtk-4.0
+SLOT="4/47" # soname version of libwebkit2gtk-4.0
 KEYWORDS="*"
 
 IUSE="aqua avif +egl examples gamepad +geolocation gles2-only gnome-keyring +gstreamer gtk-doc +introspection +jpeg2k +jumbo-build lcms libnotify memsaver +opengl seccomp spell systemd wayland +X"
@@ -115,6 +115,7 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	${PYTHON_DEPS}
 	${RUBY_DEPS}
+	dev-util/unifdef
 	>=app-accessibility/at-spi2-core-2.5.3
 	dev-util/glib-utils
 	>=dev-util/gperf-3.0.1
@@ -176,6 +177,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	sed -i -e '/#define U_SHOW_CPLUSPLUS_API 0/a #define U_SHOW_CPLUSPLUS_HEADER_API 0' ${S}/Source/WTF/wtf/Platform.h || die
 	cmake_src_prepare
 	gnome3_src_prepare
 }
@@ -249,7 +251,13 @@ src_configure() {
 		-DUSE_LIBSECRET=$(usex gnome-keyring)
 		-DUSE_OPENGL_OR_ES=${opengl_enabled}
 		-DUSE_OPENJPEG=$(usex jpeg2k)
+		-DUSE_JPEGXL=OFF
+		-DUSE_GSTREAMER_TRANSCODER=OFF
+		-DUSE_LIBBACKTRACE=OFF
+		-DUSE_SYSTEM_SYSPROF_CAPTURE=NO
 		-DUSE_SOUP2=ON
+		-DUSE_FLITE=OFF
+		-DENABLE_SPEECH_SYNTHESIS=OFF
 		-DENABLE_JOURNALD_LOG=$(usex systemd)
 		-DUSE_WOFF2=ON
 		-DUSE_WPE_RENDERER=${use_wpe_renderer} # WPE renderer is used to implement accelerated compositing under wayland
