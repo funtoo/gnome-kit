@@ -2,11 +2,11 @@
 
 EAPI=7
 
-inherit flag-o-matic gnome2-utils meson multilib-minimal toolchain-funcs xdg
+inherit flag-o-matic gnome3-utils meson toolchain-funcs xdg
 
 DESCRIPTION="Internationalized text layout and rendering library"
 HOMEPAGE="https://www.pango.org/ https://gitlab.gnome.org/GNOME/pango"
-SRC_URI="https://download.gnome.org/sources/pango/1.48/pango-1.48.11.tar.xz -> pango-1.48.11.tar.xz"
+SRC_URI="{{ src_uri }}"
 
 LICENSE="LGPL-2+"
 SLOT="0"
@@ -15,21 +15,21 @@ KEYWORDS="*"
 IUSE="debug doc +introspection sysprof X"
 
 RDEPEND="
-	>=dev-libs/glib-2.62.2:2[${MULTILIB_USEDEP}]
-	>=dev-libs/fribidi-1.0.6[${MULTILIB_USEDEP}]
-	>=media-libs/harfbuzz-2.2.0:=[glib(+),introspection?,truetype(+),${MULTILIB_USEDEP}]
-	>=media-libs/fontconfig-2.12.92:1.0=[${MULTILIB_USEDEP}]
-	>=x11-libs/cairo-1.12.10:=[X?,${MULTILIB_USEDEP}]
-	>=media-libs/freetype-2.5.0.1:2=[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.62.2:2
+	>=dev-libs/fribidi-1.0.6
+	>=media-libs/harfbuzz-2.2.0:=[glib(+),introspection?,truetype(+)]
+	>=media-libs/fontconfig-2.12.92:1.0=
+	>=x11-libs/cairo-1.12.10:=
+	>=media-libs/freetype-2.5.0.1:2=
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5:= )
 	X? (
-		>=x11-libs/libX11-1.6.2[${MULTILIB_USEDEP}]
-		>=x11-libs/libXft-2.3.1-r1[${MULTILIB_USEDEP}]
-		>=x11-libs/libXrender-0.9.8[${MULTILIB_USEDEP}]
+		>=x11-libs/libX11-1.6.2
+		>=x11-libs/libXft-2.3.1-r1
+		>=x11-libs/libXrender-0.9.8
 	)
 "
 DEPEND="${RDEPEND}
-	sysprof? ( >=dev-util/sysprof-capture-3.40.1:4[${MULTILIB_USEDEP}] )
+	sysprof? ( >=dev-util/sysprof-capture-3.40.1:4 )
 	X? ( x11-base/xorg-proto )
 "
 BDEPEND="
@@ -40,10 +40,10 @@ BDEPEND="
 
 src_prepare() {
 	xdg_src_prepare
-	gnome2_environment_reset
+	gnome3_environment_reset
 }
 
-multilib_src_configure() {
+src_configure() {
 	if use debug; then
 		append-cflags -DPANGO_ENABLE_DEBUG
 	else
@@ -69,11 +69,7 @@ multilib_src_configure() {
 	meson_src_configure
 }
 
-multilib_src_compile() {
-	meson_src_compile
-}
-
-multilib_src_install() {
+src_install() {
 	meson_src_install
 
 	if use doc; then

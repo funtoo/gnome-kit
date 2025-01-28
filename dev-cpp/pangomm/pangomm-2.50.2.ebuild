@@ -1,0 +1,33 @@
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+PYTHON_COMPAT=( python3+ )
+inherit meson python-any-r1
+
+DESCRIPTION="C++ interface for pango"
+HOMEPAGE="https://www.gtkmm.org"
+SRC_URI="https://download.gnome.org/sources/pangomm/2.50/pangomm-2.50.2.tar.xz -> pangomm-2.50.2.tar.xz"
+
+LICENSE="LGPL-2.1+"
+SLOT="0"
+KEYWORDS="*"
+IUSE=""
+
+RDEPEND="
+	>=dev-cpp/cairomm-1.12.0:0
+	>=dev-cpp/glibmm-2.62.0
+	>=dev-libs/libsigc++-2.3.2:2
+	>=x11-libs/pango-1.44.7
+"
+DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig
+	${PYTHON_DEPS}"
+
+src_configure() {
+	local emesonargs=(
+		-Dmaintainer-mode=false
+		-Dbuild-documentation=false
+	)
+	meson_src_configure
+}

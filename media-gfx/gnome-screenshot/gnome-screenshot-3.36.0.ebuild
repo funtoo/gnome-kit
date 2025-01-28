@@ -47,7 +47,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome3_pkg_postinsta
+	gnome3_pkg_postinstall
 	xdg_icon_cache_update
 	gnome3_schemas_update
 	readme.gentoo_print_elog

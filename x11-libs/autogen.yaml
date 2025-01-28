@@ -1,0 +1,9 @@
+pango:
+  generator: gnome
+  packages:
+    - pango:
+        max: "1.49"
+    - pangomm:
+        cat: dev-cpp
+        max: "2.50"
+    # TODO: add cairo and cairomm to this autogen.

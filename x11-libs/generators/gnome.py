@@ -8,10 +8,14 @@ async def generate(hub, **pkginfo):
 	json_data = await hub.pkgtools.fetch.get_page(f"{download_url}/cache.json", is_json=True)
 	releases = [Version(v) for v in json_data[2][name]]
 
-	target = pkginfo.get('version')
+	target = pkginfo.get('max')
 	if target:
 		target = Version(target)
-		version = max([v for v in releases if v.major == target.major and v.minor == target.minor])
+		candidates = [v for v in releases if v.major == target.major and v.minor == target.minor]
+		if candidates:
+			version = max(candidates)
+		else:
+			raise ValueError(f"Did not find suitable version in json {json_data}")
 	else:
 		version = max(releases)
 
