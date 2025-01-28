@@ -15,8 +15,7 @@ KEYWORDS="*"
 
 # TODO: --enable-profiling
 # Vala isn't really optional, https://bugzilla.gnome.org/show_bug.cgi?id=701099
-IUSE="bluetooth eds +telepathy test tracker utils zeitgeist"
-REQUIRED_USE="bluetooth? ( eds )"
+IUSE="+telepathy test tracker utils zeitgeist"
 
 COMMON_DEPEND="
 	$(vala_depend)
@@ -27,9 +26,6 @@ COMMON_DEPEND="
 	dev-libs/libxml2
 	sys-libs/ncurses:0=
 	sys-libs/readline:0=
-
-	bluetooth? ( >=net-wireless/bluez-5 )
-	eds? ( >=gnome-extra/evolution-data-server-3.13.90:=[vala] )
 	telepathy? ( >=net-libs/telepathy-glib-0.19.9[vala] )
 	tracker? ( >=app-misc/tracker-1:0= )
 	zeitgeist? ( >=gnome-extra/zeitgeist-0.9.14 )
@@ -46,12 +42,6 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 	test? (
 		sys-apps/dbus
-		bluetooth? (
-			>=gnome-extra/evolution-data-server-3.9.1
-			>=dev-libs/glib-2.62.2:2 )
-	)
-	bluetooth? (
-		dev-python/dbusmock
 	)
 "
 
@@ -63,9 +53,9 @@ src_prepare() {
 src_configure() {
 	# Rebuilding docs needs valadoc, which has no release
 	local emesonargs=(
-		$(meson_use bluetooth bluez_backend)
-		$(meson_use eds eds_backend)
-		$(meson_use eds ofono_backend)
+		-Dbluez_backend=false
+		-Deds_backend=false
+		-Dofono_backend=false
 		$(meson_use telepathy telepathy_backend)
 		$(meson_use tracker tracker_backend)
 		$(meson_use utils inspect_tool)

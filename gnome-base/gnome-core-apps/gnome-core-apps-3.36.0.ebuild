@@ -27,12 +27,10 @@ RDEPEND="
 	>=app-crypt/gcr-${PV}
 	>=gnome-base/nautilus-${PV}
 	>=gnome-base/gnome-keyring-${PV}
-	>=gnome-extra/evolution-data-server-${PV}
 
 	>=app-crypt/seahorse-3.34
 	>=app-editors/gedit-${PV}
 	>=app-text/evince-${PV}
-	>=gnome-extra/gnome-contacts-3.36
 	>=media-gfx/eog-${PV}
 	>=media-video/totem-3.34
 	>=x11-terms/gnome-terminal-${PV}

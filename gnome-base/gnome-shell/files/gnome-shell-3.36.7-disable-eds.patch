@@ -1,0 +1,23 @@
+diff -urN gnome-shell-3.36.7/meson.build gnome-shell-3.36.7-fixed/meson.build
+--- gnome-shell-3.36.7/meson.build	2020-10-07 12:23:34.507695700 -0600
++++ gnome-shell-3.36.7-fixed/meson.build	2025-01-27 19:02:47.800201348 -0700
+@@ -78,8 +78,6 @@
+ endif
+ 
+ atk_bridge_dep = dependency('atk-bridge-2.0')
+-ecal_dep = dependency('libecal-2.0', version: ecal_req)
+-eds_dep = dependency('libedataserver-1.2', version: eds_req)
+ gcr_dep = dependency('gcr-base-3', version: gcr_req)
+ gdk_x11_dep = dependency('gdk-x11-3.0')
+ gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
+diff -urN gnome-shell-3.36.7/src/meson.build gnome-shell-3.36.7-fixed/src/meson.build
+--- gnome-shell-3.36.7/src/meson.build	2020-10-07 12:23:34.565694300 -0600
++++ gnome-shell-3.36.7-fixed/src/meson.build	2025-01-27 19:00:59.399574823 -0700
+@@ -1,7 +1,6 @@
+ service_data = configuration_data()
+ service_data.set('libexecdir', libexecdir)
+ 
+-subdir('calendar-server')
+ subdir('hotplug-sniffer')
+ subdir('st')
+ subdir('tray')

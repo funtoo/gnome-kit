@@ -11,7 +11,7 @@ SLOT="3.0"
 # double check none of the deps are still masked !
 KEYWORDS="*"
 
-IUSE="+bijiben boxes builder california empathy epiphany +evolution flashback +games geary gnote latexila +recipes +share +shotwell simple-scan +todo +tracker"
+IUSE="boxes builder california epiphany +evolution flashback +games gnote latexila +recipes +share +shotwell simple-scan +tracker"
 
 # Note to developers:
 #
@@ -26,7 +26,6 @@ RDEPEND="
 	>=gnome-extra/chrome-gnome-shell-10
 	>=gnome-extra/gconf-editor-3
 	>=gnome-extra/gnome-calculator-${PV}
-	>=gnome-extra/gnome-calendar-${PV}
 	>=gnome-extra/gnome-characters-3.34.0
 	>=gnome-extra/gnome-clocks-${PV}
 	>=gnome-extra/gnome-getting-started-docs-${PV}
@@ -46,14 +45,10 @@ RDEPEND="
 	>=net-analyzer/gnome-nettool-3.8
 	>=net-misc/vinagre-3.22.0
 	>=net-misc/vino-3.22.0
-	>=sci-geosciences/gnome-maps-${PV}
 	>=sys-apps/baobab-3.34
 	>=sys-apps/gnome-disk-utility-${PV}
-
-	bijiben? ( >=app-misc/bijiben-${PV} )
 	boxes? ( >=gnome-extra/gnome-boxes-${PV} )
 	builder? ( >=gnome-extra/gnome-builder-${PV} )
-	empathy? ( >=net-im/empathy-3.12.14 )
 	epiphany? ( >=www-client/epiphany-${PV} )
 	evolution? ( >=mail-client/evolution-${PV} )
 	flashback? ( >=gnome-base/gnome-flashback-3.32.0 )
@@ -78,13 +73,11 @@ RDEPEND="
 		>=games-puzzle/lightsoff-${PV}
 		>=games-puzzle/quadrapassel-${PV}
 		>=games-puzzle/swell-foop-3.34 )
-	geary? ( >=mail-client/geary-3.34 )
 	gnote? ( >=app-misc/gnote-3.34 )
 	recipes? ( >=gnome-extra/gnome-recipes-2.0.2 )
 	share? ( >=gnome-extra/gnome-user-share-3.34 )
 	shotwell? ( >=media-gfx/shotwell-0.30 )
 	simple-scan? ( >=media-gfx/simple-scan-${PV} )
-	todo? ( >=gnome-extra/gnome-todo-3.28.1 )
 	tracker? (
 		>=app-misc/tracker-2
 		>=gnome-extra/gnome-documents-3.34

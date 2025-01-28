@@ -20,7 +20,7 @@ RDEPEND="${COMMON_DEPEND}
 	>=gnome-base/gnome-shell-3.24
 	gnome-base/nautilus[introspection]
 	net-fs/sshfs
-	|| ( ( net-libs/gnome-online-accounts dev-libs/libgdata ) dev-libs/folks )
+	net-libs/gnome-online-accounts dev-libs/libgdata
 	|| ( media-libs/libcanberra media-libs/gsound )
 "
 DEPEND="${COMMON_DEPEND}
