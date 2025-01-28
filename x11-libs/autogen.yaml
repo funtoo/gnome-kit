@@ -6,4 +6,5 @@ pango:
     - pangomm:
         cat: dev-cpp
         max: "2.50"
+        slot: 1.4
     # TODO: add cairo and cairomm to this autogen.

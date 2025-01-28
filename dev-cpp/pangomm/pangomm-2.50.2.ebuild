@@ -10,15 +10,15 @@ HOMEPAGE="https://www.gtkmm.org"
 SRC_URI="https://download.gnome.org/sources/pangomm/2.50/pangomm-2.50.2.tar.xz -> pangomm-2.50.2.tar.xz"
 
 LICENSE="LGPL-2.1+"
-SLOT="0"
+SLOT="1.4"
 KEYWORDS="*"
 IUSE=""
 
 RDEPEND="
-	>=dev-cpp/cairomm-1.12.0:0
-	>=dev-cpp/glibmm-2.62.0
+	>=dev-cpp/cairomm-1.16.0:0
+	>=dev-cpp/glibmm-2.68.0
 	>=dev-libs/libsigc++-2.3.2:2
-	>=x11-libs/pango-1.44.7
+	>=x11-libs/pango-1.49
 "
 DEPEND="${RDEPEND}"
 BDEPEND="virtual/pkgconfig
