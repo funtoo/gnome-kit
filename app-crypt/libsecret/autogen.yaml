@@ -3,6 +3,7 @@ libsecret:
     github-1
   packages:
     - libsecret:
+        version: 0.21.1
         github:
           user: GNOME
           query: tags

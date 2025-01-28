@@ -6,7 +6,7 @@ inherit bash-completion-r1 gnome3 meson vala
 
 DESCRIPTION="A GObject-based library for accessing the Secret Service API of the freedesktop.org project, a cross-desktop effort to access passwords, tokens and other types of secrets."
 HOMEPAGE="https://wiki.gnome.org/Projects/Libsecret"
-SRC_URI="https://github.com/GNOME/libsecret/tarball/e59012225c2857d53738574423416b541f11a131 -> libsecret-0.21.6-e590122.tar.gz"
+SRC_URI="https://github.com/GNOME/libsecret/tarball/79722e8c670a0a9582d64b370831848f6d060e39 -> libsecret-0.21.1-79722e8.tar.gz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
@@ -17,7 +17,7 @@ REQUIRED_USE="
 	vala? ( introspection )
 "
 
-S="${WORKDIR}/GNOME-libsecret-e590122"
+S="${WORKDIR}/GNOME-libsecret-79722e8"
 
 RDEPEND="
 	>=dev-libs/glib-2.44.0
