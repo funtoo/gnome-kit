@@ -77,7 +77,7 @@ x11-base/xorg-server kdrive
 # Required by gnome-extra/hamster-applet
 dev-lang/python sqlite
 
-# Required for app-text/evince
+# We always have poppler enabled now
 app-text/poppler cairo
 
 # Required by sys-auth/polkit[-systemd]
@@ -144,4 +144,4 @@ net-libs/gnutls pkcs11
 app-editors/emacs gsettings lcms
 
 # Required by dev-vcs/gitg
-app-text/gtkspell vala 
+app-text/gtkspell vala
